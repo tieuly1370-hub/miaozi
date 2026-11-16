@@ -1,0 +1,27 @@
+{
+  "name": "lo-han",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host --port 4173"
+  },
+  "dependencies": {
+    "hanzi-writer": "^3.7.2",
+    "jspdf": "^3.0.3",
+    "pinyin-pro": "^3.27.0",
+    "preact": "^10.27.2"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.2",
+    "hanzi-writer-data": "^2.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "core-js@3.51.0": true
+  }
+}

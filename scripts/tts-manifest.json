@@ -1,0 +1,1582 @@
+[
+  {
+    "id": "l01-01",
+    "text": "你",
+    "kind": "word"
+  },
+  {
+    "id": "l01-02",
+    "text": "好",
+    "kind": "word"
+  },
+  {
+    "id": "l01-03",
+    "text": "您",
+    "kind": "word"
+  },
+  {
+    "id": "l01-04",
+    "text": "你们",
+    "kind": "word"
+  },
+  {
+    "id": "l01-05",
+    "text": "对不起",
+    "kind": "word"
+  },
+  {
+    "id": "l01-06",
+    "text": "没关系",
+    "kind": "word"
+  },
+  {
+    "id": "l02-01",
+    "text": "谢谢",
+    "kind": "word"
+  },
+  {
+    "id": "l02-02",
+    "text": "不",
+    "kind": "word"
+  },
+  {
+    "id": "l02-03",
+    "text": "不客气",
+    "kind": "word"
+  },
+  {
+    "id": "l02-04",
+    "text": "再见",
+    "kind": "word"
+  },
+  {
+    "id": "l03-01",
+    "text": "叫",
+    "kind": "word"
+  },
+  {
+    "id": "l03-02",
+    "text": "什么",
+    "kind": "word"
+  },
+  {
+    "id": "l03-03",
+    "text": "名字",
+    "kind": "word"
+  },
+  {
+    "id": "l03-04",
+    "text": "我",
+    "kind": "word"
+  },
+  {
+    "id": "l03-05",
+    "text": "是",
+    "kind": "word"
+  },
+  {
+    "id": "l03-06",
+    "text": "老师",
+    "kind": "word"
+  },
+  {
+    "id": "l03-07",
+    "text": "吗",
+    "kind": "word"
+  },
+  {
+    "id": "l03-08",
+    "text": "学生",
+    "kind": "word"
+  },
+  {
+    "id": "l03-09",
+    "text": "人",
+    "kind": "word"
+  },
+  {
+    "id": "l04-01",
+    "text": "她",
+    "kind": "word"
+  },
+  {
+    "id": "l04-02",
+    "text": "谁",
+    "kind": "word"
+  },
+  {
+    "id": "l04-03",
+    "text": "的",
+    "kind": "word"
+  },
+  {
+    "id": "l04-04",
+    "text": "汉语",
+    "kind": "word"
+  },
+  {
+    "id": "l04-05",
+    "text": "哪",
+    "kind": "word"
+  },
+  {
+    "id": "l04-06",
+    "text": "国",
+    "kind": "word"
+  },
+  {
+    "id": "l04-07",
+    "text": "呢",
+    "kind": "word"
+  },
+  {
+    "id": "l04-08",
+    "text": "他",
+    "kind": "word"
+  },
+  {
+    "id": "l04-09",
+    "text": "同学",
+    "kind": "word"
+  },
+  {
+    "id": "l04-10",
+    "text": "朋友",
+    "kind": "word"
+  },
+  {
+    "id": "l04-11",
+    "text": "中国",
+    "kind": "word"
+  },
+  {
+    "id": "l04-12",
+    "text": "北京",
+    "kind": "word"
+  },
+  {
+    "id": "l05-01",
+    "text": "家",
+    "kind": "word"
+  },
+  {
+    "id": "l05-02",
+    "text": "有",
+    "kind": "word"
+  },
+  {
+    "id": "l05-03",
+    "text": "口",
+    "kind": "word"
+  },
+  {
+    "id": "l05-04",
+    "text": "女儿",
+    "kind": "word"
+  },
+  {
+    "id": "l05-05",
+    "text": "几",
+    "kind": "word"
+  },
+  {
+    "id": "l05-06",
+    "text": "岁",
+    "kind": "word"
+  },
+  {
+    "id": "l05-07",
+    "text": "了",
+    "kind": "word"
+  },
+  {
+    "id": "l05-08",
+    "text": "今年",
+    "kind": "word"
+  },
+  {
+    "id": "l05-09",
+    "text": "多",
+    "kind": "word"
+  },
+  {
+    "id": "l05-10",
+    "text": "大",
+    "kind": "word"
+  },
+  {
+    "id": "l05-11",
+    "text": "一",
+    "kind": "word"
+  },
+  {
+    "id": "l05-12",
+    "text": "二",
+    "kind": "word"
+  },
+  {
+    "id": "l05-13",
+    "text": "三",
+    "kind": "word"
+  },
+  {
+    "id": "l05-14",
+    "text": "四",
+    "kind": "word"
+  },
+  {
+    "id": "l05-15",
+    "text": "五",
+    "kind": "word"
+  },
+  {
+    "id": "l05-16",
+    "text": "六",
+    "kind": "word"
+  },
+  {
+    "id": "l05-17",
+    "text": "七",
+    "kind": "word"
+  },
+  {
+    "id": "l05-18",
+    "text": "八",
+    "kind": "word"
+  },
+  {
+    "id": "l05-19",
+    "text": "九",
+    "kind": "word"
+  },
+  {
+    "id": "l05-20",
+    "text": "十",
+    "kind": "word"
+  },
+  {
+    "id": "l05-21",
+    "text": "零",
+    "kind": "word"
+  },
+  {
+    "id": "l05-22",
+    "text": "百",
+    "kind": "word"
+  },
+  {
+    "id": "l06-01",
+    "text": "会",
+    "kind": "word"
+  },
+  {
+    "id": "l06-02",
+    "text": "说",
+    "kind": "word"
+  },
+  {
+    "id": "l06-03",
+    "text": "妈妈",
+    "kind": "word"
+  },
+  {
+    "id": "l06-04",
+    "text": "菜",
+    "kind": "word"
+  },
+  {
+    "id": "l06-05",
+    "text": "很",
+    "kind": "word"
+  },
+  {
+    "id": "l06-06",
+    "text": "好吃",
+    "kind": "word"
+  },
+  {
+    "id": "l06-07",
+    "text": "做",
+    "kind": "word"
+  },
+  {
+    "id": "l06-08",
+    "text": "写",
+    "kind": "word"
+  },
+  {
+    "id": "l06-09",
+    "text": "汉字",
+    "kind": "word"
+  },
+  {
+    "id": "l06-10",
+    "text": "字",
+    "kind": "word"
+  },
+  {
+    "id": "l06-11",
+    "text": "怎么",
+    "kind": "word"
+  },
+  {
+    "id": "l06-12",
+    "text": "读",
+    "kind": "word"
+  },
+  {
+    "id": "l06-13",
+    "text": "说话",
+    "kind": "word"
+  },
+  {
+    "id": "l07-01",
+    "text": "请",
+    "kind": "word"
+  },
+  {
+    "id": "l07-02",
+    "text": "问",
+    "kind": "word"
+  },
+  {
+    "id": "l07-03",
+    "text": "今天",
+    "kind": "word"
+  },
+  {
+    "id": "l07-04",
+    "text": "号",
+    "kind": "word"
+  },
+  {
+    "id": "l07-05",
+    "text": "月",
+    "kind": "word"
+  },
+  {
+    "id": "l07-06",
+    "text": "星期",
+    "kind": "word"
+  },
+  {
+    "id": "l07-07",
+    "text": "昨天",
+    "kind": "word"
+  },
+  {
+    "id": "l07-08",
+    "text": "明天",
+    "kind": "word"
+  },
+  {
+    "id": "l07-09",
+    "text": "去",
+    "kind": "word"
+  },
+  {
+    "id": "l07-10",
+    "text": "学校",
+    "kind": "word"
+  },
+  {
+    "id": "l07-11",
+    "text": "看",
+    "kind": "word"
+  },
+  {
+    "id": "l07-12",
+    "text": "书",
+    "kind": "word"
+  },
+  {
+    "id": "l07-13",
+    "text": "日",
+    "kind": "word"
+  },
+  {
+    "id": "l08-01",
+    "text": "想",
+    "kind": "word"
+  },
+  {
+    "id": "l08-02",
+    "text": "喝",
+    "kind": "word"
+  },
+  {
+    "id": "l08-03",
+    "text": "茶",
+    "kind": "word"
+  },
+  {
+    "id": "l08-04",
+    "text": "吃",
+    "kind": "word"
+  },
+  {
+    "id": "l08-05",
+    "text": "米饭",
+    "kind": "word"
+  },
+  {
+    "id": "l08-06",
+    "text": "下午",
+    "kind": "word"
+  },
+  {
+    "id": "l08-07",
+    "text": "商店",
+    "kind": "word"
+  },
+  {
+    "id": "l08-08",
+    "text": "买",
+    "kind": "word"
+  },
+  {
+    "id": "l08-09",
+    "text": "个",
+    "kind": "word"
+  },
+  {
+    "id": "l08-10",
+    "text": "杯子",
+    "kind": "word"
+  },
+  {
+    "id": "l08-11",
+    "text": "这",
+    "kind": "word"
+  },
+  {
+    "id": "l08-12",
+    "text": "多少",
+    "kind": "word"
+  },
+  {
+    "id": "l08-13",
+    "text": "钱",
+    "kind": "word"
+  },
+  {
+    "id": "l08-14",
+    "text": "块",
+    "kind": "word"
+  },
+  {
+    "id": "l08-15",
+    "text": "那",
+    "kind": "word"
+  },
+  {
+    "id": "l09-01",
+    "text": "小",
+    "kind": "word"
+  },
+  {
+    "id": "l09-02",
+    "text": "猫",
+    "kind": "word"
+  },
+  {
+    "id": "l09-03",
+    "text": "在",
+    "kind": "word"
+  },
+  {
+    "id": "l09-04",
+    "text": "那儿",
+    "kind": "word"
+  },
+  {
+    "id": "l09-05",
+    "text": "狗",
+    "kind": "word"
+  },
+  {
+    "id": "l09-06",
+    "text": "椅子",
+    "kind": "word"
+  },
+  {
+    "id": "l09-07",
+    "text": "下面",
+    "kind": "word"
+  },
+  {
+    "id": "l09-08",
+    "text": "哪儿",
+    "kind": "word"
+  },
+  {
+    "id": "l09-09",
+    "text": "工作",
+    "kind": "word"
+  },
+  {
+    "id": "l09-10",
+    "text": "儿子",
+    "kind": "word"
+  },
+  {
+    "id": "l09-11",
+    "text": "医院",
+    "kind": "word"
+  },
+  {
+    "id": "l09-12",
+    "text": "医生",
+    "kind": "word"
+  },
+  {
+    "id": "l09-13",
+    "text": "爸爸",
+    "kind": "word"
+  },
+  {
+    "id": "l10-01",
+    "text": "桌子",
+    "kind": "word"
+  },
+  {
+    "id": "l10-02",
+    "text": "上",
+    "kind": "word"
+  },
+  {
+    "id": "l10-03",
+    "text": "电脑",
+    "kind": "word"
+  },
+  {
+    "id": "l10-04",
+    "text": "和",
+    "kind": "word"
+  },
+  {
+    "id": "l10-05",
+    "text": "本",
+    "kind": "word"
+  },
+  {
+    "id": "l10-06",
+    "text": "里",
+    "kind": "word"
+  },
+  {
+    "id": "l10-07",
+    "text": "前面",
+    "kind": "word"
+  },
+  {
+    "id": "l10-08",
+    "text": "后面",
+    "kind": "word"
+  },
+  {
+    "id": "l10-09",
+    "text": "这儿",
+    "kind": "word"
+  },
+  {
+    "id": "l10-10",
+    "text": "没有",
+    "kind": "word"
+  },
+  {
+    "id": "l10-11",
+    "text": "能",
+    "kind": "word"
+  },
+  {
+    "id": "l10-12",
+    "text": "坐",
+    "kind": "word"
+  },
+  {
+    "id": "l10-13",
+    "text": "下",
+    "kind": "word"
+  },
+  {
+    "id": "l10-14",
+    "text": "没",
+    "kind": "word"
+  },
+  {
+    "id": "l11-01",
+    "text": "现在",
+    "kind": "word"
+  },
+  {
+    "id": "l11-02",
+    "text": "点",
+    "kind": "word"
+  },
+  {
+    "id": "l11-03",
+    "text": "分",
+    "kind": "word"
+  },
+  {
+    "id": "l11-04",
+    "text": "中午",
+    "kind": "word"
+  },
+  {
+    "id": "l11-05",
+    "text": "吃饭",
+    "kind": "word"
+  },
+  {
+    "id": "l11-06",
+    "text": "时候",
+    "kind": "word"
+  },
+  {
+    "id": "l11-07",
+    "text": "回",
+    "kind": "word"
+  },
+  {
+    "id": "l11-08",
+    "text": "我们",
+    "kind": "word"
+  },
+  {
+    "id": "l11-09",
+    "text": "电影",
+    "kind": "word"
+  },
+  {
+    "id": "l11-10",
+    "text": "住",
+    "kind": "word"
+  },
+  {
+    "id": "l11-11",
+    "text": "前",
+    "kind": "word"
+  },
+  {
+    "id": "l12-01",
+    "text": "天气",
+    "kind": "word"
+  },
+  {
+    "id": "l12-02",
+    "text": "怎么样",
+    "kind": "word"
+  },
+  {
+    "id": "l12-03",
+    "text": "太",
+    "kind": "word"
+  },
+  {
+    "id": "l12-04",
+    "text": "热",
+    "kind": "word"
+  },
+  {
+    "id": "l12-05",
+    "text": "冷",
+    "kind": "word"
+  },
+  {
+    "id": "l12-06",
+    "text": "下雨",
+    "kind": "word"
+  },
+  {
+    "id": "l12-07",
+    "text": "小姐",
+    "kind": "word"
+  },
+  {
+    "id": "l12-08",
+    "text": "来",
+    "kind": "word"
+  },
+  {
+    "id": "l12-09",
+    "text": "身体",
+    "kind": "word"
+  },
+  {
+    "id": "l12-10",
+    "text": "爱",
+    "kind": "word"
+  },
+  {
+    "id": "l12-11",
+    "text": "些",
+    "kind": "word"
+  },
+  {
+    "id": "l12-12",
+    "text": "水果",
+    "kind": "word"
+  },
+  {
+    "id": "l12-13",
+    "text": "水",
+    "kind": "word"
+  },
+  {
+    "id": "l13-01",
+    "text": "喂",
+    "kind": "word"
+  },
+  {
+    "id": "l13-02",
+    "text": "也",
+    "kind": "word"
+  },
+  {
+    "id": "l13-03",
+    "text": "学习",
+    "kind": "word"
+  },
+  {
+    "id": "l13-04",
+    "text": "上午",
+    "kind": "word"
+  },
+  {
+    "id": "l13-05",
+    "text": "睡觉",
+    "kind": "word"
+  },
+  {
+    "id": "l13-06",
+    "text": "电视",
+    "kind": "word"
+  },
+  {
+    "id": "l13-07",
+    "text": "喜欢",
+    "kind": "word"
+  },
+  {
+    "id": "l13-08",
+    "text": "给",
+    "kind": "word"
+  },
+  {
+    "id": "l13-09",
+    "text": "打电话",
+    "kind": "word"
+  },
+  {
+    "id": "l13-10",
+    "text": "吧",
+    "kind": "word"
+  },
+  {
+    "id": "l14-01",
+    "text": "东西",
+    "kind": "word"
+  },
+  {
+    "id": "l14-02",
+    "text": "一点儿",
+    "kind": "word"
+  },
+  {
+    "id": "l14-03",
+    "text": "苹果",
+    "kind": "word"
+  },
+  {
+    "id": "l14-04",
+    "text": "看见",
+    "kind": "word"
+  },
+  {
+    "id": "l14-05",
+    "text": "先生",
+    "kind": "word"
+  },
+  {
+    "id": "l14-06",
+    "text": "开",
+    "kind": "word"
+  },
+  {
+    "id": "l14-07",
+    "text": "车",
+    "kind": "word"
+  },
+  {
+    "id": "l14-08",
+    "text": "回来",
+    "kind": "word"
+  },
+  {
+    "id": "l14-09",
+    "text": "分钟",
+    "kind": "word"
+  },
+  {
+    "id": "l14-10",
+    "text": "后",
+    "kind": "word"
+  },
+  {
+    "id": "l14-11",
+    "text": "衣服",
+    "kind": "word"
+  },
+  {
+    "id": "l14-12",
+    "text": "漂亮",
+    "kind": "word"
+  },
+  {
+    "id": "l14-13",
+    "text": "啊",
+    "kind": "word"
+  },
+  {
+    "id": "l14-14",
+    "text": "少",
+    "kind": "word"
+  },
+  {
+    "id": "l14-15",
+    "text": "这些",
+    "kind": "word"
+  },
+  {
+    "id": "l14-16",
+    "text": "都",
+    "kind": "word"
+  },
+  {
+    "id": "l15-01",
+    "text": "认识",
+    "kind": "word"
+  },
+  {
+    "id": "l15-02",
+    "text": "年",
+    "kind": "word"
+  },
+  {
+    "id": "l15-03",
+    "text": "大学",
+    "kind": "word"
+  },
+  {
+    "id": "l15-04",
+    "text": "饭店",
+    "kind": "word"
+  },
+  {
+    "id": "l15-05",
+    "text": "出租车",
+    "kind": "word"
+  },
+  {
+    "id": "l15-06",
+    "text": "一起",
+    "kind": "word"
+  },
+  {
+    "id": "l15-07",
+    "text": "高兴",
+    "kind": "word"
+  },
+  {
+    "id": "l15-08",
+    "text": "听",
+    "kind": "word"
+  },
+  {
+    "id": "l15-09",
+    "text": "飞机",
+    "kind": "word"
+  },
+  {
+    "id": "l15-10",
+    "text": "火车站",
+    "kind": "word"
+  },
+  {
+    "id": "s01-01",
+    "text": "你好！您是老师吗？",
+    "kind": "sent"
+  },
+  {
+    "id": "s01-02",
+    "text": "你们好！",
+    "kind": "sent"
+  },
+  {
+    "id": "s01-03",
+    "text": "对不起。没关系。",
+    "kind": "sent"
+  },
+  {
+    "id": "s02-01",
+    "text": "谢谢你！",
+    "kind": "sent"
+  },
+  {
+    "id": "s02-02",
+    "text": "不，不客气。",
+    "kind": "sent"
+  },
+  {
+    "id": "s02-03",
+    "text": "再见！",
+    "kind": "sent"
+  },
+  {
+    "id": "s03-01",
+    "text": "我叫小明。你叫什么名字？",
+    "kind": "sent"
+  },
+  {
+    "id": "s03-02",
+    "text": "我是学生。你是老师吗？",
+    "kind": "sent"
+  },
+  {
+    "id": "s03-03",
+    "text": "他是什么人？",
+    "kind": "sent"
+  },
+  {
+    "id": "s04-01",
+    "text": "她是我的朋友。",
+    "kind": "sent"
+  },
+  {
+    "id": "s04-02",
+    "text": "他是哪国人？他是中国人。",
+    "kind": "sent"
+  },
+  {
+    "id": "s04-03",
+    "text": "你的老师呢？",
+    "kind": "sent"
+  },
+  {
+    "id": "s04-04",
+    "text": "她是谁？她是我的同学。",
+    "kind": "sent"
+  },
+  {
+    "id": "s05-01",
+    "text": "我家有三口人。",
+    "kind": "sent"
+  },
+  {
+    "id": "s05-02",
+    "text": "她女儿今年五岁。",
+    "kind": "sent"
+  },
+  {
+    "id": "s05-03",
+    "text": "你今年多大？我二十岁了。",
+    "kind": "sent"
+  },
+  {
+    "id": "s06-01",
+    "text": "我会说汉语。",
+    "kind": "sent"
+  },
+  {
+    "id": "s06-02",
+    "text": "妈妈做的菜很好吃。",
+    "kind": "sent"
+  },
+  {
+    "id": "s06-03",
+    "text": "这个字怎么读？你会写吗？",
+    "kind": "sent"
+  },
+  {
+    "id": "s07-01",
+    "text": "请问，今天几号？",
+    "kind": "sent"
+  },
+  {
+    "id": "s07-02",
+    "text": "今天是三月八号，星期一。",
+    "kind": "sent"
+  },
+  {
+    "id": "s07-03",
+    "text": "明天我去学校看书。",
+    "kind": "sent"
+  },
+  {
+    "id": "s07-04",
+    "text": "昨天我去学校了。",
+    "kind": "sent"
+  },
+  {
+    "id": "s08-01",
+    "text": "我想喝茶。",
+    "kind": "sent"
+  },
+  {
+    "id": "s08-02",
+    "text": "这个杯子多少钱？三块。",
+    "kind": "sent"
+  },
+  {
+    "id": "s08-03",
+    "text": "下午我去商店买米饭。",
+    "kind": "sent"
+  },
+  {
+    "id": "s08-04",
+    "text": "那个人想吃米饭。",
+    "kind": "sent"
+  },
+  {
+    "id": "s09-01",
+    "text": "你儿子在哪儿工作？他在医院工作。",
+    "kind": "sent"
+  },
+  {
+    "id": "s09-02",
+    "text": "小狗在椅子下面。",
+    "kind": "sent"
+  },
+  {
+    "id": "s09-03",
+    "text": "我爸爸是医生。",
+    "kind": "sent"
+  },
+  {
+    "id": "s09-04",
+    "text": "猫在那儿。",
+    "kind": "sent"
+  },
+  {
+    "id": "s10-01",
+    "text": "我能坐这儿吗？",
+    "kind": "sent"
+  },
+  {
+    "id": "s10-02",
+    "text": "电脑在桌子上。",
+    "kind": "sent"
+  },
+  {
+    "id": "s10-03",
+    "text": "书在桌子里吗？没有。",
+    "kind": "sent"
+  },
+  {
+    "id": "s10-04",
+    "text": "前面有椅子和桌子。",
+    "kind": "sent"
+  },
+  {
+    "id": "s11-01",
+    "text": "现在几点？现在三点十分。",
+    "kind": "sent"
+  },
+  {
+    "id": "s11-02",
+    "text": "我们中午吃饭。",
+    "kind": "sent"
+  },
+  {
+    "id": "s11-03",
+    "text": "我三点前回学校。",
+    "kind": "sent"
+  },
+  {
+    "id": "s11-04",
+    "text": "你什么时候去看电影？",
+    "kind": "sent"
+  },
+  {
+    "id": "s12-01",
+    "text": "明天天气怎么样？明天太热了。",
+    "kind": "sent"
+  },
+  {
+    "id": "s12-02",
+    "text": "今天下雨，很冷。",
+    "kind": "sent"
+  },
+  {
+    "id": "s12-03",
+    "text": "小姐，我想买些水果。",
+    "kind": "sent"
+  },
+  {
+    "id": "s12-04",
+    "text": "我爱你，你的身体好吗？",
+    "kind": "sent"
+  },
+  {
+    "id": "s13-01",
+    "text": "喂，你在做什么？",
+    "kind": "sent"
+  },
+  {
+    "id": "s13-02",
+    "text": "我也学习汉语。",
+    "kind": "sent"
+  },
+  {
+    "id": "s13-03",
+    "text": "上午我睡觉，下午给你打电话吧。",
+    "kind": "sent"
+  },
+  {
+    "id": "s13-04",
+    "text": "他喜欢看电视。",
+    "kind": "sent"
+  },
+  {
+    "id": "s14-01",
+    "text": "这些衣服都很漂亮。",
+    "kind": "sent"
+  },
+  {
+    "id": "s14-02",
+    "text": "我想买一点儿苹果。",
+    "kind": "sent"
+  },
+  {
+    "id": "s14-03",
+    "text": "先生，我看见你的车了。",
+    "kind": "sent"
+  },
+  {
+    "id": "s14-04",
+    "text": "她买了不少东西，十分钟后回来。",
+    "kind": "sent"
+  },
+  {
+    "id": "s15-01",
+    "text": "认识你我很高兴。",
+    "kind": "sent"
+  },
+  {
+    "id": "s15-02",
+    "text": "我是坐飞机来的。",
+    "kind": "sent"
+  },
+  {
+    "id": "s15-03",
+    "text": "我们一起去饭店吧。",
+    "kind": "sent"
+  },
+  {
+    "id": "s15-04",
+    "text": "他在大学工作，今年三十岁。",
+    "kind": "sent"
+  },
+  {
+    "id": "s15-05",
+    "text": "我听他说，火车站在前面。",
+    "kind": "sent"
+  },
+  {
+    "id": "tone-1",
+    "text": "妈",
+    "kind": "tone"
+  },
+  {
+    "id": "tone-2",
+    "text": "麻",
+    "kind": "tone"
+  },
+  {
+    "id": "tone-3",
+    "text": "马",
+    "kind": "tone"
+  },
+  {
+    "id": "tone-4",
+    "text": "骂",
+    "kind": "tone"
+  },
+  {
+    "id": "tone-5",
+    "text": "吗",
+    "kind": "tone"
+  },
+  {
+    "id": "drill-ma-mā",
+    "text": "妈",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ma-má",
+    "text": "麻",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ma-mǎ",
+    "text": "马",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ma-mà",
+    "text": "骂",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ma-ma",
+    "text": "吗",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-yi-yī",
+    "text": "一",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-yi-yí",
+    "text": "姨",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-yi-yǐ",
+    "text": "椅",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-yi-yì",
+    "text": "意",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-wu-wū",
+    "text": "屋",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-wu-wú",
+    "text": "无",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-wu-wǔ",
+    "text": "五",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-wu-wù",
+    "text": "物",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ni-nī",
+    "text": "妮",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ni-ní",
+    "text": "泥",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ni-nǐ",
+    "text": "你",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-ni-nì",
+    "text": "逆",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-hao-hāo",
+    "text": "蒿",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-hao-háo",
+    "text": "毫",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-hao-hǎo",
+    "text": "好",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-hao-hào",
+    "text": "号",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-nai-nǎi",
+    "text": "奶",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-nai-nài",
+    "text": "耐",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-cha-chā",
+    "text": "插",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-cha-chá",
+    "text": "茶",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-cha-chǎ",
+    "text": "衩",
+    "kind": "drill"
+  },
+  {
+    "id": "drill-cha-chà",
+    "text": "差",
+    "kind": "drill"
+  },
+  {
+    "id": "init-b",
+    "text": "八",
+    "kind": "init"
+  },
+  {
+    "id": "init-p",
+    "text": "朋",
+    "kind": "init"
+  },
+  {
+    "id": "init-m",
+    "text": "妈",
+    "kind": "init"
+  },
+  {
+    "id": "init-f",
+    "text": "饭",
+    "kind": "init"
+  },
+  {
+    "id": "init-d",
+    "text": "大",
+    "kind": "init"
+  },
+  {
+    "id": "init-t",
+    "text": "他",
+    "kind": "init"
+  },
+  {
+    "id": "init-n",
+    "text": "你",
+    "kind": "init"
+  },
+  {
+    "id": "init-l",
+    "text": "老",
+    "kind": "init"
+  },
+  {
+    "id": "init-g",
+    "text": "个",
+    "kind": "init"
+  },
+  {
+    "id": "init-k",
+    "text": "看",
+    "kind": "init"
+  },
+  {
+    "id": "init-h",
+    "text": "好",
+    "kind": "init"
+  },
+  {
+    "id": "init-j",
+    "text": "叫",
+    "kind": "init"
+  },
+  {
+    "id": "init-q",
+    "text": "七",
+    "kind": "init"
+  },
+  {
+    "id": "init-x",
+    "text": "谢",
+    "kind": "init"
+  },
+  {
+    "id": "init-zh",
+    "text": "这",
+    "kind": "init"
+  },
+  {
+    "id": "init-ch",
+    "text": "吃",
+    "kind": "init"
+  },
+  {
+    "id": "init-sh",
+    "text": "是",
+    "kind": "init"
+  },
+  {
+    "id": "init-r",
+    "text": "人",
+    "kind": "init"
+  },
+  {
+    "id": "init-z",
+    "text": "字",
+    "kind": "init"
+  },
+  {
+    "id": "init-c",
+    "text": "菜",
+    "kind": "init"
+  },
+  {
+    "id": "init-s",
+    "text": "三",
+    "kind": "init"
+  },
+  {
+    "id": "init-y",
+    "text": "一",
+    "kind": "init"
+  },
+  {
+    "id": "init-w",
+    "text": "我",
+    "kind": "init"
+  },
+  {
+    "id": "final-a",
+    "text": "啊",
+    "kind": "final"
+  },
+  {
+    "id": "final-o",
+    "text": "哦",
+    "kind": "final"
+  },
+  {
+    "id": "final-e",
+    "text": "饿",
+    "kind": "final"
+  },
+  {
+    "id": "final-i",
+    "text": "一",
+    "kind": "final"
+  },
+  {
+    "id": "final-u",
+    "text": "五",
+    "kind": "final"
+  },
+  {
+    "id": "final-ü",
+    "text": "雨",
+    "kind": "final"
+  },
+  {
+    "id": "final-ai",
+    "text": "爱",
+    "kind": "final"
+  },
+  {
+    "id": "final-ei",
+    "text": "杯",
+    "kind": "final"
+  },
+  {
+    "id": "final-ui",
+    "text": "水",
+    "kind": "final"
+  },
+  {
+    "id": "final-ao",
+    "text": "好",
+    "kind": "final"
+  },
+  {
+    "id": "final-ou",
+    "text": "口",
+    "kind": "final"
+  },
+  {
+    "id": "final-iu",
+    "text": "六",
+    "kind": "final"
+  },
+  {
+    "id": "final-ie",
+    "text": "谢",
+    "kind": "final"
+  },
+  {
+    "id": "final-üe",
+    "text": "月",
+    "kind": "final"
+  },
+  {
+    "id": "final-er",
+    "text": "二",
+    "kind": "final"
+  },
+  {
+    "id": "final-an",
+    "text": "三",
+    "kind": "final"
+  },
+  {
+    "id": "final-en",
+    "text": "很",
+    "kind": "final"
+  },
+  {
+    "id": "final-in",
+    "text": "您",
+    "kind": "final"
+  },
+  {
+    "id": "final-un",
+    "text": "文",
+    "kind": "final"
+  },
+  {
+    "id": "final-ün",
+    "text": "云",
+    "kind": "final"
+  },
+  {
+    "id": "final-ang",
+    "text": "忙",
+    "kind": "final"
+  },
+  {
+    "id": "final-eng",
+    "text": "冷",
+    "kind": "final"
+  },
+  {
+    "id": "final-ing",
+    "text": "名",
+    "kind": "final"
+  },
+  {
+    "id": "final-ong",
+    "text": "中",
+    "kind": "final"
+  }
+]
