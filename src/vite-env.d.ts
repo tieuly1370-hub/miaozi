@@ -19,3 +19,4 @@ declare module "hanzi-writer" {
   };
   export default HanziWriter;
 }
+declare const __APP_VERSION__: string;

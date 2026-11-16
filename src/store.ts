@@ -4,7 +4,7 @@ import { type Card, cardId, newCard, review, dueCards, type Skill } from "./srs"
 import {
   DEFAULT_SETTINGS, DEFAULT_STREAK, type Settings, type StreakState, type SessionLog,
   type Makeup, type Penalty, type PlannedSession, type SkillKind,
-  sessionsOn, padDate, requiredSessions, sessionComplete, latePenalty, missedPenalty, twicePenalty, isOffDay, atHm,
+  sessionsOn, padDate, requiredSessions, penaltyId, sessionComplete, latePenalty, missedPenalty, twicePenalty, isOffDay, atHm,
 } from "./schedule";
 import { ALL_WORDS, type Word } from "./data/curriculum";
 
@@ -20,6 +20,9 @@ export interface Progress {
   reviewWeekDone: boolean;
   mocks: Record<number, { score: number; at: number }>;
   weekly: Record<string, { done: boolean; rewardClaimed: boolean }>; // ISO week key
+  /** Ngày bắt đầu dùng app — không phạt các ca trước ngày này. */
+  startedOn: string;
+  textbookRead: Record<number, boolean>;
 }
 
 export const DEFAULT_PROGRESS: Progress = {
@@ -34,6 +37,8 @@ export const DEFAULT_PROGRESS: Progress = {
   reviewWeekDone: false,
   mocks: {},
   weekly: {},
+  startedOn: "",
+  textbookRead: {},
 };
 
 export interface Mistake {
@@ -68,6 +73,11 @@ export interface TodayState {
   started: Record<string, number>;
   lateFlagged: Record<string, boolean>;
   wordWrongs: Record<string, number>;
+  /** Bước trong kế hoạch hôm nay đã xong (id bước). */
+  steps?: Record<string, boolean>;
+  /** Bài/ngày được chốt cho kế hoạch hôm nay, ví dụ "3:2". */
+  planFor?: string;
+  speakCount?: number;
 }
 
 function defaultToday(d = new Date()): TodayState {
@@ -162,12 +172,39 @@ export async function load(): Promise<AppState> {
       today: today && today.date === todayDate ? today : defaultToday(),
       onboarded: !!onboarded,
     };
+    migrate();
     rollover(new Date());
     ensureCards();
   })();
   await ready;
   emit();
   return state!;
+}
+
+/** v1.1: id phạt bị trùng (cùng mili-giây) và phạt cho các ngày trước khi cài app. */
+function migrate() {
+  if (!state) return;
+  const st = state;
+  const today = padDate(new Date());
+  if (!st.progress.startedOn) {
+    const first = st.sessions.map((l) => l.date).sort()[0];
+    st.progress.startedOn = first && first < today ? first : today;
+    // Bỏ học bù / chép phạt sinh ra cho những ngày trước khi bắt đầu dùng
+    st.streak.pendingMakeups = st.streak.pendingMakeups.filter((m) => m.missedDate >= st.progress.startedOn);
+    const keepMissed = st.streak.pendingMakeups.filter((m) => !m.done).length;
+    let seen = 0;
+    st.penalties = st.penalties.filter((p) => {
+      if (p.type !== "missed" || p.done) return true;
+      seen += 1;
+      return seen <= keepMissed;
+    });
+  }
+  st.progress.textbookRead = st.progress.textbookRead || {};
+  const ids = new Set<string>();
+  for (const p of st.penalties) {
+    if (ids.has(p.id)) p.id = penaltyId(p.type);
+    ids.add(p.id);
+  }
 }
 
 function ensureCards() {
@@ -189,6 +226,7 @@ function rollover(now: Date) {
   for (let back = 1; back <= 4; back++) {
     const d = new Date(now);
     d.setDate(d.getDate() - back);
+    if (state.progress.startedOn && padDate(d) < state.progress.startedOn) continue;
     const planned = requiredSessions(d, state.settings);
     for (const p of planned) {
       const logs = state.sessions.filter((l) => l.sessionId === p.id);
@@ -216,7 +254,10 @@ function rollover(now: Date) {
       };
       state.streak.pendingMakeups.push(makeup);
       const chars = pickPenaltyChars(3);
-      state.penalties.push(missedPenalty(chars));
+      const label = p.kind === "morning" ? "ca sáng" : p.kind === "evening" ? "ca tối" : "kiểm tra tuần";
+      const [yy, mm, dd] = p.date.split("-");
+      void yy;
+      state.penalties.push(missedPenalty(chars, `Bỏ ${label} ngày ${dd}/${mm}`, p.id));
     }
   }
   // fulfill today if all required done — handled in markQualified
@@ -486,10 +527,35 @@ export function saveNote(lesson: number, strokes: Stroke[]) {
   emit();
 }
 
-export function markPenaltyDone(id: string) {
+export function markPenaltyDone(id: string, proof?: Penalty["proof"]) {
   const s = getState();
   const p = s.penalties.find((x) => x.id === id);
-  if (p) p.done = true;
+  if (p) { p.done = true; if (proof) p.proof = proof; }
+  emit();
+}
+
+export function setPenaltyWritten(id: string, char: string, n: number) {
+  const p = getState().penalties.find((x) => x.id === id);
+  if (!p) return;
+  p.written = { ...(p.written || {}), [char]: n };
+  emit();
+}
+
+export function markStep(stepId: string, done = true) {
+  const s = getState();
+  s.today.steps = { ...(s.today.steps || {}), [stepId]: done };
+  emit();
+}
+
+export function markTextbookRead(lesson: number) {
+  const s = getState();
+  s.progress.textbookRead = { ...(s.progress.textbookRead || {}), [lesson]: true };
+  emit();
+}
+
+export function markSegWatched(lesson: number, count: number) {
+  const s = getState();
+  s.progress.watchSeg[lesson] = Math.max(s.progress.watchSeg[lesson] || 0, count);
   emit();
 }
 
@@ -548,3 +614,16 @@ export function debugSeed(partial: Partial<AppState>) {
 }
 
 export { atHm };
+
+export function setPlanFor(key: string) {
+  const s = getState();
+  if (s.today.planFor) return;
+  s.today.planFor = key;
+  emit();
+}
+
+export function bumpSpeak() {
+  const s = getState();
+  s.today.speakCount = (s.today.speakCount || 0) + 1;
+  emit();
+}

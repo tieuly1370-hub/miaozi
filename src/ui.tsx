@@ -1,6 +1,7 @@
 import { ComponentChildren } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { playId, stopAudio } from "./audio";
+import { autoPlay, carrierFor, playId, stopAudio } from "./audio";
+import { getState } from "./store";
 import type { TutorMood } from "./tutor";
 import type { Word } from "./data/curriculum";
 
@@ -34,6 +35,23 @@ export function Button(props: {
 
 export function Card(props: { children: ComponentChildren; class?: string; id?: string; "data-testid"?: string }) {
   return <section id={props.id} class={cls("card", props.class)} data-testid={props["data-testid"]}>{props.children}</section>;
+}
+
+/** Phát âm tự động khi id đổi (Cài đặt → Tự phát âm). */
+export function useAutoPlay(id: string | undefined | null, extraDeps: unknown[] = []) {
+  useEffect(() => {
+    if (!id) return;
+    const t = setTimeout(() => void autoPlay(id, getState().settings.autoplay !== false), 250);
+    return () => clearTimeout(t);
+  }, [id, ...extraDeps]);
+}
+
+/** Ghi chú khi âm được đọc trong cụm (trợ từ thanh nhẹ). */
+export function CarrierNote(props: { id?: string }) {
+  const [c, setC] = useState<string | null>(null);
+  useEffect(() => { setC(null); if (props.id) carrierFor(props.id).then(setC).catch(() => {}); }, [props.id]);
+  if (!c) return null;
+  return <p class="muted small-note">Chữ này đọc nhẹ, đứng một mình nghe sai nên loa đọc trong cụm <span class="hanzi-inline">{c}</span>.</p>;
 }
 
 export function AudioBtn(props: { id?: string; slow?: boolean; label?: string }) {

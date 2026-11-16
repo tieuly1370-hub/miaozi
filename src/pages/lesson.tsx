@@ -3,11 +3,12 @@ import { LESSONS, YT_WATCH, PASS_SCORE, type Word, type Lesson } from "../data/c
 import { lessonTest } from "../data/exams";
 import {
   getState, lessonUnlocked, markDayDone, markIntroduced, passLesson, recordAnswer,
-  srsReview, startActivity, noteInput, plannedToday, addMistake,
+  srsReview, startActivity, noteInput, plannedToday, addMistake, markSegWatched,
 } from "../store";
 import { cardId } from "../srs";
-import { AudioBtn, Bar, Button, Card, Decomp, Options, PinyinReveal, WordFace, go, cls } from "../ui";
-import { WriteBox } from "./write";
+import { AudioBtn, Bar, Button, Card, CarrierNote, Decomp, Options, PinyinReveal, WordFace, go, useAutoPlay } from "../ui";
+import { WriteWord } from "./write";
+import { TextbookPage } from "./textbook";
 
 export function LessonPage(props: { n: number; tab?: string }) {
   const n = props.n;
@@ -31,6 +32,7 @@ export function LessonPage(props: { n: number; tab?: string }) {
     );
   }
   const tab = props.tab || "hub";
+  if (tab === "book") return <TextbookPage n={n} />;
   if (tab === "watch") return <Watch les={les} />;
   if (tab === "words") return <Words les={les} />;
   if (tab === "practice") return <Practice les={les} />;
@@ -45,9 +47,10 @@ export function LessonPage(props: { n: number; tab?: string }) {
         <div class="hanzi sm">{les.titleZh}</div>
         <h2 class="h2">{les.titleVi}</h2>
         <p class="muted">{les.grammarNote}</p>
-        <p class="kw">{les.words.length} từ · {les.sentences.length} câu gốc (không chép giáo trình)</p>
+        <p class="kw">{les.words.length} từ · {les.sentences.length} câu luyện</p>
         {passed && <p class="chip green">Đã đạt {Math.round(passed.score * 100)}%</p>}
       </Card>
+      <Button kind="green" wide id="open-textbook" onClick={() => go(`/lesson/${n}/book`)}>📖 Giáo trình bài {n} {s.progress.textbookRead?.[n] ? "· đã đọc" : ""}</Button>
       <div class="grid cols-2">
         <Button kind="blue" wide onClick={() => go(`/lesson/${n}/watch`)}>Ngày 1 · Xem video</Button>
         <Button kind="yellow" wide onClick={() => go(`/lesson/${n}/words`)}>Ngày 1 · Từ mới</Button>
@@ -68,8 +71,8 @@ function Watch({ les }: { les: Lesson }) {
       <Card>
         <h2 class="h2">Video thầy Thành Luân</h2>
         <p class="muted">Mỗi đoạn khoảng 15–20 phút. Xem xong một mốc thì dừng, làm từ mới. App mở YouTube đúng phút (thêm &t=).</p>
-        {vid && <SegList title="Bài giảng" video={vid} />}
-        {wb && <SegList title="Sách bài tập" video={wb} />}
+        {vid && <SegList title="Bài giảng" video={vid} lesson={les.id} offset={0} />}
+        {wb && <SegList title="Sách bài tập" video={wb} lesson={les.id} offset={vid?.segments.length || 0} />}
         {!wb && les.id <= 5 && <p class="muted">Playlist không có video sách bài tập riêng cho bài 1–5 (bài 6 mới bắt đầu xen kẽ).</p>}
       </Card>
       <Button kind="primary" wide onClick={() => { markDayDone(les.id, 1); go(`/lesson/${les.id}/words`); }}>Đã xem, sang từ mới</Button>
@@ -77,15 +80,16 @@ function Watch({ les }: { les: Lesson }) {
   );
 }
 
-function SegList({ title, video }: { title: string; video: NonNullable<Lesson["lecture"]> }) {
+function SegList({ title, video, lesson, offset }: { title: string; video: NonNullable<Lesson["lecture"]>; lesson: number; offset: number }) {
+  const watched = getState().progress.watchSeg[lesson] || 0;
   return (
     <div>
       <h3 class="h3">{title}</h3>
       <p class="muted">{video.title} · {Math.floor(video.duration / 60)} phút</p>
       {video.segments.map((s, i) => (
-        <a class="seg" key={i} href={YT_WATCH(video.id, s.start)} target="_blank" rel="noreferrer">
+        <a class="seg" key={i} href={YT_WATCH(video.id, s.start)} target="_blank" rel="noreferrer" onClick={() => markSegWatched(lesson, offset + i + 1)}>
           <div>{s.label}</div>
-          <span class="chip blue">Mở YouTube</span>
+          <span class={"chip " + (offset + i < watched ? "green" : "blue")}>{offset + i < watched ? "đã mở" : "Mở video"}</span>
         </a>
       ))}
     </div>
@@ -98,6 +102,7 @@ function Words({ les }: { les: Lesson }) {
   const s = getState();
   const first = w && !(s.srs[cardId(w.id, "recognize")]?.introduced);
   useEffect(() => { if (w) markIntroduced(w.id); }, [w?.id]);
+  useAutoPlay(w?.id);
   if (!w) return null;
   return (
     <div class="stack" data-testid="lesson-words">
@@ -108,6 +113,7 @@ function Words({ les }: { les: Lesson }) {
           <AudioBtn id={w.id} />
           <AudioBtn id={w.id} slow />
         </div>
+        <CarrierNote id={w.id} />
         <Decomp word={w} />
       </Card>
       <div class="row">
@@ -162,34 +168,11 @@ function Practice({ les }: { les: Lesson }) {
       ) : (
         <Card>
           <p>Viết: <strong>{w.vi}</strong> {w.hanzi.length > 1 ? `(${w.hanzi})` : ""}</p>
-          <WriteChars word={w} onDone={(ok) => { recordAnswer(ok, w, "viết"); srsReview(cardId(w.id, "write"), ok ? 4 : 0); }} />
-          <Button wide onClick={() => setI(i + 1)}>Chữ / từ tiếp</Button>
+          <WriteWord key={w.id} word={w} onDone={(ok) => { recordAnswer(ok, w, "viết"); srsReview(cardId(w.id, "write"), ok ? 4 : 0); }} />
+          <div style={{ marginTop: 10 }}><Button wide onClick={() => setI(i + 1)}>Từ tiếp</Button></div>
         </Card>
       )}
       <Button kind="green" wide onClick={() => { markDayDone(les.id, 2); go(`/lesson/${les.id}`); }}>Xong ngày 2</Button>
-    </div>
-  );
-}
-
-function WriteChars({ word, onDone }: { word: Word; onDone: (ok: boolean) => void }) {
-  const chars = [...word.hanzi].filter((c) => c >= "\u4e00");
-  const [k, setK] = useState(0);
-  const [okAll, setOk] = useState(true);
-  const ch = chars[k];
-  if (!ch) return <p>Không có chữ để viết.</p>;
-  return (
-    <div>
-      <div class="muted">Chữ {k + 1}/{chars.length}: {ch}</div>
-      <WriteBox
-        key={ch + k}
-        character={ch}
-        onResult={(ok) => {
-          const next = okAll && ok;
-          setOk(next);
-          if (k + 1 < chars.length) setK(k + 1);
-          else onDone(next);
-        }}
-      />
     </div>
   );
 }
@@ -199,6 +182,7 @@ function Sentences({ les }: { les: Lesson }) {
   const [chosen, setChosen] = useState<string | null>(null);
   const s = les.sentences[i];
   const others = les.sentences.filter((x) => x.id !== s.id).slice(0, 3);
+  useAutoPlay(s.id);
   // pad with previous lessons already in component via options if needed — keep simple
   return (
     <div class="stack" data-testid="lesson-sents">
@@ -206,8 +190,7 @@ function Sentences({ les }: { les: Lesson }) {
         <div class="muted">Câu {i + 1}/{les.sentences.length}</div>
         <div class="hanzi sm" style={{ textAlign: "center" }}>{s.hanzi}</div>
         <PinyinReveal pinyin={s.pinyin} firstIntro={false} onHint={() => {}} />
-        <AudioBtn id={s.id} />
-        <AudioBtn id={s.id} slow />
+        <div class="tools"><AudioBtn id={s.id} /><AudioBtn id={s.id} slow /></div>
         <p>Nghĩa là gì?</p>
         <Options
           options={[s, ...others].map((x) => ({ id: x.id, text: x.vi }))}
@@ -240,6 +223,7 @@ function Test({ les }: { les: Lesson }) {
   const [done, setDone] = useState(false);
   const [writeOk, setWriteOk] = useState<boolean | null>(null);
   const q = qs[i];
+  useAutoPlay(q && (q.kind === "listen-choice" || q.kind === "listen-tone") ? q.audioId : null, [i, wrongIds]);
 
   const finish = (correct: number, missed: string[]) => {
     const score = qs.length ? correct / qs.length : 0;
@@ -293,7 +277,7 @@ function Test({ les }: { les: Lesson }) {
         {q.kind === "listen-choice" || q.kind === "listen-tone" ? <AudioBtn id={q.audioId} label="Nghe" /> : null}
         {isWrite ? (
           <div>
-            <WriteBox character={q.answer} onResult={(okw) => {
+            <WriteWord key={q.id} word={{ hanzi: q.answer }} onDone={(okw) => {
               setWriteOk(okw);
               setChosen(okw ? q.answer : "no");
               if (okw) setOk((x) => x + 1);

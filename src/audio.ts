@@ -1,4 +1,4 @@
-export type AudioIndex = Record<string, { n: string; s?: string }>;
+export type AudioIndex = Record<string, { n: string; s?: string; c?: string }>;
 
 let index: AudioIndex | null = null;
 let current: HTMLAudioElement | null = null;
@@ -34,6 +34,7 @@ export function playUrl(url: string): Promise<HTMLAudioElement> {
     a.oncanplaythrough = () => {};
     a.onerror = () => reject(new Error("Không phát được âm thanh"));
     a.onended = () => { if (current === a) current = null; };
+    a.preload = "auto";
     a.play().then(() => resolve(a)).catch(reject);
   });
 }
@@ -52,4 +53,16 @@ export async function audioUrlFor(id: string, slow = false): Promise<string | nu
   if (!rec) return null;
   const file = slow && rec.s ? rec.s : rec.n;
   return "./audio/" + file;
+}
+
+/** Cụm chứa từ (dùng cho trợ từ thanh nhẹ như 的, 了, 吗 — đọc riêng nghe sai). */
+export async function carrierFor(id: string): Promise<string | null> {
+  const idx = await loadAudioIndex();
+  return idx[id]?.c || null;
+}
+
+/** Tự phát âm khi sang mục mới (nếu bật trong Cài đặt). */
+export async function autoPlay(id: string | undefined | null, enabled: boolean) {
+  if (!id || !enabled) return;
+  try { await playId(id); } catch { /* trình duyệt chặn tự phát khi chưa chạm màn hình */ }
 }

@@ -25,6 +25,7 @@ export function SettingsPage() {
         </div>
         <Switch on={st.companyMode} onChange={(v) => patchSettings({ companyMode: v })} label="Chế độ công ty (im lặng, kín đáo)" />
         <Switch on={st.notify} onChange={(v) => patchSettings({ notify: v })} label="Thông báo khi app đang mở" />
+        <Switch on={st.autoplay !== false} onChange={(v) => patchSettings({ autoplay: v })} label="Tự phát âm khi sang từ / câu mới" />
       </Card>
       <Card>
         <h3 class="h3">Lịch học cá nhân</h3>
@@ -76,10 +77,12 @@ export function SettingsPage() {
         <p class="muted">Cài ra màn hình chính (trình duyệt: “Thêm vào màn hình chính”). Bấm nút dưới để tải sẵn âm thanh và dữ liệu nét — lần sau học không cần mạng.</p>
         <Button kind="purple" wide onClick={() => void precacheAll(setMsg)}>Tải dữ liệu ngoại tuyến</Button>
         <div class="tools" style={{ marginTop: 8 }}>
+          <Button kind="ghost" small onClick={() => go("/dict")}>Tra từ HSK1</Button>
           <Button kind="ghost" small onClick={() => go("/mistakes")}>Sổ lỗi sai</Button>
           <Button kind="ghost" small onClick={() => go("/penalty")}>Chép phạt</Button>
         </div>
       </Card>
+      <p class="muted" style={{ textAlign: "center" }}>Lò Hán {__APP_VERSION__}</p>
     </div>
   );
 }
@@ -140,6 +143,7 @@ async function precacheAll(setMsg: (s: string) => void) {
   ]);
   const urls = [
     ...Object.values(audio).flatMap((x) => ["./audio/" + x.n, x.s ? "./audio/" + x.s : ""]).filter(Boolean),
+    "./fonts/vn-Regular.ttf", "./fonts/vn-Bold.ttf", "./fonts/cjk-sc.ttf",
     ...hanzi.map((c) => "./hanzi-data/" + encodeURIComponent(c) + ".json"),
   ];
   setMsg("Đang tải " + urls.length + " tệp…");

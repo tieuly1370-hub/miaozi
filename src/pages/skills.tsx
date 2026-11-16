@@ -8,10 +8,10 @@ import {
 } from "../speech";
 import { cardId, parseCardId } from "../srs";
 import {
-  addMistake, dueReview, getState, markIntroduced, markWeekDone, noteInput, passMock,
+  addMistake, bumpSpeak, dueReview, getState, markIntroduced, markWeekDone, noteInput, passMock,
   plannedToday, recordAnswer, srsReview, startActivity,
 } from "../store";
-import { AudioBtn, Bar, Button, Card, Decomp, Options, PinyinReveal, PitchChart, WordFace, go } from "../ui";
+import { AudioBtn, Bar, Button, Card, Decomp, Options, PinyinReveal, PitchChart, WordFace, go, useAutoPlay } from "../ui";
 
 export function ReviewPage() {
   const cards = dueReview();
@@ -82,7 +82,10 @@ export function ListenPage() {
   const [w, setW] = useState<Word>(() => words[0]);
   const [opts, setOpts] = useState<Word[]>([]);
   const [chosen, setChosen] = useState<string | null>(null);
+  const [round, setRound] = useState(0);
+  useAutoPlay(round ? w?.id : null, [round]);
   const deal = () => {
+    setRound((r) => r + 1);
     const item = words[Math.floor(Math.random() * words.length)];
     const d = words.filter((x) => x.id !== item.id).sort(() => Math.random() - 0.5).slice(0, 3);
     setW(item);
@@ -157,6 +160,7 @@ export function SpeakPage() {
       // Parallel: user-facing flow records + ASR together
       const score = scoreUtterance(w.pinyinNum, asr, pitch.tones);
       setResult(score);
+      bumpSpeak();
       recordAnswer(score.pass, w, "nói");
       srsReview(cardId(w.id, "sound"), score.pass ? 4 : 0);
       if (!score.pass) addMistake(w, "nói", score.message);
@@ -186,13 +190,14 @@ export function SpeakPage() {
       setUserC(pitch.contour);
       const score = scoreUtterance(w.pinyinNum, asr, pitch.tones);
       setResult(score);
+      bumpSpeak();
       recordAnswer(score.pass, w, "nói");
       srsReview(cardId(w.id, "sound"), score.pass ? 4 : 0);
       if (!score.pass) addMistake(w, "nói", score.message);
     } catch (e) {
       setResult({
         pass: false, asrAvailable: asrOk, asrUsed: false, syllables: [],
-        message: "Không thu được. Cần cho phép micro. " + (e as Error).message,
+        message: micErrorText(e as Error),
       });
     }
     setBusy(false);
@@ -203,11 +208,7 @@ export function SpeakPage() {
     <div class="stack" data-testid="speak">
       <Card>
         <h2 class="h2">Luyện nói — chấm chặt</h2>
-        <p class="muted">
-          {asrOk
-            ? "Nhận lời nói (Chrome/Edge, cần mạng) kiểm tra phụ âm và nguyên âm. Thanh điệu được chấm bằng đường cao độ — đọc sai thanh như nǐu nǎi khi phải là nǎi sẽ không qua."
-            : "Trình duyệt này không có nhận lời nói. Chỉ chấm thanh điệu bằng đường cao độ. Nên dùng Chrome trên điện thoại/tablet khi có mạng cho bước nhận lời."}
-        </p>
+        <MicCheck asrOk={asrOk} />
         <div class="hanzi" style={{ textAlign: "center" }}>{w.hanzi}</div>
         <div class="muted" style={{ textAlign: "center" }}>{w.vi}</div>
         <div class="tools">
@@ -232,6 +233,74 @@ export function SpeakPage() {
           </div>
         )}
       </Card>
+    </div>
+  );
+}
+
+function micErrorText(e: Error): string {
+  const n = (e && (e as DOMException).name) || "";
+  if (n === "NotAllowedError" || n === "SecurityError") return "Micro đang bị chặn. Chạm biểu tượng ổ khóa cạnh địa chỉ web → Quyền → Micro → Cho phép, rồi thử lại.";
+  if (n === "NotFoundError") return "Máy này không có micro (hoặc micro đang tắt).";
+  if (n === "NotReadableError") return "Micro đang bị app khác dùng (gọi điện, ghi âm…). Tắt app đó rồi thử lại.";
+  return "Không thu được tiếng. " + (e?.message || "");
+}
+
+/** Hướng dẫn trước khi nói: cần micro + Chrome/Edge. */
+function MicCheck(props: { asrOk: boolean }) {
+  const [state, setState] = useState<"unknown" | "granted" | "denied" | "prompt">("unknown");
+  const [msg, setMsg] = useState<string | null>(null);
+  const [level, setLevel] = useState(0);
+  useEffect(() => {
+    const p = (navigator as Navigator & { permissions?: Permissions }).permissions;
+    p?.query({ name: "microphone" as PermissionName }).then((r) => {
+      setState(r.state as "granted" | "denied" | "prompt");
+      r.onchange = () => setState(r.state as "granted" | "denied" | "prompt");
+    }).catch(() => {});
+  }, []);
+  const test = async () => {
+    setMsg("Nói “nǐ hǎo” vào micro…");
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const ctx = new AudioContext();
+      const an = ctx.createAnalyser();
+      ctx.createMediaStreamSource(stream).connect(an);
+      const buf = new Float32Array(an.fftSize);
+      let peak = 0;
+      const t0 = Date.now();
+      await new Promise<void>((res) => {
+        const tick = () => {
+          an.getFloatTimeDomainData(buf);
+          const rms = Math.sqrt(buf.reduce((a, x) => a + x * x, 0) / buf.length);
+          peak = Math.max(peak, rms);
+          setLevel(Math.min(1, rms * 8));
+          if (Date.now() - t0 < 2500) requestAnimationFrame(tick); else res();
+        };
+        tick();
+      });
+      stream.getTracks().forEach((t) => t.stop());
+      void ctx.close();
+      setState("granted");
+      setLevel(0);
+      setMsg(peak > 0.02 ? "Micro tốt. Bấm “Đọc ngay” để luyện." : "Micro mở được nhưng gần như không nghe thấy tiếng. Nói to hơn hoặc lại gần máy.");
+    } catch (e) {
+      setMsg(micErrorText(e as Error));
+      if ((e as DOMException).name === "NotAllowedError") setState("denied");
+    }
+  };
+  return (
+    <div class="mic-box" data-testid="mic-check">
+      <ul class="checklist">
+        <li class={props.asrOk ? "ok" : "warn"}>{props.asrOk ? "Trình duyệt hỗ trợ nhận giọng nói." : "Trình duyệt này chưa nhận giọng nói — hãy mở bằng Chrome hoặc Edge. Tạm thời chỉ chấm thanh điệu."}</li>
+        <li class={state === "granted" ? "ok" : state === "denied" ? "bad" : "warn"}>
+          {state === "granted" ? "Đã cho phép micro." : state === "denied" ? "Micro đang bị chặn: chạm ổ khóa cạnh địa chỉ web → Micro → Cho phép." : "Cần cho phép micro: lần đầu bấm nút, trình duyệt sẽ hỏi — chọn “Cho phép”."}
+        </li>
+        <li class="ok">Thanh điệu chấm ngay trên máy. Phần nhận âm (phụ âm, vần) của Chrome cần có mạng.</li>
+      </ul>
+      <div class="row">
+        <Button small kind="ghost" onClick={test}>Kiểm tra micro</Button>
+        {level > 0 && <div class="progress" style={{ flex: 1 }}><span style={{ width: Math.round(level * 100) + "%" }} /></div>}
+      </div>
+      {msg && <p class="muted">{msg}</p>}
     </div>
   );
 }
@@ -286,6 +355,7 @@ export function MockPage(props: { n: 1 | 2 }) {
   const [ok, setOk] = useState(0);
   const [done, setDone] = useState(false);
   const q = qs[i];
+  useAutoPlay(q && (q.kind === "listen-choice" || q.kind === "listen-tone") ? q.audioId : null, [i]);
   if (done) {
     const score = ok / qs.length;
     return (
@@ -334,6 +404,7 @@ export function WeeklyPage() {
   const [ok, setOk] = useState(0);
   const [done, setDone] = useState(false);
   const q = qs[i];
+  useAutoPlay(q?.audioId, [i]);
   if (done) {
     const score = ok / qs.length;
     if (score >= 0.7) markWeekDone();

@@ -1,8 +1,9 @@
-import { useMemo } from "preact/hooks";
+import { useEffect, useMemo } from "preact/hooks";
+import { todayPlan, type Step } from "../plan";
 import { LESSONS, TOTAL_LESSONS } from "../data/curriculum";
 import { tutorLine } from "../tutor";
 import { Bar, Button, Card, TutorBubble, go, cls } from "../ui";
-import { getState, lessonUnlocked, openMakeups, plannedToday, weekKey } from "../store";
+import { getState, lessonUnlocked, markSegWatched, openMakeups, plannedToday, setPlanFor, weekKey } from "../store";
 import { dayNameVi, sessionComplete, isOffDay, type PlannedSession } from "../schedule";
 
 export function Onboarding() {
@@ -36,7 +37,6 @@ export function Today() {
     : now.getHours() >= 20 ? "evening"
     : "morning";
   const line = tutorLine(s.settings.companyMode ? "company" : kind, s.settings);
-  const openPen = s.penalties.filter((p) => !p.done);
   const week = s.progress.weekly[weekKey()];
   const activeMin = Object.values(s.today.activeBySession).reduce((a, b) => a + b, 0) / 60000;
   const acc = s.today.total ? s.today.correct / s.today.total : 0;
@@ -49,13 +49,21 @@ export function Today() {
     return p.required ? "cần làm" : "tùy chọn";
   };
 
+  const plan = todayPlan(now);
+  useEffect(() => {
+    if (s.progress.week0Passed && s.progress.unlockedLesson <= TOTAL_LESSONS) {
+      const n = Math.max(1, s.progress.unlockedLesson);
+      setPlanFor(`${n}:${s.progress.lessonDay[n] || 1}`);
+    }
+  }, []);
   return (
     <div class="stack" data-testid="today">
       <TutorBubble mood={line.mood} text={line.text} />
+      <DayPlan heading={plan.heading} steps={plan.steps} dow={dayNameVi(dow)} />
       <div class="grid today">
         <Card>
           <div class="row spread">
-            <h2 class="h2">Hôm nay · {dayNameVi(dow)}</h2>
+            <h2 class="h3">Ca học hôm nay</h2>
             <span class="chip pink">Chuỗi {s.streak.current} ngày</span>
           </div>
           <p class="muted">Buổi chỉ tính khi làm đủ thời gian thật (không ngồi idle) và đúng ≥ 70%. Ngày nghỉ không phá chuỗi. Học bù trong 48 giờ vẫn giữ chuỗi.</p>
@@ -80,19 +88,6 @@ export function Today() {
           </div>
         </Card>
         <div class="stack">
-          <Card>
-            <h3 class="h3">Tiếp theo trên lộ trình</h3>
-            {!s.progress.week0Passed ? (
-              <Button kind="primary" wide onClick={() => go("/week0")}>Tiếp tục Tuần 0 — Nền móng</Button>
-            ) : s.progress.unlockedLesson <= TOTAL_LESSONS ? (
-              <CurrentLesson />
-            ) : (
-              <Button kind="purple" wide onClick={() => go("/review-week")}>Tuần ôn + đề thi thử</Button>
-            )}
-            <div style={{ marginTop: 10 }}>
-              <Button kind="yellow" wide onClick={() => go("/review")}>Ôn flashcard đến hạn</Button>
-            </div>
-          </Card>
           {makeups.length > 0 && (
             <Card>
               <h3 class="h3">Học bù — chuỗi vẫn giữ</h3>
@@ -101,14 +96,7 @@ export function Today() {
                   Thiếu ca {m.kind === "morning" ? "sáng" : m.kind === "evening" ? "tối" : "kiểm tra tuần"} ngày {m.missedDate}. Hạn đến {new Date(m.dueBy).toLocaleString("vi-VN")}.
                 </div>
               ))}
-              <Button kind="pink" wide onClick={() => go("/penalty")}>Làm bài chép phạt / học bù</Button>
-            </Card>
-          )}
-          {openPen.length > 0 && (
-            <Card>
-              <h3 class="h3">Thưởng / phạt đang mở</h3>
-              {openPen.map((p) => <p class="muted" key={p.id}>{p.note}</p>)}
-              <Button small kind="ghost" onClick={() => go("/penalty")}>Nộp bài chép phạt (PDF)</Button>
+              <p class="muted">Làm đủ các bước trong kế hoạch là tính học bù.</p>
             </Card>
           )}
           {week?.done && !week.rewardClaimed && (
@@ -122,21 +110,43 @@ export function Today() {
   );
 }
 
-function CurrentLesson() {
-  const s = getState();
-  const n = Math.min(TOTAL_LESSONS, Math.max(1, s.progress.unlockedLesson));
-  const les = LESSONS[n - 1];
-  const day = s.progress.lessonDay[n] || 1;
+function DayPlan(props: { heading: string; steps: Step[]; dow: string }) {
+  const steps = props.steps;
+  const next = steps.findIndex((x) => !x.done);
+  const done = steps.filter((x) => x.done).length;
+  const mins = steps.filter((x) => !x.done).reduce((a, x) => a + x.minutes, 0);
   return (
-    <div>
-      <div class="hanzi sm">{les.titleZh}</div>
-      <div>Bài {n}: {les.titleVi} · Ngày {day}/3</div>
-      <p class="muted">{day === 1 ? "Xem video + làm quen từ mới" : day === 2 ? "Luyện từ và chữ" : "Câu + kiểm tra bài"}</p>
-      <Bar value={((n - 1) + (day - 1) / 3) / TOTAL_LESSONS} />
-      <div style={{ marginTop: 10 }}>
-        <Button kind="primary" wide onClick={() => go("/lesson/" + n)}>Vào bài {n}</Button>
+    <Card class="plan" data-testid="day-plan">
+      <div class="row spread">
+        <div>
+          <div class="muted">Hôm nay · {props.dow}</div>
+          <h2 class="h2" style={{ marginBottom: 2 }}>{props.heading}</h2>
+        </div>
+        <span class={cls("chip", done === steps.length ? "green" : "peach")}>{done}/{steps.length}</span>
       </div>
-    </div>
+      <Bar value={steps.length ? done / steps.length : 1} />
+      {next < 0 ? (
+        <p class="plan-done">Xong hết việc hôm nay. Nghỉ ngơi thôi — mai Miêu giao bài tiếp.</p>
+      ) : (
+        <p class="muted" style={{ marginTop: 8 }}>Làm lần lượt từ trên xuống. Còn khoảng {mins} phút.</p>
+      )}
+      <ol class="plan-steps">
+        {steps.map((st, i) => (
+          <li key={st.id} class={cls(st.done && "done", i === next && "now")} data-testid="plan-step">
+            <span class="plan-num">{st.done ? "✓" : i + 1}</span>
+            <div class="plan-body">
+              <div class="plan-title">{st.title}{st.shift && <span class="chip tiny">{st.shift === "sáng" ? "ca sáng" : "ca tối"}</span>}</div>
+              {(i === next || !st.done) && <div class="muted">{st.detail}</div>}
+              {i === next && (
+                st.url
+                  ? <a class="btn primary small" href={st.url} target="_blank" rel="noreferrer" onClick={() => st.urlLesson && markSegWatched(st.urlLesson, st.urlSegIndex || 0)}>{st.cta} ↗</a>
+                  : <Button small kind="primary" onClick={() => go(st.to || "/")}>{st.cta} →</Button>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Card>
   );
 }
 

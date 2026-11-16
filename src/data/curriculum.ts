@@ -184,24 +184,24 @@ export const LESSONS: Lesson[] = [
         "id": "s01-01",
         "lesson": 1,
         "hanzi": "你好！您是老师吗？",
-      "pinyin": "nǐ hǎo nín shì lǎo shī ma",
-      "pinyinNum": "ni3 hao3 nin2 shi4 lao3 shi1 ma0",
+        "pinyin": "Nǐ hǎo! Nín shì lǎoshī ma?",
+        "pinyinNum": "ni3 hao3 nin2 shi4 lao3 shi1 ma5",
         "vi": "Xin chào! Ngài là giáo viên ạ?"
       },
       {
         "id": "s01-02",
         "lesson": 1,
         "hanzi": "你们好！",
-      "pinyin": "nǐ men hǎo",
-      "pinyinNum": "ni3 men0 hao3",
+        "pinyin": "Nǐmen hǎo!",
+        "pinyinNum": "ni3 men5 hao3",
         "vi": "Xin chào các bạn!"
       },
       {
         "id": "s01-03",
         "lesson": 1,
         "hanzi": "对不起。没关系。",
-      "pinyin": "duì bù qǐ méi guān xì",
-      "pinyinNum": "dui4 bu4 qi3 mei2 guan1 xi4",
+        "pinyin": "Duìbuqǐ. Méiguānxi.",
+        "pinyinNum": "dui4 bu5 qi3 mei2 guan1 xi5",
         "vi": "Xin lỗi. Không sao."
       }
     ],
@@ -369,24 +369,24 @@ export const LESSONS: Lesson[] = [
         "id": "s02-01",
         "lesson": 2,
         "hanzi": "谢谢你！",
-      "pinyin": "xiè xiè nǐ",
-      "pinyinNum": "xie4 xie4 ni3",
+        "pinyin": "Xièxie nǐ!",
+        "pinyinNum": "xie4 xie5 ni3",
         "vi": "Cảm ơn bạn!"
       },
       {
         "id": "s02-02",
         "lesson": 2,
         "hanzi": "不，不客气。",
-      "pinyin": "bù bú kè qì",
-      "pinyinNum": "bu4 bu2 ke4 qi4",
+        "pinyin": "Bù, bú kèqi.",
+        "pinyinNum": "bu4 bu2 ke4 qi5",
         "vi": "Không, không có gì."
       },
       {
         "id": "s02-03",
         "lesson": 2,
         "hanzi": "再见！",
-      "pinyin": "zài jiàn",
-      "pinyinNum": "zai4 jian4",
+        "pinyin": "Zàijiàn!",
+        "pinyinNum": "zai4 jian4",
         "vi": "Tạm biệt!"
       }
     ],
@@ -642,24 +642,24 @@ export const LESSONS: Lesson[] = [
         "id": "s03-01",
         "lesson": 3,
         "hanzi": "我叫小明。你叫什么名字？",
-      "pinyin": "wǒ jiào xiǎo míng nǐ jiào shén me míng zì",
-      "pinyinNum": "wo3 jiao4 xiao3 ming2 ni3 jiao4 shen2 me0 ming2 zi4",
+        "pinyin": "Wǒ jiào Xiǎo Míng. Nǐ jiào shénme míngzi?",
+        "pinyinNum": "wo3 jiao4 xiao3 ming2 ni3 jiao4 shen2 me5 ming2 zi5",
         "vi": "Tôi tên Tiểu Minh. Bạn tên gì?"
       },
       {
         "id": "s03-02",
         "lesson": 3,
         "hanzi": "我是学生。你是老师吗？",
-      "pinyin": "wǒ shì xué shēng nǐ shì lǎo shī ma",
-      "pinyinNum": "wo3 shi4 xue2 sheng1 ni3 shi4 lao3 shi1 ma0",
+        "pinyin": "Wǒ shì xuésheng. Nǐ shì lǎoshī ma?",
+        "pinyinNum": "wo3 shi4 xue2 sheng5 ni3 shi4 lao3 shi1 ma5",
         "vi": "Tôi là học sinh. Bạn là giáo viên phải không?"
       },
       {
         "id": "s03-03",
         "lesson": 3,
         "hanzi": "他是什么人？",
-      "pinyin": "tā shì shén me rén",
-      "pinyinNum": "ta1 shi4 shen2 me0 ren2",
+        "pinyin": "Tā shì shénme rén?",
+        "pinyinNum": "ta1 shi4 shen2 me5 ren2",
         "vi": "Anh ấy là người như thế nào / là ai?"
       }
     ],
@@ -938,7 +938,7 @@ export const LESSONS: Lesson[] = [
         "lesson": 4,
         "hanzi": "中国",
         "pinyin": "Zhōngguó",
-        "pinyinNum": "Zhongguo2",
+        "pinyinNum": "Zhong1 guo2",
         "vi": "Trung Quốc",
         "pos": "danh từ",
         "decomps": [
@@ -966,7 +966,7 @@ export const LESSONS: Lesson[] = [
         "lesson": 4,
         "hanzi": "北京",
         "pinyin": "Běijīng",
-        "pinyinNum": "Beijing1",
+        "pinyinNum": "Bei3 jing1",
         "vi": "Bắc Kinh",
         "pos": "danh từ",
         "decomps": [
@@ -995,32 +995,32 @@ export const LESSONS: Lesson[] = [
         "id": "s04-01",
         "lesson": 4,
         "hanzi": "她是我的朋友。",
-      "pinyin": "tā shì wǒ de péng yǒu",
-      "pinyinNum": "ta1 shi4 wo3 de0 peng2 you3",
+        "pinyin": "Tā shì wǒ de péngyou.",
+        "pinyinNum": "ta1 shi4 wo3 de5 peng2 you5",
         "vi": "Cô ấy là bạn của tôi."
       },
       {
         "id": "s04-02",
         "lesson": 4,
         "hanzi": "他是哪国人？他是中国人。",
-      "pinyin": "tā shì nǎ guó rén tā shì zhōng guó rén",
-      "pinyinNum": "ta1 shi4 na3 guo2 ren2 ta1 shi4 zhong1 guo2 ren2",
+        "pinyin": "Tā shì nǎ guó rén? Tā shì Zhōngguórén.",
+        "pinyinNum": "ta1 shi4 na3 guo2 ren2 ta1 shi4 zhong1 guo2 ren2",
         "vi": "Anh ấy là người nước nào? Anh ấy là người Trung Quốc."
       },
       {
         "id": "s04-03",
         "lesson": 4,
         "hanzi": "你的老师呢？",
-      "pinyin": "nǐ de lǎo shī ne",
-      "pinyinNum": "ni3 de0 lao3 shi1 ne0",
+        "pinyin": "Nǐ de lǎoshī ne?",
+        "pinyinNum": "ni3 de5 lao3 shi1 ne5",
         "vi": "Còn giáo viên của bạn thì sao?"
       },
       {
         "id": "s04-04",
         "lesson": 4,
         "hanzi": "她是谁？她是我的同学。",
-      "pinyin": "tā shì shuí tā shì wǒ de tóng xué",
-      "pinyinNum": "ta1 shi4 shui2 ta1 shi4 wo3 de0 tong2 xue2",
+        "pinyin": "Tā shì shéi? Tā shì wǒ de tóngxué.",
+        "pinyinNum": "ta1 shi4 shei2 ta1 shi4 wo3 de5 tong2 xue2",
         "vi": "Cô ấy là ai? Cô ấy là bạn cùng lớp của tôi."
       }
     ],
@@ -1128,7 +1128,7 @@ export const LESSONS: Lesson[] = [
         "id": "l05-04",
         "lesson": 5,
         "hanzi": "女儿",
-        "pinyin": "nǚér",
+        "pinyin": "nǚ'ér",
         "pinyinNum": "nü3 er2",
         "vi": "con gái",
         "pos": "danh từ",
@@ -1515,24 +1515,24 @@ export const LESSONS: Lesson[] = [
         "id": "s05-01",
         "lesson": 5,
         "hanzi": "我家有三口人。",
-      "pinyin": "wǒ jiā yǒu sān kǒu rén",
-      "pinyinNum": "wo3 jia1 you3 san1 kou3 ren2",
+        "pinyin": "Wǒ jiā yǒu sān kǒu rén.",
+        "pinyinNum": "wo3 jia1 you3 san1 kou3 ren2",
         "vi": "Nhà tôi có ba người."
       },
       {
         "id": "s05-02",
         "lesson": 5,
         "hanzi": "她女儿今年五岁。",
-      "pinyin": "tā nǚ ér jīn nián wǔ suì",
-      "pinyinNum": "ta1 nü3 er2 jin1 nian2 wu3 sui4",
+        "pinyin": "Tā nǚ'ér jīnnián wǔ suì.",
+        "pinyinNum": "ta1 nü3 er2 jin1 nian2 wu3 sui4",
         "vi": "Con gái cô ấy năm nay năm tuổi."
       },
       {
         "id": "s05-03",
         "lesson": 5,
         "hanzi": "你今年多大？我二十岁了。",
-      "pinyin": "nǐ jīn nián duō dà wǒ èr shí suì le",
-      "pinyinNum": "ni3 jin1 nian2 duo1 da4 wo3 er4 shi2 sui4 le0",
+        "pinyin": "Nǐ jīnnián duō dà? Wǒ èrshí suì le.",
+        "pinyinNum": "ni3 jin1 nian2 duo1 da4 wo3 er4 shi2 sui4 le5",
         "vi": "Năm nay bạn bao nhiêu tuổi? Tôi hai mươi tuổi rồi."
       }
     ],
@@ -1849,7 +1849,7 @@ export const LESSONS: Lesson[] = [
         "lesson": 6,
         "hanzi": "说话",
         "pinyin": "shuōhuà",
-        "pinyinNum": "shuohua4",
+        "pinyinNum": "shuo1 hua4",
         "vi": "nói chuyện",
         "pos": "động từ",
         "decomps": [
@@ -1878,24 +1878,24 @@ export const LESSONS: Lesson[] = [
         "id": "s06-01",
         "lesson": 6,
         "hanzi": "我会说汉语。",
-      "pinyin": "wǒ huì shuō hàn yǔ",
-      "pinyinNum": "wo3 hui4 shuo1 han4 yu3",
+        "pinyin": "Wǒ huì shuō Hànyǔ.",
+        "pinyinNum": "wo3 hui4 shuo1 han4 yu3",
         "vi": "Tôi biết nói tiếng Hán."
       },
       {
         "id": "s06-02",
         "lesson": 6,
         "hanzi": "妈妈做的菜很好吃。",
-      "pinyin": "mā ma zuò de cài hěn hǎo chī",
-      "pinyinNum": "ma1 ma0 zuo4 de0 cai4 hen3 hao3 chi1",
+        "pinyin": "Māma zuò de cài hěn hǎochī.",
+        "pinyinNum": "ma1 ma5 zuo4 de5 cai4 hen3 hao3 chi1",
         "vi": "Món mẹ nấu rất ngon."
       },
       {
         "id": "s06-03",
         "lesson": 6,
         "hanzi": "这个字怎么读？你会写吗？",
-      "pinyin": "zhè ge zì zěn me dú nǐ huì xiě ma",
-      "pinyinNum": "zhe4 ge0 zi4 zen3 me0 du2 ni3 hui4 xie3 ma0",
+        "pinyin": "Zhège zì zěnme dú? Nǐ huì xiě ma?",
+        "pinyinNum": "zhe4 ge5 zi4 zen3 me5 du2 ni3 hui4 xie3 ma5",
         "vi": "Chữ này đọc thế nào? Bạn viết được không?"
       }
     ],
@@ -2245,32 +2245,32 @@ export const LESSONS: Lesson[] = [
         "id": "s07-01",
         "lesson": 7,
         "hanzi": "请问，今天几号？",
-      "pinyin": "qǐng wèn jīn tiān jǐ hào",
-      "pinyinNum": "qing3 wen4 jin1 tian1 ji3 hao4",
+        "pinyin": "Qǐng wèn, jīntiān jǐ hào?",
+        "pinyinNum": "qing3 wen4 jin1 tian1 ji3 hao4",
         "vi": "Xin hỏi, hôm nay ngày mấy?"
       },
       {
         "id": "s07-02",
         "lesson": 7,
         "hanzi": "今天是三月八号，星期一。",
-      "pinyin": "jīn tiān shì sān yuè bā hào xīng qī yī",
-      "pinyinNum": "jin1 tian1 shi4 san1 yue4 ba1 hao4 xing1 qi1 yi1",
+        "pinyin": "Jīntiān shì sān yuè bā hào, xīngqīyī.",
+        "pinyinNum": "jin1 tian1 shi4 san1 yue4 ba1 hao4 xing1 qi1 yi1",
         "vi": "Hôm nay là ngày 8 tháng 3, thứ Hai."
       },
       {
         "id": "s07-03",
         "lesson": 7,
         "hanzi": "明天我去学校看书。",
-      "pinyin": "míng tiān wǒ qù xué xiào kàn shū",
-      "pinyinNum": "ming2 tian1 wo3 qu4 xue2 xiao4 kan4 shu1",
+        "pinyin": "Míngtiān wǒ qù xuéxiào kàn shū.",
+        "pinyinNum": "ming2 tian1 wo3 qu4 xue2 xiao4 kan4 shu1",
         "vi": "Ngày mai tôi đến trường đọc sách."
       },
       {
         "id": "s07-04",
         "lesson": 7,
         "hanzi": "昨天我去学校了。",
-      "pinyin": "zuó tiān wǒ qù xué xiào le",
-      "pinyinNum": "zuo2 tian1 wo3 qu4 xue2 xiao4 le0",
+        "pinyin": "Zuótiān wǒ qù xuéxiào le.",
+        "pinyinNum": "zuo2 tian1 wo3 qu4 xue2 xiao4 le5",
         "vi": "Hôm qua tôi đã đến trường."
       }
     ],
@@ -2657,32 +2657,32 @@ export const LESSONS: Lesson[] = [
         "id": "s08-01",
         "lesson": 8,
         "hanzi": "我想喝茶。",
-      "pinyin": "wǒ xiǎng hē chá",
-      "pinyinNum": "wo3 xiang3 he1 cha2",
+        "pinyin": "Wǒ xiǎng hē chá.",
+        "pinyinNum": "wo3 xiang3 he1 cha2",
         "vi": "Tôi muốn uống trà."
       },
       {
         "id": "s08-02",
         "lesson": 8,
         "hanzi": "这个杯子多少钱？三块。",
-      "pinyin": "zhè ge bēi zi duō shǎo qián sān kuài",
-      "pinyinNum": "zhe4 ge0 bei1 zi0 duo1 shao3 qian2 san1 kuai4",
+        "pinyin": "Zhège bēizi duōshao qián? Sān kuài.",
+        "pinyinNum": "zhe4 ge5 bei1 zi5 duo1 shao5 qian2 san1 kuai4",
         "vi": "Cái cốc này bao nhiêu tiền? Ba tệ."
       },
       {
         "id": "s08-03",
         "lesson": 8,
         "hanzi": "下午我去商店买米饭。",
-      "pinyin": "xià wǔ wǒ qù shāng diàn mǎi mǐ fàn",
-      "pinyinNum": "xia4 wu3 wo3 qu4 shang1 dian4 mai3 mi3 fan4",
+        "pinyin": "Xiàwǔ wǒ qù shāngdiàn mǎi mǐfàn.",
+        "pinyinNum": "xia4 wu3 wo3 qu4 shang1 dian4 mai3 mi3 fan4",
         "vi": "Chiều tôi đến cửa hàng mua cơm."
       },
       {
         "id": "s08-04",
         "lesson": 8,
         "hanzi": "那个人想吃米饭。",
-      "pinyin": "nà ge rén xiǎng chī mǐ fàn",
-      "pinyinNum": "na4 ge0 ren2 xiang3 chi1 mi3 fan4",
+        "pinyin": "Nàge rén xiǎng chī mǐfàn.",
+        "pinyinNum": "na4 ge5 ren2 xiang3 chi1 mi3 fan4",
         "vi": "Người kia muốn ăn cơm."
       }
     ],
@@ -3056,32 +3056,32 @@ export const LESSONS: Lesson[] = [
         "id": "s09-01",
         "lesson": 9,
         "hanzi": "你儿子在哪儿工作？他在医院工作。",
-      "pinyin": "nǐ ér zi zài nǎ ér gōng zuò tā zài yī yuàn gōng zuò",
-      "pinyinNum": "ni3 er2 zi0 zai4 na3 er2 gong1 zuo4 ta1 zai4 yi1 yuan4 gong1 zuo4",
+        "pinyin": "Nǐ érzi zài nǎr gōngzuò? Tā zài yīyuàn gōngzuò.",
+        "pinyinNum": "ni3 er2 zi5 zai4 nar3 gong1 zuo4 ta1 zai4 yi1 yuan4 gong1 zuo4",
         "vi": "Con trai bạn làm việc ở đâu? Anh ấy làm ở bệnh viện."
       },
       {
         "id": "s09-02",
         "lesson": 9,
         "hanzi": "小狗在椅子下面。",
-      "pinyin": "xiǎo gǒu zài yǐ zi xià miàn",
-      "pinyinNum": "xiao3 gou3 zai4 yi3 zi0 xia4 mian4",
+        "pinyin": "Xiǎo gǒu zài yǐzi xiàmiàn.",
+        "pinyinNum": "xiao3 gou3 zai4 yi3 zi5 xia4 mian4",
         "vi": "Con chó nhỏ ở dưới ghế."
       },
       {
         "id": "s09-03",
         "lesson": 9,
         "hanzi": "我爸爸是医生。",
-      "pinyin": "wǒ bà ba shì yī shēng",
-      "pinyinNum": "wo3 ba4 ba0 shi4 yi1 sheng1",
+        "pinyin": "Wǒ bàba shì yīshēng.",
+        "pinyinNum": "wo3 ba4 ba5 shi4 yi1 sheng1",
         "vi": "Bố tôi là bác sĩ."
       },
       {
         "id": "s09-04",
         "lesson": 9,
         "hanzi": "猫在那儿。",
-      "pinyin": "māo zài nà ér",
-      "pinyinNum": "mao1 zai4 na4 er2",
+        "pinyin": "Māo zài nàr.",
+        "pinyinNum": "mao1 zai4 nar4",
         "vi": "Con mèo ở chỗ đó."
       }
     ],
@@ -3456,32 +3456,32 @@ export const LESSONS: Lesson[] = [
         "id": "s10-01",
         "lesson": 10,
         "hanzi": "我能坐这儿吗？",
-      "pinyin": "wǒ néng zuò zhè ér ma",
-      "pinyinNum": "wo3 neng2 zuo4 zhe4 er2 ma0",
+        "pinyin": "Wǒ néng zuò zhèr ma?",
+        "pinyinNum": "wo3 neng2 zuo4 zher4 ma5",
         "vi": "Tôi ngồi đây được không?"
       },
       {
         "id": "s10-02",
         "lesson": 10,
         "hanzi": "电脑在桌子上。",
-      "pinyin": "diàn nǎo zài zhuō zi shàng",
-      "pinyinNum": "dian4 nao3 zai4 zhuo1 zi0 shang4",
+        "pinyin": "Diànnǎo zài zhuōzi shàng.",
+        "pinyinNum": "dian4 nao3 zai4 zhuo1 zi5 shang4",
         "vi": "Máy tính ở trên bàn."
       },
       {
         "id": "s10-03",
         "lesson": 10,
         "hanzi": "书在桌子里吗？没有。",
-      "pinyin": "shū zài zhuō zi lǐ ma méi yǒu",
-      "pinyinNum": "shu1 zai4 zhuo1 zi0 li3 ma0 mei2 you3",
+        "pinyin": "Shū zài zhuōzi lǐ ma? Méiyǒu.",
+        "pinyinNum": "shu1 zai4 zhuo1 zi5 li3 ma5 mei2 you3",
         "vi": "Sách ở trong bàn chứ? Không có."
       },
       {
         "id": "s10-04",
         "lesson": 10,
         "hanzi": "前面有椅子和桌子。",
-      "pinyin": "qián miàn yǒu yǐ zi hé zhuō zi",
-      "pinyinNum": "qian2 mian4 you3 yi3 zi0 he2 zhuo1 zi0",
+        "pinyin": "Qiánmiàn yǒu yǐzi hé zhuōzi.",
+        "pinyinNum": "qian2 mian4 you3 yi3 zi5 he2 zhuo1 zi5",
         "vi": "Phía trước có ghế và bàn."
       }
     ],
@@ -3804,32 +3804,32 @@ export const LESSONS: Lesson[] = [
         "id": "s11-01",
         "lesson": 11,
         "hanzi": "现在几点？现在三点十分。",
-      "pinyin": "xiàn zài jǐ diǎn xiàn zài sān diǎn shí fēn",
-      "pinyinNum": "xian4 zai4 ji3 dian3 xian4 zai4 san1 dian3 shi2 fen1",
+        "pinyin": "Xiànzài jǐ diǎn? Xiànzài sān diǎn shí fēn.",
+        "pinyinNum": "xian4 zai4 ji3 dian3 xian4 zai4 san1 dian3 shi2 fen1",
         "vi": "Bây giờ mấy giờ? Bây giờ ba giờ mười phút."
       },
       {
         "id": "s11-02",
         "lesson": 11,
         "hanzi": "我们中午吃饭。",
-      "pinyin": "wǒ men zhōng wǔ chī fàn",
-      "pinyinNum": "wo3 men0 zhong1 wu3 chi1 fan4",
+        "pinyin": "Wǒmen zhōngwǔ chīfàn.",
+        "pinyinNum": "wo3 men5 zhong1 wu3 chi1 fan4",
         "vi": "Chúng tôi ăn cơm trưa."
       },
       {
         "id": "s11-03",
         "lesson": 11,
         "hanzi": "我三点前回学校。",
-      "pinyin": "wǒ sān diǎn qián huí xué xiào",
-      "pinyinNum": "wo3 san1 dian3 qian2 hui2 xue2 xiao4",
+        "pinyin": "Wǒ sān diǎn qián huí xuéxiào.",
+        "pinyinNum": "wo3 san1 dian3 qian2 hui2 xue2 xiao4",
         "vi": "Tôi về trường trước ba giờ."
       },
       {
         "id": "s11-04",
         "lesson": 11,
         "hanzi": "你什么时候去看电影？",
-      "pinyin": "nǐ shén me shí hòu qù kàn diàn yǐng",
-      "pinyinNum": "ni3 shen2 me0 shi2 hou4 qu4 kan4 dian4 ying3",
+        "pinyin": "Nǐ shénme shíhou qù kàn diànyǐng?",
+        "pinyinNum": "ni3 shen2 me5 shi2 hou5 qu4 kan4 dian4 ying3",
         "vi": "Bạn lúc nào đi xem phim?"
       }
     ],
@@ -4195,32 +4195,32 @@ export const LESSONS: Lesson[] = [
         "id": "s12-01",
         "lesson": 12,
         "hanzi": "明天天气怎么样？明天太热了。",
-      "pinyin": "míng tiān tiān qì zěn me yàng míng tiān tài rè le",
-      "pinyinNum": "ming2 tian1 tian1 qi4 zen3 me0 yang4 ming2 tian1 tai4 re4 le0",
+        "pinyin": "Míngtiān tiānqì zěnmeyàng? Míngtiān tài rè le.",
+        "pinyinNum": "ming2 tian1 tian1 qi4 zen3 me5 yang4 ming2 tian1 tai4 re4 le5",
         "vi": "Ngày mai thời tiết thế nào? Ngày mai nóng quá."
       },
       {
         "id": "s12-02",
         "lesson": 12,
         "hanzi": "今天下雨，很冷。",
-      "pinyin": "jīn tiān xià yǔ hěn lěng",
-      "pinyinNum": "jin1 tian1 xia4 yu3 hen3 leng3",
+        "pinyin": "Jīntiān xiàyǔ, hěn lěng.",
+        "pinyinNum": "jin1 tian1 xia4 yu3 hen3 leng3",
         "vi": "Hôm nay mưa, rất lạnh."
       },
       {
         "id": "s12-03",
         "lesson": 12,
         "hanzi": "小姐，我想买些水果。",
-      "pinyin": "xiǎo jiě wǒ xiǎng mǎi xiē shuǐ guǒ",
-      "pinyinNum": "xiao3 jie3 wo3 xiang3 mai3 xie1 shui3 guo3",
+        "pinyin": "Xiǎojiě, wǒ xiǎng mǎi xiē shuǐguǒ.",
+        "pinyinNum": "xiao3 jie3 wo3 xiang3 mai3 xie1 shui3 guo3",
         "vi": "Cô ơi, tôi muốn mua một ít hoa quả."
       },
       {
         "id": "s12-04",
         "lesson": 12,
         "hanzi": "我爱你，你的身体好吗？",
-      "pinyin": "wǒ ài nǐ nǐ de shēn tǐ hǎo ma",
-      "pinyinNum": "wo3 ai4 ni3 ni3 de0 shen1 ti3 hao3 ma0",
+        "pinyin": "Wǒ ài nǐ, nǐ de shēntǐ hǎo ma?",
+        "pinyinNum": "wo3 ai4 ni3 ni3 de5 shen1 ti3 hao3 ma5",
         "vi": "Tôi yêu bạn, sức khỏe bạn thế nào?"
       }
     ],
@@ -4524,32 +4524,32 @@ export const LESSONS: Lesson[] = [
         "id": "s13-01",
         "lesson": 13,
         "hanzi": "喂，你在做什么？",
-      "pinyin": "wèi nǐ zài zuò shén me",
-      "pinyinNum": "wei4 ni3 zai4 zuo4 shen2 me0",
+        "pinyin": "Wèi, nǐ zài zuò shénme?",
+        "pinyinNum": "wei4 ni3 zai4 zuo4 shen2 me5",
         "vi": "Alo, bạn đang làm gì?"
       },
       {
         "id": "s13-02",
         "lesson": 13,
         "hanzi": "我也学习汉语。",
-      "pinyin": "wǒ yě xué xí hàn yǔ",
-      "pinyinNum": "wo3 ye3 xue2 xi2 han4 yu3",
+        "pinyin": "Wǒ yě xuéxí Hànyǔ.",
+        "pinyinNum": "wo3 ye3 xue2 xi2 han4 yu3",
         "vi": "Tôi cũng học tiếng Hán."
       },
       {
         "id": "s13-03",
         "lesson": 13,
         "hanzi": "上午我睡觉，下午给你打电话吧。",
-      "pinyin": "shàng wǔ wǒ shuì jiào xià wǔ gěi nǐ dǎ diàn huà ba",
-      "pinyinNum": "shang4 wu3 wo3 shui4 jiao4 xia4 wu3 gei3 ni3 da3 dian4 hua4 ba0",
+        "pinyin": "Shàngwǔ wǒ shuìjiào, xiàwǔ gěi nǐ dǎ diànhuà ba.",
+        "pinyinNum": "shang4 wu3 wo3 shui4 jiao4 xia4 wu3 gei3 ni3 da3 dian4 hua4 ba5",
         "vi": "Sáng tôi ngủ, chiều gọi điện cho bạn nhé."
       },
       {
         "id": "s13-04",
         "lesson": 13,
         "hanzi": "他喜欢看电视。",
-      "pinyin": "tā xǐ huan kàn diàn shì",
-      "pinyinNum": "ta1 xi3 huan0 kan4 dian4 shi4",
+        "pinyin": "Tā xǐhuan kàn diànshì.",
+        "pinyinNum": "ta1 xi3 huan5 kan4 dian4 shi4",
         "vi": "Anh ấy thích xem tivi."
       }
     ],
@@ -4998,32 +4998,32 @@ export const LESSONS: Lesson[] = [
         "id": "s14-01",
         "lesson": 14,
         "hanzi": "这些衣服都很漂亮。",
-      "pinyin": "zhè xiē yī fu dōu hěn piào liang",
-      "pinyinNum": "zhe4 xie1 yi1 fu0 dou1 hen3 piao4 liang0",
+        "pinyin": "Zhèxiē yīfu dōu hěn piàoliang.",
+        "pinyinNum": "zhe4 xie1 yi1 fu5 dou1 hen3 piao4 liang5",
         "vi": "Những bộ quần áo này đều rất đẹp."
       },
       {
         "id": "s14-02",
         "lesson": 14,
         "hanzi": "我想买一点儿苹果。",
-      "pinyin": "wǒ xiǎng mǎi yì diǎn ér píng guǒ",
-      "pinyinNum": "wo3 xiang3 mai3 yi4 dian3 er2 ping2 guo3",
+        "pinyin": "Wǒ xiǎng mǎi yìdiǎnr píngguǒ.",
+        "pinyinNum": "wo3 xiang3 mai3 yi4 dianr3 ping2 guo3",
         "vi": "Tôi muốn mua một chút táo."
       },
       {
         "id": "s14-03",
         "lesson": 14,
         "hanzi": "先生，我看见你的车了。",
-      "pinyin": "xiān shēng wǒ kàn jiàn nǐ de chē le",
-      "pinyinNum": "xian1 sheng1 wo3 kan4 jian4 ni3 de0 che1 le0",
+        "pinyin": "Xiānsheng, wǒ kànjiàn nǐ de chē le.",
+        "pinyinNum": "xian1 sheng5 wo3 kan4 jian4 ni3 de5 che1 le5",
         "vi": "Ông ơi, tôi đã nhìn thấy xe của ông."
       },
       {
         "id": "s14-04",
         "lesson": 14,
         "hanzi": "她买了不少东西，十分钟后回来。",
-      "pinyin": "tā mǎi le bù shǎo dōng xī shí fēn zhōng hòu huí lái",
-      "pinyinNum": "ta1 mai3 le0 bu4 shao3 dong1 xi1 shi2 fen1 zhong1 hou4 hui2 lai2",
+        "pinyin": "Tā mǎi le bù shǎo dōngxi, shí fēnzhōng hòu huílai.",
+        "pinyinNum": "ta1 mai3 le5 bu4 shao3 dong1 xi5 shi2 fen1 zhong1 hou4 hui2 lai5",
         "vi": "Cô ấy đã mua khá nhiều đồ, mười phút nữa sẽ về."
       }
     ],
@@ -5311,7 +5311,7 @@ export const LESSONS: Lesson[] = [
         "lesson": 15,
         "hanzi": "火车站",
         "pinyin": "huǒchēzhàn",
-        "pinyinNum": "huochezhan4",
+        "pinyinNum": "huo3 che1 zhan4",
         "vi": "ga tàu hỏa",
         "pos": "danh từ",
         "decomps": [
@@ -5346,40 +5346,40 @@ export const LESSONS: Lesson[] = [
         "id": "s15-01",
         "lesson": 15,
         "hanzi": "认识你我很高兴。",
-      "pinyin": "rèn shi nǐ wǒ hěn gāo xìng",
-      "pinyinNum": "ren4 shi0 ni3 wo3 hen3 gao1 xing4",
+        "pinyin": "Rènshi nǐ wǒ hěn gāoxìng.",
+        "pinyinNum": "ren4 shi5 ni3 wo3 hen3 gao1 xing4",
         "vi": "Rất vui được quen bạn."
       },
       {
         "id": "s15-02",
         "lesson": 15,
         "hanzi": "我是坐飞机来的。",
-      "pinyin": "wǒ shì zuò fēi jī lái de",
-      "pinyinNum": "wo3 shi4 zuo4 fei1 ji1 lai2 de0",
+        "pinyin": "Wǒ shì zuò fēijī lái de.",
+        "pinyinNum": "wo3 shi4 zuo4 fei1 ji1 lai2 de5",
         "vi": "Tôi đến bằng máy bay."
       },
       {
         "id": "s15-03",
         "lesson": 15,
         "hanzi": "我们一起去饭店吧。",
-      "pinyin": "wǒ men yì qǐ qù fàn diàn ba",
-      "pinyinNum": "wo3 men0 yi4 qi3 qu4 fan4 dian4 ba0",
+        "pinyin": "Wǒmen yìqǐ qù fàndiàn ba.",
+        "pinyinNum": "wo3 men5 yi4 qi3 qu4 fan4 dian4 ba5",
         "vi": "Chúng ta cùng đến nhà hàng nhé."
       },
       {
         "id": "s15-04",
         "lesson": 15,
         "hanzi": "他在大学工作，今年三十岁。",
-      "pinyin": "tā zài dà xué gōng zuò jīn nián sān shí suì",
-      "pinyinNum": "ta1 zai4 da4 xue2 gong1 zuo4 jin1 nian2 san1 shi2 sui4",
+        "pinyin": "Tā zài dàxué gōngzuò, jīnnián sānshí suì.",
+        "pinyinNum": "ta1 zai4 da4 xue2 gong1 zuo4 jin1 nian2 san1 shi2 sui4",
         "vi": "Anh ấy làm việc ở đại học, năm nay ba mươi tuổi."
       },
       {
         "id": "s15-05",
         "lesson": 15,
         "hanzi": "我听他说，火车站在前面。",
-      "pinyin": "wǒ tīng tā shuō huǒ chē zhàn zài qián miàn",
-      "pinyinNum": "wo3 ting1 ta1 shuo1 huo3 che1 zhan4 zai4 qian2 mian4",
+        "pinyin": "Wǒ tīng tā shuō, huǒchēzhàn zài qiánmiàn.",
+        "pinyinNum": "wo3 ting1 ta1 shuo1 huo3 che1 zhan4 zai4 qian2 mian4",
         "vi": "Tôi nghe anh ấy nói, ga tàu ở phía trước."
       }
     ],

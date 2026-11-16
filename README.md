@@ -34,4 +34,18 @@ npm run build
 npm run preview
 ```
 
-Tạo lại audio: `python3 scripts/gen_audio.py` (cần `edge-tts`).
+Tạo lại audio: `python3 scripts/gen_audio.py` rồi `python3 scripts/gen_audio2.py` (cần `edge-tts`).
+
+Pinyin + Giáo trình: sửa `scripts/textbook_src.py`, chạy `python3 -c "import json,sys; sys.path.insert(0,'scripts'); import textbook_src as t; json.dump(t.T, open('scripts/textbook-src.json','w'), ensure_ascii=False)"` rồi `node --experimental-strip-types scripts/build_content.mjs`.
+
+Font PDF (`public/fonts`): Noto Sans (tiếng Việt) + Noto Sans CJK SC cắt theo chữ dùng trong app, chỉ tải khi xuất PDF.
+
+## 1.1.0
+
+- Sửa pinyin câu (thanh nhẹ, 儿化, biến điệu 一/不), âm đơn chữ đa âm / trợ từ.
+- Viết: mỗi chữ một ô, có Viết lại / Xem mẫu.
+- PDF: font tiếng Việt + chữ Hán vẽ từ dữ liệu nét, hộp chọn kiểu ô / số ô / chữ mờ / thứ tự nét.
+- Tự phát âm khi sang từ/câu mới (tắt trong Cài đặt).
+- Chép phạt làm lại; sửa lỗi chọn 1 bị chọn cả 4.
+- Giáo trình 15 bài, tra từ HSK1, kế hoạch hôm nay từng bước.
+- Có bản mới → hiện nút “Tải lại”.

@@ -18,6 +18,7 @@ export interface Settings {
   companyMode: boolean;
   weeklyReward: string;
   notify: boolean;
+  autoplay: boolean;
   morning: Shift;
   evening: Shift;
   saturdayMakeup: boolean;
@@ -29,6 +30,7 @@ export const DEFAULT_SETTINGS: Settings = {
   companyMode: false,
   weeklyReward: "trà sữa",
   notify: true,
+  autoplay: true,
   morning: {
     enabled: true,
     days: [1, 2, 3, 4, 5],
@@ -224,11 +226,23 @@ export interface Penalty {
   done: boolean;
   extraReview: number;
   note: string;
+  /** Lý do cụ thể, ví dụ "Bỏ ca tối 14/11". */
+  reason?: string;
+  sessionId?: string;
+  /** Số lần đã viết trong app cho từng chữ. */
+  written?: Record<string, number>;
+  proof?: { kind: "app" | "upload"; at: number; name?: string; thumb?: string };
+}
+
+let penSeq = 0;
+export function penaltyId(prefix: string): string {
+  penSeq += 1;
+  return `${prefix}-${Date.now().toString(36)}-${penSeq}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
 export function latePenalty(n = 5): Penalty {
   return {
-    id: "late-" + Date.now(),
+    id: penaltyId("late"),
     type: "late",
     createdAt: Date.now(),
     dueChars: [],
@@ -239,28 +253,31 @@ export function latePenalty(n = 5): Penalty {
   };
 }
 
-export function missedPenalty(chars: string[]): Penalty {
+export function missedPenalty(chars: string[], reason?: string, sessionId?: string): Penalty {
   return {
-    id: "miss-" + Date.now(),
+    id: penaltyId("miss"),
+    reason,
+    sessionId,
     type: "missed",
     createdAt: Date.now(),
     dueChars: chars,
     copies: 5,
     done: false,
     extraReview: 0,
-    note: "Bỏ buổi học: học bù trong 48 giờ và chép phạt 3 chữ, mỗi chữ 5 lần, rồi nộp bài.",
+    note: `Chép ${chars.length} chữ, mỗi chữ 5 lần.`,
   };
 }
 
 export function twicePenalty(charWord: string): Penalty {
   return {
-    id: "twice-" + Date.now() + "-" + charWord,
+    id: penaltyId("twice"),
+    reason: `Trả lời sai từ ${charWord} hai lần trong một ngày`,
     type: "wordTwice",
     createdAt: Date.now(),
     dueChars: [charWord],
     copies: 5,
     done: false,
     extraReview: 0,
-    note: `Sai từ ${charWord} hai lần: chép 5 lần rồi nộp bài.`,
+    note: `Chép từ ${charWord} 5 lần.`,
   };
 }

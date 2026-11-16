@@ -7,6 +7,10 @@ import { completeWeek0, getState, markWeek0Part, recordAnswer, startActivity, no
 import { plannedToday } from "../store";
 import { AudioBtn, Bar, Button, Card, Options, go } from "../ui";
 import { WriteBox } from "./write";
+import { pinyin } from "pinyin-pro";
+
+/** Chữ mẫu được loa đọc cho mỗi thanh mẫu / vận mẫu (loa đọc cả âm tiết, không đọc âm rời). */
+const EXAMPLE: Record<string, string> = {"init-b": "八", "init-p": "朋", "init-m": "妈", "init-f": "饭", "init-d": "大", "init-t": "他", "init-n": "你", "init-l": "老", "init-g": "个", "init-k": "看", "init-h": "好", "init-j": "叫", "init-q": "七", "init-x": "谢", "init-zh": "这", "init-ch": "吃", "init-sh": "是", "init-r": "人", "init-z": "字", "init-c": "菜", "init-s": "三", "init-y": "一", "init-w": "我", "final-a": "啊", "final-o": "哦", "final-e": "饿", "final-i": "一", "final-u": "五", "final-ü": "雨", "final-ai": "爱", "final-ei": "杯", "final-ui": "水", "final-ao": "好", "final-ou": "口", "final-iu": "六", "final-ie": "谢", "final-üe": "月", "final-er": "二", "final-an": "三", "final-en": "很", "final-in": "您", "final-un": "文", "final-ün": "云", "final-ang": "忙", "final-eng": "冷", "final-ing": "名", "final-ong": "中"};
 
 export function Week0(props: { part?: string }) {
   const part = props.part || "hub";
@@ -53,6 +57,7 @@ function PinyinPart() {
             <div class="card" key={i.id} style={{ margin: 0 }}>
               <strong>{i.pinyin}</strong>
               <div class="muted">{i.hint}</div>
+              <div class="muted">Nghe mẫu: <span class="hanzi-inline">{EXAMPLE["init-" + i.id]}</span> {pinyin(EXAMPLE["init-" + i.id] || "")}</div>
               <AudioBtn id={"init-" + i.id} />
             </div>
           ))}
@@ -65,6 +70,7 @@ function PinyinPart() {
             <div class="card" key={f.id} style={{ margin: 0 }}>
               <strong>{f.pinyin}</strong>
               <div class="muted">{f.hint}</div>
+              <div class="muted">Nghe mẫu: <span class="hanzi-inline">{EXAMPLE["final-" + f.id]}</span> {pinyin(EXAMPLE["final-" + f.id] || "")}</div>
               <AudioBtn id={"final-" + f.id} />
             </div>
           ))}

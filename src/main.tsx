@@ -1,11 +1,7 @@
 import { render } from "preact";
 import { App } from "./app";
+import { registerSW } from "./update";
 import "./styles.css";
 
 render(<App />, document.getElementById("app")!);
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").catch(() => { /* ignore on dev file:// */ });
-  });
-}
+registerSW();

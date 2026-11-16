@@ -9,6 +9,8 @@ import { LessonPage } from "./pages/lesson";
 import { ReviewPage, ListenPage, SpeakPage, MistakesPage, ReviewWeekPage, MockPage, WeeklyPage } from "./pages/skills";
 import { WritePage, NotesPage, SheetsPage, PenaltyPage } from "./pages/write";
 import { SettingsPage } from "./pages/settings";
+import { DictPage } from "./pages/textbook";
+import { UpdateBanner } from "./update";
 import { tutorLine } from "./tutor";
 
 export function App() {
@@ -58,6 +60,7 @@ export function App() {
           onClick={() => patchSettings({ companyMode: !s.settings.companyMode })}
         >{s.settings.companyMode ? "▣" : "☕"}</button>
       </header>
+      <UpdateBanner />
       <main>
         {showOnboard ? <OnboardingGate /> : route.view}
       </main>
@@ -103,6 +106,7 @@ function parse(path: string): { view: ComponentChildren; tab: string; back?: str
   if (parts[0] === "sheets") return wrap(<SheetsPage />, "write", "/write");
   if (parts[0] === "penalty") return wrap(<PenaltyPage />, "more", "/settings");
   if (parts[0] === "mistakes") return wrap(<MistakesPage />, "more", "/settings");
+  if (parts[0] === "dict") return wrap(<DictPage />, "more", "/settings");
   if (parts[0] === "settings") return wrap(<SettingsPage />, "more");
   if (parts[0] === "review-week") return wrap(<ReviewWeekPage />, "road", "/roadmap");
   if (parts[0] === "mock") return wrap(<MockPage n={(Number(parts[1]) === 2 ? 2 : 1)} />, "road", "/review-week");
