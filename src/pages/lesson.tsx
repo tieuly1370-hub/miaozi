@@ -1,13 +1,16 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { LESSONS, YT_WATCH, PASS_SCORE, type Word, type Lesson } from "../data/curriculum";
-import { lessonTest } from "../data/exams";
 import {
-  getState, lessonUnlocked, markDayDone, markIntroduced, passLesson, recordAnswer,
+  getState, lessonUnlocked, markIntroduced, recordAnswer,
   srsReview, startActivity, noteInput, plannedToday, addMistake, markSegWatched,
 } from "../store";
 import { cardId } from "../srs";
 import { AudioBtn, Bar, Button, Card, CarrierNote, Decomp, Options, PinyinReveal, WordFace, go, useAutoPlay } from "../ui";
 import { WriteWord } from "./write";
+import { GSKILLS, SKILL_VI } from "../gate";
+import { NHAI, isNhaiUrl, nhaiUnitLink } from "../nhai";
+import { gateRec, unitPassed, setNhaiLink } from "../store";
+import { cls } from "../ui";
 import { TextbookPage } from "./textbook";
 
 export function LessonPage(props: { n: number; tab?: string }) {
@@ -26,7 +29,7 @@ export function LessonPage(props: { n: number; tab?: string }) {
     return (
       <Card data-testid="lesson-locked">
         <h2 class="h2">Bài {n} đang khóa</h2>
-        <p>Cần hoàn thành {n === 1 ? "Tuần 0" : "bài " + (n - 1) + " (≥ 80%, gồm nhận mặt chữ không pinyin)"} trước.</p>
+        <p>Cần hoàn thành {n === 1 ? "Tuần 0" : "đủ 4 kỹ năng của bài " + (n - 1)} trước.</p>
         <Button onClick={() => go(n === 1 ? "/week0" : "/lesson/" + (n - 1))}>Quay lại</Button>
       </Card>
     );
@@ -37,29 +40,59 @@ export function LessonPage(props: { n: number; tab?: string }) {
   if (tab === "words") return <Words les={les} />;
   if (tab === "practice") return <Practice les={les} />;
   if (tab === "sentences") return <Sentences les={les} />;
-  if (tab === "test") return <Test les={les} />;
   const day = s.progress.lessonDay[n] || 1;
-  const passed = s.progress.lessonPassed[n];
   return (
     <div class="stack" data-testid="lesson-hub">
       <Card>
         <div class="muted">Bài {n}/15 · Ngày {day}/3</div>
         <div class="hanzi sm">{les.titleZh}</div>
         <h2 class="h2">{les.titleVi}</h2>
-        <p class="muted">{les.grammarNote}</p>
-        <p class="kw">{les.words.length} từ · {les.sentences.length} câu luyện</p>
-        {passed && <p class="chip green">Đã đạt {Math.round(passed.score * 100)}%</p>}
+        <p class="kw">{les.words.length} từ: {les.words.map((w) => w.hanzi).join(" ")}</p>
+        <div class="gate-dots">{GSKILLS.map((k) => <span key={k} class={cls("gdot", gateRec(n, k)?.pass && "ok")}>{SKILL_VI[k]} {gateRec(n, k)?.pass ? "✓" : ""}</span>)}</div>
+        {unitPassed(n) && <p class="chip green">Đã qua đủ 4 kỹ năng</p>}
       </Card>
-      <Button kind="green" wide id="open-textbook" onClick={() => go(`/lesson/${n}/book`)}>📖 Giáo trình bài {n} {s.progress.textbookRead?.[n] ? "· đã đọc" : ""}</Button>
+      <Card>
+        <h3 class="h3">Học trên Nhai HSK</h3>
+        <div class="tools">
+          <a class="btn primary small" href={nhaiUnitLink(n, "vocab")} target="_blank" rel="noreferrer">Từ vựng bài {n} ↗</a>
+          <a class="btn blue small" href={nhaiUnitLink(n, "grammar")} target="_blank" rel="noreferrer">Ngữ pháp ↗</a>
+          <a class="btn ghost small" href={NHAI.hanzi} target="_blank" rel="noreferrer">Phân tích chữ ↗</a>
+          <a class="btn ghost small" href={NHAI.reading} target="_blank" rel="noreferrer">Bài khoá ↗</a>
+          <a class="btn ghost small" href={NHAI.shadowing} target="_blank" rel="noreferrer">Shadowing ↗</a>
+        </div>
+        <PinLink n={n} />
+        {les.lecture && <a class="alt-link" href={YT_WATCH(les.lecture.id, 0)} target="_blank" rel="noreferrer">Tuỳ chọn: video thầy Thành Luân bài {n} ↗</a>}
+      </Card>
       <div class="grid cols-2">
-        <Button kind="blue" wide onClick={() => go(`/lesson/${n}/watch`)}>Ngày 1 · Xem video</Button>
-        <Button kind="yellow" wide onClick={() => go(`/lesson/${n}/words`)}>Ngày 1 · Từ mới</Button>
-        <Button kind="purple" wide onClick={() => go(`/lesson/${n}/practice`)}>Ngày 2 · Luyện chữ</Button>
-        <Button kind="pink" wide onClick={() => go(`/lesson/${n}/sentences`)}>Ngày 3 · Câu</Button>
+        <Button kind="yellow" wide onClick={() => go(`/lesson/${n}/words`)}>Xem lại từ (có pinyin)</Button>
+        <Button kind="purple" wide onClick={() => go(`/lesson/${n}/practice`)}>Luyện viết + nhận chữ</Button>
+        <Button kind="pink" wide onClick={() => go(`/lesson/${n}/sentences`)}>Luyện câu</Button>
+        <Button kind="ghost" wide onClick={() => go(`/lesson/${n}/book`)}>Ghi chú bài (cũ)</Button>
       </div>
-      <Button kind="primary" wide id="lesson-test-btn" onClick={() => go(`/lesson/${n}/test`)}>Kiểm tra bài {n}</Button>
-      <p class="notice">Bài {n + 1} chỉ mở khi đạt ≥ 80%, trong đó có phần nhận mặt chữ không pinyin. Trượt thì chỉ ôn câu sai rồi thi lại.</p>
+      <Button kind="primary" wide id="lesson-test-btn" onClick={() => go(`/gate/${n}`)}>Cổng qua bài {n} — 4 kỹ năng</Button>
+      <p class="notice">Bài {n + 1} chỉ mở khi qua đủ Nghe, Đọc, Nói, Viết của bài {n}. Trang luyện ở đây chỉ để tập — không tính qua bài, không tính ca.</p>
     </div>
+  );
+}
+
+function PinLink({ n }: { n: number }) {
+  const cur = getState().settings.nhaiUnit || {};
+  const [v, setV] = useState(cur[`${n}:vocab`] || "");
+  const [msg, setMsg] = useState("");
+  return (
+    <details class="pin">
+      <summary class="muted">Ghim link đúng bài trên Nhai (một lần, lần sau bấm là vào thẳng)</summary>
+      <p class="muted">Mở bài tương ứng trên Nhai (đã đăng nhập), copy địa chỉ trên thanh trình duyệt rồi dán vào đây.</p>
+      <div class="row">
+        <input class="input" value={v} placeholder="https://nhaihsk.com/…" onInput={(e) => setV((e.target as HTMLInputElement).value)} />
+        <Button small onClick={() => {
+          if (!v.trim()) { setNhaiLink(`${n}:vocab`, ""); setMsg("Đã bỏ ghim."); return; }
+          if (!isNhaiUrl(v)) { setMsg("Link phải bắt đầu bằng https://nhaihsk.com/"); return; }
+          setNhaiLink(`${n}:vocab`, v.trim()); setMsg("Đã ghim.");
+        }}>Lưu</Button>
+      </div>
+      {msg && <p class="muted">{msg}</p>}
+    </details>
   );
 }
 
@@ -75,7 +108,7 @@ function Watch({ les }: { les: Lesson }) {
         {wb && <SegList title="Sách bài tập" video={wb} lesson={les.id} offset={vid?.segments.length || 0} />}
         {!wb && les.id <= 5 && <p class="muted">Playlist không có video sách bài tập riêng cho bài 1–5 (bài 6 mới bắt đầu xen kẽ).</p>}
       </Card>
-      <Button kind="primary" wide onClick={() => { markDayDone(les.id, 1); go(`/lesson/${les.id}/words`); }}>Đã xem, sang từ mới</Button>
+      <Button kind="primary" wide onClick={() => go(`/lesson/${les.id}`)}>Quay lại bài</Button>
     </div>
   );
 }
@@ -120,7 +153,7 @@ function Words({ les }: { les: Lesson }) {
         <Button kind="ghost" disabled={i === 0} onClick={() => setI(i - 1)}>Trước</Button>
         {i + 1 < les.words.length
           ? <Button kind="primary" wide onClick={() => setI(i + 1)}>Từ tiếp</Button>
-          : <Button kind="primary" wide onClick={() => { markDayDone(les.id, 1); go(`/lesson/${les.id}`); }}>Xong từ mới</Button>}
+          : <Button kind="primary" wide onClick={() => go(`/lesson/${les.id}`)}>Xong, quay lại bài</Button>}
       </div>
     </div>
   );
@@ -172,7 +205,7 @@ function Practice({ les }: { les: Lesson }) {
           <div style={{ marginTop: 10 }}><Button wide onClick={() => setI(i + 1)}>Từ tiếp</Button></div>
         </Card>
       )}
-      <Button kind="green" wide onClick={() => { markDayDone(les.id, 2); go(`/lesson/${les.id}`); }}>Xong ngày 2</Button>
+      <Button kind="green" wide onClick={() => go(`/lesson/${les.id}`)}>Quay lại bài</Button>
     </div>
   );
 }
@@ -203,117 +236,9 @@ function Sentences({ les }: { les: Lesson }) {
       {chosen && (
         i + 1 < les.sentences.length
           ? <Button kind="primary" wide onClick={() => { setI(i + 1); setChosen(null); }}>Câu tiếp</Button>
-          : <Button kind="primary" wide onClick={() => { markDayDone(les.id, 3); go(`/lesson/${les.id}/test`); }}>Sang kiểm tra bài</Button>
+          : <Button kind="primary" wide onClick={() => go(`/lesson/${les.id}`)}>Quay lại bài</Button>
       )}
     </div>
   );
 }
 
-function Test({ les }: { les: Lesson }) {
-  const s = getState();
-  const last = s.progress.lessonPassed[les.id];
-  const reviewOnly = last && last.score < PASS_SCORE;
-  const [wrongIds, setWrongIds] = useState<string[] | null>(null);
-  const all = useMemo(() => lessonTest(les.id), [les.id]);
-  const qs = wrongIds ? all.filter((q) => wrongIds.includes(q.id)) : all;
-  const [i, setI] = useState(0);
-  const [chosen, setChosen] = useState<string | null>(null);
-  const [ok, setOk] = useState(0);
-  const [miss, setMiss] = useState<string[]>([]);
-  const [done, setDone] = useState(false);
-  const [writeOk, setWriteOk] = useState<boolean | null>(null);
-  const q = qs[i];
-  useAutoPlay(q && (q.kind === "listen-choice" || q.kind === "listen-tone") ? q.audioId : null, [i, wrongIds]);
-
-  const finish = (correct: number, missed: string[]) => {
-    const score = qs.length ? correct / qs.length : 0;
-    // If this is a retake of wrong items only, blend? Spec: review wrong, retake. I'll score the retake itself, but if they only retake wrong, require 80% of retake AND overall conceptually. Simpler: retake the full test after a review round, or score retake of missed at 80%.
-    // If reviewOnly/wrongIds, passing the missed set at 80% + previous correct counts as pass of full test.
-    let final = score;
-    if (wrongIds) {
-      const prevCorrect = all.length - wrongIds.length;
-      final = (prevCorrect + correct) / all.length;
-    }
-    passLesson(les.id, final);
-    setMiss(missed);
-    setDone(true);
-  };
-
-  if (done) {
-    const score = (wrongIds
-      ? (all.length - wrongIds.length + ok)
-      : ok) / all.length;
-    const passed = score >= PASS_SCORE;
-    return (
-      <Card data-testid="lesson-test-result">
-        <h2 class="h2">{passed ? "Đạt rồi, mở bài tiếp!" : "Chưa đạt 80%"}</h2>
-        <p>Đúng {Math.round(score * all.length)}/{all.length} ({Math.round(score * 100)}%).</p>
-        <Bar value={score} />
-        {!passed && <p class="muted">Chỉ ôn các câu sai, rồi thi lại phần đó.</p>}
-        {passed && les.id < 15 && <Button kind="primary" wide onClick={() => go("/lesson/" + (les.id + 1))}>Vào bài {les.id + 1}</Button>}
-        {passed && les.id === 15 && <Button kind="primary" wide onClick={() => go("/review-week")}>Sang tuần ôn</Button>}
-        {!passed && (
-          <Button kind="pink" wide onClick={() => {
-            setWrongIds(miss.length ? miss : null);
-            setI(0); setOk(0); setChosen(null); setDone(false); setWriteOk(null);
-          }}>Ôn câu sai và thi lại</Button>
-        )}
-        <div style={{ marginTop: 8 }}><Button kind="ghost" wide onClick={() => go("/lesson/" + les.id)}>Về bài học</Button></div>
-      </Card>
-    );
-  }
-  if (!q) return null;
-  const isWrite = q.kind === "write";
-  return (
-    <div class="stack" data-testid="lesson-test">
-      <Card>
-        <div class="row spread">
-          <h2 class="h2">Kiểm tra bài {les.id}</h2>
-          <span class="muted">{i + 1}/{qs.length}{wrongIds ? " · phần sai" : ""}</span>
-        </div>
-        <Bar value={i / qs.length} />
-        <p>{q.prompt}</p>
-        {q.kind === "recog" || q.kind === "read-meaning" ? <div class="hanzi" style={{ textAlign: "center" }}>{q.hanzi}</div> : null}
-        {q.kind === "listen-choice" || q.kind === "listen-tone" ? <AudioBtn id={q.audioId} label="Nghe" /> : null}
-        {isWrite ? (
-          <div>
-            <WriteWord key={q.id} word={{ hanzi: q.answer }} onDone={(okw) => {
-              setWriteOk(okw);
-              setChosen(okw ? q.answer : "no");
-              if (okw) setOk((x) => x + 1);
-              else setMiss((m) => [...m, q.id]);
-              recordAnswer(okw);
-            }} />
-          </div>
-        ) : (
-          <Options
-            options={q.options}
-            chosen={chosen}
-            answer={q.answer}
-            locked={!!chosen}
-            onPick={(id) => {
-              if (chosen) return;
-              setChosen(id);
-              const good = id === q.answer;
-              if (good) setOk((x) => x + 1);
-              else setMiss((m) => [...m, q.id]);
-              recordAnswer(good);
-              if (!good && q.hanzi) {
-                const word = les.words.find((w) => w.hanzi === q.hanzi);
-                if (word) addMistake(word, "kiểm tra");
-              }
-            }}
-          />
-        )}
-        {chosen && (
-          <div style={{ marginTop: 12 }}>
-            <Button kind="primary" wide onClick={() => {
-              if (i + 1 >= qs.length) finish(ok, miss);
-              else { setI(i + 1); setChosen(null); setWriteOk(null); }
-            }}>{i + 1 >= qs.length ? "Xem kết quả" : "Câu tiếp"}</Button>
-          </div>
-        )}
-      </Card>
-    </div>
-  );
-}

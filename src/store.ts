@@ -7,6 +7,7 @@ import {
   sessionsOn, padDate, requiredSessions, penaltyId, sessionComplete, latePenalty, missedPenalty, twicePenalty, isOffDay, atHm,
 } from "./schedule";
 import { ALL_WORDS, type Word } from "./data/curriculum";
+import { GSKILLS, type GSkill } from "./gate";
 
 export interface Progress {
   week0Passed: boolean;
@@ -23,7 +24,29 @@ export interface Progress {
   /** Ngày bắt đầu dùng app — không phạt các ca trước ngày này. */
   startedOn: string;
   textbookRead: Record<number, boolean>;
+  /** v1.2: cổng 4 kỹ năng riêng cho từng bài. */
+  gate: Record<number, Partial<Record<GSkill, GateRec>>>;
+  gateVersion: number;
+  resetNotice?: boolean;
+  /** Điểm "qua bài" kiểu cũ (v1.0–1.1), chỉ để xem lại. */
+  legacyPassed?: Record<number, { score: number; at: number }>;
+  /** Kiểm tra cuối ca: `${date}:${kind}`. */
+  checks: Record<string, CheckRec>;
 }
+
+export interface GateRec {
+  pass: boolean;
+  score: number;
+  at: number;
+  tries: number;
+  /** Ngày sớm nhất được thi lại (YYYY-MM-DD). */
+  retryOn?: string;
+  failed?: string[];
+  why?: string[];
+  inProgress?: number;
+}
+
+export interface CheckRec { pass: boolean; at: number; tries: number; retryAt?: number; score: number; why?: string[] }
 
 export const DEFAULT_PROGRESS: Progress = {
   week0Passed: false,
@@ -39,6 +62,9 @@ export const DEFAULT_PROGRESS: Progress = {
   weekly: {},
   startedOn: "",
   textbookRead: {},
+  gate: {},
+  gateVersion: 2,
+  checks: {},
 };
 
 export interface Mistake {
@@ -74,7 +100,7 @@ export interface TodayState {
   lateFlagged: Record<string, boolean>;
   wordWrongs: Record<string, number>;
   /** Bước trong kế hoạch hôm nay đã xong (id bước). */
-  steps?: Record<string, boolean>;
+  steps?: Record<string, boolean | number>;
   /** Bài/ngày được chốt cho kế hoạch hôm nay, ví dụ "3:2". */
   planFor?: string;
   speakCount?: number;
@@ -200,6 +226,31 @@ function migrate() {
     });
   }
   st.progress.textbookRead = st.progress.textbookRead || {};
+  st.progress.checks = st.progress.checks || {};
+  // v1.2: cổng cũ quá dễ (qua nhờ nhớ pinyin) → reset cổng bài, giữ thống kê / thẻ / chuỗi.
+  if (st.progress.gateVersion !== 2) {
+    const hadLessons = Object.keys(st.progress.lessonPassed || {}).length > 0 || st.progress.unlockedLesson > 1;
+    st.progress.legacyPassed = { ...(st.progress.legacyPassed || {}), ...(st.progress.lessonPassed || {}) };
+    st.progress.lessonPassed = {};
+    st.progress.gate = {};
+    st.progress.lessonDay = {};
+    st.progress.dayDone = {};
+    if (st.progress.week0Passed) st.progress.unlockedLesson = Math.min(Math.max(st.progress.unlockedLesson, 1), 1);
+    st.progress.gateVersion = 2;
+    st.progress.resetNotice = hadLessons;
+  }
+  // Bài thi bỏ dở = trượt (không được thoát ra để làm lại cho dễ).
+  const today2 = padDate(new Date());
+  for (const [n, g] of Object.entries(st.progress.gate)) {
+    for (const k of GSKILLS) {
+      const r = g[k];
+      if (r?.inProgress && Date.now() - r.inProgress > 3 * 3600000) {
+        g[k] = { ...r, inProgress: undefined, pass: false, retryOn: tomorrow(), why: ["Bỏ dở bài thi giữa chừng — tính là trượt."] };
+      }
+    }
+    void n;
+  }
+  void today2;
   const ids = new Set<string>();
   for (const p of st.penalties) {
     if (ids.has(p.id)) p.id = penaltyId(p.type);
@@ -627,3 +678,131 @@ export function bumpSpeak() {
   s.today.speakCount = (s.today.speakCount || 0) + 1;
   emit();
 }
+
+
+export function tomorrow(d = new Date()): string {
+  const x = new Date(d);
+  x.setDate(x.getDate() + 1);
+  return padDate(x);
+}
+
+export function gateRec(n: number, k: GSkill): GateRec | undefined {
+  return getState().progress.gate[n]?.[k];
+}
+
+/** Kỹ năng này hôm nay có được thi không. */
+export function gateBlockedUntil(n: number, k: GSkill): string | null {
+  const r = gateRec(n, k);
+  if (!r || r.pass || !r.retryOn) return null;
+  return r.retryOn > padDate(new Date()) ? r.retryOn : null;
+}
+
+export function unitPassed(n: number): boolean {
+  const g = getState().progress.gate[n];
+  return !!g && GSKILLS.every((k) => g[k]?.pass);
+}
+
+export function startGate(n: number, k: GSkill) {
+  const s = getState();
+  const g = (s.progress.gate[n] = s.progress.gate[n] || {});
+  const r = g[k] || { pass: false, score: 0, at: 0, tries: 0 };
+  g[k] = { ...r, inProgress: Date.now() };
+  emit();
+}
+
+export function abandonGate(n: number, k: GSkill) {
+  const s = getState();
+  const r = s.progress.gate[n]?.[k];
+  if (!r?.inProgress) return;
+  s.progress.gate[n]![k] = { ...r, inProgress: undefined, pass: false, tries: r.tries + 1, at: Date.now(), retryOn: tomorrow(), why: ["Bỏ dở bài thi giữa chừng — tính là trượt."] };
+  emit();
+}
+
+export function finishGate(n: number, k: GSkill, pass: boolean, score: number, failed: string[], why: string[]) {
+  const s = getState();
+  const g = (s.progress.gate[n] = s.progress.gate[n] || {});
+  const r = g[k] || { pass: false, score: 0, at: 0, tries: 0 };
+  g[k] = { pass, score, at: Date.now(), tries: r.tries + 1, failed, why, retryOn: pass ? undefined : tomorrow() };
+  if (unitPassed(n)) {
+    const avg = GSKILLS.reduce((a, x) => a + (g[x]?.score || 0), 0) / 4;
+    s.progress.lessonPassed[n] = { score: avg, at: Date.now() };
+    s.progress.unlockedLesson = Math.max(s.progress.unlockedLesson, n + 1);
+    ensureCards();
+  }
+  emit();
+}
+
+/** Phạt chép khi viết sai 2 lần trong bài thi: chép 10 lần mỗi chữ, thi lại ngày mai. */
+export function gateWritePenalty(hanzi: string, why: string) {
+  const s = getState();
+  s.penalties.push({ ...twicePenalty(hanzi), copies: 10, reason: why, note: `Chép ${hanzi} 10 lần (mỗi chữ). Thi lại từ ngày mai.` });
+  emit();
+}
+
+function checkKey(kind: string, d = new Date()) { return `${padDate(d)}:${kind}`; }
+
+export function checkRec(kind: string, d = new Date()): CheckRec | undefined {
+  return getState().progress.checks[checkKey(kind, d)];
+}
+
+/** Ca học chỉ được tính khi bài kiểm tra cuối ca đạt. */
+export function completeSessionCheck(kind: "morning" | "evening" | "weeklyTest", pass: boolean, correct: number, total: number, why: string[]) {
+  const s = getState();
+  const now = new Date();
+  const k = checkKey(kind, now);
+  const prev = s.progress.checks[k];
+  s.progress.checks[k] = { pass: pass || !!prev?.pass, at: Date.now(), tries: (prev?.tries || 0) + 1, score: total ? correct / total : 0, why, retryAt: pass ? undefined : Date.now() + 20 * 60000 };
+  const planned = sessionsOn(now, s.settings).find((p) => p.kind === kind);
+  const session: PlannedSession = planned || {
+    id: `${padDate(now)}:makeup-${kind}`, date: padDate(now), kind, start: now, end: now, minMinutes: 0,
+    skills: [], required: false, label: "Học bù",
+  };
+  s.sessions.push({
+    id: "log-" + Date.now(), sessionId: session.id, date: session.date, kind: session.kind,
+    startedAt: s.today.started[session.id] || Date.now(), endedAt: Date.now(),
+    activeMs: pass ? Math.max(session.minMinutes * 60000, s.today.activeBySession[session.id] || 0) : 0,
+    correct, total, counted: pass, late: !!s.today.lateFlagged[session.id], skills: session.skills,
+  });
+  if (pass) {
+    // khép học bù cùng loại nếu đang nợ
+    if (!planned) {
+      const open = s.streak.pendingMakeups.find((m) => !m.done && m.kind === kind && Date.now() <= m.dueBy);
+      if (open) { open.done = true; open.doneAt = Date.now(); }
+      maybeAdvanceStreak(now);
+    } else fulfill(session);
+    advanceDayIfChecked();
+  }
+  emit();
+}
+
+/** Ngày học của bài chỉ sang ngày tiếp khi cả kiểm tra ca sáng và ca tối hôm đó đều đạt. */
+function advanceDayIfChecked() {
+  const s = getState();
+  const n = Math.max(1, s.progress.unlockedLesson);
+  if (!s.progress.week0Passed || n > 15) return;
+  const day = (s.progress.lessonDay[n] || 1) as 1 | 2 | 3;
+  if (day >= 3) return;
+  if (checkRec("morning")?.pass && checkRec("evening")?.pass) {
+    if (s.today.planFor && s.today.planFor !== `${n}:${day}`) return;
+    markDayDone(n, day);
+  }
+}
+
+export function setNhaiLink(key: string, url: string) {
+  const s = getState();
+  s.settings = { ...s.settings, nhaiUnit: { ...(s.settings.nhaiUnit || {}), [key]: url } };
+  emit();
+}
+
+export function markStepOpened(id: string) {
+  const s = getState();
+  s.today.steps = { ...(s.today.steps || {}), [id + ":open"]: Date.now() as unknown as boolean };
+  emit();
+}
+
+export function dismissResetNotice() {
+  getState().progress.resetNotice = false;
+  emit();
+}
+
+void GSKILLS;

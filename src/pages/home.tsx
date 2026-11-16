@@ -1,9 +1,11 @@
-import { useEffect, useMemo } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import { todayPlan, type Step } from "../plan";
 import { LESSONS, TOTAL_LESSONS } from "../data/curriculum";
 import { tutorLine } from "../tutor";
 import { Bar, Button, Card, TutorBubble, go, cls } from "../ui";
-import { getState, lessonUnlocked, markSegWatched, openMakeups, plannedToday, setPlanFor, weekKey } from "../store";
+import { getState, lessonUnlocked, openMakeups, plannedToday, setPlanFor, weekKey, markStep, markStepOpened, dismissResetNotice, gateRec } from "../store";
+import { GSKILLS } from "../gate";
+import { NHAI } from "../nhai";
 import { dayNameVi, sessionComplete, isOffDay, type PlannedSession } from "../schedule";
 
 export function Onboarding() {
@@ -14,9 +16,9 @@ export function Onboarding() {
       <Card>
         <h2 class="h2">Lộ trình, không nhảy cóc</h2>
         <ol class="muted" style={{ paddingLeft: 18 }}>
-          <li>Tuần 0 — Nền móng: pinyin, thanh điệu, 8 nét, 30 bộ thủ.</li>
-          <li>15 bài theo Giáo trình chuẩn HSK1 (video thầy Thành Luân).</li>
-          <li>Mỗi bài 3 ngày làm việc. Bài sau chỉ mở khi bài kiểm tra ≥ 80%, có phần nhận mặt chữ không pinyin.</li>
+          <li>Tuần 0 — Nền móng: pinyin, thanh điệu, 8 nét, bộ thủ.</li>
+          <li>15 bài HSK1. Học trên Nhai HSK theo đúng link Miêu giao, rồi quay lại Lò Hán để bị kiểm tra.</li>
+          <li>Mỗi bài 3 ngày. Ngày 3 thi cổng: Nghe, Đọc, Nói, Viết thi riêng, mỗi kỹ năng ≥ 80%, viết lại toàn bộ từ của bài từ trí nhớ, đúng 100%. Thiếu một kỹ năng là chưa qua.</li>
           <li>Ca sáng ở công ty: nghe + đọc (30–120 phút). Tối 21:00: nói + viết trên tablet.</li>
           <li>Thứ Bảy học bù, Chủ nhật nghỉ + kiểm tra tuần 20 phút.</li>
         </ol>
@@ -59,6 +61,13 @@ export function Today() {
   return (
     <div class="stack" data-testid="today">
       <TutorBubble mood={line.mood} text={line.text} />
+      {s.progress.resetNotice && (
+        <Card class="res-fail" data-testid="reset-notice">
+          <h3 class="h3">Lò Hán 1.2: cổng bài đã đặt lại</h3>
+          <p>Bài kiểm tra cũ cho qua nhờ nhớ pinyin, nên mọi bài phải thi lại theo cổng mới: 4 kỹ năng thi riêng, viết phải đúng 100% từ trí nhớ. Thẻ ôn, sổ lỗi, chuỗi ngày giữ nguyên. Bắt đầu lại từ Bài 1.</p>
+          <Button small onClick={() => dismissResetNotice()}>Đã hiểu</Button>
+        </Card>
+      )}
       <DayPlan heading={plan.heading} steps={plan.steps} dow={dayNameVi(dow)} />
       <div class="grid today">
         <Card>
@@ -66,10 +75,10 @@ export function Today() {
             <h2 class="h3">Ca học hôm nay</h2>
             <span class="chip pink">Chuỗi {s.streak.current} ngày</span>
           </div>
-          <p class="muted">Buổi chỉ tính khi làm đủ thời gian thật (không ngồi idle) và đúng ≥ 70%. Ngày nghỉ không phá chuỗi. Học bù trong 48 giờ vẫn giữ chuỗi.</p>
+          <p class="muted">Ca chỉ được tính khi bài kiểm tra cuối ca đạt (mỗi kỹ năng ≥ 80%). Học trên Nhai không tự tính. Ngày nghỉ không phá chuỗi. Học bù trong 48 giờ vẫn giữ chuỗi.</p>
           {planned.map((p) => {
             const st = status(p);
-            const href = p.skills.includes("speak") || p.skills.includes("write") ? "/today/evening" : "/today/morning";
+            const href = p.kind === "weeklyTest" ? "/check/weekly" : p.kind === "evening" ? "/check/evening" : "/check/morning";
             return (
               <button class="seg" key={p.id} onClick={() => go(href)}>
                 <div>
@@ -112,6 +121,8 @@ export function Today() {
 
 function DayPlan(props: { heading: string; steps: Step[]; dow: string }) {
   const steps = props.steps;
+  const [, setTick] = useState(0);
+  useEffect(() => { const t = setInterval(() => setTick((x) => x + 1), 20000); return () => clearInterval(t); }, []);
   const next = steps.findIndex((x) => !x.done);
   const done = steps.filter((x) => x.done).length;
   const mins = steps.filter((x) => !x.done).reduce((a, x) => a + x.minutes, 0);
@@ -137,16 +148,30 @@ function DayPlan(props: { heading: string; steps: Step[]; dow: string }) {
             <div class="plan-body">
               <div class="plan-title">{st.title}{st.shift && <span class="chip tiny">{st.shift === "sáng" ? "ca sáng" : "ca tối"}</span>}</div>
               {(i === next || !st.done) && <div class="muted">{st.detail}</div>}
-              {i === next && (
-                st.url
-                  ? <a class="btn primary small" href={st.url} target="_blank" rel="noreferrer" onClick={() => st.urlLesson && markSegWatched(st.urlLesson, st.urlSegIndex || 0)}>{st.cta} ↗</a>
-                  : <Button small kind="primary" onClick={() => go(st.to || "/")}>{st.cta} →</Button>
-              )}
+              {i === next && <StepAction st={st} />}
+              {st.alt && !st.done && <a class="alt-link" href={st.alt.url} target="_blank" rel="noreferrer">{st.alt.label} ↗</a>}
             </div>
           </li>
         ))}
       </ol>
     </Card>
+  );
+}
+
+function StepAction({ st }: { st: Step }) {
+  const s = getState();
+  const opened = Number(s.today.steps?.[st.id + ":open"] || 0);
+  const needMs = st.minutes * 0.5 * 60000;
+  const left = opened ? Math.max(0, opened + needMs - Date.now()) : needMs;
+  if (st.blocked) return <span class="chip warn" data-testid="step-blocked">{st.blocked}</span>;
+  if (!st.url) return <Button small kind="primary" onClick={() => go(st.to || "/")}>{st.cta} →</Button>;
+  return (
+    <div class="tools tight">
+      <a class="btn primary small" data-testid="nhai-link" href={st.url} target="_blank" rel="noreferrer" onClick={() => { if (!opened) markStepOpened(st.id); }}>{st.cta} ↗</a>
+      <Button small kind="ghost" disabled={!opened || left > 0} onClick={() => markStep(st.id)}>
+        {!opened ? "Đã học xong" : left > 0 ? `Học thêm ${Math.ceil(left / 60000)} phút` : "Đã học xong"}
+      </Button>
+    </div>
   );
 }
 
@@ -186,7 +211,7 @@ export function Roadmap() {
     <div class="stack" data-testid="roadmap">
       <Card>
         <h2 class="h2">Lộ trình HSK1</h2>
-        <p class="muted">Bám Giáo trình chuẩn HSK1, 15 bài, video thầy Thành Luân. Cổng chặn: phải qua bài kiểm tra (có nhận mặt chữ không pinyin) mới mở bài sau.</p>
+        <p class="muted">15 bài HSK1. Học trên <a href={NHAI.course} target="_blank" rel="noreferrer">Nhai HSK</a>, Lò Hán giao việc và kiểm tra. Cổng: đủ 4 kỹ năng (Nghe, Đọc, Nói, Viết), mỗi kỹ năng ≥ 80% đúng lần đầu, Viết đúng 100%.</p>
       </Card>
       <div class="roadmap">
         <button class={cls("rm-item", s.progress.week0Passed ? "done" : "current")} onClick={() => go("/week0")}>
@@ -212,6 +237,7 @@ export function Roadmap() {
               <div>
                 <strong>Bài {l.id}. {l.titleZh}</strong>
                 <div class="muted">{l.titleVi} · {l.words.length} từ</div>
+                {unlocked && !passed && <div class="gate-dots">{GSKILLS.map((k) => <span key={k} class={cls("gdot", gateRec(l.id, k)?.pass && "ok")}>{({ listen: "Nghe", read: "Đọc", speak: "Nói", write: "Viết" } as const)[k]}</span>)}</div>}
               </div>
               <span class="chip">{passed ? "đạt" : unlocked ? "mở" : "khóa"}</span>
             </button>

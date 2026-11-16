@@ -23,6 +23,8 @@ export interface Settings {
   evening: Shift;
   saturdayMakeup: boolean;
   sundayWeeklyTest: Shift;
+  /** Link bài Nhai HSK chủ tự ghim cho từng bài: "3:vocab" → url. */
+  nhaiUnit?: Record<string, string>;
 }
 
 export const DEFAULT_SETTINGS: Settings = {

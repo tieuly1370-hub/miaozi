@@ -6,7 +6,8 @@ import { useHash, go, Back, cls } from "./ui";
 import { Onboarding, Today, Roadmap, ShiftPage } from "./pages/home";
 import { Week0 } from "./pages/week0";
 import { LessonPage } from "./pages/lesson";
-import { ReviewPage, ListenPage, SpeakPage, MistakesPage, ReviewWeekPage, MockPage, WeeklyPage } from "./pages/skills";
+import { ReviewPage, ListenPage, SpeakPage, MistakesPage, ReviewWeekPage, MockPage } from "./pages/skills";
+import { GatePage, CheckPage } from "./pages/exam";
 import { WritePage, NotesPage, SheetsPage, PenaltyPage } from "./pages/write";
 import { SettingsPage } from "./pages/settings";
 import { DictPage } from "./pages/textbook";
@@ -94,6 +95,9 @@ function parse(path: string): { view: ComponentChildren; tab: string; back?: str
   const parts = p.split("/").filter(Boolean);
   const wrap = (view: ComponentChildren, tab: string, back?: string) => ({ view, tab, back });
   if (parts[0] === "week0") return wrap(<Week0 part={parts[1]} />, "road", parts[1] ? "/week0" : "/");
+  if (parts[0] === "lesson" && parts[2] === "test") return wrap(<GatePage n={Number(parts[1] || 1)} />, "road", "/lesson/" + parts[1]);
+  if (parts[0] === "gate") return wrap(<GatePage n={Number(parts[1] || 1)} skill={parts[2]} />, "road", parts[2] ? "/gate/" + parts[1] : "/lesson/" + parts[1]);
+  if (parts[0] === "check") return wrap(<CheckPage key={parts[1]} kind={parts[1] === "evening" ? "evening" : parts[1] === "weekly" ? "weekly" : "morning"} />, "today", "/");
   if (parts[0] === "lesson") return wrap(<LessonPage n={Number(parts[1] || 1)} tab={parts[2]} />, "road", parts[2] ? "/lesson/" + parts[1] : "/roadmap");
   if (parts[0] === "roadmap") return wrap(<Roadmap />, "road");
   if (parts[0] === "today" && parts[1] === "morning") return wrap(<ShiftPage shift="morning" />, "today", "/");
@@ -110,7 +114,7 @@ function parse(path: string): { view: ComponentChildren; tab: string; back?: str
   if (parts[0] === "settings") return wrap(<SettingsPage />, "more");
   if (parts[0] === "review-week") return wrap(<ReviewWeekPage />, "road", "/roadmap");
   if (parts[0] === "mock") return wrap(<MockPage n={(Number(parts[1]) === 2 ? 2 : 1)} />, "road", "/review-week");
-  if (parts[0] === "weekly") return wrap(<WeeklyPage />, "today", "/");
+  if (parts[0] === "weekly") return wrap(<CheckPage kind="weekly" />, "today", "/");
   return wrap(<Today />, "today");
 }
 

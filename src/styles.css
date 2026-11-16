@@ -368,3 +368,37 @@ body.company .rm-item .num { background: #efe9e1; }
 .checklist li.bad::before { content: "✕"; color: var(--bad); }
 
 .update-bar { position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; gap: 10px; background: var(--ink); color: #fff; padding: 8px 12px; border-radius: 14px; margin-bottom: 12px; font-size: 14px; }
+
+/* ===== v1.2: bài thi chặt ===== */
+.timer { position: relative; height: 22px; background: var(--line); border-radius: 11px; overflow: hidden; margin-bottom: 10px; }
+.timer-bar { position: absolute; inset: 0 auto 0 0; background: var(--blue); transition: width .2s linear; }
+.timer-bar.low { background: #f3b2a6; }
+.timer span { position: relative; display: block; text-align: center; font-size: 12px; line-height: 22px; }
+.exam-show { text-align: center; font-size: 72px; margin: 8px 0 12px; }
+.exam-prompt { font-size: 20px; font-weight: 600; text-align: center; margin: 8px 0 12px; }
+.hanzi-opts .opt { min-height: 64px; }
+.exam-writer { width: min(280px, 80vw); height: min(280px, 80vw); margin: 8px auto; border: 2px solid var(--line); border-radius: 14px; }
+.build-line { min-height: 56px; border: 2px dashed var(--line); border-radius: 14px; padding: 8px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
+.chunks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.chunk { font-size: 24px; padding: 6px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; font-family: inherit; }
+.chunk.on { background: var(--yellow); }
+.chunk:disabled { opacity: .3; }
+.bad-text { color: var(--bad); }
+.small { font-size: 13px; margin: 4px 0; }
+.res-pass { border: 2px solid var(--ok); }
+.res-fail { border: 2px solid var(--bad); }
+.res-skill { padding: 10px 0; border-top: 1px solid var(--line); }
+.res-wrong { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
+.hanzi-inline { font-size: 20px; font-weight: 600; }
+.redo li { margin: 6px 0; }
+.rules li { margin: 4px 0; }
+.gate-card.ok { border: 2px solid var(--ok); }
+.gate-dots { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+.gdot { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--line); color: var(--muted); }
+.gdot.ok { background: var(--green); color: var(--ok); font-weight: 600; }
+.alt-link { display: inline-block; margin-top: 6px; font-size: 13px; color: var(--muted); }
+.pin { margin-top: 10px; }
+.pin .row { gap: 8px; }
+.input { flex: 1; min-width: 0; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); font: inherit; background: #fff; }
+.exam-fb { border: 2px solid var(--bad); }
+.chip.tiny.warn { background: #f7d0c8; }

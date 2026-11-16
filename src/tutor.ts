@@ -6,57 +6,65 @@ export function tutorLine(kind: string, settings: Settings): { mood: TutorMood; 
   const n = settings.displayName || "chủ";
   const map: Record<string, { mood: TutorMood; text: string }[]> = {
     morning: [
-      { mood: "nudge", text: `Miêu đây. Ca sáng rồi ${n} ơi, 30 phút nghe và đọc thôi, xong rồi lướt web cũng được.` },
-      { mood: "cheer", text: `Ca nghe-đọc bắt đầu! Không cần học lâu, nhưng phải học thật.` },
+      { mood: "nudge", text: `Ca sáng. Mở đúng link Nhai Miêu giao, học đủ thời gian, rồi quay lại làm kiểm tra ca. Không đạt kiểm tra thì ca này coi như chưa học.` },
+      { mood: "scold", text: `Đọc lướt không phải là học. Nghe từng từ, nhìn từng nét. Lát nữa Miêu hỏi bằng chữ Hán, không có pinyin cứu đâu.` },
     ],
     evening: [
-      { mood: "nudge", text: `21 giờ rồi ${n}. Mở tablet, bút sẵn, 30 phút nói và viết nhé.` },
-      { mood: "calm", text: `Tối chỉ ôn miệng và viết chữ, không nhồi từ mới. Từ từ cũng tới.` },
+      { mood: "nudge", text: `21 giờ. Tablet, bút. Viết từ trí nhớ và nói không nhìn chữ. Kiểm tra cuối ca quyết định ca có được tính hay không.` },
+      { mood: "calm", text: `Tối nay chỉ có hai việc: viết đúng và nói đúng thanh. Sai một nét cũng là sai.` },
     ],
     late: [
-      { mood: "scold", text: `${n} vào trễ hơn 30 phút. Miêu thêm 5 thẻ ôn hôm nay, không phải để phạt cho vui, mà để chữ đọng lại.` },
+      { mood: "scold", text: `Trễ hơn 30 phút. Thêm 5 thẻ ôn. Đúng giờ là một phần của bài học.` },
     ],
     missed: [
-      { mood: "scold", text: `Bỏ một buổi rồi. Chuỗi vẫn giữ nếu ${n} học bù trong 48 giờ, kèm chép phạt 3 chữ. Làm luôn đi.` },
+      { mood: "scold", text: `Bỏ ca. Học bù trong 48 giờ, chép phạt 3 chữ. Không có ngoại lệ.` },
     ],
     pass: [
-      { mood: "proud", text: `Đạt rồi! Bài sau chỉ mở khi phần nhận mặt chữ không pinyin cũng ổn. ${n} làm được đấy.` },
+      { mood: "proud", text: `Đạt. Đúng mức yêu cầu, không hơn. Sang việc tiếp.` },
     ],
     fail: [
-      { mood: "calm", text: `Chưa tới 80%. Không sao — chỉ ôn đúng chỗ sai, rồi thi lại. Không cần học lại cả bài.` },
+      { mood: "scold", text: `Không đạt. Đọc kỹ lý do, làm đúng phần phải làm lại, rồi mới thi lại.` },
+    ],
+    gatePass: [
+      { mood: "proud", text: `Đạt. Kỹ năng này ${n} làm được thật, không phải đoán. Giữ được như vậy ở các kỹ năng còn lại.` },
+      { mood: "proud", text: `Qua. Miêu ghi nhận. Đừng tự mãn — tuần sau Miêu bốc lại chữ cũ.` },
+    ],
+    gateFail: [
+      { mood: "scold", text: `Trượt. Điểm cao mà không viết được chữ thì vô nghĩa — Miêu không cho qua kiểu đó. Làm lại đúng phần ghi bên dưới, mai thi lại.` },
+      { mood: "scold", text: `Chưa đủ chuẩn. Không có điểm khuyến khích, không có thi lại ngay. Ôn đúng chỗ sai rồi quay lại.` },
     ],
     hint: [
-      { mood: "nudge", text: `Hiện pinyin rồi thì thẻ này sẽ quay lại sớm hơn. Cứ dùng khi cần, đừng dùng thay vì nhìn chữ.` },
+      { mood: "nudge", text: `Đã xem pinyin thì thẻ này quay lại sớm hơn. Pinyin là nạng, không phải chân.` },
     ],
     streakSave: [
-      { mood: "scold", text: `Vào cho có không tính. Buổi chỉ được ghi nhận khi làm đủ thời gian thật và đúng từ 70%.` },
+      { mood: "scold", text: `Mở app cho có không tính. Ca chỉ được ghi nhận khi kiểm tra cuối ca đạt.` },
     ],
     weekDone: [
-      { mood: "proud", text: `Xong tuần rồi! Phần thưởng ${n} đã đặt là: ${settings.weeklyReward}. Nhận đi, đáng lắm.` },
+      { mood: "proud", text: `Tuần đạt. Phần thưởng: ${settings.weeklyReward}. ${n} đã làm ra nó.` },
     ],
     company: [
-      { mood: "calm", text: `Chế độ công ty: im lặng, gọn, không chuông. Cứ học từng ô một.` },
+      { mood: "calm", text: `Chế độ công ty: im lặng, không chuông. Yêu cầu vẫn như cũ.` },
     ],
     idle: [
-      { mood: "nudge", text: `Hình như ${n} đang dừng. Thời gian rảnh không tính vào buổi học đâu.` },
+      { mood: "nudge", text: `Đang dừng. Thời gian ngồi không không được tính.` },
     ],
     write: [
-      { mood: "cheer", text: `Viết từng nét cho đúng. Tay nhớ thì mắt cũng nhớ.` },
+      { mood: "nudge", text: `Viết đúng thứ tự nét. Tay không nhớ thì chưa phải là biết chữ.` },
     ],
     speakFail: [
-      { mood: "nudge", text: `Chưa đạt. Đọc chậm, giữ đúng thanh. Đừng lướt như Duolingo — sai thanh là không qua.` },
+      { mood: "scold", text: `Sai thanh là sai từ. Đọc chậm, rõ từng âm tiết, rồi làm lại.` },
     ],
     speakPass: [
-      { mood: "proud", text: `Thanh điệu đúng, âm tiết đúng. Như vậy mới giữ được phát âm.` },
+      { mood: "proud", text: `Đúng phụ âm, đúng vần, đúng thanh. Đạt.` },
     ],
     welcome: [
-      { mood: "cheer", text: `Chào ${n}. Lò Hán đi đúng Giáo trình chuẩn HSK1, 15 bài, có cổng chặn. Bắt đầu từ Nền móng, không nhảy cóc.` },
+      { mood: "nudge", text: `Chào ${n}. Miêu là gia sư, không phải bạn chơi. Học trên Nhai HSK theo đúng link Miêu giao, kiểm tra ở đây. Qua bài phải đủ 4 kỹ năng, viết đúng 100% từ trí nhớ. Không nhảy cóc, không đoán mò.` },
     ],
     sunday: [
-      { mood: "nudge", text: `Chủ nhật nghỉ buổi sáng, nhưng tối 20 giờ có bài kiểm tra tuần 20 phút nhé.` },
+      { mood: "nudge", text: `Chủ nhật nghỉ ca sáng. Tối có kiểm tra tuần, bốc ngẫu nhiên chữ của mọi bài đã qua.` },
     ],
     saturday: [
-      { mood: "calm", text: `Thứ Bảy là ngày học bù. Không nợ thì chỉ cần ôn nhẹ 15 phút, muốn nghỉ cũng được.` },
+      { mood: "calm", text: `Thứ Bảy là ngày trả nợ. Nợ ca nào thì làm kiểm tra ca đó. Không nợ thì ôn chữ cũ.` },
     ],
   };
   const list = map[kind] || [{ mood: "calm" as TutorMood, text: `Miêu ở đây, ${n} cứ học tiếp.` }];

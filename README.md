@@ -2,6 +2,17 @@
 
 Web app (PWA) học tiếng Trung HSK1 theo **Giáo trình chuẩn HSK1** (15 bài) và playlist thầy Thành Luân. Tiếng Việt, học ngoại tuyến, không thu phí AI.
 
+
+## 1.2.0 — Lộ trình + gia sư, học trên Nhai HSK, cổng 4 kỹ năng
+
+- Nội dung học dẫn sang Nhai HSK (https://nhaihsk.com): từ vựng/ngữ pháp HSK1 (`/course/hsk1?skill=vocab|grammar`), phân tích chữ (`/hanzi`), bài khoá (`/reading`), shadowing (`/shadowing`), ôn tập (`/review`), pinyin (`/pinyin`), bộ thủ (`/radicals`), thi chứng chỉ (`/certificate-test`). Có ô ghim link đúng bài Nhai cho từng bài.
+- Bước Nhai trong Hôm nay: phải mở link và ở lại ≥ nửa thời gian mới bấm được "Đã học xong".
+- Cổng qua bài (`src/gate.ts`, `src/pages/exam.tsx`): Nghe, Đọc, Nói, Viết thi riêng; mỗi kỹ năng ≥ 80% đúng ngay lần đầu; Viết = viết lại toàn bộ từ của bài từ trí nhớ (không pinyin, không nét mờ, không gợi ý; sai > 1 nét/chữ = trượt câu), đúng 100%, sai 2 lần → chép phạt 10 lần + thi lại ngày mai; có bốc ngẫu nhiên từ bài cũ. Phương án gài: chữ na ná, cùng âm khác thanh; ghép câu có mảnh gài; giới hạn thời gian và số lần nghe; câu sai quay lại sau, không làm lại ngay. Nói chỉ hiện tiếng Việt, cần Chrome/Edge (không có nhận giọng nói thì "đang chờ", không bỏ qua được).
+- Ca học chỉ được tính khi kiểm tra cuối ca đạt (`/check/morning`, `/check/evening`, `/check/weekly`). Ngày học của bài chỉ sang ngày tiếp khi cả hai kiểm tra ca đạt.
+- Chuyển dữ liệu: cổng bài cũ bị đặt lại (điểm cũ lưu ở `legacyPassed`), thẻ ôn/sổ lỗi/chuỗi giữ nguyên.
+- Miêu nói giọng gắt, ngắn, chỉ khen khi đạt.
+- Test: `scripts/test_v12.py` (cần `npx vite preview --port 4173`).
+
 ## Dùng
 
 - Mở trang, cài ra màn hình chính trên điện thoại / tablet.
