@@ -4,7 +4,8 @@ import { ALL_WORDS, LESSONS, type Word } from "../data/curriculum";
 import type { GridKind, SheetItem } from "../pdf";
 import { getState, markPenaltyDone, saveNote, setPenaltyWritten, type Stroke } from "../store";
 import type { Penalty } from "../schedule";
-import { AudioBtn, Button, Card, cls, go, useAutoPlay } from "../ui";
+import { AudioBtn, Button, Card, Switch, cls, go, useAutoPlay } from "../ui";
+import { setWrite } from "../v2/state2";
 
 const charCache = new Map<string, unknown>();
 
@@ -26,6 +27,8 @@ export function WriteBox(props: {
   character: string;
   active?: boolean;
   size?: number;
+  /** Ẩn nét mẫu mờ — viết không nhìn. */
+  hideOutline?: boolean;
   onResult?: (ok: boolean, mistakes: number) => void;
 }) {
   const host = useRef<HTMLDivElement>(null);
@@ -54,7 +57,7 @@ export function WriteBox(props: {
           width: size,
           height: size,
           padding: 8,
-          showOutline: true,
+          showOutline: !props.hideOutline,
           showCharacter: false,
           strokeColor: "#3A2F2A",
           outlineColor: active ? "#E8D8C8" : "#F3EAE0",
@@ -70,7 +73,7 @@ export function WriteBox(props: {
           onCorrectStroke: () => setMsg("Đúng nét."),
           onComplete: (s: { totalMistakes?: number }) => {
             const m = s.totalMistakes ?? miss;
-            const ok = m <= 1;
+            const ok = m <= 5; // bút tablet đôi khi không nhạy: cho sai tối đa 5 nét/chữ
             setDone(ok);
             setMsg(ok ? "Đạt." : `Xong nhưng sai ${m} nét. Bấm “Viết lại” để luyện thêm.`);
             props.onResult?.(ok, m);
@@ -82,7 +85,7 @@ export function WriteBox(props: {
       }
     })();
     return () => { cancelled = true; try { writer?.cancelQuiz(); } catch { /* */ } writerRef.current = null; };
-  }, [props.character, active, round]);
+  }, [props.character, active, round, props.hideOutline]);
   return (
     <div data-testid="write-box" class={cls("wbox", active && "on", done === true && "ok", done === false && "bad")}>
       <div class="writer-host rice-bg" ref={host} style={props.size ? { width: props.size, height: props.size } : undefined} />
@@ -105,7 +108,7 @@ export function WriteBox(props: {
 }
 
 /** Từ nhiều chữ: mỗi chữ một ô, viết lần lượt từ trái sang phải. */
-export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?: (ok: boolean) => void; size?: number }) {
+export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?: (ok: boolean) => void; size?: number; hideOutline?: boolean }) {
   const chars = hanChars(props.word.hanzi);
   const [k, setK] = useState(0);
   const [res, setRes] = useState<BoxState[]>(() => chars.map((_, i) => (i === 0 ? "active" : "wait")));
@@ -126,6 +129,7 @@ export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?
             key={props.word.hanzi + i}
             character={c}
             size={props.size}
+            hideOutline={props.hideOutline}
             active={i <= k}
             onResult={(ok) => {
               setRes((r) => {
@@ -144,34 +148,39 @@ export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?
   );
 }
 
+/** Luyện viết — trạng thái (bài, từ đang viết, ẩn mẫu, từ đã đạt) lưu trong store nên sang “Ghi chú tay” rồi quay lại không mất. */
 export function WritePage() {
   const s = getState();
-  const unlocked = Math.max(1, Math.min(15, s.progress.unlockedLesson));
-  const [lesson, setLesson] = useState(unlocked);
+  const cap = Math.max(1, s.v2.lesson);
+  const ws = s.v2.write;
+  const lesson = Math.min(Math.max(1, ws.lesson || cap), LESSONS.length);
   const words = LESSONS[lesson - 1].words;
-  const [i, setI] = useState(0);
-  const w = words[i % Math.max(1, words.length)];
+  const i = Math.min(ws.idx || 0, Math.max(0, words.length - 1));
+  const w = words[i];
   useAutoPlay(w?.id);
   if (!w) return <Card>Chưa có chữ.</Card>;
+  const doneN = words.filter((x) => ws.done[x.id]).length;
   return (
     <div class="stack" data-testid="write-page">
       <Card>
         <div class="row spread">
           <h2 class="h2">Viết theo nét</h2>
-          <select value={lesson} onChange={(e) => { setLesson(Number((e.target as HTMLSelectElement).value)); setI(0); }}>
-            {LESSONS.filter((l) => l.id <= unlocked).map((l) => <option value={l.id} key={l.id}>Bài {l.id}</option>)}
+          <select data-testid="write-lesson" value={lesson} onChange={(e) => setWrite({ lesson: Number((e.target as HTMLSelectElement).value), idx: 0 })}>
+            {LESSONS.filter((l) => l.id <= cap).map((l) => <option value={l.id} key={l.id}>Bài {l.id}</option>)}
           </select>
         </div>
-        <p>Từ {i % words.length + 1}/{words.length}: <strong>{w.vi}</strong> <AudioBtn id={w.id} /></p>
-        <WriteWord key={w.id} word={w} />
+        <p data-testid="write-pos">Từ {i + 1}/{words.length}: <strong>{w.vi}</strong> <AudioBtn id={w.id} /> <span class="chip tiny">đã đạt {doneN}/{words.length}</span></p>
+        <Switch on={ws.hide} label="Ẩn nét mẫu (viết không nhìn)" onChange={(v) => setWrite({ hide: v })} />
+        <WriteWord key={w.id + (ws.hide ? "h" : "")} word={w} hideOutline={ws.hide} onDone={(ok) => { if (ok) setWrite({ done: { ...getState().v2.write.done, [w.id]: true } }); }} />
+        {ws.done[w.id] && <p class="chip green">Từ này đã viết đạt.</p>}
         <div class="row" style={{ marginTop: 10 }}>
-          <Button kind="ghost" disabled={i === 0} onClick={() => setI(i - 1)}>Trước</Button>
-          <Button kind="primary" wide onClick={() => setI(i + 1)}>Từ tiếp</Button>
+          <Button kind="ghost" disabled={i === 0} onClick={() => setWrite({ idx: i - 1 })}>Trước</Button>
+          <Button kind="primary" wide id="write-next" disabled={i + 1 >= words.length} onClick={() => setWrite({ idx: i + 1 })}>Từ tiếp</Button>
         </div>
       </Card>
       <div class="grid cols-2">
         <Button kind="yellow" wide onClick={() => go("/sheets")}>Xuất giấy luyện viết (PDF)</Button>
-        <Button kind="ghost" wide onClick={() => go("/notes")}>Ghi chú tay</Button>
+        <Button kind="ghost" wide id="to-notes" onClick={() => go("/notes")}>Ghi chú tay</Button>
       </div>
     </div>
   );
@@ -179,7 +188,7 @@ export function WritePage() {
 
 export function NotesPage(props: { lesson?: number }) {
   const s = getState();
-  const lesson = props.lesson ?? Math.max(1, Math.min(15, s.progress.unlockedLesson || 1));
+  const lesson = props.lesson ?? Math.max(1, s.v2.write.lesson || s.v2.lesson || 1);
   const existing = s.notes[String(lesson)];
   return (
     <div class="stack" data-testid="notes">
@@ -339,7 +348,7 @@ interface PdfPrefs {
 }
 const DEFAULT_PREFS: PdfPrefs = { grid: "tian", perRow: 8, rowsPerChar: 2, solidFirst: true, faded: 3, showPinyin: true, showMeaning: true, showStrokes: true };
 function loadPrefs(): PdfPrefs {
-  try { return { ...DEFAULT_PREFS, ...JSON.parse(localStorage.getItem("lohan-pdf-prefs") || "{}") }; } catch { return DEFAULT_PREFS; }
+  try { return { ...DEFAULT_PREFS, ...JSON.parse(localStorage.getItem("miaozi-pdf-prefs") || "{}") }; } catch { return DEFAULT_PREFS; }
 }
 
 function Seg<T extends string | number>(props: { value: T; options: { v: T; label: string }[]; onChange: (v: T) => void; testid?: string }) {
@@ -391,12 +400,12 @@ export function PdfDialog(props: {
     if (!items.length) return;
     setBusy(true); setErr(null);
     try {
-      localStorage.setItem("lohan-pdf-prefs", JSON.stringify(p));
+      localStorage.setItem("miaozi-pdf-prefs", JSON.stringify(p));
       const { buildSheetPdf, downloadBlob } = await import("../pdf");
       const title = src === "preset" ? (props.preset!.label) : src === "lesson" ? `Bài ${lesson} · ${LESSONS[lesson - 1].titleZh} — giấy luyện viết` : src === "mistakes" ? "Chữ hay sai — giấy luyện viết" : "Chữ tự chọn — giấy luyện viết";
-      const blob = await buildSheetPdf({ ...p, faded, title, subtitle: props.preset?.subtitle || `Lò Hán · ${nChars} chữ · ô ${p.grid === "tian" ? "điền 田" : p.grid === "mi" ? "mễ 米" : "trơn"}`, items });
+      const blob = await buildSheetPdf({ ...p, faded, title, subtitle: props.preset?.subtitle || `Miaozi · ${nChars} chữ · ô ${p.grid === "tian" ? "điền 田" : p.grid === "mi" ? "mễ 米" : "trơn"}`, items });
       (window as unknown as { __lastPdf?: Blob }).__lastPdf = blob;
-      downloadBlob(blob, props.preset?.fileName || `lohan-${src === "lesson" ? "bai" + lesson : src}-luyen-viet.pdf`);
+      downloadBlob(blob, props.preset?.fileName || `miaozi-${src === "lesson" ? "bai" + lesson : src}-luyen-viet.pdf`);
       props.onExported?.();
     } catch (e) {
       setErr("Không xuất được PDF: " + (e as Error).message + ". Cần mạng lần đầu để tải font.");
@@ -521,6 +530,7 @@ function PenaltyTask({ p }: { p: Penalty }) {
   const [showPdf, setShowPdf] = useState(false);
   const [printed, setPrinted] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
+  const [model, setModel] = useState(true);
   const chars = [...new Set(p.dueChars.flatMap((w) => hanChars(w)))];
   const total = chars.length * p.copies;
   const written = chars.reduce((a, ch) => a + Math.min(p.copies, (imgs[ch] || []).filter(Boolean).length), 0);
@@ -550,18 +560,20 @@ function PenaltyTask({ p }: { p: Penalty }) {
         <Card>
           <div class="row spread"><h3 class="h3">Viết trong app</h3><span class={cls("chip", written >= total ? "green" : "peach")}>{written}/{total} ô</span></div>
           <p class="muted">Mỗi ô viết một lần chữ. Viết sai thì bấm ↶ (bỏ nét cuối) hoặc ✕ (xóa ô).</p>
+          <Switch on={model} label="Hiện chữ mẫu (tắt để viết theo trí nhớ)" onChange={setModel} />
           {chars.map((ch) => (
             <div key={ch} class="pen-char">
-              <div class="row"><span class="hanzi sm">{ch}</span><span class="muted">{Math.min(p.copies, (imgs[ch] || []).filter(Boolean).length)}/{p.copies}</span></div>
-              <CopyRow char={ch} n={p.copies} onChange={(urls) => { setImgs((m) => ({ ...m, [ch]: urls })); setPenaltyWritten(p.id, ch, urls.filter(Boolean).length); }} />
+              <div class="row"><span class="hanzi sm" data-testid="pen-model">{model ? ch : "？"}</span><span class="muted">{Math.min(p.copies, (imgs[ch] || []).filter(Boolean).length)}/{p.copies}</span></div>
+              <CopyRow char={ch} n={p.copies} model={model} onChange={(urls) => { setImgs((m) => ({ ...m, [ch]: urls })); setPenaltyWritten(p.id, ch, urls.filter(Boolean).length); }} />
             </div>
           ))}
-          <Button kind="primary" wide id="submit-penalty" disabled={written < total} onClick={async () => {
+          <Button kind="primary" wide id="submit-penalty" disabled={written < total} onClick={() => { markPenaltyDone(p.id, { kind: "app", at: Date.now() }); setMsg("Đã nộp trong app. Miao ghi nhận."); }}>{written < total ? `Còn ${total - written} ô nữa` : "Nộp bài"}</Button>
+          <Button kind="ghost" wide disabled={written < total} onClick={async () => {
             const { buildProofPdf, downloadBlob } = await import("../pdf");
-            const blob = await buildProofPdf({ title: "Lò Hán — bài chép phạt", subtitle: why, attempts: chars.map((ch) => ({ char: ch, images: imgs[ch] || [] })) });
-            downloadBlob(blob, `lohan-chep-phat-${new Date().toISOString().slice(0, 10)}.pdf`);
-            markPenaltyDone(p.id, { kind: "app", at: Date.now() });
-          }}>{written < total ? `Còn ${total - written} ô nữa` : "Nộp bài (lưu kèm PDF)"}</Button>
+            const blob = await buildProofPdf({ title: "Miaozi — bài chép phạt", subtitle: why, attempts: chars.map((ch) => ({ char: ch, images: imgs[ch] || [] })) });
+            downloadBlob(blob, `miaozi-chep-phat-${new Date().toISOString().slice(0, 10)}.pdf`);
+          }}>Lưu PDF làm bằng chứng (tuỳ chọn)</Button>
+          {msg && <p class="chip green">{msg}</p>}
         </Card>
       )}
       {mode === "paper" && (
@@ -581,7 +593,7 @@ function PenaltyTask({ p }: { p: Penalty }) {
                   if (!f) return;
                   const thumb = f.type.startsWith("image/") ? await makeThumb(f) : undefined;
                   markPenaltyDone(p.id, { kind: "upload", at: Date.now(), name: f.name, thumb });
-                  setMsg("Đã nộp. Miêu ghi nhận rồi!");
+                  setMsg("Đã nộp. Miao ghi nhận rồi!");
                 }} />
               </label>
             </li>
@@ -599,7 +611,7 @@ function PenaltyTask({ p }: { p: Penalty }) {
             }),
             prefs: { rowsPerChar: Math.max(1, Math.ceil((p.copies + 1) / 8)), perRow: 8, faded: 0, solidFirst: true },
             subtitle: `${why} · mỗi chữ ${p.copies} lần`,
-            fileName: "lohan-giay-chep-phat.pdf",
+            fileName: "miaozi-giay-chep-phat.pdf",
           }}
           onClose={() => setShowPdf(false)}
           onExported={() => setPrinted(true)}
@@ -620,19 +632,19 @@ async function makeThumb(f: File): Promise<string | undefined> {
   } catch { return undefined; }
 }
 
-function CopyRow(props: { char: string; n: number; onChange: (urls: string[]) => void }) {
+function CopyRow(props: { char: string; n: number; model?: boolean; onChange: (urls: string[]) => void }) {
   const urls = useRef<string[]>(Array.from({ length: props.n }, () => ""));
   return (
     <div class="copy-grid">
       {Array.from({ length: props.n }, (_, i) => (
-        <MiniPad key={props.char + i} char={props.char} onChange={(u) => { urls.current[i] = u; props.onChange([...urls.current]); }} />
+        <MiniPad key={props.char + i} char={props.char} model={props.model && i === 0} onChange={(u) => { urls.current[i] = u; props.onChange([...urls.current]); }} />
       ))}
     </div>
   );
 }
 
 /** Ô viết tay nhỏ: có bỏ nét cuối và xóa ô. */
-function MiniPad(props: { char: string; onChange: (dataUrl: string) => void }) {
+function MiniPad(props: { char: string; model?: boolean; onChange: (dataUrl: string) => void }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const strokes = useRef<{ x: number; y: number; p: number }[][]>([]);
   const cur = useRef<{ x: number; y: number; p: number }[] | null>(null);
@@ -679,7 +691,7 @@ function MiniPad(props: { char: string; onChange: (dataUrl: string) => void }) {
   }, []);
   return (
     <div class={cls("minipad", count > 0 && "filled")}>
-      <div class="canvas-wrap rice-bg"><canvas ref={ref} /></div>
+      <div class="canvas-wrap rice-bg">{props.model && <span class="minipad-model" aria-hidden="true">{props.char}</span>}<canvas ref={ref} /></div>
       <div class="minipad-tools">
         <button aria-label="Bỏ nét cuối" title="Bỏ nét cuối" disabled={!count} onClick={() => { strokes.current.pop(); redraw(); emit(); }}>↶</button>
         <button aria-label="Xóa ô" title="Xóa ô" disabled={!count} onClick={() => { strokes.current = []; redraw(); emit(); }}>✕</button>

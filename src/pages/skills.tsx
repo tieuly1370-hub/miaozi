@@ -1,10 +1,10 @@
+import { SpeakTry } from "../v2/ui2";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { ALL_WORDS, ALL_SENTENCES, LESSONS, type Word } from "../data/curriculum";
 import { mockExam, weeklyTest } from "../data/exams";
 import { audioUrlFor, playId } from "../audio";
 import {
-  parsePinyin, pitchFromAudioUrl, recordUntilSilent, scoreUtterance, speechAvailable,
-  tonesFromRecording, type SpeakScore,
+  speechAvailable,
 } from "../speech";
 import { cardId, parseCardId } from "../srs";
 import {
@@ -122,116 +122,24 @@ export function ListenPage() {
 
 export function SpeakPage() {
   const s = getState();
-  const cap = Math.max(1, s.progress.unlockedLesson);
+  const cap = Math.max(1, s.v2?.lesson || s.progress.unlockedLesson);
   const words = ALL_WORDS.filter((w) => w.lesson <= cap);
   const [i, setI] = useState(0);
-  const [busy, setBusy] = useState(false);
-  const [result, setResult] = useState<SpeakScore | null>(null);
-  const [refC, setRefC] = useState<{ times: number[]; hz: number[] } | null>(null);
-  const [userC, setUserC] = useState<{ times: number[]; hz: number[] } | null>(null);
   const w = words[i % Math.max(1, words.length)];
-  const asrOk = speechAvailable();
-  useEffect(() => {
-    startActivity(plannedToday().find((p) => p.skills.includes("speak")) || plannedToday()[0] || null, "speak");
-  }, []);
-
-  const run = async () => {
-    if (!w) return;
-    setBusy(true);
-    setResult(null);
-    try {
-      const url = await audioUrlFor(w.id);
-      const ref = url ? await pitchFromAudioUrl(url) : null;
-      if (ref) setRefC(ref);
-      await playId(w.id);
-      await new Promise((r) => setTimeout(r, 300));
-      let asr: string | null = null;
-      const rec = await recordUntilSilent({ maxMs: 4000, minMs: 500 });
-      const expected = parsePinyin(w.pinyinNum);
-      const pitch = tonesFromRecording(rec.samples, rec.sampleRate, expected.length);
-      setUserC(pitch.contour);
-      if (asrOk) {
-        try {
-          const { recognizeOnce } = await import("../speech");
-          // start recognition in parallel? already recorded. Try live ASR in a second pass is bad.
-          // We recorded already; Web Speech API needs live mic. So run ASR first in parallel next time.
-        } catch { /* */ }
-      }
-      // Parallel: user-facing flow records + ASR together
-      const score = scoreUtterance(w.pinyinNum, asr, pitch.tones);
-      setResult(score);
-      bumpSpeak();
-      recordAnswer(score.pass, w, "nói");
-      srsReview(cardId(w.id, "sound"), score.pass ? 4 : 0);
-      if (!score.pass) addMistake(w, "nói", score.message);
-    } catch (e) {
-      setResult({
-        pass: false, asrAvailable: asrOk, asrUsed: false, syllables: [],
-        message: "Không thu mic được. Cho phép micro rồi thử lại. " + (e as Error).message,
-      });
-    }
-    setBusy(false);
-  };
-
-  const runLive = async () => {
-    if (!w) return;
-    setBusy(true);
-    setResult(null);
-    try {
-      const url = await audioUrlFor(w.id);
-      const refP = url ? pitchFromAudioUrl(url) : Promise.resolve(null);
-      const { recognizeOnce } = await import("../speech");
-      const recP = recordUntilSilent({ maxMs: 4000, minMs: 600 });
-      const asrP = asrOk ? recognizeOnce("zh-CN", 4500).catch(() => null) : Promise.resolve(null);
-      const [ref, rec, asr] = await Promise.all([refP, recP, asrP]);
-      if (ref) setRefC(ref);
-      const expected = parsePinyin(w.pinyinNum);
-      const pitch = tonesFromRecording(rec.samples, rec.sampleRate, expected.length);
-      setUserC(pitch.contour);
-      const score = scoreUtterance(w.pinyinNum, asr, pitch.tones);
-      setResult(score);
-      bumpSpeak();
-      recordAnswer(score.pass, w, "nói");
-      srsReview(cardId(w.id, "sound"), score.pass ? 4 : 0);
-      if (!score.pass) addMistake(w, "nói", score.message);
-    } catch (e) {
-      setResult({
-        pass: false, asrAvailable: asrOk, asrUsed: false, syllables: [],
-        message: micErrorText(e as Error),
-      });
-    }
-    setBusy(false);
-  };
-
   if (!w) return null;
   return (
     <div class="stack" data-testid="speak">
       <Card>
-        <h2 class="h2">Luyện nói — chấm chặt</h2>
-        <MicCheck asrOk={asrOk} />
+        <h2 class="h2">Luyện nói</h2>
         <div class="hanzi" style={{ textAlign: "center" }}>{w.hanzi}</div>
-        <div class="muted" style={{ textAlign: "center" }}>{w.vi}</div>
-        <div class="tools">
-          <AudioBtn id={w.id} />
-          <AudioBtn id={w.id} slow />
-        </div>
-        <Button kind="primary" wide disabled={busy} onClick={runLive}>{busy ? "Đang nghe..." : "Đọc ngay (sau khi nghe mẫu)"}</Button>
-        {result && (
-          <div style={{ marginTop: 12 }}>
-            <p><strong>{result.pass ? "Đạt" : "Chưa đạt"}.</strong> {result.message}</p>
-            {result.asrText && <p class="muted">Nhận được: {result.asrText}</p>}
-            <ul class="muted">
-              {result.syllables.map((sy, i) => (
-                <li key={i}>
-                  {sy.expected.raw} · {sy.initialOk && sy.finalOk ? "âm tiết ổn" : "âm tiết lệch"} · thanh {sy.expected.tone}
-                  {sy.pitchTone ? ` (đo được ${sy.pitchTone})` : " (chưa đo thanh)"} {sy.toneOk ? "✓" : "✗"}
-                </li>
-              ))}
-            </ul>
-            {refC && userC && <PitchChart refTimes={refC.times} refHz={refC.hz} userTimes={userC.times} userHz={userC.hz} />}
-            <Button wide onClick={() => { setResult(null); setI(i + 1); }}>Từ tiếp</Button>
-          </div>
-        )}
+        <div class="muted" style={{ textAlign: "center" }}>{w.pinyin} · {w.vi}</div>
+        <div class="tools"><AudioBtn id={w.id} /><AudioBtn id={w.id} slow /></div>
+        <SpeakTry key={w.id} expected={w.hanzi} onScore={(sc) => {
+          bumpSpeak();
+          srsReview(cardId(w.id, "sound"), sc.pass ? 4 : 1);
+          if (!sc.pass && sc.heardNorm) addMistake(w, "nói", sc.message);
+        }} />
+        <Button wide onClick={() => setI(i + 1)}>Từ tiếp</Button>
       </Card>
     </div>
   );

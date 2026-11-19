@@ -1,4 +1,4 @@
-# Nội dung Giáo trình Lò Hán — tự biên soạn (không chép sách HSK Standard Course).
+# Nội dung Giáo trình Miaozi — tự biên soạn (không chép sách HSK Standard Course).
 # Mỗi câu: (zh, vi). Hội thoại: (vai, zh, vi).
 T = {}
 T[1] = dict(

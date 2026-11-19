@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 interface Window {
   __lohan?: Record<string, unknown>;
+  __miaozi?: Record<string, unknown>;
 }
 declare module "hanzi-writer" {
   const HanziWriter: {

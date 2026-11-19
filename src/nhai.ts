@@ -1,4 +1,4 @@
-/** Nhai HSK (https://nhaihsk.com) — nguồn nội dung học. Lò Hán chỉ dẫn link, không chép nội dung. */
+/** Nhai HSK (https://nhaihsk.com) — nguồn nội dung học. Miaozi chỉ dẫn link, không chép nội dung. */
 import { getState } from "./store";
 
 export const NHAI = {
@@ -11,8 +11,8 @@ export const NHAI = {
   soundRules: "https://nhaihsk.com/sound-rules",
   dictionary: "https://nhaihsk.com/dictionary",
   hanzi: "https://nhaihsk.com/hanzi",
-  shadowing: "https://nhaihsk.com/shadowing",
-  reading: "https://nhaihsk.com/reading",
+  shadowing: "https://nhaihsk.com/shadowing#cat-HSK1-3", // Nhai không có shadowing theo bài HSK1 → 1 mục chung
+  reading: "https://nhaihsk.com/reading#level-hsk1",
   review: "https://nhaihsk.com/review",
   createFile: "https://nhaihsk.com/create-file",
   exam: "https://nhaihsk.com/certificate-test",

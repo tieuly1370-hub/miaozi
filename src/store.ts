@@ -8,6 +8,7 @@ import {
 } from "./schedule";
 import { ALL_WORDS, type Word } from "./data/curriculum";
 import { GSKILLS, type GSkill } from "./gate";
+import { DEFAULT_V2, migrateV2, v2Rollover, type V2State } from "./v2/state2";
 
 export interface Progress {
   week0Passed: boolean;
@@ -121,6 +122,8 @@ export interface AppState {
   penalties: Penalty[];
   today: TodayState;
   onboarded: boolean;
+  /** v2.0: 6 mục / bài, chế độ, lịch. */
+  v2: V2State;
 }
 
 type Listener = () => void;
@@ -147,6 +150,10 @@ function emit() {
   listeners.forEach((f) => f());
   schedulePersist();
 }
+/** Cho module v2: báo thay đổi (render + lưu). */
+export function touch() { emit(); }
+/** Chỉ lưu, không render lại (bộ đếm phút). */
+export function persistQuiet() { schedulePersist(); }
 
 function schedulePersist() {
   if (persistTimer) clearTimeout(persistTimer);
@@ -167,13 +174,14 @@ async function persist() {
     db.set(K.penalties, s.penalties),
     db.set(K.today, s.today),
     db.set(K.onboarded, s.onboarded),
+    db.set("v2", s.v2),
   ]);
 }
 
 export async function load(): Promise<AppState> {
   if (ready) { await ready; return state!; }
   ready = (async () => {
-    const [settings, progress, streak, srs, mistakes, sessions, notes, penalties, today, onboarded] = await Promise.all([
+    const [settings, progress, streak, srs, mistakes, sessions, notes, penalties, today, onboarded, v2] = await Promise.all([
       db.get<Settings>(K.settings),
       db.get<Progress>(K.progress),
       db.get<StreakState>(K.streak),
@@ -184,6 +192,7 @@ export async function load(): Promise<AppState> {
       db.get<Penalty[]>(K.penalties),
       db.get<TodayState>(K.today),
       db.get<boolean>(K.onboarded),
+      db.get<V2State>("v2"),
     ]);
     const todayDate = padDate(new Date());
     state = {
@@ -197,9 +206,13 @@ export async function load(): Promise<AppState> {
       penalties: penalties || [],
       today: today && today.date === todayDate ? today : defaultToday(),
       onboarded: !!onboarded,
+      v2: v2 ? { ...DEFAULT_V2(), ...v2 } : DEFAULT_V2(),
     };
     migrate();
-    rollover(new Date());
+    // v2.0: bỏ phạt theo lịch ca cố định (học linh hoạt giờ giấc). Giữ hàm cũ để tham khảo.
+    void rollover;
+    migrateV2(state, !v2);
+    v2Rollover(state, new Date());
     ensureCards();
   })();
   await ready;
@@ -659,6 +672,7 @@ export async function importPayload(data: { version?: number; data: Record<strin
 export function debugSeed(partial: Partial<AppState>) {
   const s = getState();
   Object.assign(s, partial);
+  if (partial.v2) s.v2 = { ...DEFAULT_V2(), ...partial.v2 };
   if (partial.progress) s.progress = { ...DEFAULT_PROGRESS, ...s.progress, ...partial.progress };
   ensureCards();
   emit();
@@ -751,7 +765,7 @@ export function completeSessionCheck(kind: "morning" | "evening" | "weeklyTest",
   const now = new Date();
   const k = checkKey(kind, now);
   const prev = s.progress.checks[k];
-  s.progress.checks[k] = { pass: pass || !!prev?.pass, at: Date.now(), tries: (prev?.tries || 0) + 1, score: total ? correct / total : 0, why, retryAt: pass ? undefined : Date.now() + 20 * 60000 };
+  s.progress.checks[k] = { pass: pass || !!prev?.pass, at: Date.now(), tries: (prev?.tries || 0) + 1, score: total ? correct / total : 0, why, retryAt: pass ? undefined : Date.now() + 10 * 60000 };
   const planned = sessionsOn(now, s.settings).find((p) => p.kind === kind);
   const session: PlannedSession = planned || {
     id: `${padDate(now)}:makeup-${kind}`, date: padDate(now), kind, start: now, end: now, minMinutes: 0,

@@ -45,7 +45,7 @@ export function UpdateBanner() {
   if (!show) return null;
   return (
     <div class="update-bar" data-testid="update-bar">
-      <span>Có bản mới của Lò Hán.</span>
+      <span>Có bản mới của Miaozi.</span>
       <button class="btn small primary" onClick={() => {
         if (waiting) waiting.postMessage({ type: "SKIP_WAITING" });
         else location.reload();

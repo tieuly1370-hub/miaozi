@@ -155,7 +155,7 @@ function header(doc: jsPDF, title: string, subtitle: string | undefined, footer:
 export async function buildSheetPdf(o: SheetOptions): Promise<Blob> {
   const doc = await newDoc();
   const W = 210, H = 297, m = 12;
-  const footer = o.footer || "Lò Hán — giấy luyện viết";
+  const footer = o.footer || "Miaozi — giấy luyện viết";
   const cell = (W - m * 2) / o.perRow;
   let page = 1;
   header(doc, o.title, o.subtitle, footer + " · trang " + page, W, H, m);
@@ -214,17 +214,17 @@ export async function buildSheetPdf(o: SheetOptions): Promise<Blob> {
 export async function buildProofPdf(o: ProofOptions): Promise<Blob> {
   const doc = await newDoc();
   const W = 210, H = 297, m = 12, cell = 22, gap = 2;
-  header(doc, o.title, o.subtitle, "Lò Hán — bài chép phạt đã nộp", W, H, m);
+  header(doc, o.title, o.subtitle, "Miaozi — bài chép phạt đã nộp", W, H, m);
   let y = 30;
   for (const att of o.attempts) {
-    if (y > H - 50) { doc.addPage(); header(doc, o.title, undefined, "Lò Hán — bài chép phạt đã nộp", W, H, m); y = 22; }
+    if (y > H - 50) { doc.addPage(); header(doc, o.title, undefined, "Miaozi — bài chép phạt đã nộp", W, H, m); y = 22; }
     doc.setTextColor(58, 47, 42);
     mixedText(doc, att.char + "  ·  " + att.images.filter(Boolean).length + " lần", m, y + 5, 12, true);
     y += 9;
     let x = m;
     for (const img of att.images) {
       if (x + cell > W - m) { x = m; y += cell + gap; }
-      if (y + cell > H - 14) { doc.addPage(); header(doc, o.title, undefined, "Lò Hán", W, H, m); y = 22; x = m; }
+      if (y + cell > H - 14) { doc.addPage(); header(doc, o.title, undefined, "Miaozi", W, H, m); y = 22; x = m; }
       drawGrid(doc, "mi", x, y, cell);
       try { if (img) doc.addImage(img, "PNG", x, y, cell, cell); } catch { /* bỏ qua */ }
       x += cell + gap;

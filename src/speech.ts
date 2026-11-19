@@ -65,6 +65,11 @@ export function speechAvailable(): boolean {
 }
 
 export function recognizeOnce(lang = "zh-CN", maxMs = 8000): Promise<string> {
+  return recognizeAlts(lang, maxMs).then((a) => a[0] || "");
+}
+
+/** Nhận giọng nói, trả về tối đa 5 phương án máy nghe được (để chấm phương án tốt nhất). */
+export function recognizeAlts(lang = "zh-CN", maxMs = 8000): Promise<string[]> {
   return new Promise((resolve, reject) => {
     const w = window as unknown as {
       webkitSpeechRecognition?: new () => SpeechRec;
@@ -95,7 +100,7 @@ export function recognizeOnce(lang = "zh-CN", maxMs = 8000): Promise<string> {
       const alts: string[] = [];
       const list = e.results[e.results.length - 1];
       for (let i = 0; i < 5; i++) if (list[i]?.transcript) alts.push(list[i].transcript.trim());
-      resolve(alts[0] || "");
+      resolve(alts);
     };
     rec.onerror = (ev: unknown) => {
       if (done) return;

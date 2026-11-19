@@ -1,0 +1,2645 @@
+[
+ {
+  "id": "x11-1",
+  "text": "我弟弟在读大学。",
+  "kind": "sent"
+ },
+ {
+  "id": "x11-2",
+  "text": "你知道他在哪里吗？",
+  "kind": "sent"
+ },
+ {
+  "id": "x11-3",
+  "text": "我正在找我的车。",
+  "kind": "sent"
+ },
+ {
+  "id": "x16-1",
+  "text": "下次我们一起吃饭吧。",
+  "kind": "sent"
+ },
+ {
+  "id": "x16-2",
+  "text": "你在楼上干什么？",
+  "kind": "sent"
+ },
+ {
+  "id": "x16-3",
+  "text": "上车吧，我们去学院。",
+  "kind": "sent"
+ },
+ {
+  "id": "x17-1",
+  "text": "我有时候在家唱歌。",
+  "kind": "sent"
+ },
+ {
+  "id": "x17-2",
+  "text": "你是不是在开玩笑？",
+  "kind": "sent"
+ },
+ {
+  "id": "x17-3",
+  "text": "我们回家吧。",
+  "kind": "sent"
+ },
+ {
+  "id": "x18-1",
+  "text": "书在桌子里边。",
+  "kind": "sent"
+ },
+ {
+  "id": "x18-2",
+  "text": "北京在中国北边。",
+  "kind": "sent"
+ },
+ {
+  "id": "x18-3",
+  "text": "我找到你的书了。",
+  "kind": "sent"
+ },
+ {
+  "id": "x19-1",
+  "text": "请坐下。",
+  "kind": "sent"
+ },
+ {
+  "id": "x19-2",
+  "text": "我的钱包呢？",
+  "kind": "sent"
+ },
+ {
+  "id": "x19-3",
+  "text": "他是我的网友。",
+  "kind": "sent"
+ },
+ {
+  "id": "n01-01",
+  "text": "你好",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-02",
+  "text": "王老师",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-03",
+  "text": "大家",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-04",
+  "text": "好",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-05",
+  "text": "学生",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-06",
+  "text": "你们",
+  "kind": "word",
+  "carrier": "你们"
+ },
+ {
+  "id": "n01-07",
+  "text": "老师",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-08",
+  "text": "您",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-09",
+  "text": "你们",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-10",
+  "text": "谢谢",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-11",
+  "text": "不客气",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-12",
+  "text": "同学",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n01-13",
+  "text": "再见",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-01",
+  "text": "请问",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-02",
+  "text": "你",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-03",
+  "text": "叫",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-04",
+  "text": "什么",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-05",
+  "text": "名字",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-06",
+  "text": "我",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-07",
+  "text": "不",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-08",
+  "text": "是",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-09",
+  "text": "对不起",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-10",
+  "text": "没关系",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-11",
+  "text": "没事",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-12",
+  "text": "很",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-13",
+  "text": "高兴",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-14",
+  "text": "认识",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n02-15",
+  "text": "也",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-01",
+  "text": "人",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-02",
+  "text": "我的",
+  "kind": "word",
+  "carrier": "我的"
+ },
+ {
+  "id": "n03-03",
+  "text": "中国",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-04",
+  "text": "法国",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-05",
+  "text": "中文",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-06",
+  "text": "这",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-07",
+  "text": "谁",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-08",
+  "text": "女朋友",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-09",
+  "text": "哪",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-10",
+  "text": "国",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-11",
+  "text": "她",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-12",
+  "text": "泰国",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-13",
+  "text": "位",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-14",
+  "text": "姐姐",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-15",
+  "text": "工作",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-16",
+  "text": "孩",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-17",
+  "text": "忙",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-18",
+  "text": "好吗",
+  "kind": "word",
+  "carrier": "好吗"
+ },
+ {
+  "id": "n03-19",
+  "text": "对",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-20",
+  "text": "太",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-21",
+  "text": "我们",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n03-22",
+  "text": "想",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-01",
+  "text": "有",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-02",
+  "text": "多少",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-03",
+  "text": "个",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-04",
+  "text": "哥哥",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-05",
+  "text": "你呢",
+  "kind": "word",
+  "carrier": "你呢"
+ },
+ {
+  "id": "n04-06",
+  "text": "没有",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-07",
+  "text": "家",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-08",
+  "text": "挤",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-09",
+  "text": "口",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-10",
+  "text": "爸爸",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-11",
+  "text": "妈妈",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-12",
+  "text": "妹妹",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-13",
+  "text": "盒",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-14",
+  "text": "儿子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-15",
+  "text": "孩子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-16",
+  "text": "女儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-17",
+  "text": "岁",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-18",
+  "text": "他",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-19",
+  "text": "今年",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-20",
+  "text": "多",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-21",
+  "text": "大",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-22",
+  "text": "一",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-23",
+  "text": "二",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-24",
+  "text": "三",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-25",
+  "text": "四",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-26",
+  "text": "五",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-27",
+  "text": "六",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-28",
+  "text": "七",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-29",
+  "text": "八",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-30",
+  "text": "九",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-31",
+  "text": "十",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-32",
+  "text": "零",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-33",
+  "text": "两",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-34",
+  "text": "百",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n04-35",
+  "text": "千",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-01",
+  "text": "今天",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-02",
+  "text": "号",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-03",
+  "text": "月",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-04",
+  "text": "日",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-05",
+  "text": "星期",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-06",
+  "text": "星期日",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-07",
+  "text": "星期天",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-08",
+  "text": "休息",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-09",
+  "text": "惠",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-10",
+  "text": "做饭",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-11",
+  "text": "做",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-12",
+  "text": "面条儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-13",
+  "text": "饺子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-14",
+  "text": "一些",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-15",
+  "text": "菜",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-16",
+  "text": "下班",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-17",
+  "text": "新",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-18",
+  "text": "电脑",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-19",
+  "text": "真",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-20",
+  "text": "好看",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-21",
+  "text": "喜欢",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n05-22",
+  "text": "它",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-01",
+  "text": "手机",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-02",
+  "text": "电话",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-03",
+  "text": "号",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-04",
+  "text": "明天",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-05",
+  "text": "去",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-06",
+  "text": "哪儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-07",
+  "text": "想",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-08",
+  "text": "超市",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-09",
+  "text": "买",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-10",
+  "text": "东西",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-11",
+  "text": "些",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-12",
+  "text": "牛奶",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-13",
+  "text": "吃",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-14",
+  "text": "晚饭",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-15",
+  "text": "那边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-16",
+  "text": "包子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-17",
+  "text": "非常",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-18",
+  "text": "好吃",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-19",
+  "text": "米饭",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-20",
+  "text": "怎么",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-21",
+  "text": "坐",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-22",
+  "text": "出租车",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n06-23",
+  "text": "西安饭店",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-01",
+  "text": "现在",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-02",
+  "text": "点",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-03",
+  "text": "早上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-04",
+  "text": "上午",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-05",
+  "text": "芬",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-06",
+  "text": "课",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-07",
+  "text": "下午",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-08",
+  "text": "见",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-09",
+  "text": "好吧",
+  "kind": "word",
+  "carrier": "好吧"
+ },
+ {
+  "id": "n07-10",
+  "text": "电影院",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-11",
+  "text": "看",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-12",
+  "text": "电影",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-13",
+  "text": "事",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-14",
+  "text": "上课",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-15",
+  "text": "你呢",
+  "kind": "word",
+  "carrier": "你呢"
+ },
+ {
+  "id": "n07-16",
+  "text": "半",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-17",
+  "text": "下课",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-18",
+  "text": "在",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-19",
+  "text": "家",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-20",
+  "text": "里",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-21",
+  "text": "晚上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-22",
+  "text": "医院",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-23",
+  "text": "上班",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-24",
+  "text": "店",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-25",
+  "text": "菜",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-26",
+  "text": "分钟",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n07-27",
+  "text": "后",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-01",
+  "text": "房间",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-02",
+  "text": "外",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-03",
+  "text": "织",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-04",
+  "text": "小",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-05",
+  "text": "猫",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-06",
+  "text": "没",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-07",
+  "text": "看见",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-08",
+  "text": "桌子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-09",
+  "text": "下",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-10",
+  "text": "漂亮",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-11",
+  "text": "在",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-12",
+  "text": "学校",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-13",
+  "text": "书店",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-14",
+  "text": "前",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-15",
+  "text": "能",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-16",
+  "text": "到",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-17",
+  "text": "午饭",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-18",
+  "text": "饭",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-19",
+  "text": "大",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-20",
+  "text": "病人",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-21",
+  "text": "多",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-22",
+  "text": "医生",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-23",
+  "text": "工作",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n08-24",
+  "text": "胡医生",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-01",
+  "text": "前边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-02",
+  "text": "边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-03",
+  "text": "家",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-04",
+  "text": "那个",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-05",
+  "text": "外边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-06",
+  "text": "椅子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-07",
+  "text": "桌子上",
+  "kind": "word",
+  "carrier": "桌子上"
+ },
+ {
+  "id": "n09-08",
+  "text": "本",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-09",
+  "text": "书",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-10",
+  "text": "纳",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-11",
+  "text": "第",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-12",
+  "text": "学习",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-13",
+  "text": "做",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-14",
+  "text": "白天",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-15",
+  "text": "读书",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-16",
+  "text": "盒",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-17",
+  "text": "朋友",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-18",
+  "text": "唱",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-19",
+  "text": "歌",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-20",
+  "text": "好听",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-21",
+  "text": "电视",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-22",
+  "text": "狗",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n09-23",
+  "text": "玩",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-01",
+  "text": "杯子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-02",
+  "text": "售货员",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-03",
+  "text": "这边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-04",
+  "text": "钱",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-05",
+  "text": "这些",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-06",
+  "text": "块",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-07",
+  "text": "那些",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-08",
+  "text": "这儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-09",
+  "text": "水果",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-10",
+  "text": "少",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-11",
+  "text": "斤",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-12",
+  "text": "苹果",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-13",
+  "text": "便宜",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-14",
+  "text": "商店",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-15",
+  "text": "衣服",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-16",
+  "text": "件",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-17",
+  "text": "元",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-18",
+  "text": "怎么样",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-19",
+  "text": "贵",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-20",
+  "text": "穿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-21",
+  "text": "女",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-22",
+  "text": "男",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n10-23",
+  "text": "那儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-01",
+  "text": "时候",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-02",
+  "text": "饭店",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-03",
+  "text": "知道",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-04",
+  "text": "正在",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-05",
+  "text": "找",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-06",
+  "text": "开车",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-07",
+  "text": "车",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-08",
+  "text": "在",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-09",
+  "text": "读",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-10",
+  "text": "大学",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-11",
+  "text": "大学生",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-12",
+  "text": "学",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-13",
+  "text": "医",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-14",
+  "text": "弟弟",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-15",
+  "text": "起床",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-16",
+  "text": "睡觉",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-17",
+  "text": "睡",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-18",
+  "text": "那里",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-19",
+  "text": "哪里",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-20",
+  "text": "昨天",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-21",
+  "text": "问",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-22",
+  "text": "对",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-23",
+  "text": "说",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-24",
+  "text": "药",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n11-25",
+  "text": "小朋友",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-01",
+  "text": "天气",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-02",
+  "text": "这里",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-03",
+  "text": "天",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-04",
+  "text": "下雨",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-05",
+  "text": "好了",
+  "kind": "word",
+  "carrier": "好了"
+ },
+ {
+  "id": "n12-06",
+  "text": "雨",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-07",
+  "text": "有点儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-08",
+  "text": "觉得",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-09",
+  "text": "冷",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-10",
+  "text": "下",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-11",
+  "text": "雪",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-12",
+  "text": "来",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-13",
+  "text": "公司",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-14",
+  "text": "生病",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-15",
+  "text": "看病",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-16",
+  "text": "病",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-17",
+  "text": "一点儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-18",
+  "text": "药",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-19",
+  "text": "天",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-20",
+  "text": "回",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-21",
+  "text": "再",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-22",
+  "text": "喝",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-23",
+  "text": "热",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n12-24",
+  "text": "水",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-01",
+  "text": "可以",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-02",
+  "text": "再",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-03",
+  "text": "问题",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-04",
+  "text": "卖",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-05",
+  "text": "打电话",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-06",
+  "text": "一下",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-07",
+  "text": "服务员",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-08",
+  "text": "女士",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-09",
+  "text": "请",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-10",
+  "text": "坐",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-11",
+  "text": "给",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-12",
+  "text": "杯",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-13",
+  "text": "药",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-14",
+  "text": "早饭",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-15",
+  "text": "这个",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-16",
+  "text": "面包",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-17",
+  "text": "鸡蛋",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-18",
+  "text": "先生",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-19",
+  "text": "一半",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n13-20",
+  "text": "茶",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-01",
+  "text": "上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-02",
+  "text": "火车",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-03",
+  "text": "中午",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-04",
+  "text": "开",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-05",
+  "text": "有些",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-06",
+  "text": "有的",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-07",
+  "text": "好了",
+  "kind": "word",
+  "carrier": "好了"
+ },
+ {
+  "id": "n14-08",
+  "text": "写",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-09",
+  "text": "兜",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-10",
+  "text": "听见",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-11",
+  "text": "不要",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-12",
+  "text": "说话",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-13",
+  "text": "听",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-14",
+  "text": "哪些",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-15",
+  "text": "字",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-16",
+  "text": "汉语",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-17",
+  "text": "汉字",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-18",
+  "text": "明年",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-19",
+  "text": "上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-20",
+  "text": "中学",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-21",
+  "text": "小学",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-22",
+  "text": "中学生",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-23",
+  "text": "小学生",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-24",
+  "text": "上学",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-25",
+  "text": "他们",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-26",
+  "text": "她们",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-27",
+  "text": "它们",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n14-28",
+  "text": "晚",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-01",
+  "text": "爱",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-02",
+  "text": "哪个",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-03",
+  "text": "去年",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-04",
+  "text": "男朋友",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-05",
+  "text": "挤",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-06",
+  "text": "年",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-07",
+  "text": "好玩儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-08",
+  "text": "西安",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-09",
+  "text": "北京",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-10",
+  "text": "飞机",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-11",
+  "text": "药",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-12",
+  "text": "小时",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-13",
+  "text": "家人",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-14",
+  "text": "时间",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-15",
+  "text": "机场",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-16",
+  "text": "接",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-17",
+  "text": "住",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-18",
+  "text": "早",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-19",
+  "text": "纳",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n15-20",
+  "text": "大兴机场",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-01",
+  "text": "下次",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-02",
+  "text": "干什么",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-03",
+  "text": "上次",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-04",
+  "text": "吃饭",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-05",
+  "text": "奶",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-06",
+  "text": "课本",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-07",
+  "text": "课文",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-08",
+  "text": "听写",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-09",
+  "text": "学院",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-10",
+  "text": "楼下",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-11",
+  "text": "楼上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-12",
+  "text": "教学楼",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-13",
+  "text": "汽车",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-14",
+  "text": "车上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-15",
+  "text": "上车",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-16",
+  "text": "下车",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-17",
+  "text": "车票",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-18",
+  "text": "出",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-19",
+  "text": "起来",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n16-20",
+  "text": "出来",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-01",
+  "text": "回家",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-02",
+  "text": "来到",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-03",
+  "text": "回到",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-04",
+  "text": "身上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-05",
+  "text": "不对",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-06",
+  "text": "不大",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-07",
+  "text": "老",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-08",
+  "text": "真的",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-09",
+  "text": "白",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-10",
+  "text": "中",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-11",
+  "text": "还有",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-12",
+  "text": "是不是",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-13",
+  "text": "有时候",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-14",
+  "text": "日期",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-15",
+  "text": "半年",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-16",
+  "text": "家里",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-17",
+  "text": "在家",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-18",
+  "text": "唱歌",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-19",
+  "text": "开玩笑",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-20",
+  "text": "打球",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n17-21",
+  "text": "电视机",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-01",
+  "text": "地上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-02",
+  "text": "里边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-03",
+  "text": "后边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-04",
+  "text": "上边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-05",
+  "text": "下边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-06",
+  "text": "西",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-07",
+  "text": "东",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-08",
+  "text": "南",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-09",
+  "text": "北",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-10",
+  "text": "国外",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-11",
+  "text": "西边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-12",
+  "text": "东边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-13",
+  "text": "南边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-14",
+  "text": "北边",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-15",
+  "text": "没什么",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-16",
+  "text": "请进",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-17",
+  "text": "请坐",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-18",
+  "text": "记住",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-19",
+  "text": "关上",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-20",
+  "text": "看到",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n18-21",
+  "text": "找到",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-01",
+  "text": "听到",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-02",
+  "text": "坐下",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-03",
+  "text": "话",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-04",
+  "text": "动作",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-05",
+  "text": "钱包",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-06",
+  "text": "女人",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-07",
+  "text": "男人",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-08",
+  "text": "小姐",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-09",
+  "text": "工人",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-10",
+  "text": "网友",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-11",
+  "text": "妈",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-12",
+  "text": "第二",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-13",
+  "text": "子",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-14",
+  "text": "哥",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-15",
+  "text": "爸",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-16",
+  "text": "妹",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-17",
+  "text": "姐",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-18",
+  "text": "弟",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-19",
+  "text": "玩儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-20",
+  "text": "没事儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-21",
+  "text": "一下儿",
+  "kind": "word",
+  "carrier": null
+ },
+ {
+  "id": "n19-22",
+  "text": "有一些",
+  "kind": "word",
+  "carrier": null
+ }
+]

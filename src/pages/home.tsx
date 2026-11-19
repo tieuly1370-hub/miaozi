@@ -17,7 +17,7 @@ export function Onboarding() {
         <h2 class="h2">Lộ trình, không nhảy cóc</h2>
         <ol class="muted" style={{ paddingLeft: 18 }}>
           <li>Tuần 0 — Nền móng: pinyin, thanh điệu, 8 nét, bộ thủ.</li>
-          <li>15 bài HSK1. Học trên Nhai HSK theo đúng link Miêu giao, rồi quay lại Lò Hán để bị kiểm tra.</li>
+          <li>15 bài HSK1. Học trên Nhai HSK theo đúng link Miao giao, rồi quay lại Miaozi để bị kiểm tra.</li>
           <li>Mỗi bài 3 ngày. Ngày 3 thi cổng: Nghe, Đọc, Nói, Viết thi riêng, mỗi kỹ năng ≥ 80%, viết lại toàn bộ từ của bài từ trí nhớ, đúng 100%. Thiếu một kỹ năng là chưa qua.</li>
           <li>Ca sáng ở công ty: nghe + đọc (30–120 phút). Tối 21:00: nói + viết trên tablet.</li>
           <li>Thứ Bảy học bù, Chủ nhật nghỉ + kiểm tra tuần 20 phút.</li>
@@ -63,7 +63,7 @@ export function Today() {
       <TutorBubble mood={line.mood} text={line.text} />
       {s.progress.resetNotice && (
         <Card class="res-fail" data-testid="reset-notice">
-          <h3 class="h3">Lò Hán 1.2: cổng bài đã đặt lại</h3>
+          <h3 class="h3">Miaozi 1.2: cổng bài đã đặt lại</h3>
           <p>Bài kiểm tra cũ cho qua nhờ nhớ pinyin, nên mọi bài phải thi lại theo cổng mới: 4 kỹ năng thi riêng, viết phải đúng 100% từ trí nhớ. Thẻ ôn, sổ lỗi, chuỗi ngày giữ nguyên. Bắt đầu lại từ Bài 1.</p>
           <Button small onClick={() => dismissResetNotice()}>Đã hiểu</Button>
         </Card>
@@ -137,7 +137,7 @@ function DayPlan(props: { heading: string; steps: Step[]; dow: string }) {
       </div>
       <Bar value={steps.length ? done / steps.length : 1} />
       {next < 0 ? (
-        <p class="plan-done">Xong hết việc hôm nay. Nghỉ ngơi thôi — mai Miêu giao bài tiếp.</p>
+        <p class="plan-done">Xong hết việc hôm nay. Nghỉ ngơi thôi — mai Miao giao bài tiếp.</p>
       ) : (
         <p class="muted" style={{ marginTop: 8 }}>Làm lần lượt từ trên xuống. Còn khoảng {mins} phút.</p>
       )}
@@ -211,7 +211,7 @@ export function Roadmap() {
     <div class="stack" data-testid="roadmap">
       <Card>
         <h2 class="h2">Lộ trình HSK1</h2>
-        <p class="muted">15 bài HSK1. Học trên <a href={NHAI.course} target="_blank" rel="noreferrer">Nhai HSK</a>, Lò Hán giao việc và kiểm tra. Cổng: đủ 4 kỹ năng (Nghe, Đọc, Nói, Viết), mỗi kỹ năng ≥ 80% đúng lần đầu, Viết đúng 100%.</p>
+        <p class="muted">15 bài HSK1. Học trên <a href={NHAI.course} target="_blank" rel="noreferrer">Nhai HSK</a>, Miaozi giao việc và kiểm tra. Cổng: đủ 4 kỹ năng (Nghe, Đọc, Nói, Viết), mỗi kỹ năng ≥ 80% đúng lần đầu, Viết đúng 100%.</p>
       </Card>
       <div class="roadmap">
         <button class={cls("rm-item", s.progress.week0Passed ? "done" : "current")} onClick={() => go("/week0")}>

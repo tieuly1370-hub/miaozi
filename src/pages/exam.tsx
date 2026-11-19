@@ -3,7 +3,8 @@ import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import HanziWriter from "hanzi-writer";
 import { LESSONS, WORD_BY_ID } from "../data/curriculum";
 import { playId } from "../audio";
-import { parsePinyin, recordUntilSilent, recognizeOnce, scoreUtterance, speechAvailable, tonesFromRecording, type SpeakScore } from "../speech";
+import { speechAvailable } from "../speech";
+import { SpeakTry } from "../v2/ui2";
 import { GSKILLS, SKILL_VI, checkItems, gateItems, judge, type GSkill, type Item, type SkillResult } from "../gate";
 import {
   abandonGate, addMistake, checkRec, completeSessionCheck, finishGate, gateBlockedUntil, gateRec, gateWritePenalty,
@@ -189,7 +190,8 @@ function BuildView(props: { item: Extract<Item, { t: "build" }>; onAnswer: (ok: 
   );
 }
 
-/** Viết từ trí nhớ: không nét mờ, không gợi ý, không xem mẫu. Sai quá 1 nét ở một chữ = trượt câu. */
+/** Viết từ trí nhớ: không nét mờ, không gợi ý, không xem mẫu. Sai quá 5 nét ở một chữ = trượt câu (bút tablet đôi khi không nhạy). */
+export const MAX_MISS = 5;
 function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: boolean, d?: string) => void }) {
   const it = props.item;
   const chars = hanChars(it.word.hanzi);
@@ -220,10 +222,10 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
         writer.quiz({
           onMistake: () => {
             m += 1; setMiss(m);
-            if (m > 1) { try { writer?.cancelQuiz(); } catch { /* */ } done(false, `Sai ${m} nét ở chữ thứ ${k + 1} — tính trượt.`); }
+            if (m > MAX_MISS) { try { writer?.cancelQuiz(); } catch { /* */ } done(false, `Sai ${m} nét ở chữ thứ ${k + 1} — tính trượt.`); }
           },
           onComplete: () => {
-            if (cancelled || m > 1) return;
+            if (cancelled || m > MAX_MISS) return;
             if (k + 1 < chars.length) setK(k + 1);
             else done(true);
           },
@@ -237,7 +239,7 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
   return (
     <Card data-testid="exam-write">
       <Timer secs={30 + 30 * chars.length} onTimeout={() => done(false, "Hết giờ.")} />
-      <p class="muted">Viết từ trí nhớ — không pinyin, không nét mờ, không gợi ý. Sai quá 1 nét ở một chữ là trượt câu.</p>
+      <p class="muted">Viết từ trí nhớ — không pinyin, không nét mờ, không gợi ý. Mỗi chữ được sai tối đa 5 nét.</p>
       <div class="exam-prompt" data-testid="write-prompt">“{it.vi}” <span class="muted">({it.word.pos} · {chars.length} chữ)</span></div>
       {it.audio && <div class="tools"><LimitedAudio id={it.audio} max={3} auto /></div>}
       <div class="row spread">
@@ -252,43 +254,18 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
 
 function SpeakView(props: { item: Extract<Item, { t: "speak" }>; onAnswer: (ok: boolean, d?: string) => void }) {
   const it = props.item;
-  const [busy, setBusy] = useState(false);
-  const [res, setRes] = useState<SpeakScore | null>(null);
   const [tech, setTech] = useState(0);
-  const run = async () => {
-    setBusy(true); setRes(null);
-    try {
-      const recP = recordUntilSilent({ maxMs: 5000, minMs: 600 });
-      const asrP = recognizeOnce("zh-CN", 5500).catch(() => null);
-      const [rec, asr] = await Promise.all([recP, asrP]);
-      const exp = parsePinyin(it.pinyinNum);
-      const pitch = tonesFromRecording(rec.samples, rec.sampleRate, exp.length);
-      const sc = scoreUtterance(it.pinyinNum, asr, pitch.tones);
-      const havePitch = pitch.tones.some((t) => t);
-      if ((!asr || !havePitch) && tech < 2) {
-        // Lỗi kỹ thuật (không thu được tiếng / không nhận được lời) — cho nói lại, không tính.
-        setTech(tech + 1);
-        setRes({ ...sc, pass: false, message: "Không nghe rõ (không tính lượt). Nói lại to, rõ, gần mic." });
-        setBusy(false);
-        return;
-      }
-      const strictPass = sc.pass && sc.asrUsed && havePitch;
-      setRes(sc);
-      setBusy(false);
-      const bad = sc.syllables.filter((s) => !s.initialOk || !s.finalOk || !s.toneOk)
-        .map((s) => `${s.expected.raw}${!s.initialOk ? " sai phụ âm" : ""}${!s.finalOk ? " sai vần" : ""}${!s.toneOk ? ` sai thanh (đo được ${s.pitchTone ?? "?"})` : ""}`);
-      setTimeout(() => props.onAnswer(strictPass, strictPass ? "" : `Chưa đạt${asr ? ` — máy nghe thành “${asr}”` : ""}. ${bad.join("; ")}`), 900);
-    } catch (e) {
-      setBusy(false);
-      setRes({ pass: false, asrAvailable: true, asrUsed: false, syllables: [], message: "Không mở được micro: " + (e as Error).message });
-    }
-  };
+  const [locked, setLocked] = useState(false);
   return (
     <Card data-testid="exam-speak">
-      <p class="muted">Chỉ có tiếng Việt. Tự nói ra tiếng Trung — chấm phụ âm, vần và thanh điệu từng âm tiết. Không có câu mẫu.</p>
+      <p class="muted">Chỉ có tiếng Việt. Tự nói ra tiếng Trung. Máy nhận giọng nói rồi chấm từng âm tiết (đạt ≥ 80%); cao độ chỉ để tham khảo.</p>
       <div class="exam-prompt">{it.prompt}</div>
-      <Button wide kind="primary" id="speak-go" disabled={busy} onClick={run}>{busy ? "Đang nghe…" : "Bấm rồi nói"}</Button>
-      {res && <p class={res.pass ? "" : "bad-text"}>{res.message}</p>}
+      <SpeakTry key={tech} expected={it.answerHanzi} onScore={(sc) => {
+        if (locked) return;
+        if (!sc.heardNorm && tech < 2) { setTech(tech + 1); return; } // không nghe được gì → cho nói lại, không tính
+        setLocked(true);
+        setTimeout(() => props.onAnswer(sc.pass, sc.pass ? "" : `Chưa đạt ${sc.percent}% — máy nghe thành “${sc.heard || "(trống)"}”.`), 1400);
+      }} />
     </Card>
   );
 }
@@ -336,10 +313,10 @@ function redoList(results: SkillResult[], n?: number): string[] {
   const wrongHan = [...new Set(failed.flatMap((r) => r.wrongFirst.map((i) => i.answerHanzi)))];
   if (failed.some((r) => r.skill === "write" && r.failedTwice.length)) out.push("Nộp chép phạt các chữ viết sai 2 lần (mục Chép phạt) — chưa nộp thì không được thi lại.");
   if (wrongHan.length) out.push(`Học lại trên Nhai HSK các từ: ${wrongHan.join(", ")} (flashcard + quiz + xem thứ tự nét).`);
-  if (failed.some((r) => r.skill === "write")) out.push("Luyện viết từ trí nhớ trong Lò Hán (Viết) đến khi viết đúng không cần nhìn.");
+  if (failed.some((r) => r.skill === "write")) out.push("Luyện viết từ trí nhớ trong Miaozi (Viết) đến khi viết đúng không cần nhìn.");
   if (failed.some((r) => r.skill === "listen")) out.push("Nghe lại audio từ/câu trên Nhai HSK, chép chính tả bằng chữ Hán.");
-  if (failed.some((r) => r.skill === "speak")) out.push("Luyện nói trong Lò Hán (Nói) — chú ý thanh điệu từng chữ.");
-  if (failed.some((r) => r.pending)) out.push("Kỹ năng Nói cần Chrome hoặc Edge (có nhận giọng nói) và micro. Mở Lò Hán bằng Chrome trên tablet/điện thoại.");
+  if (failed.some((r) => r.skill === "speak")) out.push("Luyện nói trong Miaozi (Nói) — chú ý thanh điệu từng chữ.");
+  if (failed.some((r) => r.pending)) out.push("Kỹ năng Nói cần Chrome hoặc Edge (có nhận giọng nói) và micro. Mở Miaozi bằng Chrome trên tablet/điện thoại.");
   if (n) out.push(`Mở lại bài ${n} trên Nhai HSK: ${nhaiUnitLink(n)}`);
   return out;
 }
@@ -414,7 +391,7 @@ function GateSkill(props: { n: number; skill: GSkill }) {
   if (rec?.pass) return <Card><p>Kỹ năng {SKILL_VI[skill]} của bài {n} đã đạt.</p><Button onClick={() => go(`/gate/${n}`)}>Quay lại</Button></Card>;
   if (until) return <Card data-testid="gate-blocked"><p>Hôm nay đã trượt {SKILL_VI[skill]}. Thi lại từ ngày {fmtDate(until)}.</p><Button onClick={() => go(`/gate/${n}`)}>Quay lại</Button></Card>;
   if (!ready || openPen) return <Card><p>Chưa đủ điều kiện thi (xem trang cổng).</p><Button onClick={() => go(`/gate/${n}`)}>Quay lại</Button></Card>;
-  if (skill === "speak" && !speechAvailable()) return <Card data-testid="speak-pending"><h2 class="h3">Kỹ năng Nói đang chờ</h2><p>Trình duyệt này không có nhận giọng nói nên không chấm được phụ âm/vần. Không bỏ qua được — mở Lò Hán bằng Chrome hoặc Edge rồi thi.</p></Card>;
+  if (skill === "speak" && !speechAvailable()) return <Card data-testid="speak-pending"><h2 class="h3">Kỹ năng Nói đang chờ</h2><p>Trình duyệt này không có nhận giọng nói nên không chấm được phụ âm/vần. Không bỏ qua được — mở Miaozi bằng Chrome hoặc Edge rồi thi.</p></Card>;
   if (!started) {
     return (
       <Card data-testid="gate-intro">

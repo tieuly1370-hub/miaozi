@@ -13,5412 +13,5745 @@ export type Lesson = {
   lecture: LessonVideo | null; workbook: LessonVideo | null; days: 3;
 };
 export const LESSONS: Lesson[] = [
-  {
-    "id": 1,
-    "titleZh": "你好",
-    "titleVi": "Xin chào",
-    "grammarNote": "Chào hỏi: 你/您/你们. 们 thêm vào sau đại từ để chỉ số nhiều. 对不起 / 没关系 dùng khi xin lỗi.",
-    "words": [
-      {
-        "id": "l01-01",
-        "lesson": 1,
-        "hanzi": "你",
-        "pinyin": "nǐ",
-        "pinyinNum": "ni3",
-        "vi": "bạn",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "你",
-            "parts": [
-              "亻",
-              "尔"
-            ],
-            "mnemonic": "Người đứng cạnh, gọi 'bạn ơi'."
-          }
-        ],
-        "mnemonic": "Người đứng cạnh, gọi 'bạn ơi'."
-      },
-      {
-        "id": "l01-02",
-        "lesson": 1,
-        "hanzi": "好",
-        "pinyin": "hǎo",
-        "pinyinNum": "hao3",
-        "vi": "tốt, khỏe",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "好",
-            "parts": [
-              "女",
-              "子"
-            ],
-            "mnemonic": "Có mẹ có con — điều tốt đẹp."
-          }
-        ],
-        "mnemonic": "Có mẹ có con — điều tốt đẹp."
-      },
-      {
-        "id": "l01-03",
-        "lesson": 1,
-        "hanzi": "您",
-        "pinyin": "nín",
-        "pinyinNum": "nin2",
-        "vi": "ngài, bạn (lịch sự)",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "您",
-            "parts": [
-              "你",
-              "心"
-            ],
-            "mnemonic": "Chữ 'bạn' thêm trái tim — nói lịch sự."
-          }
-        ],
-        "mnemonic": "Chữ 'bạn' thêm trái tim — nói lịch sự."
-      },
-      {
-        "id": "l01-04",
-        "lesson": 1,
-        "hanzi": "你们",
-        "pinyin": "nǐmen",
-        "pinyinNum": "ni3 men5",
-        "vi": "các bạn",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "你",
-            "parts": [
-              "亻",
-              "尔"
-            ],
-            "mnemonic": "Người đứng cạnh, gọi 'bạn ơi'."
-          },
-          {
-            "char": "们",
-            "parts": [
-              "亻",
-              "门"
-            ],
-            "mnemonic": "Người đứng trước cửa — chỉ số nhiều."
-          }
-        ],
-        "mnemonic": "Bạn + cửa số nhiều: các bạn."
-      },
-      {
-        "id": "l01-05",
-        "lesson": 1,
-        "hanzi": "对不起",
-        "pinyin": "duìbuqǐ",
-        "pinyinNum": "dui4 bu5 qi3",
-        "vi": "xin lỗi",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "对",
-            "parts": [
-              "又",
-              "寸"
-            ],
-            "mnemonic": "Lại thêm một tấc — đối, đúng."
-          },
-          {
-            "char": "不",
-            "parts": [
-              "不"
-            ],
-            "mnemonic": "Một nét ngang chặn lại: 'không'."
-          },
-          {
-            "char": "起",
-            "parts": [
-              "走",
-              "己"
-            ],
-            "mnemonic": "Bản thân đứng dậy mà đi."
-          }
-        ],
-        "mnemonic": "Đối không dậy nổi — xin lỗi nặng lời."
-      },
-      {
-        "id": "l01-06",
-        "lesson": 1,
-        "hanzi": "没关系",
-        "pinyin": "méiguānxi",
-        "pinyinNum": "mei2 guan1 xi5",
-        "vi": "không sao",
-        "pos": "từ",
-        "decomps": [
-          {
-            "char": "没",
-            "parts": [
-              "氵",
-              "殳"
-            ],
-            "mnemonic": "Nước bị đánh tan — không còn gì."
-          },
-          {
-            "char": "关",
-            "parts": [
-              "丷",
-              "天"
-            ],
-            "mnemonic": "Đóng cổng trời — then chốt, liên quan."
-          },
-          {
-            "char": "系",
-            "parts": [
-              "丿",
-              "糸"
-            ],
-            "mnemonic": "Sợi chỉ buộc lại thành hệ."
-          }
-        ],
-        "mnemonic": "Không có then chốt nào cả — không sao."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s01-01",
-        "lesson": 1,
-        "hanzi": "你好！您是老师吗？",
-        "pinyin": "Nǐ hǎo! Nín shì lǎoshī ma?",
-        "pinyinNum": "ni3 hao3 nin2 shi4 lao3 shi1 ma5",
-        "vi": "Xin chào! Ngài là giáo viên ạ?"
-      },
-      {
-        "id": "s01-02",
-        "lesson": 1,
-        "hanzi": "你们好！",
-        "pinyin": "Nǐmen hǎo!",
-        "pinyinNum": "ni3 men5 hao3",
-        "vi": "Xin chào các bạn!"
-      },
-      {
-        "id": "s01-03",
-        "lesson": 1,
-        "hanzi": "对不起。没关系。",
-        "pinyin": "Duìbuqǐ. Méiguānxi.",
-        "pinyinNum": "dui4 bu5 qi3 mei2 guan1 xi5",
-        "vi": "Xin lỗi. Không sao."
-      }
-    ],
-    "lecture": {
-      "id": "EpSs4cdSML0",
-      "title": "Bài 1: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 7201,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3240,
-          "label": "Đoạn 3 — xem từ 36:00 đến 54:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 3240,
-          "end": 4320,
-          "label": "Đoạn 4 — xem từ 54:00 đến 1:12:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 4320,
-          "end": 5400,
-          "label": "Đoạn 5 — xem từ 1:12:00 đến 1:30:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 5400,
-          "end": 6480,
-          "label": "Đoạn 6 — xem từ 1:30:00 đến 1:48:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 6480,
-          "end": 7201,
-          "label": "Đoạn 7 — xem từ 1:48:00 đến 2:00:01, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": null,
-    "days": 3
-  },
-  {
-    "id": 2,
-    "titleZh": "谢谢",
-    "titleVi": "Cảm ơn",
-    "grammarNote": "Cảm ơn và đáp lại: 谢谢 / 不客气. 不 phủ định. 再见 khi tạm biệt.",
-    "words": [
-      {
-        "id": "l02-01",
-        "lesson": 2,
-        "hanzi": "谢谢",
-        "pinyin": "xièxie",
-        "pinyinNum": "xie4 xie5",
-        "vi": "cảm ơn",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "谢",
-            "parts": [
-              "讠",
-              "射"
-            ],
-            "mnemonic": "Lời nói gửi tới — cảm ơn."
-          },
-          {
-            "char": "谢",
-            "parts": [
-              "讠",
-              "射"
-            ],
-            "mnemonic": "Lời nói gửi tới — cảm ơn."
-          }
-        ],
-        "mnemonic": "Lời nói gửi tới — cảm ơn. · Lời nói gửi tới — cảm ơn."
-      },
-      {
-        "id": "l02-02",
-        "lesson": 2,
-        "hanzi": "不",
-        "pinyin": "bù",
-        "pinyinNum": "bu4",
-        "vi": "không",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "不",
-            "parts": [
-              "不"
-            ],
-            "mnemonic": "Một nét ngang chặn lại: 'không'."
-          }
-        ],
-        "mnemonic": "Một nét ngang chặn lại: 'không'."
-      },
-      {
-        "id": "l02-03",
-        "lesson": 2,
-        "hanzi": "不客气",
-        "pinyin": "búkèqi",
-        "pinyinNum": "bu2 ke4 qi5",
-        "vi": "không có gì",
-        "pos": "từ",
-        "decomps": [
-          {
-            "char": "不",
-            "parts": [
-              "不"
-            ],
-            "mnemonic": "Một nét ngang chặn lại: 'không'."
-          },
-          {
-            "char": "客",
-            "parts": [
-              "宀",
-              "各"
-            ],
-            "mnemonic": "Người dưới mái nhà — vị khách."
-          },
-          {
-            "char": "气",
-            "parts": [
-              "气"
-            ],
-            "mnemonic": "Hơi bay lên — khí, khí chất."
-          }
-        ],
-        "mnemonic": "Đừng khách sáo — không có gì."
-      },
-      {
-        "id": "l02-04",
-        "lesson": 2,
-        "hanzi": "再见",
-        "pinyin": "zàijiàn",
-        "pinyinNum": "zai4 jian4",
-        "vi": "tạm biệt",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "再",
-            "parts": [
-              "再"
-            ],
-            "mnemonic": "Một lần nữa, lặp lại."
-          },
-          {
-            "char": "见",
-            "parts": [
-              "见"
-            ],
-            "mnemonic": "Người với mắt — nhìn thấy."
-          }
-        ],
-        "mnemonic": "Lại gặp — tạm biệt, hẹn gặp lại."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s02-01",
-        "lesson": 2,
-        "hanzi": "谢谢你！",
-        "pinyin": "Xièxie nǐ!",
-        "pinyinNum": "xie4 xie5 ni3",
-        "vi": "Cảm ơn bạn!"
-      },
-      {
-        "id": "s02-02",
-        "lesson": 2,
-        "hanzi": "不，不客气。",
-        "pinyin": "Bù, bú kèqi.",
-        "pinyinNum": "bu4 bu2 ke4 qi5",
-        "vi": "Không, không có gì."
-      },
-      {
-        "id": "s02-03",
-        "lesson": 2,
-        "hanzi": "再见！",
-        "pinyin": "Zàijiàn!",
-        "pinyinNum": "zai4 jian4",
-        "vi": "Tạm biệt!"
-      }
-    ],
-    "lecture": {
-      "id": "EfN5_uU35vY",
-      "title": "Bài 2: HSK Standard Course 1 — Thành Luân",
-      "duration": 4330,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3240,
-          "label": "Đoạn 3 — xem từ 36:00 đến 54:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 3240,
-          "end": 4330,
-          "label": "Đoạn 4 — xem từ 54:00 đến 1:12:10, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": null,
-    "days": 3
-  },
-  {
-    "id": 3,
-    "titleZh": "你叫什么名字",
-    "titleVi": "Bạn tên gì?",
-    "grammarNote": "Câu 是 để nói 'là'. 叫 hỏi tên. Cuối câu thêm 吗 để biến thành câu hỏi có/không.",
-    "words": [
-      {
-        "id": "l03-01",
-        "lesson": 3,
-        "hanzi": "叫",
-        "pinyin": "jiào",
-        "pinyinNum": "jiao4",
-        "vi": "tên là, gọi",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "叫",
-            "parts": [
-              "口",
-              "丩"
-            ],
-            "mnemonic": "Miệng kêu lên — gọi, tên là."
-          }
-        ],
-        "mnemonic": "Miệng kêu lên — gọi, tên là."
-      },
-      {
-        "id": "l03-02",
-        "lesson": 3,
-        "hanzi": "什么",
-        "pinyin": "shénme",
-        "pinyinNum": "shen2 me5",
-        "vi": "cái gì",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "什",
-            "parts": [
-              "亻",
-              "十"
-            ],
-            "mnemonic": "Người và số mười — 'cái gì?'."
-          },
-          {
-            "char": "么",
-            "parts": [
-              "丿",
-              "厶"
-            ],
-            "mnemonic": "Âm nhẹ, hay đi cùng 什, 那, 怎."
-          }
-        ],
-        "mnemonic": "Cái gì vậy?"
-      },
-      {
-        "id": "l03-03",
-        "lesson": 3,
-        "hanzi": "名字",
-        "pinyin": "míngzi",
-        "pinyinNum": "ming2 zi5",
-        "vi": "tên",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "名",
-            "parts": [
-              "夕",
-              "口"
-            ],
-            "mnemonic": "Đêm gọi tên bằng miệng."
-          },
-          {
-            "char": "字",
-            "parts": [
-              "宀",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái nhà — chữ viết."
-          }
-        ],
-        "mnemonic": "Tên và chữ — họ tên."
-      },
-      {
-        "id": "l03-04",
-        "lesson": 3,
-        "hanzi": "我",
-        "pinyin": "wǒ",
-        "pinyinNum": "wo3",
-        "vi": "tôi",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "我",
-            "parts": [
-              "手",
-              "戈"
-            ],
-            "mnemonic": "Tay cầm giáo — ấy là 'tôi'."
-          }
-        ],
-        "mnemonic": "Tay cầm giáo — ấy là 'tôi'."
-      },
-      {
-        "id": "l03-05",
-        "lesson": 3,
-        "hanzi": "是",
-        "pinyin": "shì",
-        "pinyinNum": "shi4",
-        "vi": "là",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "是",
-            "parts": [
-              "日",
-              "正"
-            ],
-            "mnemonic": "Mặt trời đứng ngay ngắn — 'là'."
-          }
-        ],
-        "mnemonic": "Mặt trời đứng ngay ngắn — 'là'."
-      },
-      {
-        "id": "l03-06",
-        "lesson": 3,
-        "hanzi": "老师",
-        "pinyin": "lǎoshī",
-        "pinyinNum": "lao3 shi1",
-        "vi": "giáo viên",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "老",
-            "parts": [
-              "老"
-            ],
-            "mnemonic": "Người lớn tuổi — thầy, già."
-          },
-          {
-            "char": "师",
-            "parts": [
-              "刂",
-              "帀"
-            ],
-            "mnemonic": "Người dẫn lối — thầy, sư."
-          }
-        ],
-        "mnemonic": "Người già dẫn dắt — thầy, cô."
-      },
-      {
-        "id": "l03-07",
-        "lesson": 3,
-        "hanzi": "吗",
-        "pinyin": "ma",
-        "pinyinNum": "ma5",
-        "vi": "à? (tiểu từ nghi vấn)",
-        "pos": "trợ từ",
-        "decomps": [
-          {
-            "char": "吗",
-            "parts": [
-              "口",
-              "马"
-            ],
-            "mnemonic": "Miệng hỏi, đuôi như 'ngựa' — tiểu từ hỏi."
-          }
-        ],
-        "mnemonic": "Miệng hỏi, đuôi như 'ngựa' — tiểu từ hỏi."
-      },
-      {
-        "id": "l03-08",
-        "lesson": 3,
-        "hanzi": "学生",
-        "pinyin": "xuésheng",
-        "pinyinNum": "xue2 sheng5",
-        "vi": "học sinh",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "学",
-            "parts": [
-              "⺍",
-              "冖",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái — đang học."
-          },
-          {
-            "char": "生",
-            "parts": [
-              "生"
-            ],
-            "mnemonic": "Mầm cây mọc lên — sinh, học trò."
-          }
-        ],
-        "mnemonic": "Người đang học mà sinh ra tri thức."
-      },
-      {
-        "id": "l03-09",
-        "lesson": 3,
-        "hanzi": "人",
-        "pinyin": "rén",
-        "pinyinNum": "ren2",
-        "vi": "người",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "人",
-            "parts": [
-              "人"
-            ],
-            "mnemonic": "Hai nét như người đang bước."
-          }
-        ],
-        "mnemonic": "Hai nét như người đang bước."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s03-01",
-        "lesson": 3,
-        "hanzi": "我叫小明。你叫什么名字？",
-        "pinyin": "Wǒ jiào Xiǎo Míng. Nǐ jiào shénme míngzi?",
-        "pinyinNum": "wo3 jiao4 xiao3 ming2 ni3 jiao4 shen2 me5 ming2 zi5",
-        "vi": "Tôi tên Tiểu Minh. Bạn tên gì?"
-      },
-      {
-        "id": "s03-02",
-        "lesson": 3,
-        "hanzi": "我是学生。你是老师吗？",
-        "pinyin": "Wǒ shì xuésheng. Nǐ shì lǎoshī ma?",
-        "pinyinNum": "wo3 shi4 xue2 sheng5 ni3 shi4 lao3 shi1 ma5",
-        "vi": "Tôi là học sinh. Bạn là giáo viên phải không?"
-      },
-      {
-        "id": "s03-03",
-        "lesson": 3,
-        "hanzi": "他是什么人？",
-        "pinyin": "Tā shì shénme rén?",
-        "pinyinNum": "ta1 shi4 shen2 me5 ren2",
-        "vi": "Anh ấy là người như thế nào / là ai?"
-      }
-    ],
-    "lecture": {
-      "id": "gZrvRS91p-I",
-      "title": "Bài 3: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 6368,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3240,
-          "label": "Đoạn 3 — xem từ 36:00 đến 54:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 3240,
-          "end": 4320,
-          "label": "Đoạn 4 — xem từ 54:00 đến 1:12:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 4320,
-          "end": 5400,
-          "label": "Đoạn 5 — xem từ 1:12:00 đến 1:30:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 5400,
-          "end": 6368,
-          "label": "Đoạn 6 — xem từ 1:30:00 đến 1:46:08, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": null,
-    "days": 3
-  },
-  {
-    "id": 4,
-    "titleZh": "她是我的汉语老师",
-    "titleVi": "Cô ấy là giáo viên tiếng Hán của tôi",
-    "grammarNote": "的 nối sở hữu: 我的老师. 谁 hỏi 'ai', 哪 hỏi 'nào'. 呢 hỏi lại 'còn... thì sao?'.",
-    "words": [
-      {
-        "id": "l04-01",
-        "lesson": 4,
-        "hanzi": "她",
-        "pinyin": "tā",
-        "pinyinNum": "ta1",
-        "vi": "cô ấy",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "她",
-            "parts": [
-              "女",
-              "也"
-            ],
-            "mnemonic": "Bên nữ — cô ấy."
-          }
-        ],
-        "mnemonic": "Bên nữ — cô ấy."
-      },
-      {
-        "id": "l04-02",
-        "lesson": 4,
-        "hanzi": "谁",
-        "pinyin": "shéi",
-        "pinyinNum": "shei2",
-        "vi": "ai",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "谁",
-            "parts": [
-              "讠",
-              "隹"
-            ],
-            "mnemonic": "Lời hỏi về một người — ai?"
-          }
-        ],
-        "mnemonic": "Lời hỏi về một người — ai?"
-      },
-      {
-        "id": "l04-03",
-        "lesson": 4,
-        "hanzi": "的",
-        "pinyin": "de",
-        "pinyinNum": "de5",
-        "vi": "của (trợ từ)",
-        "pos": "trợ từ",
-        "decomps": [
-          {
-            "char": "的",
-            "parts": [
-              "白",
-              "勺"
-            ],
-            "mnemonic": "Muỗng trắng — trợ từ 'của'."
-          }
-        ],
-        "mnemonic": "Muỗng trắng — trợ từ 'của'."
-      },
-      {
-        "id": "l04-04",
-        "lesson": 4,
-        "hanzi": "汉语",
-        "pinyin": "Hànyǔ",
-        "pinyinNum": "Han4 yu3",
-        "vi": "tiếng Hán",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "汉",
-            "parts": [
-              "氵",
-              "又"
-            ],
-            "mnemonic": "Nước và 'lại' — dân Hán."
-          },
-          {
-            "char": "语",
-            "parts": [
-              "讠",
-              "吾"
-            ],
-            "mnemonic": "Lời của 'tôi' — ngôn ngữ."
-          }
-        ],
-        "mnemonic": "Lời của người Hán — tiếng Trung."
-      },
-      {
-        "id": "l04-05",
-        "lesson": 4,
-        "hanzi": "哪",
-        "pinyin": "nǎ",
-        "pinyinNum": "na3",
-        "vi": "nào",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "哪",
-            "parts": [
-              "口",
-              "那"
-            ],
-            "mnemonic": "Miệng hỏi 'cái nào / nước nào'."
-          }
-        ],
-        "mnemonic": "Miệng hỏi 'cái nào / nước nào'."
-      },
-      {
-        "id": "l04-06",
-        "lesson": 4,
-        "hanzi": "国",
-        "pinyin": "guó",
-        "pinyinNum": "guo2",
-        "vi": "nước, quốc gia",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "国",
-            "parts": [
-              "囗",
-              "玉"
-            ],
-            "mnemonic": "Viên ngọc trong khung — quốc gia."
-          }
-        ],
-        "mnemonic": "Viên ngọc trong khung — quốc gia."
-      },
-      {
-        "id": "l04-07",
-        "lesson": 4,
-        "hanzi": "呢",
-        "pinyin": "ne",
-        "pinyinNum": "ne5",
-        "vi": "còn... thì sao?",
-        "pos": "trợ từ",
-        "decomps": [
-          {
-            "char": "呢",
-            "parts": [
-              "口",
-              "尼"
-            ],
-            "mnemonic": "Miệng nhỏ ở cuối câu — còn thì sao?"
-          }
-        ],
-        "mnemonic": "Miệng nhỏ ở cuối câu — còn thì sao?"
-      },
-      {
-        "id": "l04-08",
-        "lesson": 4,
-        "hanzi": "他",
-        "pinyin": "tā",
-        "pinyinNum": "ta1",
-        "vi": "anh ấy",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "他",
-            "parts": [
-              "亻",
-              "也"
-            ],
-            "mnemonic": "Bên người — anh ấy."
-          }
-        ],
-        "mnemonic": "Bên người — anh ấy."
-      },
-      {
-        "id": "l04-09",
-        "lesson": 4,
-        "hanzi": "同学",
-        "pinyin": "tóngxué",
-        "pinyinNum": "tong2 xue2",
-        "vi": "bạn cùng lớp",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "同",
-            "parts": [
-              "同"
-            ],
-            "mnemonic": "Cùng một cửa — cùng, đồng."
-          },
-          {
-            "char": "学",
-            "parts": [
-              "⺍",
-              "冖",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái — đang học."
-          }
-        ],
-        "mnemonic": "Cùng học một thầy — bạn cùng lớp."
-      },
-      {
-        "id": "l04-10",
-        "lesson": 4,
-        "hanzi": "朋友",
-        "pinyin": "péngyou",
-        "pinyinNum": "peng2 you5",
-        "vi": "bạn bè",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "朋",
-            "parts": [
-              "月",
-              "月"
-            ],
-            "mnemonic": "Hai thân người đứng cạnh — bạn."
-          },
-          {
-            "char": "友",
-            "parts": [
-              "𠂇",
-              "又"
-            ],
-            "mnemonic": "Hai bàn tay nắm nhau — hữu."
-          }
-        ],
-        "mnemonic": "Hai người đứng cạnh, nắm tay — bạn."
-      },
-      {
-        "id": "l04-11",
-        "lesson": 4,
-        "hanzi": "中国",
-        "pinyin": "Zhōngguó",
-        "pinyinNum": "Zhong1 guo2",
-        "vi": "Trung Quốc",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "中",
-            "parts": [
-              "口",
-              "丨"
-            ],
-            "mnemonic": "Nét sổ xuyên giữa — trung, ở giữa."
-          },
-          {
-            "char": "国",
-            "parts": [
-              "囗",
-              "玉"
-            ],
-            "mnemonic": "Viên ngọc trong khung — quốc gia."
-          }
-        ],
-        "mnemonic": "Nước ở giữa — Trung Quốc."
-      },
-      {
-        "id": "l04-12",
-        "lesson": 4,
-        "hanzi": "北京",
-        "pinyin": "Běijīng",
-        "pinyinNum": "Bei3 jing1",
-        "vi": "Bắc Kinh",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "北",
-            "parts": [
-              "北"
-            ],
-            "mnemonic": "Hai người quay lưng — phương Bắc."
-          },
-          {
-            "char": "京",
-            "parts": [
-              "亠",
-              "口",
-              "小"
-            ],
-            "mnemonic": "Nóc nhà kinh thành — kinh đô."
-          }
-        ],
-        "mnemonic": "Kinh đô phương Bắc."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s04-01",
-        "lesson": 4,
-        "hanzi": "她是我的朋友。",
-        "pinyin": "Tā shì wǒ de péngyou.",
-        "pinyinNum": "ta1 shi4 wo3 de5 peng2 you5",
-        "vi": "Cô ấy là bạn của tôi."
-      },
-      {
-        "id": "s04-02",
-        "lesson": 4,
-        "hanzi": "他是哪国人？他是中国人。",
-        "pinyin": "Tā shì nǎ guó rén? Tā shì Zhōngguórén.",
-        "pinyinNum": "ta1 shi4 na3 guo2 ren2 ta1 shi4 zhong1 guo2 ren2",
-        "vi": "Anh ấy là người nước nào? Anh ấy là người Trung Quốc."
-      },
-      {
-        "id": "s04-03",
-        "lesson": 4,
-        "hanzi": "你的老师呢？",
-        "pinyin": "Nǐ de lǎoshī ne?",
-        "pinyinNum": "ni3 de5 lao3 shi1 ne5",
-        "vi": "Còn giáo viên của bạn thì sao?"
-      },
-      {
-        "id": "s04-04",
-        "lesson": 4,
-        "hanzi": "她是谁？她是我的同学。",
-        "pinyin": "Tā shì shéi? Tā shì wǒ de tóngxué.",
-        "pinyinNum": "ta1 shi4 shei2 ta1 shi4 wo3 de5 tong2 xue2",
-        "vi": "Cô ấy là ai? Cô ấy là bạn cùng lớp của tôi."
-      }
-    ],
-    "lecture": {
-      "id": "WNKzPU_W3bE",
-      "title": "Bài 4: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 4948,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3240,
-          "label": "Đoạn 3 — xem từ 36:00 đến 54:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 3240,
-          "end": 4320,
-          "label": "Đoạn 4 — xem từ 54:00 đến 1:12:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 4320,
-          "end": 4948,
-          "label": "Đoạn 5 — xem từ 1:12:00 đến 1:22:28, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": null,
-    "days": 3
-  },
-  {
-    "id": 5,
-    "titleZh": "她女儿今年二十岁",
-    "titleVi": "Con gái cô ấy năm nay 20 tuổi",
-    "grammarNote": "Có: 有. Hỏi tuổi: 几岁 / 多大. 了 ở cuối câu báo hiệu một tình huống mới. Học thuộc số 1–10.",
-    "words": [
-      {
-        "id": "l05-01",
-        "lesson": 5,
-        "hanzi": "家",
-        "pinyin": "jiā",
-        "pinyinNum": "jia1",
-        "vi": "nhà, gia đình",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "家",
-            "parts": [
-              "宀",
-              "豕"
-            ],
-            "mnemonic": "Heo dưới mái nhà — gia đình."
-          }
-        ],
-        "mnemonic": "Heo dưới mái nhà — gia đình."
-      },
-      {
-        "id": "l05-02",
-        "lesson": 5,
-        "hanzi": "有",
-        "pinyin": "yǒu",
-        "pinyinNum": "you3",
-        "vi": "có",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "有",
-            "parts": [
-              "𠂇",
-              "月"
-            ],
-            "mnemonic": "Tay nắm mặt trăng — có."
-          }
-        ],
-        "mnemonic": "Tay nắm mặt trăng — có."
-      },
-      {
-        "id": "l05-03",
-        "lesson": 5,
-        "hanzi": "口",
-        "pinyin": "kǒu",
-        "pinyinNum": "kou3",
-        "vi": "người (lượng từ gia đình)",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "口",
-            "parts": [
-              "口"
-            ],
-            "mnemonic": "Cái miệng, cái ô — cũng là lượng từ."
-          }
-        ],
-        "mnemonic": "Cái miệng, cái ô — cũng là lượng từ."
-      },
-      {
-        "id": "l05-04",
-        "lesson": 5,
-        "hanzi": "女儿",
-        "pinyin": "nǚ'ér",
-        "pinyinNum": "nü3 er2",
-        "vi": "con gái",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "女",
-            "parts": [
-              "女"
-            ],
-            "mnemonic": "Hình người nữ quỳ."
-          },
-          {
-            "char": "儿",
-            "parts": [
-              "儿"
-            ],
-            "mnemonic": "Hai nét chân trẻ thơ. (Âm er.)"
-          }
-        ],
-        "mnemonic": "Người nữ và trẻ thơ — con gái."
-      },
-      {
-        "id": "l05-05",
-        "lesson": 5,
-        "hanzi": "几",
-        "pinyin": "jǐ",
-        "pinyinNum": "ji3",
-        "vi": "mấy",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "几",
-            "parts": [
-              "几"
-            ],
-            "mnemonic": "Như cái ghế nhỏ — hỏi 'mấy'."
-          }
-        ],
-        "mnemonic": "Như cái ghế nhỏ — hỏi 'mấy'."
-      },
-      {
-        "id": "l05-06",
-        "lesson": 5,
-        "hanzi": "岁",
-        "pinyin": "suì",
-        "pinyinNum": "sui4",
-        "vi": "tuổi",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "岁",
-            "parts": [
-              "止",
-              "夕"
-            ],
-            "mnemonic": "Năm tháng chồng lên — tuổi."
-          }
-        ],
-        "mnemonic": "Năm tháng chồng lên — tuổi."
-      },
-      {
-        "id": "l05-07",
-        "lesson": 5,
-        "hanzi": "了",
-        "pinyin": "le",
-        "pinyinNum": "le5",
-        "vi": "rồi (trợ từ)",
-        "pos": "trợ từ",
-        "decomps": [
-          {
-            "char": "了",
-            "parts": [
-              "了"
-            ],
-            "mnemonic": "Nét móc hoàn thành — rồi."
-          }
-        ],
-        "mnemonic": "Nét móc hoàn thành — rồi."
-      },
-      {
-        "id": "l05-08",
-        "lesson": 5,
-        "hanzi": "今年",
-        "pinyin": "jīnnián",
-        "pinyinNum": "jin1 nian2",
-        "vi": "năm nay",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "今",
-            "parts": [
-              "人",
-              "丶"
-            ],
-            "mnemonic": "Người với nét chấm — hiện nay."
-          },
-          {
-            "char": "年",
-            "parts": [
-              "年"
-            ],
-            "mnemonic": "Lúa và cán — một vòng năm."
-          }
-        ],
-        "mnemonic": "Nay + năm — năm nay."
-      },
-      {
-        "id": "l05-09",
-        "lesson": 5,
-        "hanzi": "多",
-        "pinyin": "duō",
-        "pinyinNum": "duo1",
-        "vi": "nhiều; (hỏi) mức độ",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "多",
-            "parts": [
-              "夕",
-              "夕"
-            ],
-            "mnemonic": "Hai buổi tối — nhiều."
-          }
-        ],
-        "mnemonic": "Hai buổi tối — nhiều."
-      },
-      {
-        "id": "l05-10",
-        "lesson": 5,
-        "hanzi": "大",
-        "pinyin": "dà",
-        "pinyinNum": "da4",
-        "vi": "lớn; (tuổi) bao nhiêu",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "大",
-            "parts": [
-              "大"
-            ],
-            "mnemonic": "Người dang rộng tay — lớn."
-          }
-        ],
-        "mnemonic": "Người dang rộng tay — lớn."
-      },
-      {
-        "id": "l05-11",
-        "lesson": 5,
-        "hanzi": "一",
-        "pinyin": "yī",
-        "pinyinNum": "yi1",
-        "vi": "một",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "一",
-            "parts": [
-              "一"
-            ],
-            "mnemonic": "Một nét ngang, ấy là số một."
-          }
-        ],
-        "mnemonic": "Một nét ngang, ấy là số một."
-      },
-      {
-        "id": "l05-12",
-        "lesson": 5,
-        "hanzi": "二",
-        "pinyin": "èr",
-        "pinyinNum": "er4",
-        "vi": "hai",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "二",
-            "parts": [
-              "一",
-              "一"
-            ],
-            "mnemonic": "Hai nét ngang chồng nhau — số hai."
-          }
-        ],
-        "mnemonic": "Hai nét ngang chồng nhau — số hai."
-      },
-      {
-        "id": "l05-13",
-        "lesson": 5,
-        "hanzi": "三",
-        "pinyin": "sān",
-        "pinyinNum": "san1",
-        "vi": "ba",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "三",
-            "parts": [
-              "一",
-              "一",
-              "一"
-            ],
-            "mnemonic": "Ba nét ngang — số ba."
-          }
-        ],
-        "mnemonic": "Ba nét ngang — số ba."
-      },
-      {
-        "id": "l05-14",
-        "lesson": 5,
-        "hanzi": "四",
-        "pinyin": "sì",
-        "pinyinNum": "si4",
-        "vi": "bốn",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "四",
-            "parts": [
-              "囗",
-              "儿"
-            ],
-            "mnemonic": "Khung vuông chứa chân người — bốn phía."
-          }
-        ],
-        "mnemonic": "Khung vuông chứa chân người — bốn phía."
-      },
-      {
-        "id": "l05-15",
-        "lesson": 5,
-        "hanzi": "五",
-        "pinyin": "wǔ",
-        "pinyinNum": "wu3",
-        "vi": "năm",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "五",
-            "parts": [
-              "五"
-            ],
-            "mnemonic": "Nét ngang-sổ gãy, nhớ hình số năm."
-          }
-        ],
-        "mnemonic": "Nét ngang-sổ gãy, nhớ hình số năm."
-      },
-      {
-        "id": "l05-16",
-        "lesson": 5,
-        "hanzi": "六",
-        "pinyin": "liù",
-        "pinyinNum": "liu4",
-        "vi": "sáu",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "六",
-            "parts": [
-              "六"
-            ],
-            "mnemonic": "Nóc nhà với hai chấm — sáu."
-          }
-        ],
-        "mnemonic": "Nóc nhà với hai chấm — sáu."
-      },
-      {
-        "id": "l05-17",
-        "lesson": 5,
-        "hanzi": "七",
-        "pinyin": "qī",
-        "pinyinNum": "qi1",
-        "vi": "bảy",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "七",
-            "parts": [
-              "七"
-            ],
-            "mnemonic": "Nét ngang rồi móc — bảy."
-          }
-        ],
-        "mnemonic": "Nét ngang rồi móc — bảy."
-      },
-      {
-        "id": "l05-18",
-        "lesson": 5,
-        "hanzi": "八",
-        "pinyin": "bā",
-        "pinyinNum": "ba1",
-        "vi": "tám",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "八",
-            "parts": [
-              "八"
-            ],
-            "mnemonic": "Hai nét tách ra hai bên — tám."
-          }
-        ],
-        "mnemonic": "Hai nét tách ra hai bên — tám."
-      },
-      {
-        "id": "l05-19",
-        "lesson": 5,
-        "hanzi": "九",
-        "pinyin": "jiǔ",
-        "pinyinNum": "jiu3",
-        "vi": "chín",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "九",
-            "parts": [
-              "九"
-            ],
-            "mnemonic": "Nét phẩy rồi móc cong — chín."
-          }
-        ],
-        "mnemonic": "Nét phẩy rồi móc cong — chín."
-      },
-      {
-        "id": "l05-20",
-        "lesson": 5,
-        "hanzi": "十",
-        "pinyin": "shí",
-        "pinyinNum": "shi2",
-        "vi": "mười",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "十",
-            "parts": [
-              "一",
-              "丨"
-            ],
-            "mnemonic": "Ngang rồi sổ, đủ mười."
-          }
-        ],
-        "mnemonic": "Ngang rồi sổ, đủ mười."
-      },
-      {
-        "id": "l05-21",
-        "lesson": 5,
-        "hanzi": "零",
-        "pinyin": "líng",
-        "pinyinNum": "ling2",
-        "vi": "không (số 0)",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "零",
-            "parts": [
-              "雨",
-              "令"
-            ],
-            "mnemonic": "Mưa ra lệnh — số không, lẻ."
-          }
-        ],
-        "mnemonic": "Mưa ra lệnh — số không, lẻ."
-      },
-      {
-        "id": "l05-22",
-        "lesson": 5,
-        "hanzi": "百",
-        "pinyin": "bǎi",
-        "pinyinNum": "bai3",
-        "vi": "trăm",
-        "pos": "num.",
-        "decomps": [
-          {
-            "char": "百",
-            "parts": [
-              "一",
-              "白"
-            ],
-            "mnemonic": "Một và trắng — một trăm."
-          }
-        ],
-        "mnemonic": "Một và trắng — một trăm."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s05-01",
-        "lesson": 5,
-        "hanzi": "我家有三口人。",
-        "pinyin": "Wǒ jiā yǒu sān kǒu rén.",
-        "pinyinNum": "wo3 jia1 you3 san1 kou3 ren2",
-        "vi": "Nhà tôi có ba người."
-      },
-      {
-        "id": "s05-02",
-        "lesson": 5,
-        "hanzi": "她女儿今年五岁。",
-        "pinyin": "Tā nǚ'ér jīnnián wǔ suì.",
-        "pinyinNum": "ta1 nü3 er2 jin1 nian2 wu3 sui4",
-        "vi": "Con gái cô ấy năm nay năm tuổi."
-      },
-      {
-        "id": "s05-03",
-        "lesson": 5,
-        "hanzi": "你今年多大？我二十岁了。",
-        "pinyin": "Nǐ jīnnián duō dà? Wǒ èrshí suì le.",
-        "pinyinNum": "ni3 jin1 nian2 duo1 da4 wo3 er4 shi2 sui4 le5",
-        "vi": "Năm nay bạn bao nhiêu tuổi? Tôi hai mươi tuổi rồi."
-      }
-    ],
-    "lecture": {
-      "id": "f8DFvv7FiDs",
-      "title": "Bài 5: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 3863,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3240,
-          "label": "Đoạn 3 — xem từ 36:00 đến 54:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 3240,
-          "end": 3863,
-          "label": "Đoạn 4 — xem từ 54:00 đến 1:04:23, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": null,
-    "days": 3
-  },
-  {
-    "id": 6,
-    "titleZh": "我会说汉语",
-    "titleVi": "Tôi biết nói tiếng Hán",
-    "grammarNote": "会 = biết làm một kỹ năng. 怎么 hỏi cách. 很 đứng trước tính từ (很好吃), không cần 'là'.",
-    "words": [
-      {
-        "id": "l06-01",
-        "lesson": 6,
-        "hanzi": "会",
-        "pinyin": "huì",
-        "pinyinNum": "hui4",
-        "vi": "biết (làm được)",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "会",
-            "parts": [
-              "人",
-              "云"
-            ],
-            "mnemonic": "Người họp dưới mây — biết, sẽ."
-          }
-        ],
-        "mnemonic": "Người họp dưới mây — biết, sẽ."
-      },
-      {
-        "id": "l06-02",
-        "lesson": 6,
-        "hanzi": "说",
-        "pinyin": "shuō",
-        "pinyinNum": "shuo1",
-        "vi": "nói",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "说",
-            "parts": [
-              "讠",
-              "兑"
-            ],
-            "mnemonic": "Lời đổi ra miệng — nói."
-          }
-        ],
-        "mnemonic": "Lời đổi ra miệng — nói."
-      },
-      {
-        "id": "l06-03",
-        "lesson": 6,
-        "hanzi": "妈妈",
-        "pinyin": "māma",
-        "pinyinNum": "ma1 ma5",
-        "vi": "mẹ",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "妈",
-            "parts": [
-              "女",
-              "马"
-            ],
-            "mnemonic": "Người nữ bên chữ ngựa — mẹ."
-          },
-          {
-            "char": "妈",
-            "parts": [
-              "女",
-              "马"
-            ],
-            "mnemonic": "Người nữ bên chữ ngựa — mẹ."
-          }
-        ],
-        "mnemonic": "Hai lần gọi mẹ."
-      },
-      {
-        "id": "l06-04",
-        "lesson": 6,
-        "hanzi": "菜",
-        "pinyin": "cài",
-        "pinyinNum": "cai4",
-        "vi": "món ăn, rau",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "菜",
-            "parts": [
-              "艹",
-              "采"
-            ],
-            "mnemonic": "Cỏ được hái về — rau, món ăn."
-          }
-        ],
-        "mnemonic": "Cỏ được hái về — rau, món ăn."
-      },
-      {
-        "id": "l06-05",
-        "lesson": 6,
-        "hanzi": "很",
-        "pinyin": "hěn",
-        "pinyinNum": "hen3",
-        "vi": "rất",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "很",
-            "parts": [
-              "彳",
-              "艮"
-            ],
-            "mnemonic": "Bước rất chắc — rất."
-          }
-        ],
-        "mnemonic": "Bước rất chắc — rất."
-      },
-      {
-        "id": "l06-06",
-        "lesson": 6,
-        "hanzi": "好吃",
-        "pinyin": "hǎochī",
-        "pinyinNum": "hao3 chi1",
-        "vi": "ngon",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "好",
-            "parts": [
-              "女",
-              "子"
-            ],
-            "mnemonic": "Có mẹ có con — điều tốt đẹp."
-          },
-          {
-            "char": "吃",
-            "parts": [
-              "口",
-              "乞"
-            ],
-            "mnemonic": "Miệng xin ăn."
-          }
-        ],
-        "mnemonic": "Tốt để ăn — ngon."
-      },
-      {
-        "id": "l06-07",
-        "lesson": 6,
-        "hanzi": "做",
-        "pinyin": "zuò",
-        "pinyinNum": "zuo4",
-        "vi": "làm, nấu",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "做",
-            "parts": [
-              "亻",
-              "故"
-            ],
-            "mnemonic": "Người làm việc — làm, nấu."
-          }
-        ],
-        "mnemonic": "Người làm việc — làm, nấu."
-      },
-      {
-        "id": "l06-08",
-        "lesson": 6,
-        "hanzi": "写",
-        "pinyin": "xiě",
-        "pinyinNum": "xie3",
-        "vi": "viết",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "写",
-            "parts": [
-              "冖",
-              "与"
-            ],
-            "mnemonic": "Dưới mái, viết ra."
-          }
-        ],
-        "mnemonic": "Dưới mái, viết ra."
-      },
-      {
-        "id": "l06-09",
-        "lesson": 6,
-        "hanzi": "汉字",
-        "pinyin": "Hànzì",
-        "pinyinNum": "Han4 zi4",
-        "vi": "chữ Hán",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "汉",
-            "parts": [
-              "氵",
-              "又"
-            ],
-            "mnemonic": "Nước và 'lại' — dân Hán."
-          },
-          {
-            "char": "字",
-            "parts": [
-              "宀",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái nhà — chữ viết."
-          }
-        ],
-        "mnemonic": "Chữ của người Hán."
-      },
-      {
-        "id": "l06-10",
-        "lesson": 6,
-        "hanzi": "字",
-        "pinyin": "zì",
-        "pinyinNum": "zi4",
-        "vi": "chữ",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "字",
-            "parts": [
-              "宀",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái nhà — chữ viết."
-          }
-        ],
-        "mnemonic": "Đứa trẻ dưới mái nhà — chữ viết."
-      },
-      {
-        "id": "l06-11",
-        "lesson": 6,
-        "hanzi": "怎么",
-        "pinyin": "zěnme",
-        "pinyinNum": "zen3 me5",
-        "vi": "thế nào",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "怎",
-            "parts": [
-              "乍",
-              "心"
-            ],
-            "mnemonic": "Lòng bối rối hỏi 'thế nào?'."
-          },
-          {
-            "char": "么",
-            "parts": [
-              "丿",
-              "厶"
-            ],
-            "mnemonic": "Âm nhẹ, hay đi cùng 什, 那, 怎."
-          }
-        ],
-        "mnemonic": "Hỏi cách thức — làm sao, thế nào?"
-      },
-      {
-        "id": "l06-12",
-        "lesson": 6,
-        "hanzi": "读",
-        "pinyin": "dú",
-        "pinyinNum": "du2",
-        "vi": "đọc",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "读",
-            "parts": [
-              "讠",
-              "卖"
-            ],
-            "mnemonic": "Lời bán ra thành tiếng — đọc."
-          }
-        ],
-        "mnemonic": "Lời bán ra thành tiếng — đọc."
-      },
-      {
-        "id": "l06-13",
-        "lesson": 6,
-        "hanzi": "说话",
-        "pinyin": "shuōhuà",
-        "pinyinNum": "shuo1 hua4",
-        "vi": "nói chuyện",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "说",
-            "parts": [
-              "讠",
-              "兑"
-            ],
-            "mnemonic": "Lời đổi ra miệng — nói."
-          },
-          {
-            "char": "话",
-            "parts": [
-              "讠",
-              "舌"
-            ],
-            "mnemonic": "Lời và lưỡi — câu nói."
-          }
-        ],
-        "mnemonic": "Nói lời — nói chuyện."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s06-01",
-        "lesson": 6,
-        "hanzi": "我会说汉语。",
-        "pinyin": "Wǒ huì shuō Hànyǔ.",
-        "pinyinNum": "wo3 hui4 shuo1 han4 yu3",
-        "vi": "Tôi biết nói tiếng Hán."
-      },
-      {
-        "id": "s06-02",
-        "lesson": 6,
-        "hanzi": "妈妈做的菜很好吃。",
-        "pinyin": "Māma zuò de cài hěn hǎochī.",
-        "pinyinNum": "ma1 ma5 zuo4 de5 cai4 hen3 hao3 chi1",
-        "vi": "Món mẹ nấu rất ngon."
-      },
-      {
-        "id": "s06-03",
-        "lesson": 6,
-        "hanzi": "这个字怎么读？你会写吗？",
-        "pinyin": "Zhège zì zěnme dú? Nǐ huì xiě ma?",
-        "pinyinNum": "zhe4 ge5 zi4 zen3 me5 du2 ni3 hui4 xie3 ma5",
-        "vi": "Chữ này đọc thế nào? Bạn viết được không?"
-      }
-    ],
-    "lecture": {
-      "id": "lDq6edF4Ovk",
-      "title": "Bài 6: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 2761,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 2761,
-          "label": "Đoạn 3 — xem từ 36:00 đến 46:01, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "iII2DRT8g9Y",
-      "title": "Bài 6: Sách bài tập — Thành Luân",
-      "duration": 1085,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1085,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 7,
-    "titleZh": "今天几号",
-    "titleVi": "Hôm nay ngày mấy?",
-    "grammarNote": "Ngày tháng: X 月 X 号. Thứ: 星期 + số (星期一…星期日). 去 + nơi chốn.",
-    "words": [
-      {
-        "id": "l07-01",
-        "lesson": 7,
-        "hanzi": "请",
-        "pinyin": "qǐng",
-        "pinyinNum": "qing3",
-        "vi": "mời, xin",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "请",
-            "parts": [
-              "讠",
-              "青"
-            ],
-            "mnemonic": "Lời lịch sự, màu xanh — mời, xin."
-          }
-        ],
-        "mnemonic": "Lời lịch sự, màu xanh — mời, xin."
-      },
-      {
-        "id": "l07-02",
-        "lesson": 7,
-        "hanzi": "问",
-        "pinyin": "wèn",
-        "pinyinNum": "wen4",
-        "vi": "hỏi",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "问",
-            "parts": [
-              "门",
-              "口"
-            ],
-            "mnemonic": "Miệng đứng ở cửa — hỏi."
-          }
-        ],
-        "mnemonic": "Miệng đứng ở cửa — hỏi."
-      },
-      {
-        "id": "l07-03",
-        "lesson": 7,
-        "hanzi": "今天",
-        "pinyin": "jīntiān",
-        "pinyinNum": "jin1 tian1",
-        "vi": "hôm nay",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "今",
-            "parts": [
-              "人",
-              "丶"
-            ],
-            "mnemonic": "Người với nét chấm — hiện nay."
-          },
-          {
-            "char": "天",
-            "parts": [
-              "一",
-              "大"
-            ],
-            "mnemonic": "Lớn thêm một nét trên đầu — trời."
-          }
-        ],
-        "mnemonic": "Nay + trời — hôm nay."
-      },
-      {
-        "id": "l07-04",
-        "lesson": 7,
-        "hanzi": "号",
-        "pinyin": "hào",
-        "pinyinNum": "hao4",
-        "vi": "ngày (trong tháng)",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "号",
-            "parts": [
-              "口",
-              "丂"
-            ],
-            "mnemonic": "Miệng hô lên một số — ngày, số."
-          }
-        ],
-        "mnemonic": "Miệng hô lên một số — ngày, số."
-      },
-      {
-        "id": "l07-05",
-        "lesson": 7,
-        "hanzi": "月",
-        "pinyin": "yuè",
-        "pinyinNum": "yue4",
-        "vi": "tháng",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "月",
-            "parts": [
-              "月"
-            ],
-            "mnemonic": "Mặt trăng khuyết — tháng."
-          }
-        ],
-        "mnemonic": "Mặt trăng khuyết — tháng."
-      },
-      {
-        "id": "l07-06",
-        "lesson": 7,
-        "hanzi": "星期",
-        "pinyin": "xīngqī",
-        "pinyinNum": "xing1 qi1",
-        "vi": "tuần",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "星",
-            "parts": [
-              "日",
-              "生"
-            ],
-            "mnemonic": "Sao sinh từ ánh mặt trời."
-          },
-          {
-            "char": "期",
-            "parts": [
-              "其",
-              "月"
-            ],
-            "mnemonic": "Kỳ hạn theo tháng — tuần, kỳ."
-          }
-        ],
-        "mnemonic": "Sao và kỳ — một tuần."
-      },
-      {
-        "id": "l07-07",
-        "lesson": 7,
-        "hanzi": "昨天",
-        "pinyin": "zuótiān",
-        "pinyinNum": "zuo2 tian1",
-        "vi": "hôm qua",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "昨",
-            "parts": [
-              "日",
-              "乍"
-            ],
-            "mnemonic": "Ngày vừa xảy ra — hôm qua."
-          },
-          {
-            "char": "天",
-            "parts": [
-              "一",
-              "大"
-            ],
-            "mnemonic": "Lớn thêm một nét trên đầu — trời."
-          }
-        ],
-        "mnemonic": "Ngày vừa xảy ra + trời — hôm qua."
-      },
-      {
-        "id": "l07-08",
-        "lesson": 7,
-        "hanzi": "明天",
-        "pinyin": "míngtiān",
-        "pinyinNum": "ming2 tian1",
-        "vi": "ngày mai",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "明",
-            "parts": [
-              "日",
-              "月"
-            ],
-            "mnemonic": "Mặt trời và trăng — sáng, ngày mai."
-          },
-          {
-            "char": "天",
-            "parts": [
-              "一",
-              "大"
-            ],
-            "mnemonic": "Lớn thêm một nét trên đầu — trời."
-          }
-        ],
-        "mnemonic": "Sáng + trời — ngày mai."
-      },
-      {
-        "id": "l07-09",
-        "lesson": 7,
-        "hanzi": "去",
-        "pinyin": "qù",
-        "pinyinNum": "qu4",
-        "vi": "đi",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "去",
-            "parts": [
-              "土",
-              "厶"
-            ],
-            "mnemonic": "Rời khỏi đất — đi."
-          }
-        ],
-        "mnemonic": "Rời khỏi đất — đi."
-      },
-      {
-        "id": "l07-10",
-        "lesson": 7,
-        "hanzi": "学校",
-        "pinyin": "xuéxiào",
-        "pinyinNum": "xue2 xiao4",
-        "vi": "trường học",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "学",
-            "parts": [
-              "⺍",
-              "冖",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái — đang học."
-          },
-          {
-            "char": "校",
-            "parts": [
-              "木",
-              "交"
-            ],
-            "mnemonic": "Cây giao nhau — trường."
-          }
-        ],
-        "mnemonic": "Nơi học dưới mái gỗ — trường."
-      },
-      {
-        "id": "l07-11",
-        "lesson": 7,
-        "hanzi": "看",
-        "pinyin": "kàn",
-        "pinyinNum": "kan4",
-        "vi": "xem, nhìn",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "看",
-            "parts": [
-              "手",
-              "目"
-            ],
-            "mnemonic": "Tay che mắt để nhìn."
-          }
-        ],
-        "mnemonic": "Tay che mắt để nhìn."
-      },
-      {
-        "id": "l07-12",
-        "lesson": 7,
-        "hanzi": "书",
-        "pinyin": "shū",
-        "pinyinNum": "shu1",
-        "vi": "sách",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "书",
-            "parts": [
-              "书"
-            ],
-            "mnemonic": "Nét như cuốn sách đang mở."
-          }
-        ],
-        "mnemonic": "Nét như cuốn sách đang mở."
-      },
-      {
-        "id": "l07-13",
-        "lesson": 7,
-        "hanzi": "日",
-        "pinyin": "rì",
-        "pinyinNum": "ri4",
-        "vi": "ngày; nhật",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "日",
-            "parts": [
-              "日"
-            ],
-            "mnemonic": "Mặt trời vuông, có một nét giữa — ngày."
-          }
-        ],
-        "mnemonic": "Mặt trời vuông, có một nét giữa — ngày."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s07-01",
-        "lesson": 7,
-        "hanzi": "请问，今天几号？",
-        "pinyin": "Qǐng wèn, jīntiān jǐ hào?",
-        "pinyinNum": "qing3 wen4 jin1 tian1 ji3 hao4",
-        "vi": "Xin hỏi, hôm nay ngày mấy?"
-      },
-      {
-        "id": "s07-02",
-        "lesson": 7,
-        "hanzi": "今天是三月八号，星期一。",
-        "pinyin": "Jīntiān shì sān yuè bā hào, xīngqīyī.",
-        "pinyinNum": "jin1 tian1 shi4 san1 yue4 ba1 hao4 xing1 qi1 yi1",
-        "vi": "Hôm nay là ngày 8 tháng 3, thứ Hai."
-      },
-      {
-        "id": "s07-03",
-        "lesson": 7,
-        "hanzi": "明天我去学校看书。",
-        "pinyin": "Míngtiān wǒ qù xuéxiào kàn shū.",
-        "pinyinNum": "ming2 tian1 wo3 qu4 xue2 xiao4 kan4 shu1",
-        "vi": "Ngày mai tôi đến trường đọc sách."
-      },
-      {
-        "id": "s07-04",
-        "lesson": 7,
-        "hanzi": "昨天我去学校了。",
-        "pinyin": "Zuótiān wǒ qù xuéxiào le.",
-        "pinyinNum": "zuo2 tian1 wo3 qu4 xue2 xiao4 le5",
-        "vi": "Hôm qua tôi đã đến trường."
-      }
-    ],
-    "lecture": {
-      "id": "MDNnjsSX0DU",
-      "title": "Bài 7: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 2952,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 2952,
-          "label": "Đoạn 3 — xem từ 36:00 đến 49:12, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "l-E9cvlXI8g",
-      "title": "Bài 7: Sách bài tập — Thành Luân",
-      "duration": 1158,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1158,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 8,
-    "titleZh": "我想喝茶",
-    "titleVi": "Tôi muốn uống trà",
-    "grammarNote": "想 = muốn. Hỏi giá: 多少钱. Lượng từ: 个 cho đồ vật, 块 cho tiền.",
-    "words": [
-      {
-        "id": "l08-01",
-        "lesson": 8,
-        "hanzi": "想",
-        "pinyin": "xiǎng",
-        "pinyinNum": "xiang3",
-        "vi": "muốn, nghĩ",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "想",
-            "parts": [
-              "相",
-              "心"
-            ],
-            "mnemonic": "Nhìn nhau trong lòng — muốn, nghĩ."
-          }
-        ],
-        "mnemonic": "Nhìn nhau trong lòng — muốn, nghĩ."
-      },
-      {
-        "id": "l08-02",
-        "lesson": 8,
-        "hanzi": "喝",
-        "pinyin": "hē",
-        "pinyinNum": "he1",
-        "vi": "uống",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "喝",
-            "parts": [
-              "口",
-              "曷"
-            ],
-            "mnemonic": "Miệng khát — uống."
-          }
-        ],
-        "mnemonic": "Miệng khát — uống."
-      },
-      {
-        "id": "l08-03",
-        "lesson": 8,
-        "hanzi": "茶",
-        "pinyin": "chá",
-        "pinyinNum": "cha2",
-        "vi": "trà",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "茶",
-            "parts": [
-              "艹",
-              "人",
-              "木"
-            ],
-            "mnemonic": "Cỏ, người, cây — tách trà."
-          }
-        ],
-        "mnemonic": "Cỏ, người, cây — tách trà."
-      },
-      {
-        "id": "l08-04",
-        "lesson": 8,
-        "hanzi": "吃",
-        "pinyin": "chī",
-        "pinyinNum": "chi1",
-        "vi": "ăn",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "吃",
-            "parts": [
-              "口",
-              "乞"
-            ],
-            "mnemonic": "Miệng xin ăn."
-          }
-        ],
-        "mnemonic": "Miệng xin ăn."
-      },
-      {
-        "id": "l08-05",
-        "lesson": 8,
-        "hanzi": "米饭",
-        "pinyin": "mǐfàn",
-        "pinyinNum": "mi3 fan4",
-        "vi": "cơm",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "米",
-            "parts": [
-              "米"
-            ],
-            "mnemonic": "Hạt lúa tách ra — gạo."
-          },
-          {
-            "char": "饭",
-            "parts": [
-              "饣",
-              "反"
-            ],
-            "mnemonic": "Thức ăn quay về mâm — cơm."
-          }
-        ],
-        "mnemonic": "Gạo thành cơm."
-      },
-      {
-        "id": "l08-06",
-        "lesson": 8,
-        "hanzi": "下午",
-        "pinyin": "xiàwǔ",
-        "pinyinNum": "xia4 wu3",
-        "vi": "buổi chiều",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "下",
-            "parts": [
-              "下"
-            ],
-            "mnemonic": "Ngược với 'trên' — dưới, xuống."
-          },
-          {
-            "char": "午",
-            "parts": [
-              "午"
-            ],
-            "mnemonic": "Giữa ngày — giờ Ngọ, buổi trưa."
-          }
-        ],
-        "mnemonic": "Buổi dưới giờ Ngọ — chiều."
-      },
-      {
-        "id": "l08-07",
-        "lesson": 8,
-        "hanzi": "商店",
-        "pinyin": "shāngdiàn",
-        "pinyinNum": "shang1 dian4",
-        "vi": "cửa hàng",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "商",
-            "parts": [
-              "商"
-            ],
-            "mnemonic": "Miệng dưới mái — buôn bán."
-          },
-          {
-            "char": "店",
-            "parts": [
-              "广",
-              "占"
-            ],
-            "mnemonic": "Mái rộng chiếm chỗ — cửa hàng."
-          }
-        ],
-        "mnemonic": "Cửa hàng buôn bán."
-      },
-      {
-        "id": "l08-08",
-        "lesson": 8,
-        "hanzi": "买",
-        "pinyin": "mǎi",
-        "pinyinNum": "mai3",
-        "vi": "mua",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "买",
-            "parts": [
-              "买"
-            ],
-            "mnemonic": "Chữ đơn giản của 'mua' — nhớ nét móc."
-          }
-        ],
-        "mnemonic": "Chữ đơn giản của 'mua' — nhớ nét móc."
-      },
-      {
-        "id": "l08-09",
-        "lesson": 8,
-        "hanzi": "个",
-        "pinyin": "gè",
-        "pinyinNum": "ge4",
-        "vi": "cái (lượng từ)",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "个",
-            "parts": [
-              "人",
-              "丨"
-            ],
-            "mnemonic": "Người thêm một nét sổ — cái, lượng từ."
-          }
-        ],
-        "mnemonic": "Người thêm một nét sổ — cái, lượng từ."
-      },
-      {
-        "id": "l08-10",
-        "lesson": 8,
-        "hanzi": "杯子",
-        "pinyin": "bēizi",
-        "pinyinNum": "bei1 zi5",
-        "vi": "cốc, ly",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "杯",
-            "parts": [
-              "木",
-              "不"
-            ],
-            "mnemonic": "Gỗ + 'không' — cái cốc."
-          },
-          {
-            "char": "子",
-            "parts": [
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ bọc tã — con, hậu tố."
-          }
-        ],
-        "mnemonic": "Cái cốc."
-      },
-      {
-        "id": "l08-11",
-        "lesson": 8,
-        "hanzi": "这",
-        "pinyin": "zhè",
-        "pinyinNum": "zhe4",
-        "vi": "này",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "这",
-            "parts": [
-              "辶",
-              "文"
-            ],
-            "mnemonic": "Bước tới chữ này — đây."
-          }
-        ],
-        "mnemonic": "Bước tới chữ này — đây."
-      },
-      {
-        "id": "l08-12",
-        "lesson": 8,
-        "hanzi": "多少",
-        "pinyin": "duōshao",
-        "pinyinNum": "duo1 shao5",
-        "vi": "bao nhiêu",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "多",
-            "parts": [
-              "夕",
-              "夕"
-            ],
-            "mnemonic": "Hai buổi tối — nhiều."
-          },
-          {
-            "char": "少",
-            "parts": [
-              "小",
-              "丿"
-            ],
-            "mnemonic": "Nhỏ thêm một phẩy — ít."
-          }
-        ],
-        "mnemonic": "Nhiều hay ít — bao nhiêu?"
-      },
-      {
-        "id": "l08-13",
-        "lesson": 8,
-        "hanzi": "钱",
-        "pinyin": "qián",
-        "pinyinNum": "qian2",
-        "vi": "tiền",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "钱",
-            "parts": [
-              "钅",
-              "戋"
-            ],
-            "mnemonic": "Kim loại nhỏ — tiền."
-          }
-        ],
-        "mnemonic": "Kim loại nhỏ — tiền."
-      },
-      {
-        "id": "l08-14",
-        "lesson": 8,
-        "hanzi": "块",
-        "pinyin": "kuài",
-        "pinyinNum": "kuai4",
-        "vi": "tệ (đơn vị tiền)",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "块",
-            "parts": [
-              "土",
-              "夬"
-            ],
-            "mnemonic": "Miếng đất — khối, tệ."
-          }
-        ],
-        "mnemonic": "Miếng đất — khối, tệ."
-      },
-      {
-        "id": "l08-15",
-        "lesson": 8,
-        "hanzi": "那",
-        "pinyin": "nà",
-        "pinyinNum": "na4",
-        "vi": "kia, đó",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "那",
-            "parts": [
-              "阝",
-              "冄"
-            ],
-            "mnemonic": "Bên kia dãy núi — kia, đó."
-          }
-        ],
-        "mnemonic": "Bên kia dãy núi — kia, đó."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s08-01",
-        "lesson": 8,
-        "hanzi": "我想喝茶。",
-        "pinyin": "Wǒ xiǎng hē chá.",
-        "pinyinNum": "wo3 xiang3 he1 cha2",
-        "vi": "Tôi muốn uống trà."
-      },
-      {
-        "id": "s08-02",
-        "lesson": 8,
-        "hanzi": "这个杯子多少钱？三块。",
-        "pinyin": "Zhège bēizi duōshao qián? Sān kuài.",
-        "pinyinNum": "zhe4 ge5 bei1 zi5 duo1 shao5 qian2 san1 kuai4",
-        "vi": "Cái cốc này bao nhiêu tiền? Ba tệ."
-      },
-      {
-        "id": "s08-03",
-        "lesson": 8,
-        "hanzi": "下午我去商店买米饭。",
-        "pinyin": "Xiàwǔ wǒ qù shāngdiàn mǎi mǐfàn.",
-        "pinyinNum": "xia4 wu3 wo3 qu4 shang1 dian4 mai3 mi3 fan4",
-        "vi": "Chiều tôi đến cửa hàng mua cơm."
-      },
-      {
-        "id": "s08-04",
-        "lesson": 8,
-        "hanzi": "那个人想吃米饭。",
-        "pinyin": "Nàge rén xiǎng chī mǐfàn.",
-        "pinyinNum": "na4 ge5 ren2 xiang3 chi1 mi3 fan4",
-        "vi": "Người kia muốn ăn cơm."
-      }
-    ],
-    "lecture": {
-      "id": "9OQI2UK-qX0",
-      "title": "Bài 8: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 3597,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3597,
-          "label": "Đoạn 3 — xem từ 36:00 đến 59:57, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "jTq11HQBBy4",
-      "title": "Bài 8: Sách bài tập — Thành Luân",
-      "duration": 967,
-      "segments": [
-        {
-          "start": 0,
-          "end": 967,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 9,
-    "titleZh": "你儿子在哪儿工作",
-    "titleVi": "Con trai bạn làm việc ở đâu?",
-    "grammarNote": "在 chỉ vị trí hoặc 'đang'. 哪儿 hỏi nơi chốn. 工作 vừa là động từ vừa là danh từ.",
-    "words": [
-      {
-        "id": "l09-01",
-        "lesson": 9,
-        "hanzi": "小",
-        "pinyin": "xiǎo",
-        "pinyinNum": "xiao3",
-        "vi": "nhỏ",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "小",
-            "parts": [
-              "小"
-            ],
-            "mnemonic": "Ba nét nhỏ họp lại — bé."
-          }
-        ],
-        "mnemonic": "Ba nét nhỏ họp lại — bé."
-      },
-      {
-        "id": "l09-02",
-        "lesson": 9,
-        "hanzi": "猫",
-        "pinyin": "māo",
-        "pinyinNum": "mao1",
-        "vi": "mèo",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "猫",
-            "parts": [
-              "犭",
-              "苗"
-            ],
-            "mnemonic": "Thú và mầm cây — mèo."
-          }
-        ],
-        "mnemonic": "Thú và mầm cây — mèo."
-      },
-      {
-        "id": "l09-03",
-        "lesson": 9,
-        "hanzi": "在",
-        "pinyin": "zài",
-        "pinyinNum": "zai4",
-        "vi": "ở, đang",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "在",
-            "parts": [
-              "𠂇",
-              "土"
-            ],
-            "mnemonic": "Tay trên đất — đang ở."
-          }
-        ],
-        "mnemonic": "Tay trên đất — đang ở."
-      },
-      {
-        "id": "l09-04",
-        "lesson": 9,
-        "hanzi": "那儿",
-        "pinyin": "nàr",
-        "pinyinNum": "nar4",
-        "vi": "chỗ đó",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "那",
-            "parts": [
-              "阝",
-              "冄"
-            ],
-            "mnemonic": "Bên kia dãy núi — kia, đó."
-          },
-          {
-            "char": "儿",
-            "parts": [
-              "儿"
-            ],
-            "mnemonic": "Hai nét chân trẻ thơ. (Âm er.)"
-          }
-        ],
-        "mnemonic": "Chỗ kia."
-      },
-      {
-        "id": "l09-05",
-        "lesson": 9,
-        "hanzi": "狗",
-        "pinyin": "gǒu",
-        "pinyinNum": "gou3",
-        "vi": "chó",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "狗",
-            "parts": [
-              "犭",
-              "句"
-            ],
-            "mnemonic": "Thú kêu một câu — chó."
-          }
-        ],
-        "mnemonic": "Thú kêu một câu — chó."
-      },
-      {
-        "id": "l09-06",
-        "lesson": 9,
-        "hanzi": "椅子",
-        "pinyin": "yǐzi",
-        "pinyinNum": "yi3 zi5",
-        "vi": "ghế",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "椅",
-            "parts": [
-              "木",
-              "奇"
-            ],
-            "mnemonic": "Gỗ kỳ lạ thành ghế."
-          },
-          {
-            "char": "子",
-            "parts": [
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ bọc tã — con, hậu tố."
-          }
-        ],
-        "mnemonic": "Cái ghế gỗ."
-      },
-      {
-        "id": "l09-07",
-        "lesson": 9,
-        "hanzi": "下面",
-        "pinyin": "xiàmiàn",
-        "pinyinNum": "xia4 mian4",
-        "vi": "phía dưới",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "下",
-            "parts": [
-              "下"
-            ],
-            "mnemonic": "Ngược với 'trên' — dưới, xuống."
-          },
-          {
-            "char": "面",
-            "parts": [
-              "面"
-            ],
-            "mnemonic": "Cái mặt, cái phía."
-          }
-        ],
-        "mnemonic": "Phía dưới cái mặt/phía."
-      },
-      {
-        "id": "l09-08",
-        "lesson": 9,
-        "hanzi": "哪儿",
-        "pinyin": "nǎr",
-        "pinyinNum": "nar3",
-        "vi": "ở đâu",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "哪",
-            "parts": [
-              "口",
-              "那"
-            ],
-            "mnemonic": "Miệng hỏi 'cái nào / nước nào'."
-          },
-          {
-            "char": "儿",
-            "parts": [
-              "儿"
-            ],
-            "mnemonic": "Hai nét chân trẻ thơ. (Âm er.)"
-          }
-        ],
-        "mnemonic": "Ở chỗ nào? (âm er)."
-      },
-      {
-        "id": "l09-09",
-        "lesson": 9,
-        "hanzi": "工作",
-        "pinyin": "gōngzuò",
-        "pinyinNum": "gong1 zuo4",
-        "vi": "công việc; làm việc",
-        "pos": "danh/động từ",
-        "decomps": [
-          {
-            "char": "工",
-            "parts": [
-              "工"
-            ],
-            "mnemonic": "Như xà ngang — công việc."
-          },
-          {
-            "char": "作",
-            "parts": [
-              "亻",
-              "乍"
-            ],
-            "mnemonic": "Người vừa làm — tác, làm."
-          }
-        ],
-        "mnemonic": "Làm công — công việc."
-      },
-      {
-        "id": "l09-10",
-        "lesson": 9,
-        "hanzi": "儿子",
-        "pinyin": "érzi",
-        "pinyinNum": "er2 zi5",
-        "vi": "con trai",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "儿",
-            "parts": [
-              "儿"
-            ],
-            "mnemonic": "Hai nét chân trẻ thơ. (Âm er.)"
-          },
-          {
-            "char": "子",
-            "parts": [
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ bọc tã — con, hậu tố."
-          }
-        ],
-        "mnemonic": "Đứa trẻ con trai."
-      },
-      {
-        "id": "l09-11",
-        "lesson": 9,
-        "hanzi": "医院",
-        "pinyin": "yīyuàn",
-        "pinyinNum": "yi1 yuan4",
-        "vi": "bệnh viện",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "医",
-            "parts": [
-              "匚",
-              "矢"
-            ],
-            "mnemonic": "Hộp đựng mũi tên — y, chữa bệnh."
-          },
-          {
-            "char": "院",
-            "parts": [
-              "阝",
-              "完"
-            ],
-            "mnemonic": "Bên thành, đầy đủ — viện."
-          }
-        ],
-        "mnemonic": "Viện chữa bệnh."
-      },
-      {
-        "id": "l09-12",
-        "lesson": 9,
-        "hanzi": "医生",
-        "pinyin": "yīshēng",
-        "pinyinNum": "yi1 sheng1",
-        "vi": "bác sĩ",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "医",
-            "parts": [
-              "匚",
-              "矢"
-            ],
-            "mnemonic": "Hộp đựng mũi tên — y, chữa bệnh."
-          },
-          {
-            "char": "生",
-            "parts": [
-              "生"
-            ],
-            "mnemonic": "Mầm cây mọc lên — sinh, học trò."
-          }
-        ],
-        "mnemonic": "Người sinh ra việc chữa bệnh — bác sĩ."
-      },
-      {
-        "id": "l09-13",
-        "lesson": 9,
-        "hanzi": "爸爸",
-        "pinyin": "bàba",
-        "pinyinNum": "ba4 ba5",
-        "vi": "bố",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "爸",
-            "parts": [
-              "父",
-              "巴"
-            ],
-            "mnemonic": "Người cha cầm, gọi bố."
-          },
-          {
-            "char": "爸",
-            "parts": [
-              "父",
-              "巴"
-            ],
-            "mnemonic": "Người cha cầm, gọi bố."
-          }
-        ],
-        "mnemonic": "Hai lần gọi bố."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s09-01",
-        "lesson": 9,
-        "hanzi": "你儿子在哪儿工作？他在医院工作。",
-        "pinyin": "Nǐ érzi zài nǎr gōngzuò? Tā zài yīyuàn gōngzuò.",
-        "pinyinNum": "ni3 er2 zi5 zai4 nar3 gong1 zuo4 ta1 zai4 yi1 yuan4 gong1 zuo4",
-        "vi": "Con trai bạn làm việc ở đâu? Anh ấy làm ở bệnh viện."
-      },
-      {
-        "id": "s09-02",
-        "lesson": 9,
-        "hanzi": "小狗在椅子下面。",
-        "pinyin": "Xiǎo gǒu zài yǐzi xiàmiàn.",
-        "pinyinNum": "xiao3 gou3 zai4 yi3 zi5 xia4 mian4",
-        "vi": "Con chó nhỏ ở dưới ghế."
-      },
-      {
-        "id": "s09-03",
-        "lesson": 9,
-        "hanzi": "我爸爸是医生。",
-        "pinyin": "Wǒ bàba shì yīshēng.",
-        "pinyinNum": "wo3 ba4 ba5 shi4 yi1 sheng1",
-        "vi": "Bố tôi là bác sĩ."
-      },
-      {
-        "id": "s09-04",
-        "lesson": 9,
-        "hanzi": "猫在那儿。",
-        "pinyin": "Māo zài nàr.",
-        "pinyinNum": "mao1 zai4 nar4",
-        "vi": "Con mèo ở chỗ đó."
-      }
-    ],
-    "lecture": {
-      "id": "-u3sGPl2QzI",
-      "title": "Bài 9: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 3011,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3011,
-          "label": "Đoạn 3 — xem từ 36:00 đến 50:11, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "P1dU_pSXZAM",
-      "title": "Bài 9: Sách bài tập — Thành Luân",
-      "duration": 1084,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1084,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 10,
-    "titleZh": "我能坐这儿吗",
-    "titleVi": "Tôi ngồi đây được không?",
-    "grammarNote": "能 = có thể (được phép/khả năng). Từ vị trí: 上/里/前面/后面. 和 = và. 没有 phủ định của 有.",
-    "words": [
-      {
-        "id": "l10-01",
-        "lesson": 10,
-        "hanzi": "桌子",
-        "pinyin": "zhuōzi",
-        "pinyinNum": "zhuo1 zi5",
-        "vi": "bàn",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "桌",
-            "parts": [
-              "木",
-              "卓"
-            ],
-            "mnemonic": "Gỗ cao — cái bàn."
-          },
-          {
-            "char": "子",
-            "parts": [
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ bọc tã — con, hậu tố."
-          }
-        ],
-        "mnemonic": "Cái bàn gỗ."
-      },
-      {
-        "id": "l10-02",
-        "lesson": 10,
-        "hanzi": "上",
-        "pinyin": "shàng",
-        "pinyinNum": "shang4",
-        "vi": "trên",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "上",
-            "parts": [
-              "上"
-            ],
-            "mnemonic": "Nét ngắn trên nét ngang — trên."
-          }
-        ],
-        "mnemonic": "Nét ngắn trên nét ngang — trên."
-      },
-      {
-        "id": "l10-03",
-        "lesson": 10,
-        "hanzi": "电脑",
-        "pinyin": "diànnǎo",
-        "pinyinNum": "dian4 nao3",
-        "vi": "máy tính",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "电",
-            "parts": [
-              "电"
-            ],
-            "mnemonic": "Sét xuyên ruộng — điện."
-          },
-          {
-            "char": "脑",
-            "parts": [
-              "月",
-              "㐫"
-            ],
-            "mnemonic": "Thịt và hộp sọ — bộ não."
-          }
-        ],
-        "mnemonic": "Não điện — máy tính."
-      },
-      {
-        "id": "l10-04",
-        "lesson": 10,
-        "hanzi": "和",
-        "pinyin": "hé",
-        "pinyinNum": "he2",
-        "vi": "và",
-        "pos": "liên từ",
-        "decomps": [
-          {
-            "char": "和",
-            "parts": [
-              "禾",
-              "口"
-            ],
-            "mnemonic": "Lúa và miệng — hòa, và."
-          }
-        ],
-        "mnemonic": "Lúa và miệng — hòa, và."
-      },
-      {
-        "id": "l10-05",
-        "lesson": 10,
-        "hanzi": "本",
-        "pinyin": "běn",
-        "pinyinNum": "ben3",
-        "vi": "quyển",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "本",
-            "parts": [
-              "木",
-              "一"
-            ],
-            "mnemonic": "Cây có gốc — quyển, gốc."
-          }
-        ],
-        "mnemonic": "Cây có gốc — quyển, gốc."
-      },
-      {
-        "id": "l10-06",
-        "lesson": 10,
-        "hanzi": "里",
-        "pinyin": "lǐ",
-        "pinyinNum": "li3",
-        "vi": "trong",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "里",
-            "parts": [
-              "田",
-              "土"
-            ],
-            "mnemonic": "Ruộng và đất — bên trong."
-          }
-        ],
-        "mnemonic": "Ruộng và đất — bên trong."
-      },
-      {
-        "id": "l10-07",
-        "lesson": 10,
-        "hanzi": "前面",
-        "pinyin": "qiánmiàn",
-        "pinyinNum": "qian2 mian4",
-        "vi": "phía trước",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "前",
-            "parts": [
-              "䒑",
-              "刖"
-            ],
-            "mnemonic": "Cỏ trước bước đi — phía trước."
-          },
-          {
-            "char": "面",
-            "parts": [
-              "面"
-            ],
-            "mnemonic": "Cái mặt, cái phía."
-          }
-        ],
-        "mnemonic": "Phía trước mặt."
-      },
-      {
-        "id": "l10-08",
-        "lesson": 10,
-        "hanzi": "后面",
-        "pinyin": "hòumiàn",
-        "pinyinNum": "hou4 mian4",
-        "vi": "phía sau",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "后",
-            "parts": [
-              "后"
-            ],
-            "mnemonic": "Nét như quay đầu lại — phía sau."
-          },
-          {
-            "char": "面",
-            "parts": [
-              "面"
-            ],
-            "mnemonic": "Cái mặt, cái phía."
-          }
-        ],
-        "mnemonic": "Phía sau."
-      },
-      {
-        "id": "l10-09",
-        "lesson": 10,
-        "hanzi": "这儿",
-        "pinyin": "zhèr",
-        "pinyinNum": "zher4",
-        "vi": "chỗ này",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "这",
-            "parts": [
-              "辶",
-              "文"
-            ],
-            "mnemonic": "Bước tới chữ này — đây."
-          },
-          {
-            "char": "儿",
-            "parts": [
-              "儿"
-            ],
-            "mnemonic": "Hai nét chân trẻ thơ. (Âm er.)"
-          }
-        ],
-        "mnemonic": "Chỗ này."
-      },
-      {
-        "id": "l10-10",
-        "lesson": 10,
-        "hanzi": "没有",
-        "pinyin": "méiyǒu",
-        "pinyinNum": "mei2 you3",
-        "vi": "không có",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "没",
-            "parts": [
-              "氵",
-              "殳"
-            ],
-            "mnemonic": "Nước bị đánh tan — không còn gì."
-          },
-          {
-            "char": "有",
-            "parts": [
-              "𠂇",
-              "月"
-            ],
-            "mnemonic": "Tay nắm mặt trăng — có."
-          }
-        ],
-        "mnemonic": "Không có."
-      },
-      {
-        "id": "l10-11",
-        "lesson": 10,
-        "hanzi": "能",
-        "pinyin": "néng",
-        "pinyinNum": "neng2",
-        "vi": "có thể",
-        "pos": "động từ năng nguyện",
-        "decomps": [
-          {
-            "char": "能",
-            "parts": [
-              "厶",
-              "月",
-              "匕",
-              "匕"
-            ],
-            "mnemonic": "Con gấu mạnh — có thể."
-          }
-        ],
-        "mnemonic": "Con gấu mạnh — có thể."
-      },
-      {
-        "id": "l10-12",
-        "lesson": 10,
-        "hanzi": "坐",
-        "pinyin": "zuò",
-        "pinyinNum": "zuo4",
-        "vi": "ngồi",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "坐",
-            "parts": [
-              "人",
-              "人",
-              "土"
-            ],
-            "mnemonic": "Hai người ngồi trên đất."
-          }
-        ],
-        "mnemonic": "Hai người ngồi trên đất."
-      },
-      {
-        "id": "l10-13",
-        "lesson": 10,
-        "hanzi": "下",
-        "pinyin": "xià",
-        "pinyinNum": "xia4",
-        "vi": "dưới, xuống",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "下",
-            "parts": [
-              "下"
-            ],
-            "mnemonic": "Ngược với 'trên' — dưới, xuống."
-          }
-        ],
-        "mnemonic": "Ngược với 'trên' — dưới, xuống."
-      },
-      {
-        "id": "l10-14",
-        "lesson": 10,
-        "hanzi": "没",
-        "pinyin": "méi",
-        "pinyinNum": "mei2",
-        "vi": "không (phủ định với 有)",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "没",
-            "parts": [
-              "氵",
-              "殳"
-            ],
-            "mnemonic": "Nước bị đánh tan — không còn gì."
-          }
-        ],
-        "mnemonic": "Nước bị đánh tan — không còn gì."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s10-01",
-        "lesson": 10,
-        "hanzi": "我能坐这儿吗？",
-        "pinyin": "Wǒ néng zuò zhèr ma?",
-        "pinyinNum": "wo3 neng2 zuo4 zher4 ma5",
-        "vi": "Tôi ngồi đây được không?"
-      },
-      {
-        "id": "s10-02",
-        "lesson": 10,
-        "hanzi": "电脑在桌子上。",
-        "pinyin": "Diànnǎo zài zhuōzi shàng.",
-        "pinyinNum": "dian4 nao3 zai4 zhuo1 zi5 shang4",
-        "vi": "Máy tính ở trên bàn."
-      },
-      {
-        "id": "s10-03",
-        "lesson": 10,
-        "hanzi": "书在桌子里吗？没有。",
-        "pinyin": "Shū zài zhuōzi lǐ ma? Méiyǒu.",
-        "pinyinNum": "shu1 zai4 zhuo1 zi5 li3 ma5 mei2 you3",
-        "vi": "Sách ở trong bàn chứ? Không có."
-      },
-      {
-        "id": "s10-04",
-        "lesson": 10,
-        "hanzi": "前面有椅子和桌子。",
-        "pinyin": "Qiánmiàn yǒu yǐzi hé zhuōzi.",
-        "pinyinNum": "qian2 mian4 you3 yi3 zi5 he2 zhuo1 zi5",
-        "vi": "Phía trước có ghế và bàn."
-      }
-    ],
-    "lecture": {
-      "id": "cm2WUE5zGyY",
-      "title": "Bài 10: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 4143,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3240,
-          "label": "Đoạn 3 — xem từ 36:00 đến 54:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 3240,
-          "end": 4143,
-          "label": "Đoạn 4 — xem từ 54:00 đến 1:09:03, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "fo6vOrgcnvg",
-      "title": "Bài 10: Sách bài tập — Thành Luân",
-      "duration": 980,
-      "segments": [
-        {
-          "start": 0,
-          "end": 980,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 11,
-    "titleZh": "现在几点",
-    "titleVi": "Bây giờ mấy giờ?",
-    "grammarNote": "Giờ: X 点 X 分. 时候 'lúc'. 回 = về. 前 = trước (thời gian).",
-    "words": [
-      {
-        "id": "l11-01",
-        "lesson": 11,
-        "hanzi": "现在",
-        "pinyin": "xiànzài",
-        "pinyinNum": "xian4 zai4",
-        "vi": "bây giờ",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "现",
-            "parts": [
-              "王",
-              "见"
-            ],
-            "mnemonic": "Ngọc hiện ra trước mắt — hiện tại."
-          },
-          {
-            "char": "在",
-            "parts": [
-              "𠂇",
-              "土"
-            ],
-            "mnemonic": "Tay trên đất — đang ở."
-          }
-        ],
-        "mnemonic": "Hiện ra ở đây — bây giờ."
-      },
-      {
-        "id": "l11-02",
-        "lesson": 11,
-        "hanzi": "点",
-        "pinyin": "diǎn",
-        "pinyinNum": "dian3",
-        "vi": "giờ (o'clock)",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "点",
-            "parts": [
-              "占",
-              "灬"
-            ],
-            "mnemonic": "Chiếm chỗ và lửa — điểm, giờ."
-          }
-        ],
-        "mnemonic": "Chiếm chỗ và lửa — điểm, giờ."
-      },
-      {
-        "id": "l11-03",
-        "lesson": 11,
-        "hanzi": "分",
-        "pinyin": "fēn",
-        "pinyinNum": "fen1",
-        "vi": "phút",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "分",
-            "parts": [
-              "八",
-              "刀"
-            ],
-            "mnemonic": "Dao chia làm tám — chia, phút."
-          }
-        ],
-        "mnemonic": "Dao chia làm tám — chia, phút."
-      },
-      {
-        "id": "l11-04",
-        "lesson": 11,
-        "hanzi": "中午",
-        "pinyin": "zhōngwǔ",
-        "pinyinNum": "zhong1 wu3",
-        "vi": "buổi trưa",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "中",
-            "parts": [
-              "口",
-              "丨"
-            ],
-            "mnemonic": "Nét sổ xuyên giữa — trung, ở giữa."
-          },
-          {
-            "char": "午",
-            "parts": [
-              "午"
-            ],
-            "mnemonic": "Giữa ngày — giờ Ngọ, buổi trưa."
-          }
-        ],
-        "mnemonic": "Giữa ngày — trưa."
-      },
-      {
-        "id": "l11-05",
-        "lesson": 11,
-        "hanzi": "吃饭",
-        "pinyin": "chīfàn",
-        "pinyinNum": "chi1 fan4",
-        "vi": "ăn cơm",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "吃",
-            "parts": [
-              "口",
-              "乞"
-            ],
-            "mnemonic": "Miệng xin ăn."
-          },
-          {
-            "char": "饭",
-            "parts": [
-              "饣",
-              "反"
-            ],
-            "mnemonic": "Thức ăn quay về mâm — cơm."
-          }
-        ],
-        "mnemonic": "Ăn cơm."
-      },
-      {
-        "id": "l11-06",
-        "lesson": 11,
-        "hanzi": "时候",
-        "pinyin": "shíhou",
-        "pinyinNum": "shi2 hou5",
-        "vi": "lúc, khi",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "时",
-            "parts": [
-              "日",
-              "寸"
-            ],
-            "mnemonic": "Ngày đo bằng tấc — thời, giờ."
-          },
-          {
-            "char": "候",
-            "parts": [
-              "亻",
-              "侯"
-            ],
-            "mnemonic": "Người đứng chờ — lúc."
-          }
-        ],
-        "mnemonic": "Lúc, khoảng thời gian."
-      },
-      {
-        "id": "l11-07",
-        "lesson": 11,
-        "hanzi": "回",
-        "pinyin": "huí",
-        "pinyinNum": "hui2",
-        "vi": "về",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "回",
-            "parts": [
-              "囗",
-              "口"
-            ],
-            "mnemonic": "Ô trong ô — quay về."
-          }
-        ],
-        "mnemonic": "Ô trong ô — quay về."
-      },
-      {
-        "id": "l11-08",
-        "lesson": 11,
-        "hanzi": "我们",
-        "pinyin": "wǒmen",
-        "pinyinNum": "wo3 men5",
-        "vi": "chúng tôi, chúng ta",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "我",
-            "parts": [
-              "手",
-              "戈"
-            ],
-            "mnemonic": "Tay cầm giáo — ấy là 'tôi'."
-          },
-          {
-            "char": "们",
-            "parts": [
-              "亻",
-              "门"
-            ],
-            "mnemonic": "Người đứng trước cửa — chỉ số nhiều."
-          }
-        ],
-        "mnemonic": "Tôi ở số nhiều — chúng tôi."
-      },
-      {
-        "id": "l11-09",
-        "lesson": 11,
-        "hanzi": "电影",
-        "pinyin": "diànyǐng",
-        "pinyinNum": "dian4 ying3",
-        "vi": "phim",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "电",
-            "parts": [
-              "电"
-            ],
-            "mnemonic": "Sét xuyên ruộng — điện."
-          },
-          {
-            "char": "影",
-            "parts": [
-              "景",
-              "彡"
-            ],
-            "mnemonic": "Cảnh với nét bóng — phim, bóng."
-          }
-        ],
-        "mnemonic": "Bóng điện — phim."
-      },
-      {
-        "id": "l11-10",
-        "lesson": 11,
-        "hanzi": "住",
-        "pinyin": "zhù",
-        "pinyinNum": "zhu4",
-        "vi": "ở (cư trú)",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "住",
-            "parts": [
-              "亻",
-              "主"
-            ],
-            "mnemonic": "Người ở chỗ của chủ — cư trú."
-          }
-        ],
-        "mnemonic": "Người ở chỗ của chủ — cư trú."
-      },
-      {
-        "id": "l11-11",
-        "lesson": 11,
-        "hanzi": "前",
-        "pinyin": "qián",
-        "pinyinNum": "qian2",
-        "vi": "trước",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "前",
-            "parts": [
-              "䒑",
-              "刖"
-            ],
-            "mnemonic": "Cỏ trước bước đi — phía trước."
-          }
-        ],
-        "mnemonic": "Cỏ trước bước đi — phía trước."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s11-01",
-        "lesson": 11,
-        "hanzi": "现在几点？现在三点十分。",
-        "pinyin": "Xiànzài jǐ diǎn? Xiànzài sān diǎn shí fēn.",
-        "pinyinNum": "xian4 zai4 ji3 dian3 xian4 zai4 san1 dian3 shi2 fen1",
-        "vi": "Bây giờ mấy giờ? Bây giờ ba giờ mười phút."
-      },
-      {
-        "id": "s11-02",
-        "lesson": 11,
-        "hanzi": "我们中午吃饭。",
-        "pinyin": "Wǒmen zhōngwǔ chīfàn.",
-        "pinyinNum": "wo3 men5 zhong1 wu3 chi1 fan4",
-        "vi": "Chúng tôi ăn cơm trưa."
-      },
-      {
-        "id": "s11-03",
-        "lesson": 11,
-        "hanzi": "我三点前回学校。",
-        "pinyin": "Wǒ sān diǎn qián huí xuéxiào.",
-        "pinyinNum": "wo3 san1 dian3 qian2 hui2 xue2 xiao4",
-        "vi": "Tôi về trường trước ba giờ."
-      },
-      {
-        "id": "s11-04",
-        "lesson": 11,
-        "hanzi": "你什么时候去看电影？",
-        "pinyin": "Nǐ shénme shíhou qù kàn diànyǐng?",
-        "pinyinNum": "ni3 shen2 me5 shi2 hou5 qu4 kan4 dian4 ying3",
-        "vi": "Bạn lúc nào đi xem phim?"
-      }
-    ],
-    "lecture": {
-      "id": "3O5EQGb1vLk",
-      "title": "Bài 11: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 3677,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3240,
-          "label": "Đoạn 3 — xem từ 36:00 đến 54:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 3240,
-          "end": 3677,
-          "label": "Đoạn 4 — xem từ 54:00 đến 1:01:17, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "PKA4QPnl86c",
-      "title": "Bài 11: Sách bài tập — Thành Luân",
-      "duration": 850,
-      "segments": [
-        {
-          "start": 0,
-          "end": 850,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 12,
-    "titleZh": "明天天气怎么样",
-    "titleVi": "Ngày mai thời tiết thế nào?",
-    "grammarNote": "怎么样 hỏi tình trạng. 太…了 nhấn 'quá…'. Từ thời tiết: 热/冷/下雨.",
-    "words": [
-      {
-        "id": "l12-01",
-        "lesson": 12,
-        "hanzi": "天气",
-        "pinyin": "tiānqì",
-        "pinyinNum": "tian1 qi4",
-        "vi": "thời tiết",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "天",
-            "parts": [
-              "一",
-              "大"
-            ],
-            "mnemonic": "Lớn thêm một nét trên đầu — trời."
-          },
-          {
-            "char": "气",
-            "parts": [
-              "气"
-            ],
-            "mnemonic": "Hơi bay lên — khí, khí chất."
-          }
-        ],
-        "mnemonic": "Khí của trời — thời tiết."
-      },
-      {
-        "id": "l12-02",
-        "lesson": 12,
-        "hanzi": "怎么样",
-        "pinyin": "zěnmeyàng",
-        "pinyinNum": "zen3 me5 yang4",
-        "vi": "thế nào",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "怎",
-            "parts": [
-              "乍",
-              "心"
-            ],
-            "mnemonic": "Lòng bối rối hỏi 'thế nào?'."
-          },
-          {
-            "char": "么",
-            "parts": [
-              "丿",
-              "厶"
-            ],
-            "mnemonic": "Âm nhẹ, hay đi cùng 什, 那, 怎."
-          },
-          {
-            "char": "样",
-            "parts": [
-              "木",
-              "羊"
-            ],
-            "mnemonic": "Cây và dê — hình dáng, thế nào."
-          }
-        ],
-        "mnemonic": "Ra sao, thế nào?"
-      },
-      {
-        "id": "l12-03",
-        "lesson": 12,
-        "hanzi": "太",
-        "pinyin": "tài",
-        "pinyinNum": "tai4",
-        "vi": "quá",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "太",
-            "parts": [
-              "大",
-              "丶"
-            ],
-            "mnemonic": "Lớn thêm một chấm — quá."
-          }
-        ],
-        "mnemonic": "Lớn thêm một chấm — quá."
-      },
-      {
-        "id": "l12-04",
-        "lesson": 12,
-        "hanzi": "热",
-        "pinyin": "rè",
-        "pinyinNum": "re4",
-        "vi": "nóng",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "热",
-            "parts": [
-              "执",
-              "灬"
-            ],
-            "mnemonic": "Cầm lửa trong tay — nóng."
-          }
-        ],
-        "mnemonic": "Cầm lửa trong tay — nóng."
-      },
-      {
-        "id": "l12-05",
-        "lesson": 12,
-        "hanzi": "冷",
-        "pinyin": "lěng",
-        "pinyinNum": "leng3",
-        "vi": "lạnh",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "冷",
-            "parts": [
-              "冫",
-              "令"
-            ],
-            "mnemonic": "Băng ra lệnh — lạnh."
-          }
-        ],
-        "mnemonic": "Băng ra lệnh — lạnh."
-      },
-      {
-        "id": "l12-06",
-        "lesson": 12,
-        "hanzi": "下雨",
-        "pinyin": "xiàyǔ",
-        "pinyinNum": "xia4 yu3",
-        "vi": "mưa",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "下",
-            "parts": [
-              "下"
-            ],
-            "mnemonic": "Ngược với 'trên' — dưới, xuống."
-          },
-          {
-            "char": "雨",
-            "parts": [
-              "雨"
-            ],
-            "mnemonic": "Cửa trời nhỏ hạt mưa."
-          }
-        ],
-        "mnemonic": "Xuống mưa."
-      },
-      {
-        "id": "l12-07",
-        "lesson": 12,
-        "hanzi": "小姐",
-        "pinyin": "xiǎojiě",
-        "pinyinNum": "xiao3 jie3",
-        "vi": "cô",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "小",
-            "parts": [
-              "小"
-            ],
-            "mnemonic": "Ba nét nhỏ họp lại — bé."
-          },
-          {
-            "char": "姐",
-            "parts": [
-              "女",
-              "且"
-            ],
-            "mnemonic": "Người nữ đứng — chị, cô."
-          }
-        ],
-        "mnemonic": "Cô, tiểu thư."
-      },
-      {
-        "id": "l12-08",
-        "lesson": 12,
-        "hanzi": "来",
-        "pinyin": "lái",
-        "pinyinNum": "lai2",
-        "vi": "đến",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "来",
-            "parts": [
-              "来"
-            ],
-            "mnemonic": "Lúa mạch đi tới — đến."
-          }
-        ],
-        "mnemonic": "Lúa mạch đi tới — đến."
-      },
-      {
-        "id": "l12-09",
-        "lesson": 12,
-        "hanzi": "身体",
-        "pinyin": "shēntǐ",
-        "pinyinNum": "shen1 ti3",
-        "vi": "sức khỏe, cơ thể",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "身",
-            "parts": [
-              "身"
-            ],
-            "mnemonic": "Thân người nghiêng."
-          },
-          {
-            "char": "体",
-            "parts": [
-              "亻",
-              "本"
-            ],
-            "mnemonic": "Người là gốc — cơ thể."
-          }
-        ],
-        "mnemonic": "Thân thể — sức khỏe."
-      },
-      {
-        "id": "l12-10",
-        "lesson": 12,
-        "hanzi": "爱",
-        "pinyin": "ài",
-        "pinyinNum": "ai4",
-        "vi": "yêu, thích",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "爱",
-            "parts": [
-              "爫",
-              "冖",
-              "友"
-            ],
-            "mnemonic": "Bạn bè dưới mái, với bàn tay — yêu."
-          }
-        ],
-        "mnemonic": "Bạn bè dưới mái, với bàn tay — yêu."
-      },
-      {
-        "id": "l12-11",
-        "lesson": 12,
-        "hanzi": "些",
-        "pinyin": "xiē",
-        "pinyinNum": "xie1",
-        "vi": "một vài",
-        "pos": "lượng từ",
-        "decomps": [
-          {
-            "char": "些",
-            "parts": [
-              "此",
-              "二"
-            ],
-            "mnemonic": "Cái này thêm hai — một vài."
-          }
-        ],
-        "mnemonic": "Cái này thêm hai — một vài."
-      },
-      {
-        "id": "l12-12",
-        "lesson": 12,
-        "hanzi": "水果",
-        "pinyin": "shuǐguǒ",
-        "pinyinNum": "shui3 guo3",
-        "vi": "hoa quả",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "水",
-            "parts": [
-              "水"
-            ],
-            "mnemonic": "Dòng nước chảy."
-          },
-          {
-            "char": "果",
-            "parts": [
-              "田",
-              "木"
-            ],
-            "mnemonic": "Ruộng trên cây — quả."
-          }
-        ],
-        "mnemonic": "Quả của nước/cây — hoa quả."
-      },
-      {
-        "id": "l12-13",
-        "lesson": 12,
-        "hanzi": "水",
-        "pinyin": "shuǐ",
-        "pinyinNum": "shui3",
-        "vi": "nước",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "水",
-            "parts": [
-              "水"
-            ],
-            "mnemonic": "Dòng nước chảy."
-          }
-        ],
-        "mnemonic": "Dòng nước chảy."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s12-01",
-        "lesson": 12,
-        "hanzi": "明天天气怎么样？明天太热了。",
-        "pinyin": "Míngtiān tiānqì zěnmeyàng? Míngtiān tài rè le.",
-        "pinyinNum": "ming2 tian1 tian1 qi4 zen3 me5 yang4 ming2 tian1 tai4 re4 le5",
-        "vi": "Ngày mai thời tiết thế nào? Ngày mai nóng quá."
-      },
-      {
-        "id": "s12-02",
-        "lesson": 12,
-        "hanzi": "今天下雨，很冷。",
-        "pinyin": "Jīntiān xiàyǔ, hěn lěng.",
-        "pinyinNum": "jin1 tian1 xia4 yu3 hen3 leng3",
-        "vi": "Hôm nay mưa, rất lạnh."
-      },
-      {
-        "id": "s12-03",
-        "lesson": 12,
-        "hanzi": "小姐，我想买些水果。",
-        "pinyin": "Xiǎojiě, wǒ xiǎng mǎi xiē shuǐguǒ.",
-        "pinyinNum": "xiao3 jie3 wo3 xiang3 mai3 xie1 shui3 guo3",
-        "vi": "Cô ơi, tôi muốn mua một ít hoa quả."
-      },
-      {
-        "id": "s12-04",
-        "lesson": 12,
-        "hanzi": "我爱你，你的身体好吗？",
-        "pinyin": "Wǒ ài nǐ, nǐ de shēntǐ hǎo ma?",
-        "pinyinNum": "wo3 ai4 ni3 ni3 de5 shen1 ti3 hao3 ma5",
-        "vi": "Tôi yêu bạn, sức khỏe bạn thế nào?"
-      }
-    ],
-    "lecture": {
-      "id": "em01hp4pVYc",
-      "title": "Bài 12: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 2638,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 2638,
-          "label": "Đoạn 3 — xem từ 36:00 đến 43:58, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "xMPmmrzHoqg",
-      "title": "Bài 12: Sách bài tập — Thành Luân",
-      "duration": 1039,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1039,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 13,
-    "titleZh": "他在学做中国菜呢",
-    "titleVi": "Anh ấy đang học nấu món Trung",
-    "grammarNote": "也 = cũng. 吧 ở cuối câu gợi ý. 给 = cho. 在 + động từ = đang làm. 打电话 = gọi điện.",
-    "words": [
-      {
-        "id": "l13-01",
-        "lesson": 13,
-        "hanzi": "喂",
-        "pinyin": "wèi",
-        "pinyinNum": "wei4",
-        "vi": "alo",
-        "pos": "thán từ",
-        "decomps": [
-          {
-            "char": "喂",
-            "parts": [
-              "口",
-              "畏"
-            ],
-            "mnemonic": "Miệng gọi 'alo'."
-          }
-        ],
-        "mnemonic": "Miệng gọi 'alo'."
-      },
-      {
-        "id": "l13-02",
-        "lesson": 13,
-        "hanzi": "也",
-        "pinyin": "yě",
-        "pinyinNum": "ye3",
-        "vi": "cũng",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "也",
-            "parts": [
-              "也"
-            ],
-            "mnemonic": "Nét móc duyên dáng — cũng."
-          }
-        ],
-        "mnemonic": "Nét móc duyên dáng — cũng."
-      },
-      {
-        "id": "l13-03",
-        "lesson": 13,
-        "hanzi": "学习",
-        "pinyin": "xuéxí",
-        "pinyinNum": "xue2 xi2",
-        "vi": "học",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "学",
-            "parts": [
-              "⺍",
-              "冖",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái — đang học."
-          },
-          {
-            "char": "习",
-            "parts": [
-              "习"
-            ],
-            "mnemonic": "Một nửa cánh chim — luyện tập."
-          }
-        ],
-        "mnemonic": "Học và luyện."
-      },
-      {
-        "id": "l13-04",
-        "lesson": 13,
-        "hanzi": "上午",
-        "pinyin": "shàngwǔ",
-        "pinyinNum": "shang4 wu3",
-        "vi": "buổi sáng",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "上",
-            "parts": [
-              "上"
-            ],
-            "mnemonic": "Nét ngắn trên nét ngang — trên."
-          },
-          {
-            "char": "午",
-            "parts": [
-              "午"
-            ],
-            "mnemonic": "Giữa ngày — giờ Ngọ, buổi trưa."
-          }
-        ],
-        "mnemonic": "Buổi trên giờ Ngọ — sáng."
-      },
-      {
-        "id": "l13-05",
-        "lesson": 13,
-        "hanzi": "睡觉",
-        "pinyin": "shuìjiào",
-        "pinyinNum": "shui4 jiao4",
-        "vi": "ngủ",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "睡",
-            "parts": [
-              "目",
-              "垂"
-            ],
-            "mnemonic": "Mắt rũ xuống — ngủ."
-          },
-          {
-            "char": "觉",
-            "parts": [
-              "⺍",
-              "见"
-            ],
-            "mnemonic": "Thấy trong mộng — giấc, cảm thấy."
-          }
-        ],
-        "mnemonic": "Vào giấc ngủ."
-      },
-      {
-        "id": "l13-06",
-        "lesson": 13,
-        "hanzi": "电视",
-        "pinyin": "diànshì",
-        "pinyinNum": "dian4 shi4",
-        "vi": "tivi",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "电",
-            "parts": [
-              "电"
-            ],
-            "mnemonic": "Sét xuyên ruộng — điện."
-          },
-          {
-            "char": "视",
-            "parts": [
-              "礻",
-              "见"
-            ],
-            "mnemonic": "Thần và thấy — nhìn, thị."
-          }
-        ],
-        "mnemonic": "Nhìn bằng điện — tivi."
-      },
-      {
-        "id": "l13-07",
-        "lesson": 13,
-        "hanzi": "喜欢",
-        "pinyin": "xǐhuan",
-        "pinyinNum": "xi3 huan5",
-        "vi": "thích",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "喜",
-            "parts": [
-              "士",
-              "口",
-              "口"
-            ],
-            "mnemonic": "Kẻ sĩ mở miệng cười — thích, vui."
-          },
-          {
-            "char": "欢",
-            "parts": [
-              "又",
-              "欠"
-            ],
-            "mnemonic": "Lại muốn thêm — vui thích."
-          }
-        ],
-        "mnemonic": "Vui mà thích."
-      },
-      {
-        "id": "l13-08",
-        "lesson": 13,
-        "hanzi": "给",
-        "pinyin": "gěi",
-        "pinyinNum": "gei3",
-        "vi": "cho",
-        "pos": "giới từ",
-        "decomps": [
-          {
-            "char": "给",
-            "parts": [
-              "纟",
-              "合"
-            ],
-            "mnemonic": "Sợi chỉ hợp lại — đưa cho."
-          }
-        ],
-        "mnemonic": "Sợi chỉ hợp lại — đưa cho."
-      },
-      {
-        "id": "l13-09",
-        "lesson": 13,
-        "hanzi": "打电话",
-        "pinyin": "dǎdiànhuà",
-        "pinyinNum": "da3 dian4 hua4",
-        "vi": "gọi điện",
-        "pos": "từ",
-        "decomps": [
-          {
-            "char": "打",
-            "parts": [
-              "扌",
-              "丁"
-            ],
-            "mnemonic": "Tay đánh một cái."
-          },
-          {
-            "char": "电",
-            "parts": [
-              "电"
-            ],
-            "mnemonic": "Sét xuyên ruộng — điện."
-          },
-          {
-            "char": "话",
-            "parts": [
-              "讠",
-              "舌"
-            ],
-            "mnemonic": "Lời và lưỡi — câu nói."
-          }
-        ],
-        "mnemonic": "Đánh một cuộc điện thoại."
-      },
-      {
-        "id": "l13-10",
-        "lesson": 13,
-        "hanzi": "吧",
-        "pinyin": "ba",
-        "pinyinNum": "ba5",
-        "vi": "nhé (tiểu từ)",
-        "pos": "trợ từ",
-        "decomps": [
-          {
-            "char": "吧",
-            "parts": [
-              "口",
-              "巴"
-            ],
-            "mnemonic": "Miệng kéo dài — nhé."
-          }
-        ],
-        "mnemonic": "Miệng kéo dài — nhé."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s13-01",
-        "lesson": 13,
-        "hanzi": "喂，你在做什么？",
-        "pinyin": "Wèi, nǐ zài zuò shénme?",
-        "pinyinNum": "wei4 ni3 zai4 zuo4 shen2 me5",
-        "vi": "Alo, bạn đang làm gì?"
-      },
-      {
-        "id": "s13-02",
-        "lesson": 13,
-        "hanzi": "我也学习汉语。",
-        "pinyin": "Wǒ yě xuéxí Hànyǔ.",
-        "pinyinNum": "wo3 ye3 xue2 xi2 han4 yu3",
-        "vi": "Tôi cũng học tiếng Hán."
-      },
-      {
-        "id": "s13-03",
-        "lesson": 13,
-        "hanzi": "上午我睡觉，下午给你打电话吧。",
-        "pinyin": "Shàngwǔ wǒ shuìjiào, xiàwǔ gěi nǐ dǎ diànhuà ba.",
-        "pinyinNum": "shang4 wu3 wo3 shui4 jiao4 xia4 wu3 gei3 ni3 da3 dian4 hua4 ba5",
-        "vi": "Sáng tôi ngủ, chiều gọi điện cho bạn nhé."
-      },
-      {
-        "id": "s13-04",
-        "lesson": 13,
-        "hanzi": "他喜欢看电视。",
-        "pinyin": "Tā xǐhuan kàn diànshì.",
-        "pinyinNum": "ta1 xi3 huan5 kan4 dian4 shi4",
-        "vi": "Anh ấy thích xem tivi."
-      }
-    ],
-    "lecture": {
-      "id": "-oib4Xw-LGI",
-      "title": "Bài 13: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 3181,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3181,
-          "label": "Đoạn 3 — xem từ 36:00 đến 53:01, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "MIvNrxC8-dQ",
-      "title": "Bài 13: Sách bài tập — Thành Luân",
-      "duration": 1142,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1142,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 14,
-    "titleZh": "她买了不少衣服",
-    "titleVi": "Cô ấy đã mua khá nhiều quần áo",
-    "grammarNote": "了 sau động từ: việc đã xảy ra. 一点儿 'một chút'. 都 'đều'. 这些 'những cái này'.",
-    "words": [
-      {
-        "id": "l14-01",
-        "lesson": 14,
-        "hanzi": "东西",
-        "pinyin": "dōngxi",
-        "pinyinNum": "dong1 xi5",
-        "vi": "đồ, thứ",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "东",
-            "parts": [
-              "东"
-            ],
-            "mnemonic": "Mặt trời sau cây — phương đông."
-          },
-          {
-            "char": "西",
-            "parts": [
-              "西"
-            ],
-            "mnemonic": "Một trong bốn phương — tây."
-          }
-        ],
-        "mnemonic": "Đông tây — đồ đạc (đủ thứ)."
-      },
-      {
-        "id": "l14-02",
-        "lesson": 14,
-        "hanzi": "一点儿",
-        "pinyin": "yìdiǎnr",
-        "pinyinNum": "yi4 dianr3",
-        "vi": "một chút",
-        "pos": "số/lượng từ",
-        "decomps": [
-          {
-            "char": "一",
-            "parts": [
-              "一"
-            ],
-            "mnemonic": "Một nét ngang, ấy là số một."
-          },
-          {
-            "char": "点",
-            "parts": [
-              "占",
-              "灬"
-            ],
-            "mnemonic": "Chiếm chỗ và lửa — điểm, giờ."
-          },
-          {
-            "char": "儿",
-            "parts": [
-              "儿"
-            ],
-            "mnemonic": "Hai nét chân trẻ thơ. (Âm er.)"
-          }
-        ],
-        "mnemonic": "Một chấm nhỏ — một chút."
-      },
-      {
-        "id": "l14-03",
-        "lesson": 14,
-        "hanzi": "苹果",
-        "pinyin": "píngguǒ",
-        "pinyinNum": "ping2 guo3",
-        "vi": "táo",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "苹",
-            "parts": [
-              "艹",
-              "平"
-            ],
-            "mnemonic": "Cỏ 'bằng' — quả táo (苹果)."
-          },
-          {
-            "char": "果",
-            "parts": [
-              "田",
-              "木"
-            ],
-            "mnemonic": "Ruộng trên cây — quả."
-          }
-        ],
-        "mnemonic": "Quả bình — táo."
-      },
-      {
-        "id": "l14-04",
-        "lesson": 14,
-        "hanzi": "看见",
-        "pinyin": "kànjiàn",
-        "pinyinNum": "kan4 jian4",
-        "vi": "nhìn thấy",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "看",
-            "parts": [
-              "手",
-              "目"
-            ],
-            "mnemonic": "Tay che mắt để nhìn."
-          },
-          {
-            "char": "见",
-            "parts": [
-              "见"
-            ],
-            "mnemonic": "Người với mắt — nhìn thấy."
-          }
-        ],
-        "mnemonic": "Nhìn mà thấy."
-      },
-      {
-        "id": "l14-05",
-        "lesson": 14,
-        "hanzi": "先生",
-        "pinyin": "xiānsheng",
-        "pinyinNum": "xian1 sheng5",
-        "vi": "ông, ngài",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "先",
-            "parts": [
-              "先"
-            ],
-            "mnemonic": "Người đi trước — tiên, ông."
-          },
-          {
-            "char": "生",
-            "parts": [
-              "生"
-            ],
-            "mnemonic": "Mầm cây mọc lên — sinh, học trò."
-          }
-        ],
-        "mnemonic": "Người sinh trước — ông, ngài."
-      },
-      {
-        "id": "l14-06",
-        "lesson": 14,
-        "hanzi": "开",
-        "pinyin": "kāi",
-        "pinyinNum": "kai1",
-        "vi": "lái; mở",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "开",
-            "parts": [
-              "开"
-            ],
-            "mnemonic": "Hai cánh cửa mở ra."
-          }
-        ],
-        "mnemonic": "Hai cánh cửa mở ra."
-      },
-      {
-        "id": "l14-07",
-        "lesson": 14,
-        "hanzi": "车",
-        "pinyin": "chē",
-        "pinyinNum": "che1",
-        "vi": "xe",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "车",
-            "parts": [
-              "车"
-            ],
-            "mnemonic": "Nhìn từ trên xuống: xe."
-          }
-        ],
-        "mnemonic": "Nhìn từ trên xuống: xe."
-      },
-      {
-        "id": "l14-08",
-        "lesson": 14,
-        "hanzi": "回来",
-        "pinyin": "huílai",
-        "pinyinNum": "hui2 lai5",
-        "vi": "trở về",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "回",
-            "parts": [
-              "囗",
-              "口"
-            ],
-            "mnemonic": "Ô trong ô — quay về."
-          },
-          {
-            "char": "来",
-            "parts": [
-              "来"
-            ],
-            "mnemonic": "Lúa mạch đi tới — đến."
-          }
-        ],
-        "mnemonic": "Quay về tới."
-      },
-      {
-        "id": "l14-09",
-        "lesson": 14,
-        "hanzi": "分钟",
-        "pinyin": "fēnzhōng",
-        "pinyinNum": "fen1 zhong1",
-        "vi": "phút",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "分",
-            "parts": [
-              "八",
-              "刀"
-            ],
-            "mnemonic": "Dao chia làm tám — chia, phút."
-          },
-          {
-            "char": "钟",
-            "parts": [
-              "钅",
-              "中"
-            ],
-            "mnemonic": "Kim loại ở giữa — đồng hồ, phút."
-          }
-        ],
-        "mnemonic": "Phút trên đồng hồ."
-      },
-      {
-        "id": "l14-10",
-        "lesson": 14,
-        "hanzi": "后",
-        "pinyin": "hòu",
-        "pinyinNum": "hou4",
-        "vi": "sau",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "后",
-            "parts": [
-              "后"
-            ],
-            "mnemonic": "Nét như quay đầu lại — phía sau."
-          }
-        ],
-        "mnemonic": "Nét như quay đầu lại — phía sau."
-      },
-      {
-        "id": "l14-11",
-        "lesson": 14,
-        "hanzi": "衣服",
-        "pinyin": "yīfu",
-        "pinyinNum": "yi1 fu5",
-        "vi": "quần áo",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "衣",
-            "parts": [
-              "衣"
-            ],
-            "mnemonic": "Áo có thân và vạt."
-          },
-          {
-            "char": "服",
-            "parts": [
-              "月",
-              "服"
-            ],
-            "mnemonic": "Thân và phục — trang phục."
-          }
-        ],
-        "mnemonic": "Áo quần."
-      },
-      {
-        "id": "l14-12",
-        "lesson": 14,
-        "hanzi": "漂亮",
-        "pinyin": "piàoliang",
-        "pinyinNum": "piao4 liang5",
-        "vi": "đẹp",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "漂",
-            "parts": [
-              "氵",
-              "票"
-            ],
-            "mnemonic": "Nước và phiếu trôi — đẹp (漂亮)."
-          },
-          {
-            "char": "亮",
-            "parts": [
-              "亠",
-              "口",
-              "几"
-            ],
-            "mnemonic": "Nóc nhà sáng rỡ."
-          }
-        ],
-        "mnemonic": "Trôi nổi mà sáng — đẹp."
-      },
-      {
-        "id": "l14-13",
-        "lesson": 14,
-        "hanzi": "啊",
-        "pinyin": "a",
-        "pinyinNum": "a5",
-        "vi": "a (tiểu từ)",
-        "pos": "trợ từ",
-        "decomps": [
-          {
-            "char": "啊",
-            "parts": [
-              "口",
-              "阿"
-            ],
-            "mnemonic": "Miệng kêu 'a'."
-          }
-        ],
-        "mnemonic": "Miệng kêu 'a'."
-      },
-      {
-        "id": "l14-14",
-        "lesson": 14,
-        "hanzi": "少",
-        "pinyin": "shǎo",
-        "pinyinNum": "shao3",
-        "vi": "ít",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "少",
-            "parts": [
-              "小",
-              "丿"
-            ],
-            "mnemonic": "Nhỏ thêm một phẩy — ít."
-          }
-        ],
-        "mnemonic": "Nhỏ thêm một phẩy — ít."
-      },
-      {
-        "id": "l14-15",
-        "lesson": 14,
-        "hanzi": "这些",
-        "pinyin": "zhèxiē",
-        "pinyinNum": "zhe4 xie1",
-        "vi": "những cái này",
-        "pos": "đại từ",
-        "decomps": [
-          {
-            "char": "这",
-            "parts": [
-              "辶",
-              "文"
-            ],
-            "mnemonic": "Bước tới chữ này — đây."
-          },
-          {
-            "char": "些",
-            "parts": [
-              "此",
-              "二"
-            ],
-            "mnemonic": "Cái này thêm hai — một vài."
-          }
-        ],
-        "mnemonic": "Những cái này."
-      },
-      {
-        "id": "l14-16",
-        "lesson": 14,
-        "hanzi": "都",
-        "pinyin": "dōu",
-        "pinyinNum": "dou1",
-        "vi": "đều, tất cả",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "都",
-            "parts": [
-              "者",
-              "阝"
-            ],
-            "mnemonic": "Người bên ấp — đều, đô thị."
-          }
-        ],
-        "mnemonic": "Người bên ấp — đều, đô thị."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s14-01",
-        "lesson": 14,
-        "hanzi": "这些衣服都很漂亮。",
-        "pinyin": "Zhèxiē yīfu dōu hěn piàoliang.",
-        "pinyinNum": "zhe4 xie1 yi1 fu5 dou1 hen3 piao4 liang5",
-        "vi": "Những bộ quần áo này đều rất đẹp."
-      },
-      {
-        "id": "s14-02",
-        "lesson": 14,
-        "hanzi": "我想买一点儿苹果。",
-        "pinyin": "Wǒ xiǎng mǎi yìdiǎnr píngguǒ.",
-        "pinyinNum": "wo3 xiang3 mai3 yi4 dianr3 ping2 guo3",
-        "vi": "Tôi muốn mua một chút táo."
-      },
-      {
-        "id": "s14-03",
-        "lesson": 14,
-        "hanzi": "先生，我看见你的车了。",
-        "pinyin": "Xiānsheng, wǒ kànjiàn nǐ de chē le.",
-        "pinyinNum": "xian1 sheng5 wo3 kan4 jian4 ni3 de5 che1 le5",
-        "vi": "Ông ơi, tôi đã nhìn thấy xe của ông."
-      },
-      {
-        "id": "s14-04",
-        "lesson": 14,
-        "hanzi": "她买了不少东西，十分钟后回来。",
-        "pinyin": "Tā mǎi le bù shǎo dōngxi, shí fēnzhōng hòu huílai.",
-        "pinyinNum": "ta1 mai3 le5 bu4 shao3 dong1 xi5 shi2 fen1 zhong1 hou4 hui2 lai5",
-        "vi": "Cô ấy đã mua khá nhiều đồ, mười phút nữa sẽ về."
-      }
-    ],
-    "lecture": {
-      "id": "3fkgULyP81k",
-      "title": "Bài 14: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 3311,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 3311,
-          "label": "Đoạn 3 — xem từ 36:00 đến 55:11, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "BZA5238EKZ4",
-      "title": "Bài 14: Sách bài tập — Thành Luân",
-      "duration": 1213,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1213,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  },
-  {
-    "id": 15,
-    "titleZh": "我是坐飞机来的",
-    "titleVi": "Tôi đến bằng máy bay",
-    "grammarNote": "Cấu trúc 是…的 nhấn cách thức/thời gian đã xảy ra: 我是坐飞机来的. 一起 'cùng nhau'. 认识 'quen'.",
-    "words": [
-      {
-        "id": "l15-01",
-        "lesson": 15,
-        "hanzi": "认识",
-        "pinyin": "rènshi",
-        "pinyinNum": "ren4 shi5",
-        "vi": "quen, nhận ra",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "认",
-            "parts": [
-              "讠",
-              "人"
-            ],
-            "mnemonic": "Lời về một người — nhận ra."
-          },
-          {
-            "char": "识",
-            "parts": [
-              "讠",
-              "只"
-            ],
-            "mnemonic": "Lời chỉ ra — hiểu, biết."
-          }
-        ],
-        "mnemonic": "Nhận ra mà biết — quen."
-      },
-      {
-        "id": "l15-02",
-        "lesson": 15,
-        "hanzi": "年",
-        "pinyin": "nián",
-        "pinyinNum": "nian2",
-        "vi": "năm",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "年",
-            "parts": [
-              "年"
-            ],
-            "mnemonic": "Lúa và cán — một vòng năm."
-          }
-        ],
-        "mnemonic": "Lúa và cán — một vòng năm."
-      },
-      {
-        "id": "l15-03",
-        "lesson": 15,
-        "hanzi": "大学",
-        "pinyin": "dàxué",
-        "pinyinNum": "da4 xue2",
-        "vi": "đại học",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "大",
-            "parts": [
-              "大"
-            ],
-            "mnemonic": "Người dang rộng tay — lớn."
-          },
-          {
-            "char": "学",
-            "parts": [
-              "⺍",
-              "冖",
-              "子"
-            ],
-            "mnemonic": "Đứa trẻ dưới mái — đang học."
-          }
-        ],
-        "mnemonic": "Học lớn — đại học."
-      },
-      {
-        "id": "l15-04",
-        "lesson": 15,
-        "hanzi": "饭店",
-        "pinyin": "fàndiàn",
-        "pinyinNum": "fan4 dian4",
-        "vi": "nhà hàng, khách sạn",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "饭",
-            "parts": [
-              "饣",
-              "反"
-            ],
-            "mnemonic": "Thức ăn quay về mâm — cơm."
-          },
-          {
-            "char": "店",
-            "parts": [
-              "广",
-              "占"
-            ],
-            "mnemonic": "Mái rộng chiếm chỗ — cửa hàng."
-          }
-        ],
-        "mnemonic": "Cửa hàng cơm — nhà hàng/khách sạn."
-      },
-      {
-        "id": "l15-05",
-        "lesson": 15,
-        "hanzi": "出租车",
-        "pinyin": "chūzūchē",
-        "pinyinNum": "chu1 zu1 che1",
-        "vi": "taxi",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "出",
-            "parts": [
-              "出"
-            ],
-            "mnemonic": "Hai núi chồng — đi ra."
-          },
-          {
-            "char": "租",
-            "parts": [
-              "禾",
-              "且"
-            ],
-            "mnemonic": "Lúa đem cho thuê."
-          },
-          {
-            "char": "车",
-            "parts": [
-              "车"
-            ],
-            "mnemonic": "Nhìn từ trên xuống: xe."
-          }
-        ],
-        "mnemonic": "Xe cho thuê ra ngoài — taxi."
-      },
-      {
-        "id": "l15-06",
-        "lesson": 15,
-        "hanzi": "一起",
-        "pinyin": "yìqǐ",
-        "pinyinNum": "yi4 qi3",
-        "vi": "cùng nhau",
-        "pos": "trạng từ",
-        "decomps": [
-          {
-            "char": "一",
-            "parts": [
-              "一"
-            ],
-            "mnemonic": "Một nét ngang, ấy là số một."
-          },
-          {
-            "char": "起",
-            "parts": [
-              "走",
-              "己"
-            ],
-            "mnemonic": "Bản thân đứng dậy mà đi."
-          }
-        ],
-        "mnemonic": "Cùng một chỗ đứng dậy — cùng nhau."
-      },
-      {
-        "id": "l15-07",
-        "lesson": 15,
-        "hanzi": "高兴",
-        "pinyin": "gāoxìng",
-        "pinyinNum": "gao1 xing4",
-        "vi": "vui, vui vẻ",
-        "pos": "tính từ",
-        "decomps": [
-          {
-            "char": "高",
-            "parts": [
-              "高"
-            ],
-            "mnemonic": "Nóc nhà cao tầng — cao."
-          },
-          {
-            "char": "兴",
-            "parts": [
-              "兴"
-            ],
-            "mnemonic": "Hai tay nâng — hứng khởi."
-          }
-        ],
-        "mnemonic": "Cao hứng — vui."
-      },
-      {
-        "id": "l15-08",
-        "lesson": 15,
-        "hanzi": "听",
-        "pinyin": "tīng",
-        "pinyinNum": "ting1",
-        "vi": "nghe",
-        "pos": "động từ",
-        "decomps": [
-          {
-            "char": "听",
-            "parts": [
-              "口",
-              "斤"
-            ],
-            "mnemonic": "Miệng và rìu — lắng nghe."
-          }
-        ],
-        "mnemonic": "Miệng và rìu — lắng nghe."
-      },
-      {
-        "id": "l15-09",
-        "lesson": 15,
-        "hanzi": "飞机",
-        "pinyin": "fēijī",
-        "pinyinNum": "fei1 ji1",
-        "vi": "máy bay",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "飞",
-            "parts": [
-              "飞"
-            ],
-            "mnemonic": "Cánh đang bay."
-          },
-          {
-            "char": "机",
-            "parts": [
-              "木",
-              "几"
-            ],
-            "mnemonic": "Gỗ và khung máy — cái máy."
-          }
-        ],
-        "mnemonic": "Máy bay."
-      },
-      {
-        "id": "l15-10",
-        "lesson": 15,
-        "hanzi": "火车站",
-        "pinyin": "huǒchēzhàn",
-        "pinyinNum": "huo3 che1 zhan4",
-        "vi": "ga tàu hỏa",
-        "pos": "danh từ",
-        "decomps": [
-          {
-            "char": "火",
-            "parts": [
-              "火"
-            ],
-            "mnemonic": "Ngọn lửa bốc lên."
-          },
-          {
-            "char": "车",
-            "parts": [
-              "车"
-            ],
-            "mnemonic": "Nhìn từ trên xuống: xe."
-          },
-          {
-            "char": "站",
-            "parts": [
-              "立",
-              "占"
-            ],
-            "mnemonic": "Đứng chiếm một chỗ — trạm, ga."
-          }
-        ],
-        "mnemonic": "Trạm xe lửa — ga tàu."
-      }
-    ],
-    "sentences": [
-      {
-        "id": "s15-01",
-        "lesson": 15,
-        "hanzi": "认识你我很高兴。",
-        "pinyin": "Rènshi nǐ wǒ hěn gāoxìng.",
-        "pinyinNum": "ren4 shi5 ni3 wo3 hen3 gao1 xing4",
-        "vi": "Rất vui được quen bạn."
-      },
-      {
-        "id": "s15-02",
-        "lesson": 15,
-        "hanzi": "我是坐飞机来的。",
-        "pinyin": "Wǒ shì zuò fēijī lái de.",
-        "pinyinNum": "wo3 shi4 zuo4 fei1 ji1 lai2 de5",
-        "vi": "Tôi đến bằng máy bay."
-      },
-      {
-        "id": "s15-03",
-        "lesson": 15,
-        "hanzi": "我们一起去饭店吧。",
-        "pinyin": "Wǒmen yìqǐ qù fàndiàn ba.",
-        "pinyinNum": "wo3 men5 yi4 qi3 qu4 fan4 dian4 ba5",
-        "vi": "Chúng ta cùng đến nhà hàng nhé."
-      },
-      {
-        "id": "s15-04",
-        "lesson": 15,
-        "hanzi": "他在大学工作，今年三十岁。",
-        "pinyin": "Tā zài dàxué gōngzuò, jīnnián sānshí suì.",
-        "pinyinNum": "ta1 zai4 da4 xue2 gong1 zuo4 jin1 nian2 san1 shi2 sui4",
-        "vi": "Anh ấy làm việc ở đại học, năm nay ba mươi tuổi."
-      },
-      {
-        "id": "s15-05",
-        "lesson": 15,
-        "hanzi": "我听他说，火车站在前面。",
-        "pinyin": "Wǒ tīng tā shuō, huǒchēzhàn zài qiánmiàn.",
-        "pinyinNum": "wo3 ting1 ta1 shuo1 huo3 che1 zhan4 zai4 qian2 mian4",
-        "vi": "Tôi nghe anh ấy nói, ga tàu ở phía trước."
-      }
-    ],
-    "lecture": {
-      "id": "pACKLvBFzkY",
-      "title": "Bài 15: Giáo trình chuẩn HSK 1 — Thành Luân",
-      "duration": 2672,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1080,
-          "label": "Đoạn 1 — xem từ 0:00 đến 18:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 1080,
-          "end": 2160,
-          "label": "Đoạn 2 — xem từ 18:00 đến 36:00, rồi dừng làm từ / ghi chú."
-        },
-        {
-          "start": 2160,
-          "end": 2672,
-          "label": "Đoạn 3 — xem từ 36:00 đến 44:32, rồi dừng làm từ / ghi chú."
-        }
-      ]
-    },
-    "workbook": {
-      "id": "SqPhVZSiE1A",
-      "title": "Bài 15: Sách bài tập — Thành Luân",
-      "duration": 1167,
-      "segments": [
-        {
-          "start": 0,
-          "end": 1167,
-          "label": "Xem trọn video này (khoảng 15–20 phút), rồi dừng lại làm bài."
-        }
-      ]
-    },
-    "days": 3
-  }
+ {
+  "id": 1,
+  "titleZh": "第1课",
+  "titleVi": "Xin chào!",
+  "grammarNote": "",
+  "words": [
+   {
+    "id": "n01-01",
+    "lesson": 1,
+    "hanzi": "你好",
+    "pinyin": "nǐ hǎo",
+    "pinyinNum": "ni3 hao3",
+    "vi": "Xin chào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-02",
+    "lesson": 1,
+    "hanzi": "王老师",
+    "pinyin": "Wáng lǎoshī",
+    "pinyinNum": "wang2 lao3 shi1",
+    "vi": "Cô Vương",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-03",
+    "lesson": 1,
+    "hanzi": "大家",
+    "pinyin": "dàjiā",
+    "pinyinNum": "da4 jia1",
+    "vi": "Mọi người",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-04",
+    "lesson": 1,
+    "hanzi": "好",
+    "pinyin": "hǎo",
+    "pinyinNum": "hao3",
+    "vi": "Tốt, khỏe",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-05",
+    "lesson": 1,
+    "hanzi": "学生",
+    "pinyin": "xuésheng",
+    "pinyinNum": "xue2 sheng5",
+    "vi": "Học sinh",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-06",
+    "lesson": 1,
+    "hanzi": "们",
+    "pinyin": "men",
+    "pinyinNum": "men5",
+    "vi": "Các, những (hậu tố chỉ số nhiều)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-07",
+    "lesson": 1,
+    "hanzi": "老师",
+    "pinyin": "lǎoshī",
+    "pinyinNum": "lao3 shi1",
+    "vi": "Giáo viên, thầy cô",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-08",
+    "lesson": 1,
+    "hanzi": "您",
+    "pinyin": "nín",
+    "pinyinNum": "nin2",
+    "vi": "Ngài, ông, bà (trang trọng)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-09",
+    "lesson": 1,
+    "hanzi": "你们",
+    "pinyin": "nǐmen",
+    "pinyinNum": "ni3 men5",
+    "vi": "Các bạn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-10",
+    "lesson": 1,
+    "hanzi": "谢谢",
+    "pinyin": "xièxie",
+    "pinyinNum": "xie4 xie5",
+    "vi": "Cảm ơn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-11",
+    "lesson": 1,
+    "hanzi": "不客气",
+    "pinyin": "bú kèqi",
+    "pinyinNum": "bu2 ke4 qi5",
+    "vi": "Không có gì, đừng khách sáo",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-12",
+    "lesson": 1,
+    "hanzi": "同学",
+    "pinyin": "tóngxué",
+    "pinyinNum": "tong2 xue2",
+    "vi": "Bạn học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n01-13",
+    "lesson": 1,
+    "hanzi": "再见",
+    "pinyin": "zàijiàn",
+    "pinyinNum": "zai4 jian4",
+    "vi": "Tạm biệt",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s02-02",
+    "lesson": 1,
+    "hanzi": "不，不客气。",
+    "pinyin": "Bù, bú kèqi.",
+    "pinyinNum": "bu4 bu2 ke4 qi5",
+    "vi": "Không, không có gì."
+   },
+   {
+    "id": "g02-3-2",
+    "lesson": 1,
+    "hanzi": "老师再见！",
+    "pinyin": "Lǎoshī zàijiàn!",
+    "pinyinNum": "lao3 shi1 zai4 jian4",
+    "vi": "Chào thầy ạ (lúc về)!"
+   },
+   {
+    "id": "s01-02",
+    "lesson": 1,
+    "hanzi": "你们好！",
+    "pinyin": "Nǐmen hǎo!",
+    "pinyinNum": "ni3 men5 hao3",
+    "vi": "Xin chào các bạn!"
+   },
+   {
+    "id": "s02-01",
+    "lesson": 1,
+    "hanzi": "谢谢你！",
+    "pinyin": "Xièxie nǐ!",
+    "pinyinNum": "xie4 xie5 ni3",
+    "vi": "Cảm ơn bạn!"
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 2,
+  "titleZh": "第2课",
+  "titleVi": "Tôi tên là NhaiHSK",
+  "grammarNote": "主语 + 谓语 + 宾语",
+  "words": [
+   {
+    "id": "n02-01",
+    "lesson": 2,
+    "hanzi": "请问",
+    "pinyin": "qǐngwèn",
+    "pinyinNum": "qing3 wen4",
+    "vi": "Xin hỏi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-02",
+    "lesson": 2,
+    "hanzi": "你",
+    "pinyin": "nǐ",
+    "pinyinNum": "ni3",
+    "vi": "Bạn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-03",
+    "lesson": 2,
+    "hanzi": "叫",
+    "pinyin": "jiào",
+    "pinyinNum": "jiao4",
+    "vi": "Tên là, gọi là",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-04",
+    "lesson": 2,
+    "hanzi": "什么",
+    "pinyin": "shénme",
+    "pinyinNum": "shen2 me5",
+    "vi": "Cái gì, gì",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-05",
+    "lesson": 2,
+    "hanzi": "名字",
+    "pinyin": "míngzi",
+    "pinyinNum": "ming2 zi5",
+    "vi": "Tên",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-06",
+    "lesson": 2,
+    "hanzi": "我",
+    "pinyin": "wǒ",
+    "pinyinNum": "wo3",
+    "vi": "Tôi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-07",
+    "lesson": 2,
+    "hanzi": "不",
+    "pinyin": "bù",
+    "pinyinNum": "bu4",
+    "vi": "Không",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-08",
+    "lesson": 2,
+    "hanzi": "是",
+    "pinyin": "shì",
+    "pinyinNum": "shi4",
+    "vi": "Là",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-09",
+    "lesson": 2,
+    "hanzi": "对不起",
+    "pinyin": "duìbuqǐ",
+    "pinyinNum": "dui4 bu5 qi3",
+    "vi": "Xin lỗi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-10",
+    "lesson": 2,
+    "hanzi": "没关系",
+    "pinyin": "méi guānxi",
+    "pinyinNum": "mei2 guan1 xi5",
+    "vi": "Không sao, không có gì",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-11",
+    "lesson": 2,
+    "hanzi": "没事",
+    "pinyin": "méishì",
+    "pinyinNum": "mei2 shi4",
+    "vi": "Không sao, không có việc gì",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-12",
+    "lesson": 2,
+    "hanzi": "很",
+    "pinyin": "hěn",
+    "pinyinNum": "hen3",
+    "vi": "Rất",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-13",
+    "lesson": 2,
+    "hanzi": "高兴",
+    "pinyin": "gāoxìng",
+    "pinyinNum": "gao1 xing4",
+    "vi": "Vui vẻ, vui mừng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-14",
+    "lesson": 2,
+    "hanzi": "认识",
+    "pinyin": "rènshi",
+    "pinyinNum": "ren4 shi5",
+    "vi": "Quen biết, nhận thức",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n02-15",
+    "lesson": 2,
+    "hanzi": "也",
+    "pinyin": "yě",
+    "pinyinNum": "ye3",
+    "vi": "Cũng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "d03-1-4",
+    "lesson": 2,
+    "hanzi": "我不是老师，我是学生。",
+    "pinyin": "Wǒ bú shì lǎoshī, wǒ shì xuésheng.",
+    "pinyinNum": "wo3 bu2 shi4 lao3 shi1 wo3 shi4 xue2 sheng5",
+    "vi": "Mình không phải giáo viên, mình là học sinh."
+   },
+   {
+    "id": "d03-1-1",
+    "lesson": 2,
+    "hanzi": "你好！你叫什么名字？",
+    "pinyin": "Nǐhǎo! Nǐ jiào shénme míngzi?",
+    "pinyinNum": "ni3 hao3 ni3 jiao4 shen2 me5 ming2 zi5",
+    "vi": "Chào bạn! Bạn tên là gì?"
+   },
+   {
+    "id": "d15-1-2",
+    "lesson": 2,
+    "hanzi": "你好！认识你很高兴。",
+    "pinyin": "Nǐhǎo! Rènshi nǐ hěn gāoxìng.",
+    "pinyinNum": "ni3 hao3 ren4 shi5 ni3 hen3 gao1 xing4",
+    "vi": "Chào bạn! Rất vui được quen bạn."
+   },
+   {
+    "id": "s15-01",
+    "lesson": 2,
+    "hanzi": "认识你我很高兴。",
+    "pinyin": "Rènshi nǐ wǒ hěn gāoxìng.",
+    "pinyinNum": "ren4 shi5 ni3 wo3 hen3 gao1 xing4",
+    "vi": "Rất vui được quen bạn."
+   },
+   {
+    "id": "s01-03",
+    "lesson": 2,
+    "hanzi": "对不起。没关系。",
+    "pinyin": "Duìbuqǐ. Méiguānxi.",
+    "pinyinNum": "dui4 bu5 qi3 mei2 guan1 xi5",
+    "vi": "Xin lỗi. Không sao."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 3,
+  "titleZh": "第3课",
+  "titleVi": "Tôi là người Việt Nam",
+  "grammarNote": "Câu chữ “是” · Trợ từ kết cấu “的” · ……吗？",
+  "words": [
+   {
+    "id": "n03-01",
+    "lesson": 3,
+    "hanzi": "人",
+    "pinyin": "rén",
+    "pinyinNum": "ren2",
+    "vi": "Người",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-02",
+    "lesson": 3,
+    "hanzi": "的",
+    "pinyin": "de",
+    "pinyinNum": "de5",
+    "vi": "Của",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-03",
+    "lesson": 3,
+    "hanzi": "中国",
+    "pinyin": "Zhōngguó",
+    "pinyinNum": "zhong1 guo2",
+    "vi": "Trung Quốc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-04",
+    "lesson": 3,
+    "hanzi": "法国",
+    "pinyin": "Fǎguó",
+    "pinyinNum": "fa3 guo2",
+    "vi": "Nước Pháp",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-05",
+    "lesson": 3,
+    "hanzi": "中文",
+    "pinyin": "Zhōngwén",
+    "pinyinNum": "zhong1 wen2",
+    "vi": "Tiếng Trung",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-06",
+    "lesson": 3,
+    "hanzi": "这",
+    "pinyin": "zhè",
+    "pinyinNum": "zhe4",
+    "vi": "Này, đây",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-07",
+    "lesson": 3,
+    "hanzi": "谁",
+    "pinyin": "shéi",
+    "pinyinNum": "shei2",
+    "vi": "Ai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-08",
+    "lesson": 3,
+    "hanzi": "女朋友",
+    "pinyin": "nǚpéngyou",
+    "pinyinNum": "nü3 peng2 you5",
+    "vi": "Bạn gái",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-09",
+    "lesson": 3,
+    "hanzi": "哪",
+    "pinyin": "nǎ",
+    "pinyinNum": "na3",
+    "vi": "Nào, gì",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-10",
+    "lesson": 3,
+    "hanzi": "国",
+    "pinyin": "guó",
+    "pinyinNum": "guo2",
+    "vi": "Nước, quốc gia",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-11",
+    "lesson": 3,
+    "hanzi": "她",
+    "pinyin": "tā",
+    "pinyinNum": "ta1",
+    "vi": "Cô ấy, chị ấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-12",
+    "lesson": 3,
+    "hanzi": "泰国",
+    "pinyin": "Tàiguó",
+    "pinyinNum": "tai4 guo2",
+    "vi": "Thái Lan",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-13",
+    "lesson": 3,
+    "hanzi": "喂",
+    "pinyin": "wèi",
+    "pinyinNum": "wei4",
+    "vi": "A lô, này",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-14",
+    "lesson": 3,
+    "hanzi": "姐姐",
+    "pinyin": "jiějie",
+    "pinyinNum": "jie3 jie5",
+    "vi": "Chị gái",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-15",
+    "lesson": 3,
+    "hanzi": "工作",
+    "pinyin": "gōngzuò",
+    "pinyinNum": "gong1 zuo4",
+    "vi": "Công việc, làm việc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-16",
+    "lesson": 3,
+    "hanzi": "还",
+    "pinyin": "hái",
+    "pinyinNum": "hai2",
+    "vi": "Vẫn, còn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-17",
+    "lesson": 3,
+    "hanzi": "忙",
+    "pinyin": "máng",
+    "pinyinNum": "mang2",
+    "vi": "Bận, bận rộn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-18",
+    "lesson": 3,
+    "hanzi": "吗",
+    "pinyin": "ma",
+    "pinyinNum": "ma5",
+    "vi": "Không, chưa (trợ từ nghi vấn)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-19",
+    "lesson": 3,
+    "hanzi": "对",
+    "pinyin": "duì",
+    "pinyinNum": "dui4",
+    "vi": "Đúng, phải",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-20",
+    "lesson": 3,
+    "hanzi": "太",
+    "pinyin": "tài",
+    "pinyinNum": "tai4",
+    "vi": "Quá, lắm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-21",
+    "lesson": 3,
+    "hanzi": "我们",
+    "pinyin": "wǒmen",
+    "pinyinNum": "wo3 men5",
+    "vi": "Chúng tôi, chúng ta",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n03-22",
+    "lesson": 3,
+    "hanzi": "想",
+    "pinyin": "xiǎng",
+    "pinyinNum": "xiang3",
+    "vi": "Nhớ, muốn, nghĩ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s03-02",
+    "lesson": 3,
+    "hanzi": "我是学生。你是老师吗？",
+    "pinyin": "Wǒ shì xuésheng. Nǐ shì lǎoshī ma?",
+    "pinyinNum": "wo3 shi4 xue2 sheng5 ni3 shi4 lao3 shi1 ma5",
+    "vi": "Tôi là học sinh. Bạn là giáo viên phải không?"
+   },
+   {
+    "id": "s04-04",
+    "lesson": 3,
+    "hanzi": "她是谁？她是我的同学。",
+    "pinyin": "Tā shì shéi? Tā shì wǒ de tóngxué.",
+    "pinyinNum": "ta1 shi4 shei2 ta1 shi4 wo3 de5 tong2 xue2",
+    "vi": "Cô ấy là ai? Cô ấy là bạn cùng lớp của tôi."
+   },
+   {
+    "id": "s01-01",
+    "lesson": 3,
+    "hanzi": "你好！您是老师吗？",
+    "pinyin": "Nǐhǎo! Nín shì lǎoshī ma?",
+    "pinyinNum": "ni3 hao3 nin2 shi4 lao3 shi1 ma5",
+    "vi": "Xin chào! Ngài là giáo viên ạ?"
+   },
+   {
+    "id": "d10-1-4",
+    "lesson": 3,
+    "hanzi": "不是，是我同学的。",
+    "pinyin": "Bú shì, shì wǒ tóngxué de.",
+    "pinyinNum": "bu2 shi4 shi4 wo3 tong2 xue2 de5",
+    "vi": "Không phải, của bạn học mình."
+   },
+   {
+    "id": "s04-01",
+    "lesson": 3,
+    "hanzi": "她是我的朋友。",
+    "pinyin": "Tā shì wǒ de péngyou.",
+    "pinyinNum": "ta1 shi4 wo3 de5 peng2 you5",
+    "vi": "Cô ấy là bạn của tôi."
+   },
+   {
+    "id": "g03-3-2",
+    "lesson": 3,
+    "hanzi": "你是中国人吗？",
+    "pinyin": "Nǐ shì Zhōngguórén ma?",
+    "pinyinNum": "ni3 shi4 zhong1 guo2 ren2 ma5",
+    "vi": "Bạn là người Trung Quốc à?"
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 4,
+  "titleZh": "第4课",
+  "titleVi": "Tôi có hai đứa con",
+  "grammarNote": "“有”字句 (1) · “百”以上(含)、“万”以内数字的写法与读法 · “2” 的写法和读法 · A……，B呢？ · Số từ + Lượng từ + Danh từ [Num+M+(N)]",
+  "words": [
+   {
+    "id": "n04-01",
+    "lesson": 4,
+    "hanzi": "有",
+    "pinyin": "yǒu",
+    "pinyinNum": "you3",
+    "vi": "Có",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-02",
+    "lesson": 4,
+    "hanzi": "多少",
+    "pinyin": "duōshao",
+    "pinyinNum": "duo1 shao5",
+    "vi": "Bao nhiêu",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-03",
+    "lesson": 4,
+    "hanzi": "个",
+    "pinyin": "gè",
+    "pinyinNum": "ge4",
+    "vi": "Cái, con, người (lượng từ chung)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-04",
+    "lesson": 4,
+    "hanzi": "哥哥",
+    "pinyin": "gēge",
+    "pinyinNum": "ge1 ge5",
+    "vi": "Anh trai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-05",
+    "lesson": 4,
+    "hanzi": "呢",
+    "pinyin": "ne",
+    "pinyinNum": "ne5",
+    "vi": "Nhỉ, thế, còn... thì sao (trợ từ ngữ khí)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-06",
+    "lesson": 4,
+    "hanzi": "没有",
+    "pinyin": "méiyǒu",
+    "pinyinNum": "mei2 you3",
+    "vi": "Không có",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-07",
+    "lesson": 4,
+    "hanzi": "家",
+    "pinyin": "jiā",
+    "pinyinNum": "jia1",
+    "vi": "Nhà, gia đình",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-08",
+    "lesson": 4,
+    "hanzi": "几",
+    "pinyin": "jǐ",
+    "pinyinNum": "ji3",
+    "vi": "Mấy, bao nhiêu",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-09",
+    "lesson": 4,
+    "hanzi": "口",
+    "pinyin": "kǒu",
+    "pinyinNum": "kou3",
+    "vi": "Nhân khẩu, người (lượng từ dùng cho thành viên gia đình)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-10",
+    "lesson": 4,
+    "hanzi": "爸爸",
+    "pinyin": "bàba",
+    "pinyinNum": "ba4 ba5",
+    "vi": "Bố, ba",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-11",
+    "lesson": 4,
+    "hanzi": "妈妈",
+    "pinyin": "māma",
+    "pinyinNum": "ma1 ma5",
+    "vi": "Mẹ, má",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-12",
+    "lesson": 4,
+    "hanzi": "妹妹",
+    "pinyin": "mèimei",
+    "pinyinNum": "mei4 mei5",
+    "vi": "Em gái",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-13",
+    "lesson": 4,
+    "hanzi": "和",
+    "pinyin": "hé",
+    "pinyinNum": "he2",
+    "vi": "Và, cùng, với",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-14",
+    "lesson": 4,
+    "hanzi": "儿子",
+    "pinyin": "érzi",
+    "pinyinNum": "er2 zi5",
+    "vi": "Con trai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-15",
+    "lesson": 4,
+    "hanzi": "孩子",
+    "pinyin": "háizi",
+    "pinyinNum": "hai2 zi5",
+    "vi": "Đứa trẻ, con cái",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-16",
+    "lesson": 4,
+    "hanzi": "女儿",
+    "pinyin": "nǚ'ér",
+    "pinyinNum": "nü3 er2",
+    "vi": "Con gái",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-17",
+    "lesson": 4,
+    "hanzi": "岁",
+    "pinyin": "suì",
+    "pinyinNum": "sui4",
+    "vi": "Tuổi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-18",
+    "lesson": 4,
+    "hanzi": "他",
+    "pinyin": "tā",
+    "pinyinNum": "ta1",
+    "vi": "Anh ấy, cậu ấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-19",
+    "lesson": 4,
+    "hanzi": "今年",
+    "pinyin": "jīnnián",
+    "pinyinNum": "jin1 nian2",
+    "vi": "Năm nay",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-20",
+    "lesson": 4,
+    "hanzi": "多",
+    "pinyin": "duō",
+    "pinyinNum": "duo1",
+    "vi": "Bao nhiêu, nhường nào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-21",
+    "lesson": 4,
+    "hanzi": "大",
+    "pinyin": "dà",
+    "pinyinNum": "da4",
+    "vi": "Lớn, bao nhiêu tuổi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-22",
+    "lesson": 4,
+    "hanzi": "一",
+    "pinyin": "yī",
+    "pinyinNum": "yi1",
+    "vi": "Một, số 1",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-23",
+    "lesson": 4,
+    "hanzi": "二",
+    "pinyin": "èr",
+    "pinyinNum": "er4",
+    "vi": "Hai, số 2",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-24",
+    "lesson": 4,
+    "hanzi": "三",
+    "pinyin": "sān",
+    "pinyinNum": "san1",
+    "vi": "Ba, số 3",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-25",
+    "lesson": 4,
+    "hanzi": "四",
+    "pinyin": "sì",
+    "pinyinNum": "si4",
+    "vi": "Bốn, số 4",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-26",
+    "lesson": 4,
+    "hanzi": "五",
+    "pinyin": "wǔ",
+    "pinyinNum": "wu3",
+    "vi": "Năm, số 5",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-27",
+    "lesson": 4,
+    "hanzi": "六",
+    "pinyin": "liù",
+    "pinyinNum": "liu4",
+    "vi": "Sáu, số 6",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-28",
+    "lesson": 4,
+    "hanzi": "七",
+    "pinyin": "qī",
+    "pinyinNum": "qi1",
+    "vi": "Bảy, số 7",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-29",
+    "lesson": 4,
+    "hanzi": "八",
+    "pinyin": "bā",
+    "pinyinNum": "ba1",
+    "vi": "Tám, số 8",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-30",
+    "lesson": 4,
+    "hanzi": "九",
+    "pinyin": "jiǔ",
+    "pinyinNum": "jiu3",
+    "vi": "Chín, số 9",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-31",
+    "lesson": 4,
+    "hanzi": "十",
+    "pinyin": "shí",
+    "pinyinNum": "shi2",
+    "vi": "Mười, số 10",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-32",
+    "lesson": 4,
+    "hanzi": "零",
+    "pinyin": "líng",
+    "pinyinNum": "ling2",
+    "vi": "Không, số 0; linh (trong số đếm)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-33",
+    "lesson": 4,
+    "hanzi": "两",
+    "pinyin": "liǎng",
+    "pinyinNum": "liang3",
+    "vi": "Hai (dùng trước lượng từ)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-34",
+    "lesson": 4,
+    "hanzi": "百",
+    "pinyin": "bǎi",
+    "pinyinNum": "bai3",
+    "vi": "Trăm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n04-35",
+    "lesson": 4,
+    "hanzi": "千",
+    "pinyin": "qiān",
+    "pinyinNum": "qian1",
+    "vi": "Nghìn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s04-02",
+    "lesson": 4,
+    "hanzi": "他是哪国人？他是中国人。",
+    "pinyin": "Tā shì nǎ guó rén? Tā shì Zhōngguórén.",
+    "pinyinNum": "ta1 shi4 na3 guo2 ren2 ta1 shi4 zhong1 guo2 ren2",
+    "vi": "Anh ấy là người nước nào? Anh ấy là người Trung Quốc."
+   },
+   {
+    "id": "s05-02",
+    "lesson": 4,
+    "hanzi": "她女儿今年五岁。",
+    "pinyin": "Tā nǚ'ér jīnnián wǔ suì.",
+    "pinyinNum": "ta1 nü3 er2 jin1 nian2 wu3 sui4",
+    "vi": "Con gái cô ấy năm nay năm tuổi."
+   },
+   {
+    "id": "s05-01",
+    "lesson": 4,
+    "hanzi": "我家有三口人。",
+    "pinyin": "Wǒ jiā yǒu sān kǒu rén.",
+    "pinyinNum": "wo3 jia1 you3 san1 kou3 ren2",
+    "vi": "Nhà tôi có ba người."
+   },
+   {
+    "id": "g04-4-1",
+    "lesson": 4,
+    "hanzi": "我是学生，你呢？",
+    "pinyin": "Wǒ shì xuésheng, nǐ ne?",
+    "pinyinNum": "wo3 shi4 xue2 sheng5 ni3 ne5",
+    "vi": "Tôi là học sinh, còn bạn?"
+   },
+   {
+    "id": "d04-1-6",
+    "lesson": 4,
+    "hanzi": "他是我的同学。",
+    "pinyin": "Tā shì wǒ de tóngxué.",
+    "pinyinNum": "ta1 shi4 wo3 de5 tong2 xue2",
+    "vi": "Anh ấy là bạn học của mình."
+   },
+   {
+    "id": "d05-1-1",
+    "lesson": 4,
+    "hanzi": "你家有几口人？",
+    "pinyin": "Nǐ jiā yǒu jǐ kǒu rén?",
+    "pinyinNum": "ni3 jia1 you3 ji3 kou3 ren2",
+    "vi": "Nhà bạn có mấy người?"
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 5,
+  "titleZh": "第5课",
+  "titleVi": "Hôm nay tôi nghỉ",
+  "grammarNote": "年 → 月 → 日/号 → 星期 · Chủ ngữ + Danh từ / Cụm danh từ · 能愿动词 “会”",
+  "words": [
+   {
+    "id": "n05-01",
+    "lesson": 5,
+    "hanzi": "今天",
+    "pinyin": "jīntiān",
+    "pinyinNum": "jin1 tian1",
+    "vi": "Hôm nay",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-02",
+    "lesson": 5,
+    "hanzi": "号",
+    "pinyin": "hào",
+    "pinyinNum": "hao4",
+    "vi": "Ngày (trong văn nói)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-03",
+    "lesson": 5,
+    "hanzi": "月",
+    "pinyin": "yuè",
+    "pinyinNum": "yue4",
+    "vi": "Tháng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-04",
+    "lesson": 5,
+    "hanzi": "日",
+    "pinyin": "rì",
+    "pinyinNum": "ri4",
+    "vi": "Ngày (trong văn viết)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-05",
+    "lesson": 5,
+    "hanzi": "星期",
+    "pinyin": "xīngqī",
+    "pinyinNum": "xing1 qi1",
+    "vi": "Tuần, thứ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-06",
+    "lesson": 5,
+    "hanzi": "星期日",
+    "pinyin": "Xīngqīrì",
+    "pinyinNum": "xing1 qi1 ri4",
+    "vi": "Chủ nhật",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-07",
+    "lesson": 5,
+    "hanzi": "星期天",
+    "pinyin": "Xīngqītiān",
+    "pinyinNum": "xing1 qi1 tian1",
+    "vi": "Chủ nhật",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-08",
+    "lesson": 5,
+    "hanzi": "休息",
+    "pinyin": "xiūxi",
+    "pinyinNum": "xiu1 xi5",
+    "vi": "Nghỉ ngơi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-09",
+    "lesson": 5,
+    "hanzi": "会",
+    "pinyin": "huì",
+    "pinyinNum": "hui4",
+    "vi": "Biết, có thể",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-10",
+    "lesson": 5,
+    "hanzi": "做饭",
+    "pinyin": "zuò fàn",
+    "pinyinNum": "zuo4 fan4",
+    "vi": "Nấu cơm, nấu ăn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-11",
+    "lesson": 5,
+    "hanzi": "做",
+    "pinyin": "zuò",
+    "pinyinNum": "zuo4",
+    "vi": "Làm, chế tạo",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-12",
+    "lesson": 5,
+    "hanzi": "面条儿",
+    "pinyin": "miàntiáor",
+    "pinyinNum": "mian4 tiao2 er5",
+    "vi": "Mì sợi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-13",
+    "lesson": 5,
+    "hanzi": "饺子",
+    "pinyin": "jiǎozi",
+    "pinyinNum": "jiao3 zi5",
+    "vi": "Sủi cảo, bánh chẻo",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-14",
+    "lesson": 5,
+    "hanzi": "一些",
+    "pinyin": "yìxiē",
+    "pinyinNum": "yi4 xie1",
+    "vi": "Một vài, một ít",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-15",
+    "lesson": 5,
+    "hanzi": "菜",
+    "pinyin": "cài",
+    "pinyinNum": "cai4",
+    "vi": "Món ăn, thức ăn, rau",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-16",
+    "lesson": 5,
+    "hanzi": "下班",
+    "pinyin": "xiàbān",
+    "pinyinNum": "xia4 ban1",
+    "vi": "Tan làm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-17",
+    "lesson": 5,
+    "hanzi": "新",
+    "pinyin": "xīn",
+    "pinyinNum": "xin1",
+    "vi": "Mới",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-18",
+    "lesson": 5,
+    "hanzi": "电脑",
+    "pinyin": "diànnǎo",
+    "pinyinNum": "dian4 nao3",
+    "vi": "Máy tính",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-19",
+    "lesson": 5,
+    "hanzi": "真",
+    "pinyin": "zhēn",
+    "pinyinNum": "zhen1",
+    "vi": "Thật, thật sự",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-20",
+    "lesson": 5,
+    "hanzi": "好看",
+    "pinyin": "hǎokàn",
+    "pinyinNum": "hao3 kan4",
+    "vi": "Đẹp, dễ nhìn, hay",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-21",
+    "lesson": 5,
+    "hanzi": "喜欢",
+    "pinyin": "xǐhuan",
+    "pinyinNum": "xi3 huan5",
+    "vi": "Thích",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n05-22",
+    "lesson": 5,
+    "hanzi": "它",
+    "pinyin": "tā",
+    "pinyinNum": "ta1",
+    "vi": "Nó",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s07-02",
+    "lesson": 5,
+    "hanzi": "今天是三月八号，星期一。",
+    "pinyin": "Jīntiān shì sān yuè bā hào, xīngqīyī.",
+    "pinyinNum": "jin1 tian1 shi4 san1 yue4 ba1 hao4 xing1 qi1 yi1",
+    "vi": "Hôm nay là ngày 8 tháng 3, thứ Hai."
+   },
+   {
+    "id": "g07-1-2",
+    "lesson": 5,
+    "hanzi": "今天十月九号，星期三。",
+    "pinyin": "Jīntiān shí yuè jiǔ hào, xīngqīsān.",
+    "pinyinNum": "jin1 tian1 shi2 yue4 jiu3 hao4 xing1 qi1 san1",
+    "vi": "Hôm nay ngày 9 tháng 10, thứ Tư."
+   },
+   {
+    "id": "s07-01",
+    "lesson": 5,
+    "hanzi": "请问，今天几号？",
+    "pinyin": "Qǐngwèn, jīntiān jǐ hào?",
+    "pinyinNum": "qing3 wen4 jin1 tian1 ji3 hao4",
+    "vi": "Xin hỏi, hôm nay ngày mấy?"
+   },
+   {
+    "id": "d07-1-2",
+    "lesson": 5,
+    "hanzi": "今天九月一号。",
+    "pinyin": "Jīntiān jiǔ yuè yī hào.",
+    "pinyinNum": "jin1 tian1 jiu3 yue4 yi1 hao4",
+    "vi": "Hôm nay ngày 1 tháng 9."
+   },
+   {
+    "id": "d07-1-3",
+    "lesson": 5,
+    "hanzi": "今天星期几？",
+    "pinyin": "Jīntiān xīngqījǐ?",
+    "pinyinNum": "jin1 tian1 xing1 qi1 ji3",
+    "vi": "Hôm nay thứ mấy?"
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 6,
+  "titleZh": "第6课",
+  "titleVi": "Số điện thoại của bạn là bao nhiêu?",
+  "grammarNote": "能愿动词 “想” · 连动句 (1) · 疑问代词 “怎么”",
+  "words": [
+   {
+    "id": "n06-01",
+    "lesson": 6,
+    "hanzi": "手机",
+    "pinyin": "shǒujī",
+    "pinyinNum": "shou3 ji1",
+    "vi": "Điện thoại di động",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-02",
+    "lesson": 6,
+    "hanzi": "电话",
+    "pinyin": "diànhuà",
+    "pinyinNum": "dian4 hua4",
+    "vi": "Điện thoại, cuộc gọi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-03",
+    "lesson": 6,
+    "hanzi": "号",
+    "pinyin": "hào",
+    "pinyinNum": "hao4",
+    "vi": "Số",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-04",
+    "lesson": 6,
+    "hanzi": "明天",
+    "pinyin": "míngtiān",
+    "pinyinNum": "ming2 tian1",
+    "vi": "Ngày mai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-05",
+    "lesson": 6,
+    "hanzi": "去",
+    "pinyin": "qù",
+    "pinyinNum": "qu4",
+    "vi": "Đi, đi đến",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-06",
+    "lesson": 6,
+    "hanzi": "哪儿",
+    "pinyin": "nǎr",
+    "pinyinNum": "na3 er5",
+    "vi": "Ở đâu, chỗ nào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-07",
+    "lesson": 6,
+    "hanzi": "想",
+    "pinyin": "xiǎng",
+    "pinyinNum": "xiang3",
+    "vi": "Muốn, dự định",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-08",
+    "lesson": 6,
+    "hanzi": "超市",
+    "pinyin": "chāoshì",
+    "pinyinNum": "chao1 shi4",
+    "vi": "Siêu thị",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-09",
+    "lesson": 6,
+    "hanzi": "买",
+    "pinyin": "mǎi",
+    "pinyinNum": "mai3",
+    "vi": "Mua",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-10",
+    "lesson": 6,
+    "hanzi": "东西",
+    "pinyin": "dōngxi",
+    "pinyinNum": "dong1 xi5",
+    "vi": "Đồ đạc, thứ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-11",
+    "lesson": 6,
+    "hanzi": "些",
+    "pinyin": "xiē",
+    "pinyinNum": "xie1",
+    "vi": "Vài, một số",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-12",
+    "lesson": 6,
+    "hanzi": "牛奶",
+    "pinyin": "niúnǎi",
+    "pinyinNum": "niu2 nai3",
+    "vi": "Sữa bò",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-13",
+    "lesson": 6,
+    "hanzi": "吃",
+    "pinyin": "chī",
+    "pinyinNum": "chi1",
+    "vi": "Ăn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-14",
+    "lesson": 6,
+    "hanzi": "晚饭",
+    "pinyin": "wǎnfàn",
+    "pinyinNum": "wan3 fan4",
+    "vi": "Bữa tối",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-15",
+    "lesson": 6,
+    "hanzi": "那边",
+    "pinyin": "nàbiān",
+    "pinyinNum": "na4 bian1",
+    "vi": "Chỗ kia, bên kia",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-16",
+    "lesson": 6,
+    "hanzi": "包子",
+    "pinyin": "bāozi",
+    "pinyinNum": "bao1 zi5",
+    "vi": "Bánh bao",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-17",
+    "lesson": 6,
+    "hanzi": "非常",
+    "pinyin": "fēicháng",
+    "pinyinNum": "fei1 chang2",
+    "vi": "Vô cùng, rất",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-18",
+    "lesson": 6,
+    "hanzi": "好吃",
+    "pinyin": "hǎochī",
+    "pinyinNum": "hao3 chi1",
+    "vi": "Ngon",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-19",
+    "lesson": 6,
+    "hanzi": "米饭",
+    "pinyin": "mǐfàn",
+    "pinyinNum": "mi3 fan4",
+    "vi": "Cơm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-20",
+    "lesson": 6,
+    "hanzi": "怎么",
+    "pinyin": "zěnme",
+    "pinyinNum": "zen3 me5",
+    "vi": "Thế nào, như thế nào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-21",
+    "lesson": 6,
+    "hanzi": "坐",
+    "pinyin": "zuò",
+    "pinyinNum": "zuo4",
+    "vi": "Ngồi, đi (phương tiện giao thông)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-22",
+    "lesson": 6,
+    "hanzi": "出租车",
+    "pinyin": "chūzūchē",
+    "pinyinNum": "chu1 zu1 che1",
+    "vi": "Xe taxi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n06-23",
+    "lesson": 6,
+    "hanzi": "西安饭店",
+    "pinyin": "Xī'ān Fàndiàn",
+    "pinyinNum": "xi1 an1 fan4 dian4",
+    "vi": "Nhà hàng Tây An",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "g15-2-1",
+    "lesson": 6,
+    "hanzi": "我和朋友一起去饭店。",
+    "pinyin": "Wǒ hé péngyou yìqǐ qù fàndiàn.",
+    "pinyinNum": "wo3 he2 peng2 you5 yi4 qi3 qu4 fan4 dian4",
+    "vi": "Tôi và bạn cùng đi nhà hàng."
+   },
+   {
+    "id": "s06-02",
+    "lesson": 6,
+    "hanzi": "妈妈做的菜很好吃。",
+    "pinyin": "Māma zuò de cài hěn hǎochī.",
+    "pinyinNum": "ma1 ma5 zuo4 de5 cai4 hen3 hao3 chi1",
+    "vi": "Món mẹ nấu rất ngon."
+   },
+   {
+    "id": "d15-1-8",
+    "lesson": 6,
+    "hanzi": "好，我们坐出租车去。",
+    "pinyin": "Hǎo, wǒmen zuò chūzūchē qù.",
+    "pinyinNum": "hao3 wo3 men5 zuo4 chu1 zu1 che1 qu4",
+    "vi": "Được, mình đi taxi."
+   },
+   {
+    "id": "s08-04",
+    "lesson": 6,
+    "hanzi": "那个人想吃米饭。",
+    "pinyin": "Nàge rén xiǎng chī mǐfàn.",
+    "pinyinNum": "na4 ge5 ren2 xiang3 chi1 mi3 fan4",
+    "vi": "Người kia muốn ăn cơm."
+   },
+   {
+    "id": "g06-2-1",
+    "lesson": 6,
+    "hanzi": "中国菜很好吃。",
+    "pinyin": "Zhōngguó cài hěn hǎochī.",
+    "pinyinNum": "zhong1 guo2 cai4 hen3 hao3 chi1",
+    "vi": "Món Trung Quốc ngon."
+   },
+   {
+    "id": "g08-1-2",
+    "lesson": 6,
+    "hanzi": "我不想吃米饭。",
+    "pinyin": "Wǒ bù xiǎng chī mǐfàn.",
+    "pinyinNum": "wo3 bu4 xiang3 chi1 mi3 fan4",
+    "vi": "Tôi không muốn ăn cơm."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 7,
+  "titleZh": "第7课",
+  "titleVi": "Tôi tan làm lúc 6 rưỡi tối",
+  "grammarNote": "时间的表达（2）- (1) 使用“点、分”表达时间点 · 时间的表达（2）- (2) 使用“上午、中午、下午、晚上”等时间名词表达时间段 · 语气助词“吧” (1) · 副词、时间词语作状语的位置 · ……呢。",
+  "words": [
+   {
+    "id": "n07-01",
+    "lesson": 7,
+    "hanzi": "现在",
+    "pinyin": "xiànzài",
+    "pinyinNum": "xian4 zai4",
+    "vi": "Bây giờ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-02",
+    "lesson": 7,
+    "hanzi": "点",
+    "pinyin": "diǎn",
+    "pinyinNum": "dian3",
+    "vi": "Giờ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-03",
+    "lesson": 7,
+    "hanzi": "早上",
+    "pinyin": "zǎoshang",
+    "pinyinNum": "zao3 shang5",
+    "vi": "Buổi sáng sớm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-04",
+    "lesson": 7,
+    "hanzi": "上午",
+    "pinyin": "shàngwǔ",
+    "pinyinNum": "shang4 wu3",
+    "vi": "Buổi sáng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-05",
+    "lesson": 7,
+    "hanzi": "分",
+    "pinyin": "fēn",
+    "pinyinNum": "fen1",
+    "vi": "Phút",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-06",
+    "lesson": 7,
+    "hanzi": "课",
+    "pinyin": "kè",
+    "pinyinNum": "ke4",
+    "vi": "Tiết học, bài học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-07",
+    "lesson": 7,
+    "hanzi": "下午",
+    "pinyin": "xiàwǔ",
+    "pinyinNum": "xia4 wu3",
+    "vi": "Buổi chiều",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-08",
+    "lesson": 7,
+    "hanzi": "见",
+    "pinyin": "jiàn",
+    "pinyinNum": "jian4",
+    "vi": "Gặp, gặp mặt",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-09",
+    "lesson": 7,
+    "hanzi": "吧",
+    "pinyin": "ba",
+    "pinyinNum": "ba5",
+    "vi": "Nhé, đi, thôi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-10",
+    "lesson": 7,
+    "hanzi": "电影院",
+    "pinyin": "diànyǐngyuàn",
+    "pinyinNum": "dian4 ying3 yuan4",
+    "vi": "Rạp chiếu phim",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-11",
+    "lesson": 7,
+    "hanzi": "看",
+    "pinyin": "kàn",
+    "pinyinNum": "kan4",
+    "vi": "Xem, nhìn, đọc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-12",
+    "lesson": 7,
+    "hanzi": "电影",
+    "pinyin": "diànyǐng",
+    "pinyinNum": "dian4 ying3",
+    "vi": "Phim, điện ảnh",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-13",
+    "lesson": 7,
+    "hanzi": "事",
+    "pinyin": "shì",
+    "pinyinNum": "shi4",
+    "vi": "Việc, sự việc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-14",
+    "lesson": 7,
+    "hanzi": "上课",
+    "pinyin": "shàngkè",
+    "pinyinNum": "shang4 ke4",
+    "vi": "Lên lớp, đi học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-15",
+    "lesson": 7,
+    "hanzi": "呢",
+    "pinyin": "ne",
+    "pinyinNum": "ne5",
+    "vi": "Đang, nhỉ (trợ từ ngữ khí)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-16",
+    "lesson": 7,
+    "hanzi": "半",
+    "pinyin": "bàn",
+    "pinyinNum": "ban4",
+    "vi": "Rưỡi, một nửa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-17",
+    "lesson": 7,
+    "hanzi": "下课",
+    "pinyin": "xiàkè",
+    "pinyinNum": "xia4 ke4",
+    "vi": "Tan học, tan lớp",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-18",
+    "lesson": 7,
+    "hanzi": "在",
+    "pinyin": "zài",
+    "pinyinNum": "zai4",
+    "vi": "Ở, tại",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-19",
+    "lesson": 7,
+    "hanzi": "家",
+    "pinyin": "jiā",
+    "pinyinNum": "jia1",
+    "vi": "Nhà",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-20",
+    "lesson": 7,
+    "hanzi": "里",
+    "pinyin": "lǐ",
+    "pinyinNum": "li3",
+    "vi": "Trong, bên trong",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-21",
+    "lesson": 7,
+    "hanzi": "晚上",
+    "pinyin": "wǎnshang",
+    "pinyinNum": "wan3 shang5",
+    "vi": "Buổi tối",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-22",
+    "lesson": 7,
+    "hanzi": "医院",
+    "pinyin": "yīyuàn",
+    "pinyinNum": "yi1 yuan4",
+    "vi": "Bệnh viện",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-23",
+    "lesson": 7,
+    "hanzi": "上班",
+    "pinyin": "shàngbān",
+    "pinyinNum": "shang4 ban1",
+    "vi": "Đi làm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-24",
+    "lesson": 7,
+    "hanzi": "店",
+    "pinyin": "diàn",
+    "pinyinNum": "dian4",
+    "vi": "Cửa hàng, tiệm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-25",
+    "lesson": 7,
+    "hanzi": "菜",
+    "pinyin": "cài",
+    "pinyinNum": "cai4",
+    "vi": "Rau, món ăn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-26",
+    "lesson": 7,
+    "hanzi": "分钟",
+    "pinyin": "fēnzhōng",
+    "pinyinNum": "fen1 zhong1",
+    "vi": "Phút",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n07-27",
+    "lesson": 7,
+    "hanzi": "后",
+    "pinyin": "hòu",
+    "pinyinNum": "hou4",
+    "vi": "Sau, sau khi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s09-01",
+    "lesson": 7,
+    "hanzi": "你儿子在哪儿工作？他在医院工作。",
+    "pinyin": "Nǐ érzi zài nǎr gōngzuò? Tā zài yīyuàn gōngzuò.",
+    "pinyinNum": "ni3 er2 zi5 zai4 nar3 gong1 zuo4 ta1 zai4 yi1 yuan4 gong1 zuo4",
+    "vi": "Con trai bạn làm việc ở đâu? Anh ấy làm ở bệnh viện."
+   },
+   {
+    "id": "s15-04",
+    "lesson": 7,
+    "hanzi": "他在大学工作，今年三十岁。",
+    "pinyin": "Tā zài dàxué gōngzuò, jīnnián sānshí suì.",
+    "pinyinNum": "ta1 zai4 da4 xue2 gong1 zuo4 jin1 nian2 san1 shi2 sui4",
+    "vi": "Anh ấy làm việc ở đại học, năm nay ba mươi tuổi."
+   },
+   {
+    "id": "s11-01",
+    "lesson": 7,
+    "hanzi": "现在几点？现在三点十分。",
+    "pinyin": "Xiànzài jǐ diǎn? Xiànzài sān diǎn shí fēn.",
+    "pinyinNum": "xian4 zai4 ji3 dian3 xian4 zai4 san1 dian3 shi2 fen1",
+    "vi": "Bây giờ mấy giờ? Bây giờ ba giờ mười phút."
+   },
+   {
+    "id": "d09-2-2",
+    "lesson": 7,
+    "hanzi": "他在医院工作，他是医生。",
+    "pinyin": "Tā zài yīyuàn gōngzuò, tā shì yīshēng.",
+    "pinyinNum": "ta1 zai4 yi1 yuan4 gong1 zuo4 ta1 shi4 yi1 sheng1",
+    "vi": "Bố mình làm ở bệnh viện, bố là bác sĩ."
+   },
+   {
+    "id": "d15-1-7",
+    "lesson": 7,
+    "hanzi": "我们一起去饭店吃饭吧。",
+    "pinyin": "Wǒmen yìqǐ qù fàndiàn chīfàn ba.",
+    "pinyinNum": "wo3 men5 yi4 qi3 qu4 fan4 dian4 chi1 fan4 ba5",
+    "vi": "Mình cùng đi nhà hàng ăn cơm nhé."
+   },
+   {
+    "id": "s15-03",
+    "lesson": 7,
+    "hanzi": "我们一起去饭店吧。",
+    "pinyin": "Wǒmen yìqǐ qù fàndiàn ba.",
+    "pinyinNum": "wo3 men5 yi4 qi3 qu4 fan4 dian4 ba5",
+    "vi": "Chúng ta cùng đến nhà hàng nhé."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 8,
+  "titleZh": "第8课",
+  "titleVi": "Bố tôi cũng làm việc ở bệnh viện",
+  "grammarNote": "方位词 · 介词 “在”",
+  "words": [
+   {
+    "id": "n08-01",
+    "lesson": 8,
+    "hanzi": "房间",
+    "pinyin": "fángjiān",
+    "pinyinNum": "fang2 jian1",
+    "vi": "Căn phòng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-02",
+    "lesson": 8,
+    "hanzi": "外",
+    "pinyin": "wài",
+    "pinyinNum": "wai4",
+    "vi": "Bên ngoài",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-03",
+    "lesson": 8,
+    "hanzi": "只",
+    "pinyin": "zhī",
+    "pinyinNum": "zhi1",
+    "vi": "Con (lượng từ cho động vật)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-04",
+    "lesson": 8,
+    "hanzi": "小",
+    "pinyin": "xiǎo",
+    "pinyinNum": "xiao3",
+    "vi": "Nhỏ, bé",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-05",
+    "lesson": 8,
+    "hanzi": "猫",
+    "pinyin": "māo",
+    "pinyinNum": "mao1",
+    "vi": "Con mèo",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-06",
+    "lesson": 8,
+    "hanzi": "没",
+    "pinyin": "méi",
+    "pinyinNum": "mei2",
+    "vi": "Không, chưa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-07",
+    "lesson": 8,
+    "hanzi": "看见",
+    "pinyin": "kànjiàn",
+    "pinyinNum": "kan4 jian4",
+    "vi": "Nhìn thấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-08",
+    "lesson": 8,
+    "hanzi": "桌子",
+    "pinyin": "zhuōzi",
+    "pinyinNum": "zhuo1 zi5",
+    "vi": "Cái bàn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-09",
+    "lesson": 8,
+    "hanzi": "下",
+    "pinyin": "xià",
+    "pinyinNum": "xia4",
+    "vi": "Dưới, bên dưới",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-10",
+    "lesson": 8,
+    "hanzi": "漂亮",
+    "pinyin": "piàoliang",
+    "pinyinNum": "piao4 liang5",
+    "vi": "Đẹp, xinh đẹp",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-11",
+    "lesson": 8,
+    "hanzi": "在",
+    "pinyin": "zài",
+    "pinyinNum": "zai4",
+    "vi": "Ở, tại",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-12",
+    "lesson": 8,
+    "hanzi": "学校",
+    "pinyin": "xuéxiào",
+    "pinyinNum": "xue2 xiao4",
+    "vi": "Trường học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-13",
+    "lesson": 8,
+    "hanzi": "书店",
+    "pinyin": "shūdiàn",
+    "pinyinNum": "shu1 dian4",
+    "vi": "Tiệm sách, nhà sách",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-14",
+    "lesson": 8,
+    "hanzi": "前",
+    "pinyin": "qián",
+    "pinyinNum": "qian2",
+    "vi": "Trước, phía trước",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-15",
+    "lesson": 8,
+    "hanzi": "能",
+    "pinyin": "néng",
+    "pinyinNum": "neng2",
+    "vi": "Có thể",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-16",
+    "lesson": 8,
+    "hanzi": "到",
+    "pinyin": "dào",
+    "pinyinNum": "dao4",
+    "vi": "Đến",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-17",
+    "lesson": 8,
+    "hanzi": "午饭",
+    "pinyin": "wǔfàn",
+    "pinyinNum": "wu3 fan4",
+    "vi": "Bữa trưa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-18",
+    "lesson": 8,
+    "hanzi": "饭",
+    "pinyin": "fàn",
+    "pinyinNum": "fan4",
+    "vi": "Cơm, bữa ăn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-19",
+    "lesson": 8,
+    "hanzi": "大",
+    "pinyin": "dà",
+    "pinyinNum": "da4",
+    "vi": "Lớn, to",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-20",
+    "lesson": 8,
+    "hanzi": "病人",
+    "pinyin": "bìngrén",
+    "pinyinNum": "bing4 ren2",
+    "vi": "Bệnh nhân",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-21",
+    "lesson": 8,
+    "hanzi": "多",
+    "pinyin": "duō",
+    "pinyinNum": "duo1",
+    "vi": "Nhiều",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-22",
+    "lesson": 8,
+    "hanzi": "医生",
+    "pinyin": "yīshēng",
+    "pinyinNum": "yi1 sheng1",
+    "vi": "Bác sĩ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-23",
+    "lesson": 8,
+    "hanzi": "工作",
+    "pinyin": "gōngzuò",
+    "pinyinNum": "gong1 zuo4",
+    "vi": "Công việc, làm việc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n08-24",
+    "lesson": 8,
+    "hanzi": "胡医生",
+    "pinyin": "Hú yīshēng",
+    "pinyinNum": "hu2 yi1 sheng1",
+    "vi": "Bác sĩ Hồ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "d07-1-4",
+    "lesson": 8,
+    "hanzi": "今天星期一。明天我去学校。",
+    "pinyin": "Jīntiān xīngqīyī. Míngtiān wǒ qù xuéxiào.",
+    "pinyinNum": "jin1 tian1 xing1 qi1 yi1 ming2 tian1 wo3 qu4 xue2 xiao4",
+    "vi": "Hôm nay thứ Hai. Mai mình đến trường."
+   },
+   {
+    "id": "s03-01",
+    "lesson": 8,
+    "hanzi": "我叫小明。你叫什么名字？",
+    "pinyin": "Wǒ jiào Xiǎo Míng. Nǐ jiào shénme míngzi?",
+    "pinyinNum": "wo3 jiao4 xiao3 ming2 ni3 jiao4 shen2 me5 ming2 zi5",
+    "vi": "Tôi tên Tiểu Minh. Bạn tên gì?"
+   },
+   {
+    "id": "d10-1-3",
+    "lesson": 8,
+    "hanzi": "桌子上的电脑是你的吗？",
+    "pinyin": "Zhuōzi shàng de diànnǎo shì nǐ de ma?",
+    "pinyinNum": "zhuo1 zi5 shang4 de5 dian4 nao3 shi4 ni3 de5 ma5",
+    "vi": "Máy tính trên bàn là của bạn à?"
+   },
+   {
+    "id": "s07-03",
+    "lesson": 8,
+    "hanzi": "明天我去学校看书。",
+    "pinyin": "Míngtiān wǒ qù xuéxiào kàn shū.",
+    "pinyinNum": "ming2 tian1 wo3 qu4 xue2 xiao4 kan4 shu1",
+    "vi": "Ngày mai tôi đến trường đọc sách."
+   },
+   {
+    "id": "s10-03",
+    "lesson": 8,
+    "hanzi": "书在桌子里吗？没有。",
+    "pinyin": "Shū zài zhuōzi lǐ ma? Méiyǒu.",
+    "pinyinNum": "shu1 zai4 zhuo1 zi5 li3 ma5 mei2 you3",
+    "vi": "Sách ở trong bàn chứ? Không có."
+   },
+   {
+    "id": "d10-1-1",
+    "lesson": 8,
+    "hanzi": "你好，我能坐这儿吗？",
+    "pinyin": "Nǐhǎo, wǒ néng zuò zhèr ma?",
+    "pinyinNum": "ni3 hao3 wo3 neng2 zuo4 zher4 ma5",
+    "vi": "Chào bạn, mình ngồi đây được không?"
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 9,
+  "titleZh": "第9课",
+  "titleVi": "Sáng mai tôi học ở trường",
+  "grammarNote": "存现句 (1) · 时间词语和处所词语同时作状语的顺序 · 表示序数的“第”",
+  "words": [
+   {
+    "id": "n09-01",
+    "lesson": 9,
+    "hanzi": "前边",
+    "pinyin": "qiánbian",
+    "pinyinNum": "qian2 bian5",
+    "vi": "Phía trước, đằng trước",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-02",
+    "lesson": 9,
+    "hanzi": "边",
+    "pinyin": "biān",
+    "pinyinNum": "bian1",
+    "vi": "Bên, phía",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-03",
+    "lesson": 9,
+    "hanzi": "家",
+    "pinyin": "jiā",
+    "pinyinNum": "jia1",
+    "vi": "Lượng từ cho cửa hàng hoặc công ty",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-04",
+    "lesson": 9,
+    "hanzi": "那个",
+    "pinyin": "nàge",
+    "pinyinNum": "na4 ge5",
+    "vi": "Cái kia, người kia",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-05",
+    "lesson": 9,
+    "hanzi": "外边",
+    "pinyin": "wàibian",
+    "pinyinNum": "wai4 bian5",
+    "vi": "Bên ngoài, phía ngoài",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-06",
+    "lesson": 9,
+    "hanzi": "椅子",
+    "pinyin": "yǐzi",
+    "pinyinNum": "yi3 zi5",
+    "vi": "Cái ghế",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-07",
+    "lesson": 9,
+    "hanzi": "上",
+    "pinyin": "shang",
+    "pinyinNum": "shang5",
+    "vi": "Trên, phía trên",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-08",
+    "lesson": 9,
+    "hanzi": "本",
+    "pinyin": "běn",
+    "pinyinNum": "ben3",
+    "vi": "Quyển, cuốn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-09",
+    "lesson": 9,
+    "hanzi": "书",
+    "pinyin": "shū",
+    "pinyinNum": "shu1",
+    "vi": "Sách",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-10",
+    "lesson": 9,
+    "hanzi": "那",
+    "pinyin": "nà",
+    "pinyinNum": "na4",
+    "vi": "Kia, đó",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-11",
+    "lesson": 9,
+    "hanzi": "第",
+    "pinyin": "dì",
+    "pinyinNum": "di4",
+    "vi": "Thứ, số thứ tự",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-12",
+    "lesson": 9,
+    "hanzi": "学习",
+    "pinyin": "xuéxí",
+    "pinyinNum": "xue2 xi2",
+    "vi": "Học tập, học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-13",
+    "lesson": 9,
+    "hanzi": "做",
+    "pinyin": "zuò",
+    "pinyinNum": "zuo4",
+    "vi": "Làm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-14",
+    "lesson": 9,
+    "hanzi": "白天",
+    "pinyin": "báitiān",
+    "pinyinNum": "bai2 tian1",
+    "vi": "Ban ngày",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-15",
+    "lesson": 9,
+    "hanzi": "读书",
+    "pinyin": "dúshū",
+    "pinyinNum": "du2 shu1",
+    "vi": "Đọc sách, học tập",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-16",
+    "lesson": 9,
+    "hanzi": "和",
+    "pinyin": "hé",
+    "pinyinNum": "he2",
+    "vi": "Và, cùng với",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-17",
+    "lesson": 9,
+    "hanzi": "朋友",
+    "pinyin": "péngyou",
+    "pinyinNum": "peng2 you5",
+    "vi": "Bạn bè",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-18",
+    "lesson": 9,
+    "hanzi": "唱",
+    "pinyin": "chàng",
+    "pinyinNum": "chang4",
+    "vi": "Hát",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-19",
+    "lesson": 9,
+    "hanzi": "歌",
+    "pinyin": "gē",
+    "pinyinNum": "ge1",
+    "vi": "Bài hát",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-20",
+    "lesson": 9,
+    "hanzi": "好听",
+    "pinyin": "hǎotīng",
+    "pinyinNum": "hao3 ting1",
+    "vi": "Hay, nghe hay",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-21",
+    "lesson": 9,
+    "hanzi": "电视",
+    "pinyin": "diànshì",
+    "pinyinNum": "dian4 shi4",
+    "vi": "Ti vi, vô tuyến",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-22",
+    "lesson": 9,
+    "hanzi": "狗",
+    "pinyin": "gǒu",
+    "pinyinNum": "gou3",
+    "vi": "Con chó",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n09-23",
+    "lesson": 9,
+    "hanzi": "玩",
+    "pinyin": "wán",
+    "pinyinNum": "wan2",
+    "vi": "Chơi, đùa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "d06-1-5",
+    "lesson": 9,
+    "hanzi": "这个字读“菜”。我妈妈做的菜很好吃。",
+    "pinyin": "Zhège zì dú “cài”. Wǒ māma zuò de cài hěn hǎochī.",
+    "pinyinNum": "zhe4 ge5 zi4 du2 cai4 wo3 ma1 ma5 zuo4 de5 cai4 hen3 hao3 chi1",
+    "vi": "Chữ này đọc là 'cài'. Món mẹ mình nấu ngon lắm."
+   },
+   {
+    "id": "d13-1-4",
+    "lesson": 9,
+    "hanzi": "明天上午我们一起学习吧。",
+    "pinyin": "Míngtiān shàngwǔ wǒmen yìqǐ xuéxí ba.",
+    "pinyinNum": "ming2 tian1 shang4 wu3 wo3 men5 yi4 qi3 xue2 xi2 ba5",
+    "vi": "Sáng mai mình cùng học nhé."
+   },
+   {
+    "id": "s10-04",
+    "lesson": 9,
+    "hanzi": "前面有椅子和桌子。",
+    "pinyin": "Qián miàn yǒu yǐzi hé zhuōzi.",
+    "pinyinNum": "qian2 mian4 you3 yi3 zi5 he2 zhuo1 zi5",
+    "vi": "Phía trước có ghế và bàn."
+   },
+   {
+    "id": "s09-02",
+    "lesson": 9,
+    "hanzi": "小狗在椅子下面。",
+    "pinyin": "Xiǎo gǒu zài yǐzi xià miàn.",
+    "pinyinNum": "xiao3 gou3 zai4 yi3 zi5 xia4 mian4",
+    "vi": "Con chó nhỏ ở dưới ghế."
+   },
+   {
+    "id": "g09-1-2",
+    "lesson": 9,
+    "hanzi": "小猫在椅子下面。",
+    "pinyin": "Xiǎo māo zài yǐzi xià miàn.",
+    "pinyinNum": "xiao3 mao1 zai4 yi3 zi5 xia4 mian4",
+    "vi": "Con mèo ở dưới ghế."
+   },
+   {
+    "id": "d09-1-2",
+    "lesson": 9,
+    "hanzi": "你的小狗在那儿。",
+    "pinyin": "Nǐ de xiǎo gǒu zài nàr.",
+    "pinyinNum": "ni3 de5 xiao3 gou3 zai4 nar4",
+    "vi": "Con chó của bạn ở đằng kia."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 10,
+  "titleZh": "第10课",
+  "titleVi": "Táo ở đây rẻ thật!",
+  "grammarNote": "钱数的表达 · 形容词谓语句 · ……怎么样？",
+  "words": [
+   {
+    "id": "n10-01",
+    "lesson": 10,
+    "hanzi": "杯子",
+    "pinyin": "bēizi",
+    "pinyinNum": "bei1 zi5",
+    "vi": "Cốc, ly",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-02",
+    "lesson": 10,
+    "hanzi": "售货员",
+    "pinyin": "shòuhuòyuán",
+    "pinyinNum": "shou4 huo4 yuan2",
+    "vi": "Nhân viên bán hàng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-03",
+    "lesson": 10,
+    "hanzi": "这边",
+    "pinyin": "zhèbiān",
+    "pinyinNum": "zhe4 bian1",
+    "vi": "Bên này, chỗ này",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-04",
+    "lesson": 10,
+    "hanzi": "钱",
+    "pinyin": "qián",
+    "pinyinNum": "qian2",
+    "vi": "Tiền",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-05",
+    "lesson": 10,
+    "hanzi": "这些",
+    "pinyin": "zhèxiē",
+    "pinyinNum": "zhe4 xie1",
+    "vi": "Những cái này",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-06",
+    "lesson": 10,
+    "hanzi": "块",
+    "pinyin": "kuài",
+    "pinyinNum": "kuai4",
+    "vi": "Đồng, tệ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-07",
+    "lesson": 10,
+    "hanzi": "那些",
+    "pinyin": "nàxiē",
+    "pinyinNum": "na4 xie1",
+    "vi": "Những cái kia",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-08",
+    "lesson": 10,
+    "hanzi": "这儿",
+    "pinyin": "zhèr",
+    "pinyinNum": "zhe4 er5",
+    "vi": "Ở đây, chỗ này",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-09",
+    "lesson": 10,
+    "hanzi": "水果",
+    "pinyin": "shuǐguǒ",
+    "pinyinNum": "shui3 guo3",
+    "vi": "Hoa quả, trái cây",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-10",
+    "lesson": 10,
+    "hanzi": "少",
+    "pinyin": "shǎo",
+    "pinyinNum": "shao3",
+    "vi": "Ít",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-11",
+    "lesson": 10,
+    "hanzi": "斤",
+    "pinyin": "jīn",
+    "pinyinNum": "jin1",
+    "vi": "Cân (nửa ký)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-12",
+    "lesson": 10,
+    "hanzi": "苹果",
+    "pinyin": "píngguǒ",
+    "pinyinNum": "ping2 guo3",
+    "vi": "Quả táo",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-13",
+    "lesson": 10,
+    "hanzi": "便宜",
+    "pinyin": "piányi",
+    "pinyinNum": "pian2 yi5",
+    "vi": "Rẻ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-14",
+    "lesson": 10,
+    "hanzi": "商店",
+    "pinyin": "shāngdiàn",
+    "pinyinNum": "shang1 dian4",
+    "vi": "Cửa hàng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-15",
+    "lesson": 10,
+    "hanzi": "衣服",
+    "pinyin": "yīfu",
+    "pinyinNum": "yi1 fu5",
+    "vi": "Quần áo",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-16",
+    "lesson": 10,
+    "hanzi": "件",
+    "pinyin": "jiàn",
+    "pinyinNum": "jian4",
+    "vi": "Chiếc, bộ (lượng từ cho quần áo)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-17",
+    "lesson": 10,
+    "hanzi": "元",
+    "pinyin": "yuán",
+    "pinyinNum": "yuan2",
+    "vi": "Đồng, tệ (đơn vị tiền tệ)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-18",
+    "lesson": 10,
+    "hanzi": "怎么样",
+    "pinyin": "zěnmeyàng",
+    "pinyinNum": "zen3 me5 yang4",
+    "vi": "Thế nào, ra sao",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-19",
+    "lesson": 10,
+    "hanzi": "贵",
+    "pinyin": "guì",
+    "pinyinNum": "gui4",
+    "vi": "Đắt",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-20",
+    "lesson": 10,
+    "hanzi": "穿",
+    "pinyin": "chuān",
+    "pinyinNum": "chuan1",
+    "vi": "Mặc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-21",
+    "lesson": 10,
+    "hanzi": "女",
+    "pinyin": "nǚ",
+    "pinyinNum": "nü3",
+    "vi": "Nữ, con gái",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-22",
+    "lesson": 10,
+    "hanzi": "男",
+    "pinyin": "nán",
+    "pinyinNum": "nan2",
+    "vi": "Nam, con trai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n10-23",
+    "lesson": 10,
+    "hanzi": "那儿",
+    "pinyin": "nàr",
+    "pinyinNum": "na4 er5",
+    "vi": "Chỗ kia, ở kia",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "d14-1-4",
+    "lesson": 10,
+    "hanzi": "谢谢！你想吃一点儿苹果吗？",
+    "pinyin": "Xièxie! Nǐ xiǎng chī yìdiǎnr píngguǒ ma?",
+    "pinyinNum": "xie4 xie5 ni3 xiang3 chi1 yi4 dianr3 ping2 guo3 ma5",
+    "vi": "Cảm ơn! Bạn muốn ăn chút táo không?"
+   },
+   {
+    "id": "s08-02",
+    "lesson": 10,
+    "hanzi": "这个杯子多少钱？三块。",
+    "pinyin": "Zhège bēizi duōshao qián? Sān kuài.",
+    "pinyinNum": "zhe4 ge5 bei1 zi5 duo1 shao5 qian2 san1 kuai4",
+    "vi": "Cái cốc này bao nhiêu tiền? Ba tệ."
+   },
+   {
+    "id": "s08-03",
+    "lesson": 10,
+    "hanzi": "下午我去商店买米饭。",
+    "pinyin": "Xiàwǔ wǒ qù shāngdiàn mǎi mǐfàn.",
+    "pinyinNum": "xia4 wu3 wo3 qu4 shang1 dian4 mai3 mi3 fan4",
+    "vi": "Chiều tôi đến cửa hàng mua cơm."
+   },
+   {
+    "id": "s12-03",
+    "lesson": 10,
+    "hanzi": "小姐，我想买些水果。",
+    "pinyin": "Xiǎojiě, wǒ xiǎng mǎi xiē shuǐguǒ.",
+    "pinyinNum": "xiao3 jie3 wo3 xiang3 mai3 xie1 shui3 guo3",
+    "vi": "Cô ơi, tôi muốn mua một ít hoa quả."
+   },
+   {
+    "id": "s14-02",
+    "lesson": 10,
+    "hanzi": "我想买一点儿苹果。",
+    "pinyin": "Wǒ xiǎng mǎi yìdiǎnr píngguǒ.",
+    "pinyinNum": "wo3 xiang3 mai3 yi4 dianr3 ping2 guo3",
+    "vi": "Tôi muốn mua một chút táo."
+   },
+   {
+    "id": "g07-3-1",
+    "lesson": 10,
+    "hanzi": "我去商店买东西。",
+    "pinyin": "Wǒ qù shāngdiàn mǎi dōngxi.",
+    "pinyinNum": "wo3 qu4 shang1 dian4 mai3 dong1 xi5",
+    "vi": "Tôi đi cửa hàng mua đồ."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 11,
+  "titleZh": "第11课",
+  "titleVi": "Tôi đang học đại học",
+  "grammarNote": "正反问 · 时间副词 “在/正在” · 能愿动词 “要”",
+  "words": [
+   {
+    "id": "n11-01",
+    "lesson": 11,
+    "hanzi": "时候",
+    "pinyin": "shíhou",
+    "pinyinNum": "shi2 hou5",
+    "vi": "Lúc, khi, thời gian",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-02",
+    "lesson": 11,
+    "hanzi": "饭店",
+    "pinyin": "fàndiàn",
+    "pinyinNum": "fan4 dian4",
+    "vi": "Nhà hàng, khách sạn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-03",
+    "lesson": 11,
+    "hanzi": "知道",
+    "pinyin": "zhīdào",
+    "pinyinNum": "zhi1 dao4",
+    "vi": "Biết",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-04",
+    "lesson": 11,
+    "hanzi": "正在",
+    "pinyin": "zhèngzài",
+    "pinyinNum": "zheng4 zai4",
+    "vi": "Đang",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-05",
+    "lesson": 11,
+    "hanzi": "找",
+    "pinyin": "zhǎo",
+    "pinyinNum": "zhao3",
+    "vi": "Tìm, tìm kiếm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-06",
+    "lesson": 11,
+    "hanzi": "开车",
+    "pinyin": "kāichē",
+    "pinyinNum": "kai1 che1",
+    "vi": "Lái xe",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-07",
+    "lesson": 11,
+    "hanzi": "车",
+    "pinyin": "chē",
+    "pinyinNum": "che1",
+    "vi": "Xe, xe hơi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-08",
+    "lesson": 11,
+    "hanzi": "在",
+    "pinyin": "zài",
+    "pinyinNum": "zai4",
+    "vi": "Đang",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-09",
+    "lesson": 11,
+    "hanzi": "读",
+    "pinyin": "dú",
+    "pinyinNum": "du2",
+    "vi": "Đọc, đi học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-10",
+    "lesson": 11,
+    "hanzi": "大学",
+    "pinyin": "dàxué",
+    "pinyinNum": "da4 xue2",
+    "vi": "Đại học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-11",
+    "lesson": 11,
+    "hanzi": "大学生",
+    "pinyin": "dàxuéshēng",
+    "pinyinNum": "da4 xue2 sheng1",
+    "vi": "Sinh viên đại học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-12",
+    "lesson": 11,
+    "hanzi": "学",
+    "pinyin": "xué",
+    "pinyinNum": "xue2",
+    "vi": "Học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-13",
+    "lesson": 11,
+    "hanzi": "医",
+    "pinyin": "yī",
+    "pinyinNum": "yi1",
+    "vi": "Y khoa, y",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-14",
+    "lesson": 11,
+    "hanzi": "弟弟",
+    "pinyin": "dìdi",
+    "pinyinNum": "di4 di5",
+    "vi": "Em trai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-15",
+    "lesson": 11,
+    "hanzi": "起床",
+    "pinyin": "qǐchuáng",
+    "pinyinNum": "qi3 chuang2",
+    "vi": "Thức dậy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-16",
+    "lesson": 11,
+    "hanzi": "睡觉",
+    "pinyin": "shuìjiào",
+    "pinyinNum": "shui4 jiao4",
+    "vi": "Ngủ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-17",
+    "lesson": 11,
+    "hanzi": "睡",
+    "pinyin": "shuì",
+    "pinyinNum": "shui4",
+    "vi": "Ngủ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-18",
+    "lesson": 11,
+    "hanzi": "那里",
+    "pinyin": "nàlǐ",
+    "pinyinNum": "na4 li3",
+    "vi": "Ở đó, chỗ kia",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-19",
+    "lesson": 11,
+    "hanzi": "哪里",
+    "pinyin": "nǎlǐ",
+    "pinyinNum": "na3 li3",
+    "vi": "Ở đâu, chỗ nào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-20",
+    "lesson": 11,
+    "hanzi": "昨天",
+    "pinyin": "zuótiān",
+    "pinyinNum": "zuo2 tian1",
+    "vi": "Hôm qua",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-21",
+    "lesson": 11,
+    "hanzi": "问",
+    "pinyin": "wèn",
+    "pinyinNum": "wen4",
+    "vi": "Hỏi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-22",
+    "lesson": 11,
+    "hanzi": "对",
+    "pinyin": "duì",
+    "pinyinNum": "dui4",
+    "vi": "Hướng về, đối với, với",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-23",
+    "lesson": 11,
+    "hanzi": "说",
+    "pinyin": "shuō",
+    "pinyinNum": "shuo1",
+    "vi": "Nói",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-24",
+    "lesson": 11,
+    "hanzi": "要",
+    "pinyin": "yào",
+    "pinyinNum": "yao4",
+    "vi": "Muốn, cần, dự định",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n11-25",
+    "lesson": 11,
+    "hanzi": "小朋友",
+    "pinyin": "xiǎopéngyǒu",
+    "pinyinNum": "xiao3 peng2 you3",
+    "vi": "Trẻ em, bạn nhỏ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "d11-1-3",
+    "lesson": 11,
+    "hanzi": "我们什么时候去看电影？",
+    "pinyin": "Wǒmen shénme shíhou qù kàn diànyǐng?",
+    "pinyinNum": "wo3 men5 shen2 me5 shi2 hou5 qu4 kan4 dian4 ying3",
+    "vi": "Khi nào mình đi xem phim?"
+   },
+   {
+    "id": "s11-04",
+    "lesson": 11,
+    "hanzi": "你什么时候去看电影？",
+    "pinyin": "Nǐ shénme shíhou qù kàn diànyǐng?",
+    "pinyinNum": "ni3 shen2 me5 shi2 hou5 qu4 kan4 dian4 ying3",
+    "vi": "Bạn lúc nào đi xem phim?"
+   },
+   {
+    "id": "d06-1-2",
+    "lesson": 11,
+    "hanzi": "我会说一点儿。",
+    "pinyin": "Wǒ huì shuō yìdiǎnr.",
+    "pinyinNum": "wo3 hui4 shuo1 yi4 dianr3",
+    "vi": "Mình biết nói một chút."
+   },
+   {
+    "id": "x11-1",
+    "lesson": 11,
+    "hanzi": "我弟弟在读大学。",
+    "pinyin": "Wǒ dìdi zài dú dàxué.",
+    "pinyinNum": "wo3 di4 di5 zai4 du2 da4 xue2",
+    "vi": "Em trai tôi đang học đại học."
+   },
+   {
+    "id": "x11-2",
+    "lesson": 11,
+    "hanzi": "你知道他在哪里吗？",
+    "pinyin": "Nǐ zhīdào tā zài nǎlǐ ma?",
+    "pinyinNum": "ni3 zhi1 dao4 ta1 zai4 na3 li3 ma5",
+    "vi": "Bạn có biết anh ấy ở đâu không?"
+   },
+   {
+    "id": "x11-3",
+    "lesson": 11,
+    "hanzi": "我正在找我的车。",
+    "pinyin": "Wǒ zhèngzài zhǎo wǒ de chē.",
+    "pinyinNum": "wo3 zheng4 zai4 zhao3 wo3 de5 che1",
+    "vi": "Tôi đang tìm xe của tôi."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 12,
+  "titleZh": "第12课",
+  "titleVi": "Hôm qua tuyết rơi",
+  "grammarNote": "非主谓句 · 语气助词 “了 (1)” · “太……了” 格式",
+  "words": [
+   {
+    "id": "n12-01",
+    "lesson": 12,
+    "hanzi": "天气",
+    "pinyin": "tiānqì",
+    "pinyinNum": "tian1 qi4",
+    "vi": "Thời tiết",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-02",
+    "lesson": 12,
+    "hanzi": "这里",
+    "pinyin": "zhèlǐ",
+    "pinyinNum": "zhe4 li3",
+    "vi": "Ở đây, chỗ này",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-03",
+    "lesson": 12,
+    "hanzi": "天",
+    "pinyin": "tiān",
+    "pinyinNum": "tian1",
+    "vi": "Trời, ngày",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-04",
+    "lesson": 12,
+    "hanzi": "下雨",
+    "pinyin": "xià yǔ",
+    "pinyinNum": "xia4 yu3",
+    "vi": "Mưa, trời mưa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-05",
+    "lesson": 12,
+    "hanzi": "了",
+    "pinyin": "le",
+    "pinyinNum": "le5",
+    "vi": "Rồi (trợ từ ngữ khí)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-06",
+    "lesson": 12,
+    "hanzi": "雨",
+    "pinyin": "yǔ",
+    "pinyinNum": "yu3",
+    "vi": "Mưa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-07",
+    "lesson": 12,
+    "hanzi": "有点儿",
+    "pinyin": "yǒudiǎnr",
+    "pinyinNum": "you3 dian3 er5",
+    "vi": "Hơi, một chút",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-08",
+    "lesson": 12,
+    "hanzi": "觉得",
+    "pinyin": "juéde",
+    "pinyinNum": "jue2 de5",
+    "vi": "Cảm thấy, cho rằng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-09",
+    "lesson": 12,
+    "hanzi": "冷",
+    "pinyin": "lěng",
+    "pinyinNum": "leng3",
+    "vi": "Lạnh",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-10",
+    "lesson": 12,
+    "hanzi": "下",
+    "pinyin": "xià",
+    "pinyinNum": "xia4",
+    "vi": "Rơi, xuống (mưa, tuyết)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-11",
+    "lesson": 12,
+    "hanzi": "雪",
+    "pinyin": "xuě",
+    "pinyinNum": "xue3",
+    "vi": "Tuyết",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-12",
+    "lesson": 12,
+    "hanzi": "来",
+    "pinyin": "lái",
+    "pinyinNum": "lai2",
+    "vi": "Đến, tới",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-13",
+    "lesson": 12,
+    "hanzi": "公司",
+    "pinyin": "gōngsī",
+    "pinyinNum": "gong1 si1",
+    "vi": "Công ty",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-14",
+    "lesson": 12,
+    "hanzi": "生病",
+    "pinyin": "shēngbìng",
+    "pinyinNum": "sheng1 bing4",
+    "vi": "Bị bệnh, ốm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-15",
+    "lesson": 12,
+    "hanzi": "看病",
+    "pinyin": "kànbìng",
+    "pinyinNum": "kan4 bing4",
+    "vi": "Khám bệnh, đi khám bác sĩ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-16",
+    "lesson": 12,
+    "hanzi": "病",
+    "pinyin": "bìng",
+    "pinyinNum": "bing4",
+    "vi": "Bệnh, ốm đau",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-17",
+    "lesson": 12,
+    "hanzi": "一点儿",
+    "pinyin": "yìdiǎnr",
+    "pinyinNum": "yi4 dian3 er5",
+    "vi": "Một chút, một ít",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-18",
+    "lesson": 12,
+    "hanzi": "药",
+    "pinyin": "yào",
+    "pinyinNum": "yao4",
+    "vi": "Thuốc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-19",
+    "lesson": 12,
+    "hanzi": "天",
+    "pinyin": "tiān",
+    "pinyinNum": "tian1",
+    "vi": "Ngày (lượng từ)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-20",
+    "lesson": 12,
+    "hanzi": "回",
+    "pinyin": "huí",
+    "pinyinNum": "hui2",
+    "vi": "Về, trở về",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-21",
+    "lesson": 12,
+    "hanzi": "再",
+    "pinyin": "zài",
+    "pinyinNum": "zai4",
+    "vi": "Lại, rồi mới",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-22",
+    "lesson": 12,
+    "hanzi": "喝",
+    "pinyin": "hē",
+    "pinyinNum": "he1",
+    "vi": "Uống",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-23",
+    "lesson": 12,
+    "hanzi": "热",
+    "pinyin": "rè",
+    "pinyinNum": "re4",
+    "vi": "Nóng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n12-24",
+    "lesson": 12,
+    "hanzi": "水",
+    "pinyin": "shuǐ",
+    "pinyinNum": "shui3",
+    "vi": "Nước",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s14-04",
+    "lesson": 12,
+    "hanzi": "她买了不少东西，十分钟后回来。",
+    "pinyin": "Tā mǎi le bù shǎo dōngxi, shí fēnzhōng hòu huí lái.",
+    "pinyinNum": "ta1 mai3 le5 bu4 shao3 dong1 xi5 shi2 fen1 zhong1 hou4 hui2 lai2",
+    "vi": "Cô ấy đã mua khá nhiều đồ, mười phút nữa sẽ về."
+   },
+   {
+    "id": "s12-01",
+    "lesson": 12,
+    "hanzi": "明天天气怎么样？明天太热了。",
+    "pinyin": "Míngtiān tiānqì zěnmeyàng? Míngtiān tài rè le.",
+    "pinyinNum": "ming2 tian1 tian1 qi4 zen3 me5 yang4 ming2 tian1 tai4 re4 le5",
+    "vi": "Ngày mai thời tiết thế nào? Ngày mai nóng quá."
+   },
+   {
+    "id": "d14-1-6",
+    "lesson": 12,
+    "hanzi": "他开车去了，二十分钟后回来。",
+    "pinyin": "Tā kāichē qù le, èrshí fēnzhōng hòu huí lái.",
+    "pinyinNum": "ta1 kai1 che1 qu4 le5 er4 shi2 fen1 zhong1 hou4 hui2 lai2",
+    "vi": "Anh ấy lái xe đi rồi, 20 phút nữa về."
+   },
+   {
+    "id": "s05-03",
+    "lesson": 12,
+    "hanzi": "你今年多大？我二十岁了。",
+    "pinyin": "Nǐ jīnnián duō dà? Wǒ èrshí suì le.",
+    "pinyinNum": "ni3 jin1 nian2 duo1 da4 wo3 er4 shi2 sui4 le5",
+    "vi": "Năm nay bạn bao nhiêu tuổi? Tôi hai mươi tuổi rồi."
+   },
+   {
+    "id": "d14-1-2",
+    "lesson": 12,
+    "hanzi": "我买了一些衣服和苹果。",
+    "pinyin": "Wǒ mǎi le yìxiē yīfu hé píngguǒ.",
+    "pinyinNum": "wo3 mai3 le5 yi4 xie1 yi1 fu5 he2 ping2 guo3",
+    "vi": "Mình mua ít quần áo và táo."
+   },
+   {
+    "id": "g15-1-2",
+    "lesson": 12,
+    "hanzi": "你是什么时候来的？",
+    "pinyin": "Nǐ shì shénme shíhou lái de?",
+    "pinyinNum": "ni3 shi4 shen2 me5 shi2 hou5 lai2 de5",
+    "vi": "Bạn đến lúc nào?"
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 13,
+  "titleZh": "第13课",
+  "titleVi": "Cho tôi một cốc trà",
+  "grammarNote": "能愿动词 “可以” · “动词+一下” 结构 · 双宾语句 (1)",
+  "words": [
+   {
+    "id": "n13-01",
+    "lesson": 13,
+    "hanzi": "可以",
+    "pinyin": "kěyǐ",
+    "pinyinNum": "ke3 yi3",
+    "vi": "Có thể",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-02",
+    "lesson": 13,
+    "hanzi": "再",
+    "pinyin": "zài",
+    "pinyinNum": "zai4",
+    "vi": "Lại",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-03",
+    "lesson": 13,
+    "hanzi": "问题",
+    "pinyin": "wèntí",
+    "pinyinNum": "wen4 ti2",
+    "vi": "Vấn đề, câu hỏi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-04",
+    "lesson": 13,
+    "hanzi": "卖",
+    "pinyin": "mài",
+    "pinyinNum": "mai4",
+    "vi": "Bán",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-05",
+    "lesson": 13,
+    "hanzi": "打电话",
+    "pinyin": "dǎ diànhuà",
+    "pinyinNum": "da3 dian4 hua4",
+    "vi": "Gọi điện thoại",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-06",
+    "lesson": 13,
+    "hanzi": "一下",
+    "pinyin": "yíxià",
+    "pinyinNum": "yi2 xia4",
+    "vi": "Một lát, một chút",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-07",
+    "lesson": 13,
+    "hanzi": "服务员",
+    "pinyin": "fúwùyuán",
+    "pinyinNum": "fu2 wu4 yuan2",
+    "vi": "Nhân viên phục vụ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-08",
+    "lesson": 13,
+    "hanzi": "女士",
+    "pinyin": "nǚshì",
+    "pinyinNum": "nü3 shi4",
+    "vi": "Quý cô, bà, cô",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-09",
+    "lesson": 13,
+    "hanzi": "请",
+    "pinyin": "qǐng",
+    "pinyinNum": "qing3",
+    "vi": "Xin, mời",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-10",
+    "lesson": 13,
+    "hanzi": "坐",
+    "pinyin": "zuò",
+    "pinyinNum": "zuo4",
+    "vi": "Ngồi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-11",
+    "lesson": 13,
+    "hanzi": "给",
+    "pinyin": "gěi",
+    "pinyinNum": "gei3",
+    "vi": "Cho, đưa cho",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-12",
+    "lesson": 13,
+    "hanzi": "杯",
+    "pinyin": "bēi",
+    "pinyinNum": "bei1",
+    "vi": "Cốc, ly (lượng từ)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-13",
+    "lesson": 13,
+    "hanzi": "要",
+    "pinyin": "yào",
+    "pinyinNum": "yao4",
+    "vi": "Muốn, cần",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-14",
+    "lesson": 13,
+    "hanzi": "早饭",
+    "pinyin": "zǎofàn",
+    "pinyinNum": "zao3 fan4",
+    "vi": "Bữa sáng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-15",
+    "lesson": 13,
+    "hanzi": "这个",
+    "pinyin": "zhège",
+    "pinyinNum": "zhe4 ge5",
+    "vi": "Cái này, điều này",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-16",
+    "lesson": 13,
+    "hanzi": "面包",
+    "pinyin": "miànbāo",
+    "pinyinNum": "mian4 bao1",
+    "vi": "Bánh mì",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-17",
+    "lesson": 13,
+    "hanzi": "鸡蛋",
+    "pinyin": "jīdàn",
+    "pinyinNum": "ji1 dan4",
+    "vi": "Trứng gà",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-18",
+    "lesson": 13,
+    "hanzi": "先生",
+    "pinyin": "xiānsheng",
+    "pinyinNum": "xian1 sheng5",
+    "vi": "Tiên sinh, ngài, ông",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-19",
+    "lesson": 13,
+    "hanzi": "一半",
+    "pinyin": "yíbàn",
+    "pinyinNum": "yi2 ban4",
+    "vi": "Một nửa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n13-20",
+    "lesson": 13,
+    "hanzi": "茶",
+    "pinyin": "chá",
+    "pinyinNum": "cha2",
+    "vi": "Trà",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s13-03",
+    "lesson": 13,
+    "hanzi": "上午我睡觉，下午给你打电话吧。",
+    "pinyin": "Shàngwǔ wǒ shuìjiào, xiàwǔ gěi nǐ dǎ diànhuà ba.",
+    "pinyinNum": "shang4 wu3 wo3 shui4 jiao4 xia4 wu3 gei3 ni3 da3 dian4 hua4 ba5",
+    "vi": "Sáng tôi ngủ, chiều gọi điện cho bạn nhé."
+   },
+   {
+    "id": "s14-03",
+    "lesson": 13,
+    "hanzi": "先生，我看见你的车了。",
+    "pinyin": "Xiānsheng, wǒ kànjiàn nǐ de chē le.",
+    "pinyinNum": "xian1 sheng5 wo3 kan4 jian4 ni3 de5 che1 le5",
+    "vi": "Ông ơi, tôi đã nhìn thấy xe của ông."
+   },
+   {
+    "id": "d11-1-5",
+    "lesson": 13,
+    "hanzi": "好。我们中午先吃饭。",
+    "pinyin": "Hǎo. Wǒmen zhōngwǔ xiān chīfàn.",
+    "pinyinNum": "hao3 wo3 men5 zhong1 wu3 xian1 chi1 fan4",
+    "vi": "Ừ. Trưa mình ăn cơm trước đã."
+   },
+   {
+    "id": "g13-2-2",
+    "lesson": 13,
+    "hanzi": "明天给我打电话吧。",
+    "pinyin": "Míngtiān gěi wǒ dǎ diànhuà ba.",
+    "pinyinNum": "ming2 tian1 gei3 wo3 da3 dian4 hua4 ba5",
+    "vi": "Mai gọi điện cho mình nhé."
+   },
+   {
+    "id": "g13-4-1",
+    "lesson": 13,
+    "hanzi": "我下午给你打电话。",
+    "pinyin": "Wǒ xiàwǔ gěi nǐ dǎ diànhuà.",
+    "pinyinNum": "wo3 xia4 wu3 gei3 ni3 da3 dian4 hua4",
+    "vi": "Chiều mình gọi điện cho bạn."
+   },
+   {
+    "id": "d13-1-5",
+    "lesson": 13,
+    "hanzi": "好，明天给你打电话。",
+    "pinyin": "Hǎo, míngtiān gěi nǐ dǎ diànhuà.",
+    "pinyinNum": "hao3 ming2 tian1 gei3 ni3 da3 dian4 hua4",
+    "vi": "Được, mai mình gọi cho bạn."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 14,
+  "titleZh": "第14课",
+  "titleVi": "Tôi đã xem một bộ phim",
+  "grammarNote": "动态助词 “了 (2)” · 离合词 (1) · 范围副词 “都”",
+  "words": [
+   {
+    "id": "n14-01",
+    "lesson": 14,
+    "hanzi": "上",
+    "pinyin": "shàng",
+    "pinyinNum": "shang4",
+    "vi": "Lên, lên xe",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-02",
+    "lesson": 14,
+    "hanzi": "火车",
+    "pinyin": "huǒchē",
+    "pinyinNum": "huo3 che1",
+    "vi": "Tàu hỏa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-03",
+    "lesson": 14,
+    "hanzi": "中午",
+    "pinyin": "zhōngwǔ",
+    "pinyinNum": "zhong1 wu3",
+    "vi": "Buổi trưa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-04",
+    "lesson": 14,
+    "hanzi": "开",
+    "pinyin": "kāi",
+    "pinyinNum": "kai1",
+    "vi": "Khởi hành, chạy (xe)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-05",
+    "lesson": 14,
+    "hanzi": "有些",
+    "pinyin": "yǒuxiē",
+    "pinyinNum": "you3 xie1",
+    "vi": "Hơi, một vài, có chút",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-06",
+    "lesson": 14,
+    "hanzi": "有的",
+    "pinyin": "yǒude",
+    "pinyinNum": "you3 de5",
+    "vi": "Có cái, có người",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-07",
+    "lesson": 14,
+    "hanzi": "了",
+    "pinyin": "le",
+    "pinyinNum": "le5",
+    "vi": "Rồi (trợ từ động thái)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-08",
+    "lesson": 14,
+    "hanzi": "写",
+    "pinyin": "xiě",
+    "pinyinNum": "xie3",
+    "vi": "Viết",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-09",
+    "lesson": 14,
+    "hanzi": "都",
+    "pinyin": "dōu",
+    "pinyinNum": "dou1",
+    "vi": "Đều",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-10",
+    "lesson": 14,
+    "hanzi": "听见",
+    "pinyin": "tīngjiàn",
+    "pinyinNum": "ting1 jian4",
+    "vi": "Nghe thấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-11",
+    "lesson": 14,
+    "hanzi": "不要",
+    "pinyin": "búyào",
+    "pinyinNum": "bu2 yao4",
+    "vi": "Đừng, không cần",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-12",
+    "lesson": 14,
+    "hanzi": "说话",
+    "pinyin": "shuōhuà",
+    "pinyinNum": "shuo1 hua4",
+    "vi": "Nói chuyện",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-13",
+    "lesson": 14,
+    "hanzi": "听",
+    "pinyin": "tīng",
+    "pinyinNum": "ting1",
+    "vi": "Nghe",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-14",
+    "lesson": 14,
+    "hanzi": "哪些",
+    "pinyin": "nǎxiē",
+    "pinyinNum": "na3 xie1",
+    "vi": "Những cái nào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-15",
+    "lesson": 14,
+    "hanzi": "字",
+    "pinyin": "zì",
+    "pinyinNum": "zi4",
+    "vi": "Chữ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-16",
+    "lesson": 14,
+    "hanzi": "汉语",
+    "pinyin": "Hànyǔ",
+    "pinyinNum": "han4 yu3",
+    "vi": "Tiếng Trung",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-17",
+    "lesson": 14,
+    "hanzi": "汉字",
+    "pinyin": "Hànzì",
+    "pinyinNum": "han4 zi4",
+    "vi": "Chữ Hán",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-18",
+    "lesson": 14,
+    "hanzi": "明年",
+    "pinyin": "míngnián",
+    "pinyinNum": "ming2 nian2",
+    "vi": "Năm sau",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-19",
+    "lesson": 14,
+    "hanzi": "上",
+    "pinyin": "shàng",
+    "pinyinNum": "shang4",
+    "vi": "Bắt đầu, lên (lớp, trường)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-20",
+    "lesson": 14,
+    "hanzi": "中学",
+    "pinyin": "zhōngxué",
+    "pinyinNum": "zhong1 xue2",
+    "vi": "Trường trung học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-21",
+    "lesson": 14,
+    "hanzi": "小学",
+    "pinyin": "xiǎoxué",
+    "pinyinNum": "xiao3 xue2",
+    "vi": "Trường tiểu học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-22",
+    "lesson": 14,
+    "hanzi": "中学生",
+    "pinyin": "zhōngxuéshēng",
+    "pinyinNum": "zhong1 xue2 sheng1",
+    "vi": "Học sinh trung học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-23",
+    "lesson": 14,
+    "hanzi": "小学生",
+    "pinyin": "xiǎoxuéshēng",
+    "pinyinNum": "xiao3 xue2 sheng1",
+    "vi": "Học sinh tiểu học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-24",
+    "lesson": 14,
+    "hanzi": "上学",
+    "pinyin": "shàngxué",
+    "pinyinNum": "shang4 xue2",
+    "vi": "Đi học",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-25",
+    "lesson": 14,
+    "hanzi": "他们",
+    "pinyin": "tāmen",
+    "pinyinNum": "ta1 men5",
+    "vi": "Họ, bọn họ (chỉ nam giới hoặc chung chung)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-26",
+    "lesson": 14,
+    "hanzi": "她们",
+    "pinyin": "tāmen",
+    "pinyinNum": "ta1 men5",
+    "vi": "Họ, bọn họ (chỉ nữ giới)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-27",
+    "lesson": 14,
+    "hanzi": "它们",
+    "pinyin": "tāmen",
+    "pinyinNum": "ta1 men5",
+    "vi": "Chúng (chỉ vật hoặc động vật)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n14-28",
+    "lesson": 14,
+    "hanzi": "晚",
+    "pinyin": "wǎn",
+    "pinyinNum": "wan3",
+    "vi": "Muộn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "s06-03",
+    "lesson": 14,
+    "hanzi": "这个字怎么读？你会写吗？",
+    "pinyin": "Zhège zì zěnme dú? Nǐ huì xiě ma?",
+    "pinyinNum": "zhe4 ge5 zi4 zen3 me5 du2 ni3 hui4 xie3 ma5",
+    "vi": "Chữ này đọc thế nào? Bạn viết được không?"
+   },
+   {
+    "id": "d06-1-4",
+    "lesson": 14,
+    "hanzi": "我会写，这个字怎么读？",
+    "pinyin": "Wǒ huì xiě, zhège zì zěnme dú?",
+    "pinyinNum": "wo3 hui4 xie3 zhe4 ge5 zi4 zen3 me5 du2",
+    "vi": "Mình biết viết. Chữ này đọc thế nào?"
+   },
+   {
+    "id": "d15-1-6",
+    "lesson": 14,
+    "hanzi": "不是，我是坐火车来的。",
+    "pinyin": "Bú shì, wǒ shì zuò huǒchē lái de.",
+    "pinyinNum": "bu2 shi4 wo3 shi4 zuo4 huo3 che1 lai2 de5",
+    "vi": "Không, mình đi tàu hỏa đến."
+   },
+   {
+    "id": "s14-01",
+    "lesson": 14,
+    "hanzi": "这些衣服都很漂亮。",
+    "pinyin": "Zhèxiē yīfu dōu hěn piàoliang.",
+    "pinyinNum": "zhe4 xie1 yi1 fu5 dou1 hen3 piao4 liang5",
+    "vi": "Những bộ quần áo này đều rất đẹp."
+   },
+   {
+    "id": "g04-1-1",
+    "lesson": 14,
+    "hanzi": "她是我的汉语老师。",
+    "pinyin": "Tā shì wǒ de hànyǔ lǎoshī.",
+    "pinyinNum": "ta1 shi4 wo3 de5 han4 yu3 lao3 shi1",
+    "vi": "Cô ấy là giáo viên tiếng Trung của tôi."
+   },
+   {
+    "id": "g13-3-1",
+    "lesson": 14,
+    "hanzi": "我也喜欢学习汉语。",
+    "pinyin": "Wǒ yě xǐhuan xuéxí hànyǔ.",
+    "pinyinNum": "wo3 ye3 xi3 huan5 xue2 xi2 han4 yu3",
+    "vi": "Mình cũng thích học tiếng Trung."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 15,
+  "titleZh": "第15课",
+  "titleVi": "Hẹn gặp ở sân bay!",
+  "grammarNote": "并列复句 “……，还/也……”",
+  "words": [
+   {
+    "id": "n15-01",
+    "lesson": 15,
+    "hanzi": "爱",
+    "pinyin": "ài",
+    "pinyinNum": "ai4",
+    "vi": "Yêu, thích",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-02",
+    "lesson": 15,
+    "hanzi": "哪个",
+    "pinyin": "nǎge",
+    "pinyinNum": "na3 ge5",
+    "vi": "Cái nào, người nào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-03",
+    "lesson": 15,
+    "hanzi": "去年",
+    "pinyin": "qùnián",
+    "pinyinNum": "qu4 nian2",
+    "vi": "Năm ngoái",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-04",
+    "lesson": 15,
+    "hanzi": "男朋友",
+    "pinyin": "nánpéngyou",
+    "pinyinNum": "nan2 peng2 you5",
+    "vi": "Bạn trai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-05",
+    "lesson": 15,
+    "hanzi": "几",
+    "pinyin": "jǐ",
+    "pinyinNum": "ji3",
+    "vi": "Mấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-06",
+    "lesson": 15,
+    "hanzi": "年",
+    "pinyin": "nián",
+    "pinyinNum": "nian2",
+    "vi": "Năm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-07",
+    "lesson": 15,
+    "hanzi": "好玩儿",
+    "pinyin": "hǎowánr",
+    "pinyinNum": "hao3 wan2 er5",
+    "vi": "Thú vị, vui",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-08",
+    "lesson": 15,
+    "hanzi": "西安",
+    "pinyin": "Xī'ān",
+    "pinyinNum": "xi1 an1",
+    "vi": "Tây An",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-09",
+    "lesson": 15,
+    "hanzi": "北京",
+    "pinyin": "Běijīng",
+    "pinyinNum": "bei3 jing1",
+    "vi": "Bắc Kinh",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-10",
+    "lesson": 15,
+    "hanzi": "飞机",
+    "pinyin": "fēijī",
+    "pinyinNum": "fei1 ji1",
+    "vi": "Máy bay",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-11",
+    "lesson": 15,
+    "hanzi": "要",
+    "pinyin": "yào",
+    "pinyinNum": "yao4",
+    "vi": "Cần, mất",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-12",
+    "lesson": 15,
+    "hanzi": "小时",
+    "pinyin": "xiǎoshí",
+    "pinyinNum": "xiao3 shi2",
+    "vi": "Giờ, tiếng đồng hồ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-13",
+    "lesson": 15,
+    "hanzi": "家人",
+    "pinyin": "jiārén",
+    "pinyinNum": "jia1 ren2",
+    "vi": "Người nhà, gia đình",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-14",
+    "lesson": 15,
+    "hanzi": "时间",
+    "pinyin": "shíjiān",
+    "pinyinNum": "shi2 jian1",
+    "vi": "Thời gian",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-15",
+    "lesson": 15,
+    "hanzi": "机场",
+    "pinyin": "jīchǎng",
+    "pinyinNum": "ji1 chang3",
+    "vi": "Sân bay",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-16",
+    "lesson": 15,
+    "hanzi": "接",
+    "pinyin": "jiē",
+    "pinyinNum": "jie1",
+    "vi": "Đón",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-17",
+    "lesson": 15,
+    "hanzi": "住",
+    "pinyin": "zhù",
+    "pinyinNum": "zhu4",
+    "vi": "Ở",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-18",
+    "lesson": 15,
+    "hanzi": "早",
+    "pinyin": "zǎo",
+    "pinyinNum": "zao3",
+    "vi": "Sớm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-19",
+    "lesson": 15,
+    "hanzi": "那",
+    "pinyin": "nà",
+    "pinyinNum": "na4",
+    "vi": "Thế thì, vậy thì",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n15-20",
+    "lesson": 15,
+    "hanzi": "大兴机场",
+    "pinyin": "Dàxīng Jīchǎng",
+    "pinyinNum": "da4 xing1 ji1 chang3",
+    "vi": "Sân bay Đại Hưng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "d15-1-3",
+    "lesson": 15,
+    "hanzi": "你是什么时候来北京的？",
+    "pinyin": "Nǐ shì shénme shíhou lái běijīng de?",
+    "pinyinNum": "ni3 shi4 shen2 me5 shi2 hou5 lai2 bei3 jing1 de5",
+    "vi": "Bạn đến Bắc Kinh lúc nào?"
+   },
+   {
+    "id": "d04-1-4",
+    "lesson": 15,
+    "hanzi": "她是中国人，北京人。",
+    "pinyin": "Tā shì Zhōngguórén, Běijīngrén.",
+    "pinyinNum": "ta1 shi4 zhong1 guo2 ren2 bei3 jing1 ren2",
+    "vi": "Cô ấy là người Trung Quốc, người Bắc Kinh."
+   },
+   {
+    "id": "d15-1-5",
+    "lesson": 15,
+    "hanzi": "你是坐飞机来的吗？",
+    "pinyin": "Nǐ shì zuò fēijī lái de ma?",
+    "pinyinNum": "ni3 shi4 zuo4 fei1 ji1 lai2 de5 ma5",
+    "vi": "Bạn đi máy bay đến à?"
+   },
+   {
+    "id": "s15-02",
+    "lesson": 15,
+    "hanzi": "我是坐飞机来的。",
+    "pinyin": "Wǒ shì zuò fēijī lái de.",
+    "pinyinNum": "wo3 shi4 zuo4 fei1 ji1 lai2 de5",
+    "vi": "Tôi đến bằng máy bay."
+   },
+   {
+    "id": "d12-1-1",
+    "lesson": 15,
+    "hanzi": "北京天气怎么样？",
+    "pinyin": "Běijīng tiānqì zěnmeyàng?",
+    "pinyinNum": "bei3 jing1 tian1 qi4 zen3 me5 yang4",
+    "vi": "Thời tiết Bắc Kinh thế nào?"
+   },
+   {
+    "id": "d11-1-6",
+    "lesson": 15,
+    "hanzi": "好，你住在哪儿？",
+    "pinyin": "Hǎo, nǐ zhù zài nǎr?",
+    "pinyinNum": "hao3 ni3 zhu4 zai4 nar3",
+    "vi": "Ừ, bạn sống ở đâu?"
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 16,
+  "titleZh": "第16课",
+  "titleVi": "Từ vựng mở rộng 1",
+  "grammarNote": "",
+  "words": [
+   {
+    "id": "n16-01",
+    "lesson": 16,
+    "hanzi": "下次",
+    "pinyin": "xiàcì",
+    "pinyinNum": "xia4 ci4",
+    "vi": "Lần sau",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-02",
+    "lesson": 16,
+    "hanzi": "干什么",
+    "pinyin": "gànshénme",
+    "pinyinNum": "gan4 shen2 me5",
+    "vi": "Làm gì",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-03",
+    "lesson": 16,
+    "hanzi": "上次",
+    "pinyin": "shàngcì",
+    "pinyinNum": "shang4 ci4",
+    "vi": "Lần trước",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-04",
+    "lesson": 16,
+    "hanzi": "吃饭",
+    "pinyin": "chīfàn",
+    "pinyinNum": "chi1 fan4",
+    "vi": "Ăn cơm, ăn uống",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-05",
+    "lesson": 16,
+    "hanzi": "奶",
+    "pinyin": "nǎi",
+    "pinyinNum": "nai3",
+    "vi": "Bà (khẩu ngữ, gọi tắt của 奶奶), sữa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-06",
+    "lesson": 16,
+    "hanzi": "课本",
+    "pinyin": "kèběn",
+    "pinyinNum": "ke4 ben3",
+    "vi": "Sách giáo khoa",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-07",
+    "lesson": 16,
+    "hanzi": "课文",
+    "pinyin": "kèwén",
+    "pinyinNum": "ke4 wen2",
+    "vi": "Bài khoá, bài đọc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-08",
+    "lesson": 16,
+    "hanzi": "听写",
+    "pinyin": "tīngxiě",
+    "pinyinNum": "ting1 xie3",
+    "vi": "Nghe viết, viết chính tả",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-09",
+    "lesson": 16,
+    "hanzi": "学院",
+    "pinyin": "xuéyuàn",
+    "pinyinNum": "xue2 yuan4",
+    "vi": "Học viện, trường cao đẳng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-10",
+    "lesson": 16,
+    "hanzi": "楼下",
+    "pinyin": "lóuxià",
+    "pinyinNum": "lou2 xia4",
+    "vi": "Dưới lầu, tầng dưới",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-11",
+    "lesson": 16,
+    "hanzi": "楼上",
+    "pinyin": "lóushàng",
+    "pinyinNum": "lou2 shang4",
+    "vi": "Trên lầu, tầng trên",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-12",
+    "lesson": 16,
+    "hanzi": "教学楼",
+    "pinyin": "jiàoxuélóu",
+    "pinyinNum": "jiao4 xue2 lou2",
+    "vi": "Toà nhà học, giảng đường",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-13",
+    "lesson": 16,
+    "hanzi": "汽车",
+    "pinyin": "qìchē",
+    "pinyinNum": "qi4 che1",
+    "vi": "Ô tô, xe hơi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-14",
+    "lesson": 16,
+    "hanzi": "车上",
+    "pinyin": "chēshang",
+    "pinyinNum": "che1 shang5",
+    "vi": "Trên xe",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-15",
+    "lesson": 16,
+    "hanzi": "上车",
+    "pinyin": "shàngchē",
+    "pinyinNum": "shang4 che1",
+    "vi": "Lên xe",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-16",
+    "lesson": 16,
+    "hanzi": "下车",
+    "pinyin": "xiàchē",
+    "pinyinNum": "xia4 che1",
+    "vi": "Xuống xe",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-17",
+    "lesson": 16,
+    "hanzi": "车票",
+    "pinyin": "chēpiào",
+    "pinyinNum": "che1 piao4",
+    "vi": "Vé xe, vé tàu",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-18",
+    "lesson": 16,
+    "hanzi": "出",
+    "pinyin": "chū",
+    "pinyinNum": "chu1",
+    "vi": "Ra, đi ra",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-19",
+    "lesson": 16,
+    "hanzi": "起来",
+    "pinyin": "qǐlái",
+    "pinyinNum": "qi3 lai2",
+    "vi": "Đứng dậy, thức dậy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n16-20",
+    "lesson": 16,
+    "hanzi": "出来",
+    "pinyin": "chūlai",
+    "pinyinNum": "chu1 lai5",
+    "vi": "Đi ra, ra đây",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "x16-1",
+    "lesson": 16,
+    "hanzi": "下次我们一起吃饭吧。",
+    "pinyin": "Xiàcì wǒmen yìqǐ chīfàn ba.",
+    "pinyinNum": "xia4 ci4 wo3 men5 yi4 qi3 chi1 fan4 ba5",
+    "vi": "Lần sau chúng ta cùng ăn cơm nhé."
+   },
+   {
+    "id": "x16-2",
+    "lesson": 16,
+    "hanzi": "你在楼上干什么？",
+    "pinyin": "Nǐ zài lóushàng gànshénme?",
+    "pinyinNum": "ni3 zai4 lou2 shang4 gan4 shen2 me5",
+    "vi": "Bạn đang làm gì trên lầu?"
+   },
+   {
+    "id": "x16-3",
+    "lesson": 16,
+    "hanzi": "上车吧，我们去学院。",
+    "pinyin": "Shàngchē ba, wǒmen qù xuéyuàn.",
+    "pinyinNum": "shang4 che1 ba5 wo3 men5 qu4 xue2 yuan4",
+    "vi": "Lên xe đi, chúng ta đến học viện."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 17,
+  "titleZh": "第17课",
+  "titleVi": "Từ vựng mở rộng 2",
+  "grammarNote": "",
+  "words": [
+   {
+    "id": "n17-01",
+    "lesson": 17,
+    "hanzi": "回家",
+    "pinyin": "huíjiā",
+    "pinyinNum": "hui2 jia1",
+    "vi": "Về nhà",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-02",
+    "lesson": 17,
+    "hanzi": "来到",
+    "pinyin": "láidào",
+    "pinyinNum": "lai2 dao4",
+    "vi": "Đến, tới",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-03",
+    "lesson": 17,
+    "hanzi": "回到",
+    "pinyin": "huídào",
+    "pinyinNum": "hui2 dao4",
+    "vi": "Trở về, quay về (nơi nào đó)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-04",
+    "lesson": 17,
+    "hanzi": "身上",
+    "pinyin": "shēnshàng",
+    "pinyinNum": "shen1 shang4",
+    "vi": "Trên người, mang theo người",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-05",
+    "lesson": 17,
+    "hanzi": "不对",
+    "pinyin": "bùduì",
+    "pinyinNum": "bu4 dui4",
+    "vi": "Không đúng, sai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-06",
+    "lesson": 17,
+    "hanzi": "不大",
+    "pinyin": "bùdà",
+    "pinyinNum": "bu4 da4",
+    "vi": "Không lắm, không mấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-07",
+    "lesson": 17,
+    "hanzi": "老",
+    "pinyin": "lǎo",
+    "pinyinNum": "lao3",
+    "vi": "Già, cũ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-08",
+    "lesson": 17,
+    "hanzi": "真的",
+    "pinyin": "zhēnde",
+    "pinyinNum": "zhen1 de5",
+    "vi": "Thật, thật sự",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-09",
+    "lesson": 17,
+    "hanzi": "白",
+    "pinyin": "bái",
+    "pinyinNum": "bai2",
+    "vi": "Trắng, màu trắng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-10",
+    "lesson": 17,
+    "hanzi": "中",
+    "pinyin": "zhōng",
+    "pinyinNum": "zhong1",
+    "vi": "Giữa, trong",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-11",
+    "lesson": 17,
+    "hanzi": "还有",
+    "pinyin": "háiyǒu",
+    "pinyinNum": "hai2 you3",
+    "vi": "Còn có, ngoài ra",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-12",
+    "lesson": 17,
+    "hanzi": "是不是",
+    "pinyin": "shìbushì",
+    "pinyinNum": "shi4 bu5 shi4",
+    "vi": "Có phải… không",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-13",
+    "lesson": 17,
+    "hanzi": "有时候",
+    "pinyin": "yǒushíhou",
+    "pinyinNum": "you3 shi2 hou5",
+    "vi": "Có lúc, đôi khi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-14",
+    "lesson": 17,
+    "hanzi": "日期",
+    "pinyin": "rìqī",
+    "pinyinNum": "ri4 qi1",
+    "vi": "Ngày tháng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-15",
+    "lesson": 17,
+    "hanzi": "半年",
+    "pinyin": "bànnián",
+    "pinyinNum": "ban4 nian2",
+    "vi": "Nửa năm",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-16",
+    "lesson": 17,
+    "hanzi": "家里",
+    "pinyin": "jiāli",
+    "pinyinNum": "jia1 li5",
+    "vi": "Trong nhà, ở nhà",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-17",
+    "lesson": 17,
+    "hanzi": "在家",
+    "pinyin": "zàijiā",
+    "pinyinNum": "zai4 jia1",
+    "vi": "Ở nhà",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-18",
+    "lesson": 17,
+    "hanzi": "唱歌",
+    "pinyin": "chànggē",
+    "pinyinNum": "chang4 ge1",
+    "vi": "Hát, ca hát",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-19",
+    "lesson": 17,
+    "hanzi": "开玩笑",
+    "pinyin": "kāiwánxiào",
+    "pinyinNum": "kai1 wan2 xiao4",
+    "vi": "Nói đùa, đùa giỡn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-20",
+    "lesson": 17,
+    "hanzi": "打球",
+    "pinyin": "dǎqiú",
+    "pinyinNum": "da3 qiu2",
+    "vi": "Chơi bóng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n17-21",
+    "lesson": 17,
+    "hanzi": "电视机",
+    "pinyin": "diànshìjī",
+    "pinyinNum": "dian4 shi4 ji1",
+    "vi": "Máy truyền hình, tivi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "x17-1",
+    "lesson": 17,
+    "hanzi": "我有时候在家唱歌。",
+    "pinyin": "Wǒ yǒushíhou zàijiā chànggē.",
+    "pinyinNum": "wo3 you3 shi2 hou5 zai4 jia1 chang4 ge1",
+    "vi": "Đôi khi tôi hát ở nhà."
+   },
+   {
+    "id": "x17-2",
+    "lesson": 17,
+    "hanzi": "你是不是在开玩笑？",
+    "pinyin": "Nǐ shìbushì zài kāiwánxiào?",
+    "pinyinNum": "ni3 shi4 bu5 shi4 zai4 kai1 wan2 xiao4",
+    "vi": "Có phải bạn đang nói đùa không?"
+   },
+   {
+    "id": "x17-3",
+    "lesson": 17,
+    "hanzi": "我们回家吧。",
+    "pinyin": "Wǒmen huí jiā ba.",
+    "pinyinNum": "wo3 men5 hui2 jia1 ba5",
+    "vi": "Chúng ta về nhà thôi."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 18,
+  "titleZh": "第18课",
+  "titleVi": "Từ vựng mở rộng 3",
+  "grammarNote": "",
+  "words": [
+   {
+    "id": "n18-01",
+    "lesson": 18,
+    "hanzi": "地上",
+    "pinyin": "dìshàng",
+    "pinyinNum": "di4 shang4",
+    "vi": "Trên mặt đất, dưới sàn",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-02",
+    "lesson": 18,
+    "hanzi": "里边",
+    "pinyin": "lǐbiān",
+    "pinyinNum": "li3 bian1",
+    "vi": "Bên trong, phía trong",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-03",
+    "lesson": 18,
+    "hanzi": "后边",
+    "pinyin": "hòubiān",
+    "pinyinNum": "hou4 bian1",
+    "vi": "Phía sau, đằng sau",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-04",
+    "lesson": 18,
+    "hanzi": "上边",
+    "pinyin": "shàngbiān",
+    "pinyinNum": "shang4 bian1",
+    "vi": "Phía trên, bên trên",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-05",
+    "lesson": 18,
+    "hanzi": "下边",
+    "pinyin": "xiàbiān",
+    "pinyinNum": "xia4 bian1",
+    "vi": "Phía dưới, bên dưới",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-06",
+    "lesson": 18,
+    "hanzi": "西",
+    "pinyin": "xī",
+    "pinyinNum": "xi1",
+    "vi": "Phía tây, tây",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-07",
+    "lesson": 18,
+    "hanzi": "东",
+    "pinyin": "dōng",
+    "pinyinNum": "dong1",
+    "vi": "Phía đông, đông",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-08",
+    "lesson": 18,
+    "hanzi": "南",
+    "pinyin": "nán",
+    "pinyinNum": "nan2",
+    "vi": "Phía nam, nam",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-09",
+    "lesson": 18,
+    "hanzi": "北",
+    "pinyin": "běi",
+    "pinyinNum": "bei3",
+    "vi": "Phía bắc, bắc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-10",
+    "lesson": 18,
+    "hanzi": "国外",
+    "pinyin": "guówài",
+    "pinyinNum": "guo2 wai4",
+    "vi": "Nước ngoài",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-11",
+    "lesson": 18,
+    "hanzi": "西边",
+    "pinyin": "xībiān",
+    "pinyinNum": "xi1 bian1",
+    "vi": "Phía tây, bên tây",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-12",
+    "lesson": 18,
+    "hanzi": "东边",
+    "pinyin": "dōngbiān",
+    "pinyinNum": "dong1 bian1",
+    "vi": "Phía đông, bên đông",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-13",
+    "lesson": 18,
+    "hanzi": "南边",
+    "pinyin": "nánbiān",
+    "pinyinNum": "nan2 bian1",
+    "vi": "Phía nam, bên nam",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-14",
+    "lesson": 18,
+    "hanzi": "北边",
+    "pinyin": "běibiān",
+    "pinyinNum": "bei3 bian1",
+    "vi": "Phía bắc, bên bắc",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-15",
+    "lesson": 18,
+    "hanzi": "没什么",
+    "pinyin": "méishénme",
+    "pinyinNum": "mei2 shen2 me5",
+    "vi": "Không có gì, không sao",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-16",
+    "lesson": 18,
+    "hanzi": "请进",
+    "pinyin": "qǐngjìn",
+    "pinyinNum": "qing3 jin4",
+    "vi": "Mời vào",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-17",
+    "lesson": 18,
+    "hanzi": "请坐",
+    "pinyin": "qǐngzuò",
+    "pinyinNum": "qing3 zuo4",
+    "vi": "Mời ngồi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-18",
+    "lesson": 18,
+    "hanzi": "记住",
+    "pinyin": "jìzhù",
+    "pinyinNum": "ji4 zhu4",
+    "vi": "Ghi nhớ, nhớ kỹ",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-19",
+    "lesson": 18,
+    "hanzi": "关上",
+    "pinyin": "guānshàng",
+    "pinyinNum": "guan1 shang4",
+    "vi": "Đóng lại, tắt",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-20",
+    "lesson": 18,
+    "hanzi": "看到",
+    "pinyin": "kàndào",
+    "pinyinNum": "kan4 dao4",
+    "vi": "Nhìn thấy, trông thấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n18-21",
+    "lesson": 18,
+    "hanzi": "找到",
+    "pinyin": "zhǎodào",
+    "pinyinNum": "zhao3 dao4",
+    "vi": "Tìm thấy, tìm được",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "x18-1",
+    "lesson": 18,
+    "hanzi": "书在桌子里边。",
+    "pinyin": "Shū zài zhuōzi lǐbiān.",
+    "pinyinNum": "shu1 zai4 zhuo1 zi5 li3 bian1",
+    "vi": "Sách ở bên trong cái bàn."
+   },
+   {
+    "id": "x18-2",
+    "lesson": 18,
+    "hanzi": "北京在中国北边。",
+    "pinyin": "Běijīng zài zhōngguó běibiān.",
+    "pinyinNum": "bei3 jing1 zai4 zhong1 guo2 bei3 bian1",
+    "vi": "Bắc Kinh ở phía bắc Trung Quốc."
+   },
+   {
+    "id": "x18-3",
+    "lesson": 18,
+    "hanzi": "我找到你的书了。",
+    "pinyin": "Wǒ zhǎodào nǐ de shū le.",
+    "pinyinNum": "wo3 zhao3 dao4 ni3 de5 shu1 le5",
+    "vi": "Tôi tìm thấy sách của bạn rồi."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ },
+ {
+  "id": 19,
+  "titleZh": "第19课",
+  "titleVi": "Từ vựng mở rộng 4",
+  "grammarNote": "",
+  "words": [
+   {
+    "id": "n19-01",
+    "lesson": 19,
+    "hanzi": "听到",
+    "pinyin": "tīngdào",
+    "pinyinNum": "ting1 dao4",
+    "vi": "Nghe thấy",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-02",
+    "lesson": 19,
+    "hanzi": "坐下",
+    "pinyin": "zuòxià",
+    "pinyinNum": "zuo4 xia4",
+    "vi": "Ngồi xuống",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-03",
+    "lesson": 19,
+    "hanzi": "话",
+    "pinyin": "huà",
+    "pinyinNum": "hua4",
+    "vi": "Lời nói, câu nói",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-04",
+    "lesson": 19,
+    "hanzi": "动作",
+    "pinyin": "dòngzuò",
+    "pinyinNum": "dong4 zuo4",
+    "vi": "Động tác, hành động",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-05",
+    "lesson": 19,
+    "hanzi": "钱包",
+    "pinyin": "qiánbāo",
+    "pinyinNum": "qian2 bao1",
+    "vi": "Ví tiền",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-06",
+    "lesson": 19,
+    "hanzi": "女人",
+    "pinyin": "nǚrén",
+    "pinyinNum": "nü3 ren2",
+    "vi": "Phụ nữ, người đàn bà",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-07",
+    "lesson": 19,
+    "hanzi": "男人",
+    "pinyin": "nánrén",
+    "pinyinNum": "nan2 ren2",
+    "vi": "Đàn ông",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-08",
+    "lesson": 19,
+    "hanzi": "小姐",
+    "pinyin": "xiǎojiě",
+    "pinyinNum": "xiao3 jie3",
+    "vi": "Cô (cách gọi phụ nữ trẻ)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-09",
+    "lesson": 19,
+    "hanzi": "工人",
+    "pinyin": "gōngrén",
+    "pinyinNum": "gong1 ren2",
+    "vi": "Công nhân",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-10",
+    "lesson": 19,
+    "hanzi": "网友",
+    "pinyin": "wǎngyǒu",
+    "pinyinNum": "wang3 you3",
+    "vi": "Bạn trên mạng, cư dân mạng",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-11",
+    "lesson": 19,
+    "hanzi": "妈",
+    "pinyin": "mā",
+    "pinyinNum": "ma1",
+    "vi": "Mẹ (khẩu ngữ, gọi tắt của 妈妈)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-12",
+    "lesson": 19,
+    "hanzi": "第二",
+    "pinyin": "dì'èr",
+    "pinyinNum": "di4 er4",
+    "vi": "Thứ hai",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-13",
+    "lesson": 19,
+    "hanzi": "子",
+    "pinyin": "zǐ",
+    "pinyinNum": "zi3",
+    "vi": "Con; hậu tố của danh từ (như 桌子, 杯子)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-14",
+    "lesson": 19,
+    "hanzi": "哥",
+    "pinyin": "gē",
+    "pinyinNum": "ge1",
+    "vi": "Anh trai (khẩu ngữ, gọi tắt của 哥哥)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-15",
+    "lesson": 19,
+    "hanzi": "爸",
+    "pinyin": "bà",
+    "pinyinNum": "ba4",
+    "vi": "Bố (khẩu ngữ, gọi tắt của 爸爸)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-16",
+    "lesson": 19,
+    "hanzi": "妹",
+    "pinyin": "mèi",
+    "pinyinNum": "mei4",
+    "vi": "Em gái (khẩu ngữ, gọi tắt của 妹妹)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-17",
+    "lesson": 19,
+    "hanzi": "姐",
+    "pinyin": "jiě",
+    "pinyinNum": "jie3",
+    "vi": "Chị gái (khẩu ngữ, gọi tắt của 姐姐)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-18",
+    "lesson": 19,
+    "hanzi": "弟",
+    "pinyin": "dì",
+    "pinyinNum": "di4",
+    "vi": "Em trai (khẩu ngữ, gọi tắt của 弟弟)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-19",
+    "lesson": 19,
+    "hanzi": "玩儿",
+    "pinyin": "wánr",
+    "pinyinNum": "wan2 er5",
+    "vi": "Chơi, đi chơi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-20",
+    "lesson": 19,
+    "hanzi": "没事儿",
+    "pinyin": "méishìr",
+    "pinyinNum": "mei2 shi4 er5",
+    "vi": "Không sao, không có gì; rảnh rỗi",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-21",
+    "lesson": 19,
+    "hanzi": "一下儿",
+    "pinyin": "yīxiàr",
+    "pinyinNum": "yi1 xia4 er5",
+    "vi": "Một chút, một lát (khẩu ngữ)",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   },
+   {
+    "id": "n19-22",
+    "lesson": 19,
+    "hanzi": "有一些",
+    "pinyin": "yǒuyīxiē",
+    "pinyinNum": "you3 yi1 xie1",
+    "vi": "Có một số, có một ít",
+    "pos": "",
+    "decomps": [],
+    "mnemonic": ""
+   }
+  ],
+  "sentences": [
+   {
+    "id": "x19-1",
+    "lesson": 19,
+    "hanzi": "请坐下。",
+    "pinyin": "Qǐng zuò xià.",
+    "pinyinNum": "qing3 zuo4 xia4",
+    "vi": "Mời ngồi xuống."
+   },
+   {
+    "id": "x19-2",
+    "lesson": 19,
+    "hanzi": "我的钱包呢？",
+    "pinyin": "Wǒ de qiánbāo ne?",
+    "pinyinNum": "wo3 de5 qian2 bao1 ne5",
+    "vi": "Ví tiền của tôi đâu?"
+   },
+   {
+    "id": "x19-3",
+    "lesson": 19,
+    "hanzi": "他是我的网友。",
+    "pinyin": "Tā shì wǒ de wǎngyǒu.",
+    "pinyinNum": "ta1 shi4 wo3 de5 wang3 you3",
+    "vi": "Anh ấy là bạn trên mạng của tôi."
+   }
+  ],
+  "lecture": null,
+  "workbook": null,
+  "days": 3
+ }
 ];
 export const ALL_WORDS: Word[] = LESSONS.flatMap(l => l.words);
 export const ALL_SENTENCES: Sentence[] = LESSONS.flatMap(l => l.sentences);

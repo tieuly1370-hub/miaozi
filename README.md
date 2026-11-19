@@ -1,6 +1,17 @@
-# Lò Hán — HSK1
+# Miaozi — HSK1
 
-Web app (PWA) học tiếng Trung HSK1 theo **Giáo trình chuẩn HSK1** (15 bài) và playlist thầy Thành Luân. Tiếng Việt, học ngoại tuyến, không thu phí AI.
+Web app (PWA) học tiếng Trung HSK1 cùng gia sư mèo **Miao**. Học trên Nhai HSK, tổng hợp – ôn – kiểm tra – kỷ luật ở Miaozi. Tiếng Việt, chạy trên máy, miễn phí.
+
+## 2.0.0 — Miaozi: 6 mục / bài, 4 chế độ, Smart Queue
+
+- Đổi tên Lò Hán → **Miaozi**, gia sư Miêu → **Miao** (mèo SVG tự vẽ, icon PWA tạo từ SVG). Dữ liệu IndexedDB giữ nguyên tên cũ `lohan` để không mất tiến độ.
+- Mỗi bài 6 mục cố định (S1 0%, S2 25%, S3 25%, S4 20%, S5 15%, 6A 7,5%, 6B 7,5%), mục sáng/mờ theo chế độ, nút “Đánh dấu hoàn thành” chỉ bật khi đạt điều kiện (ghi rõ trên từng mục), thanh 6 ô + thanh %.
+- 4 chế độ: Công ty (xám/trắng, không mèo, chỉ mục 2/3/6A, phát audio tự động 2 giây, ẩn/hiện pinyin), Cạn pin (3 lượt/tuần, reset thứ Hai), Tiêu chuẩn, Bứt phá (+ dịch, bài đọc, shadowing chung).
+- Bỏ qua mục → “nợ” hạn Chủ nhật; quá hạn → chép phạt + khóa bài sau. Hôm nay bận (2 lần/tuần, không đứt chuỗi). Thi vượt bài (≥ 85%). Kiểm tra tuần (Chủ nhật) + tháng (tuần cuối tháng, toàn bộ từ đầu HSK1). Lịch tháng có màu chế độ, phút học, ghi chú ngày.
+- Bài đọc tự soạn theo cấp (`src/data/reading.ts`, kiểm bằng `scripts/v2/check_reading.mjs`), phân tích 278 chữ HSK1 (`src/data/hanziInfo.ts`) + link Nhai `/hanzi/<chữ>`, chấm câu theo luật (`src/v2/grader.ts`).
+- Sửa chấm nói (`src/v2/speakScore.ts`, `src/v2/listen.ts`): so pinyin không dấu có căn chỉnh, chấp nhận phồn thể/dấu câu/số/đồng âm, hiện chữ máy nghe được; thanh điệu đo bằng YIN chỉ để tham khảo. Android: không thu âm song song với nhận giọng.
+- Viết: cho sai tối đa 5 nét/chữ, nút Ẩn nét mẫu, trạng thái viết lưu trong store (sang Ghi chú tay không mất). Chép phạt không bắt PDF, có ẩn/hiện chữ mẫu. Thi lại sau 10 phút.
+- Test: `node --experimental-strip-types tests/{queue,grader,speech,yin_tts,yin_words}.test.ts`, `scripts/test_v2.py` (cần `npx vite preview --port 4173`).
 
 
 ## 1.2.0 — Lộ trình + gia sư, học trên Nhai HSK, cổng 4 kỹ năng
@@ -10,7 +21,7 @@ Web app (PWA) học tiếng Trung HSK1 theo **Giáo trình chuẩn HSK1** (15 b�
 - Cổng qua bài (`src/gate.ts`, `src/pages/exam.tsx`): Nghe, Đọc, Nói, Viết thi riêng; mỗi kỹ năng ≥ 80% đúng ngay lần đầu; Viết = viết lại toàn bộ từ của bài từ trí nhớ (không pinyin, không nét mờ, không gợi ý; sai > 1 nét/chữ = trượt câu), đúng 100%, sai 2 lần → chép phạt 10 lần + thi lại ngày mai; có bốc ngẫu nhiên từ bài cũ. Phương án gài: chữ na ná, cùng âm khác thanh; ghép câu có mảnh gài; giới hạn thời gian và số lần nghe; câu sai quay lại sau, không làm lại ngay. Nói chỉ hiện tiếng Việt, cần Chrome/Edge (không có nhận giọng nói thì "đang chờ", không bỏ qua được).
 - Ca học chỉ được tính khi kiểm tra cuối ca đạt (`/check/morning`, `/check/evening`, `/check/weekly`). Ngày học của bài chỉ sang ngày tiếp khi cả hai kiểm tra ca đạt.
 - Chuyển dữ liệu: cổng bài cũ bị đặt lại (điểm cũ lưu ở `legacyPassed`), thẻ ôn/sổ lỗi/chuỗi giữ nguyên.
-- Miêu nói giọng gắt, ngắn, chỉ khen khi đạt.
+- Miao nói giọng gắt, ngắn, chỉ khen khi đạt.
 - Test: `scripts/test_v12.py` (cần `npx vite preview --port 4173`).
 
 ## Dùng

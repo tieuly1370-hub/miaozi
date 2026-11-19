@@ -122,7 +122,7 @@ export function TutorBubble(props: { mood: TutorMood; text: string }) {
   return (
     <div class={cls("tutor", props.mood)} data-testid="tutor">
       <div class="avatar">{face}</div>
-      <p><strong>Miêu. </strong>{props.text}</p>
+      <p><strong>Miao. </strong>{props.text}</p>
     </div>
   );
 }

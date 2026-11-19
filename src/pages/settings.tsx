@@ -28,8 +28,8 @@ export function SettingsPage() {
         <Switch on={st.autoplay !== false} onChange={(v) => patchSettings({ autoplay: v })} label="Tự phát âm khi sang từ / câu mới" />
       </Card>
       <Card>
-        <h3 class="h3">Lịch học cá nhân</h3>
-        <p class="muted">Mặc định: T2–T6 sáng nghe+đọc 30–120 phút, tối 21:00–21:30 nói+viết. T7 học bù. CN nghỉ, tối kiểm tra tuần 20 phút.</p>
+        <h3 class="h3">Giờ nhắc học</h3>
+        <p class="muted">Từ 2.0 giờ giấc linh hoạt: các ca dưới đây chỉ dùng để gửi thông báo nhắc, không còn phạt bỏ ca. Kiến thức thì vẫn chặt.</p>
         <ShiftEd title="Ca sáng (công ty)" shift={st.morning} onChange={(p) => setShift("morning", p)} />
         <ShiftEd title="Ca tối (ở nhà)" shift={st.evening} onChange={(p) => setShift("evening", p)} />
         <ShiftEd title="Kiểm tra tuần (Chủ nhật)" shift={st.sundayWeeklyTest} onChange={(p) => setShift("sundayWeeklyTest", p)} />
@@ -58,7 +58,7 @@ export function SettingsPage() {
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
             const a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
-            a.download = "lohan-tien-do.json";
+            a.download = "miaozi-tien-do.json";
             a.click();
           }}>Xuất JSON</Button>
           <label class="btn ghost">Nhập JSON
@@ -80,9 +80,13 @@ export function SettingsPage() {
           <Button kind="ghost" small onClick={() => go("/dict")}>Tra từ HSK1</Button>
           <Button kind="ghost" small onClick={() => go("/mistakes")}>Sổ lỗi sai</Button>
           <Button kind="ghost" small onClick={() => go("/penalty")}>Chép phạt</Button>
+          <Button kind="ghost" small onClick={() => go("/review")}>Ôn thẻ</Button>
+          <Button kind="ghost" small onClick={() => go("/speak")}>Luyện nói</Button>
+          <Button kind="ghost" small onClick={() => go("/reading")}>Bài đọc</Button>
+          <Button kind="ghost" small onClick={() => go("/week0")}>Tuần 0: pinyin, nét, bộ thủ</Button>
         </div>
       </Card>
-      <p class="muted" style={{ textAlign: "center" }}>Lò Hán {__APP_VERSION__}</p>
+      <p class="muted" style={{ textAlign: "center" }}>Miaozi {__APP_VERSION__}</p>
     </div>
   );
 }
@@ -123,9 +127,9 @@ async function notifyCard(setMsg: (s: string) => void) {
   const card = due[0];
   const word = card ? ALL_WORDS.find((w) => w.id === parseCardId(card.id).wordId) : ALL_WORDS[0];
   if (!word) { setMsg("Chưa có thẻ."); return; }
-  const n = new Notification("Lò Hán · " + word.hanzi, {
+  const n = new Notification("Miaozi · " + word.hanzi, {
     body: "Nghĩa là gì? Mở app để trả lời — pinyin ẩn.",
-    tag: "lohan-card",
+    tag: "miaozi-card",
     icon: "./icons/icon-192.png",
     silent: false,
     requireInteraction: true,

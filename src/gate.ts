@@ -299,3 +299,68 @@ export function judge(skill: GSkill, items: Item[], firstOk: Record<string, bool
   const pass = !pending && total > 0 && score >= PASS && (skill !== "write" || failedTwice.length === 0);
   return { skill, total, first, failedTwice, wrongFirst, pass, score, pending, why };
 }
+
+/* =================== v2.0: bài kiểm tra 6A / 6B / thi vượt bài / tuần / tháng =================== */
+export type V2Test = "s6a" | "s6b" | "placement" | "weekly" | "monthly";
+const notNum = (w: Word) => !/^[一二三四五六七八九十零百]$/.test(w.hanzi);
+const writable = (w: Word) => han(w.hanzi).length > 0 && han(w.hanzi).length <= 3;
+const shortSent = (s: Sentence) => s.pinyinNum.split(/\s+/).length <= 7;
+
+export function v2Items(kind: V2Test, n: number, mistakeIds: string[] = []): Item[] {
+  const N = Math.max(1, Math.min(n, LESSONS.length));
+  const W = LESSONS[N - 1].words.filter((w) => han(w.hanzi).length > 0);
+  const S = LESSONS[N - 1].sentences;
+  const learned = ALL_WORDS.filter((w) => w.lesson <= N && han(w.hanzi).length > 0);
+  const learnedS = LESSONS.slice(0, N).flatMap((l) => l.sentences);
+  const sw = (a: Word[], k: number) => shuffle(a).slice(0, k);
+  const withMistakes = (pool: Word[], k: number) => {
+    const bad = shuffle(pool.filter((w) => mistakeIds.includes(w.id))).slice(0, Math.ceil(k / 3));
+    return shuffle([...bad, ...shuffle(pool.filter((w) => !bad.includes(w))).slice(0, k - bad.length)]);
+  };
+  if (kind === "s6a") {
+    const a = sw(W, 6), b = sw(W.filter((w) => !a.includes(w)).concat(a), 6);
+    return [
+      ...a.map((w) => hanziPick(w, "listen", "lp:" + w.id)),
+      ...shuffle(S).slice(0, 1).map((s) => buildItem(s, "listen", "lb:" + s.id)),
+      ...b.map((w) => meaningPick(w, "rm:" + w.id)),
+      ...shuffle(S).slice(0, 1).map((s) => buildItem(s, "read", "rb:" + s.id)),
+    ];
+  }
+  if (kind === "s6b") {
+    const ws = sw(W.filter(writable), 5);
+    const sp = sw(W.filter(notNum), 2);
+    const ss = shuffle(S.filter(shortSent)).slice(0, 1);
+    return [
+      ...ws.map((w) => writeItem(w, "w:" + w.id)),
+      ...sp.map((w) => wordSpeak(w, "s:" + w.id)),
+      ...ss.map((s) => speakItem(`Nói cả câu bằng tiếng Trung: “${s.vi}”`, s.hanzi, s.pinyinNum, s.id, s.vi, "ss:" + s.id)),
+    ];
+  }
+  if (kind === "placement") {
+    return [
+      ...sw(W, 5).map((w) => hanziPick(w, "listen", "lp:" + w.id)),
+      ...sw(W, 5).map((w) => meaningPick(w, "rm:" + w.id)),
+      ...shuffle(S).slice(0, 1).map((s) => buildItem(s, "read", "rb:" + s.id)),
+      ...sw(W.filter(writable), 4).map((w) => writeItem(w, "w:" + w.id)),
+      ...sw(W.filter(notNum), 3).map((w) => wordSpeak(w, "s:" + w.id)),
+    ];
+  }
+  const k = kind === "weekly" ? 1 : 2; // tháng dài gấp đôi, lấy từ tất cả bài từ đầu HSK1
+  const pool = kind === "weekly" ? learned.filter((w) => w.lesson >= Math.max(1, N - 2)) : learned;
+  return [
+    ...withMistakes(pool, 5 * k).map((w) => hanziPick(w, "listen", "lp:" + w.id)),
+    ...shuffle(learnedS).slice(0, k).map((s) => buildItem(s, "listen", "lb:" + s.id)),
+    ...withMistakes(pool, 5 * k).map((w) => meaningPick(w, "rm:" + w.id)),
+    ...shuffle(learnedS).slice(k, 2 * k).map((s) => buildItem(s, "read", "rb:" + s.id)),
+    ...withMistakes(pool.filter(writable), 4 * k).map((w) => writeItem(w, "w:" + w.id)),
+    ...sw(pool.filter(notNum), 2 * k).map((w) => wordSpeak(w, "s:" + w.id)),
+  ];
+}
+
+/** Chấm gộp v2: đúng ngay lần đầu ≥ ngưỡng (mặc định 80%). */
+export function v2Judge(items: Item[], firstOk: Record<string, boolean>, bar = PASS) {
+  const total = items.length;
+  const first = items.filter((i) => firstOk[i.key]).length;
+  const score = total ? first / total : 0;
+  return { total, first, score, pass: total > 0 && score >= bar, wrong: items.filter((i) => !firstOk[i.key]) };
+}
