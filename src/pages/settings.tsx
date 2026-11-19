@@ -1,4 +1,6 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import { signOut, subscribeSync, syncInfo, syncNow } from "../sync/drive";
+import { syncConfigured } from "../sync/config";
 import { DEFAULT_SETTINGS, type Settings, type Shift } from "../schedule";
 import { claimReward, exportPayload, getState, importPayload, patchSettings, weekKey } from "../store";
 import { Button, Card, Switch, go } from "../ui";
@@ -23,10 +25,12 @@ export function SettingsPage() {
           <span>Phần thưởng tuần (khi hoàn thành tuần)</span>
           <input value={st.weeklyReward} onInput={(e) => patchSettings({ weeklyReward: (e.target as HTMLInputElement).value })} placeholder="ví dụ: trà sữa" />
         </div>
-        <Switch on={st.companyMode} onChange={(v) => patchSettings({ companyMode: v })} label="Chế độ công ty (im lặng, kín đáo)" />
+        <Switch on={st.companyMode} onChange={(v) => patchSettings({ companyMode: v })} label="Chế độ Công ty (gợi ý mục im lặng 2, 3, 6A)" />
         <Switch on={st.notify} onChange={(v) => patchSettings({ notify: v })} label="Thông báo khi app đang mở" />
         <Switch on={st.autoplay !== false} onChange={(v) => patchSettings({ autoplay: v })} label="Tự phát âm khi sang từ / câu mới" />
+        <Button kind="ghost" wide id="settings-streak" onClick={() => go("/streak")}>🔥 Streak — lịch chuỗi ngày học</Button>
       </Card>
+      <SyncCard />
       <Card>
         <h3 class="h3">Giờ nhắc học</h3>
         <p class="muted">Từ 2.0 giờ giấc linh hoạt: các ca dưới đây chỉ dùng để gửi thông báo nhắc, không còn phạt bỏ ca. Kiến thức thì vẫn chặt.</p>
@@ -159,4 +163,27 @@ async function precacheAll(setMsg: (s: string) => void) {
   };
   navigator.serviceWorker.addEventListener("message", handler);
   sw.active.postMessage({ type: "PRECACHE_ALL", urls });
+}
+
+function SyncCard() {
+  const [i, setI] = useState(syncInfo());
+  useEffect(() => subscribeSync(setI), []);
+  const t = i.lastSync ? new Date(i.lastSync).toLocaleString("vi-VN", { hour: "2-digit", minute: "2-digit", day: "2-digit", month: "2-digit" }) : null;
+  return (
+    <Card data-testid="sync-card">
+      <h3 class="h3">Đồng bộ Google Drive</h3>
+      {!syncConfigured() ? <p class="notice">Chưa cấu hình.</p> : (
+        <>
+          <p class="muted small">Tiến độ lưu vào thư mục ẩn của Miaozi trong Drive của chủ (app không xem được file khác). Tự đồng bộ khi mở app và sau mỗi thay đổi.</p>
+          {i.email && <p class="small">Tài khoản: <b>{i.email}</b></p>}
+          <p class="small" data-testid="sync-status">{i.status === "syncing" ? (i.message || "Đang đồng bộ…") : i.status === "signedOut" ? "Chưa đăng nhập." : i.status === "error" ? <span class="bad-text">{i.message}</span> : `Đã đồng bộ${t ? ` lúc ${t}` : ""}.`}</p>
+          <div class="row">
+            {i.status === "signedOut"
+              ? <Button kind="primary" id="sync-login" onClick={() => void syncNow(true)}>Đăng nhập Google</Button>
+              : <><Button kind="primary" id="sync-now" disabled={i.status === "syncing"} onClick={() => void syncNow(true)}>Đồng bộ ngay</Button><Button kind="ghost" small onClick={signOut}>Đăng xuất</Button></>}
+          </div>
+        </>
+      )}
+    </Card>
+  );
 }

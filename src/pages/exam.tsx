@@ -4,7 +4,7 @@ import HanziWriter from "hanzi-writer";
 import { LESSONS, WORD_BY_ID } from "../data/curriculum";
 import { playId } from "../audio";
 import { speechAvailable } from "../speech";
-import { SpeakTry } from "../v2/ui2";
+import { SpeakTry } from "../v2/speakTry";
 import { GSKILLS, SKILL_VI, checkItems, gateItems, judge, type GSkill, type Item, type SkillResult } from "../gate";
 import {
   abandonGate, addMistake, checkRec, completeSessionCheck, finishGate, gateBlockedUntil, gateRec, gateWritePenalty,

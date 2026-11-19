@@ -4,8 +4,6 @@ import { getState } from "../store";
 import { Button, cls } from "../ui";
 import { SEC_ORDER, WEIGHT, type SecMap } from "./queue";
 import { SEC_SHORT } from "./lessons";
-import { listenAndScore, speechAvailable } from "./listen";
-import type { V2Score } from "./speakScore";
 import { setPomodoro } from "./state2";
 
 /** Mèo Miao — SVG tự vẽ (tai nhọn, mắt tròn, ria). */
@@ -31,9 +29,8 @@ export function CatSvg(props: { size?: number; mood?: "calm" | "proud" | "scold"
   );
 }
 
-/** Lời Miao (ẩn hẳn ở Chế độ Công ty). */
+/** Lời Miao (v2.1: Chế độ Công ty vẫn hiện bình thường). */
 export function Miao(props: { text: string; mood?: "calm" | "proud" | "scold"; testid?: string }) {
-  if (getState().settings.companyMode) return <p class="doc-note" data-testid={props.testid || "tutor"}>{props.text}</p>;
   return (
     <div class={cls("tutor", props.mood || "calm")} data-testid={props.testid || "tutor"}>
       <div class="avatar cat"><CatSvg size={40} mood={props.mood} /></div>
@@ -63,35 +60,6 @@ export function PctBar(props: { pct: number }) {
     <div class="pctbar" data-testid="pctbar" aria-valuenow={props.pct}>
       <span style={{ width: props.pct + "%" }} />
       <b>{props.pct % 1 ? props.pct.toFixed(1) : props.pct}%</b>
-    </div>
-  );
-}
-
-/** Chấm nói: bấm → nói → hiện chữ máy nghe được + % + từng chữ đúng/sai. */
-export function SpeakTry(props: { expected: string; pinyin?: string; onScore?: (s: V2Score) => void; label?: string }) {
-  const [busy, setBusy] = useState(false);
-  const [res, setRes] = useState<V2Score | null>(null);
-  const [err, setErr] = useState("");
-  const ok = speechAvailable() || !!window.__miaoziAsr;
-  const run = async () => {
-    setBusy(true); setErr(""); setRes(null);
-    try { const sc = await listenAndScore(props.expected); setRes(sc); props.onScore?.(sc); }
-    catch (e) { setErr("Không mở được micro / nhận giọng nói: " + (e as Error).message); }
-    setBusy(false);
-  };
-  return (
-    <div class="speak-try" data-testid="speak-try">
-      {!ok && <p class="notice">Trình duyệt này không có nhận giọng nói. Mở Miaozi bằng Chrome (Android/Windows) hoặc Edge. Có thể bấm “Bỏ qua → nợ” nếu hôm nay không nói được.</p>}
-      <Button kind="primary" wide disabled={busy || !ok} onClick={run} class="speak-btn">{busy ? "Đang nghe… nói đi" : (props.label || "🎤 Bấm rồi nói")}</Button>
-      {err && <p class="bad-text">{err}</p>}
-      {res && (
-        <div class={cls("speak-res", res.pass ? "ok" : "bad")} data-testid="speak-res">
-          <div class="row spread"><strong data-testid="speak-pct">{res.pass ? "Đạt" : "Chưa đạt"} · {res.percent}%</strong>{res.tonePct !== null && <span class="chip tiny">Cao độ (tham khảo) {res.tonePct}%</span>}</div>
-          <p class="muted" data-testid="speak-heard">Máy nghe được: <span class="hanzi-inline">{res.heard || "(không nghe được gì)"}</span></p>
-          <div class="marks">{res.marks.map((m, i) => <span key={i} class={cls("mk", m.ok >= 1 ? "ok" : m.ok > 0 ? "near" : "bad")} title={m.py}>{m.char}<small>{m.py}</small></span>)}</div>
-          <p class="small">{res.message}</p>
-        </div>
-      )}
     </div>
   );
 }

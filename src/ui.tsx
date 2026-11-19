@@ -1,6 +1,6 @@
 import { ComponentChildren } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { autoPlay, carrierFor, playId, stopAudio } from "./audio";
+import { audioState, autoPlay, carrierFor, playId, stopAudio, subscribeAudio, toggleAudio, type AudioSnap } from "./audio";
 import { getState } from "./store";
 import type { TutorMood } from "./tutor";
 import type { Word } from "./data/curriculum";
@@ -54,21 +54,42 @@ export function CarrierNote(props: { id?: string }) {
   return <p class="muted small-note">Chữ này đọc nhẹ, đứng một mình nghe sai nên loa đọc trong cụm <span class="hanzi-inline">{c}</span>.</p>;
 }
 
+export function useAudioSnap(): AudioSnap {
+  const [st, setSt] = useState(audioState());
+  useEffect(() => subscribeAudio(setSt), []);
+  return st;
+}
+
+/** Nút nghe: bấm lần nữa khi đang phát đúng mục này → dừng. Bấm mục khác → mục cũ tự dừng. */
 export function AudioBtn(props: { id?: string; slow?: boolean; label?: string }) {
-  const [busy, setBusy] = useState(false);
+  const a = useAudioSnap();
   if (!props.id) return null;
+  const mine = a.id === props.id && !a.seq && a.status !== "idle";
   return (
     <Button
       small
       kind="blue"
-      disabled={busy}
+      class={mine ? "playing" : undefined}
       onClick={async () => {
-        setBusy(true);
+        if (mine) { stopAudio(); return; }
         try { await playId(props.id!, props.slow); }
         catch { /* ignore */ }
-        setBusy(false);
       }}
-    >{props.slow ? "Nghe chậm" : (props.label || "Nghe")}</Button>
+    >{mine ? "■ Dừng" : props.slow ? "Nghe chậm" : (props.label || "Nghe")}</Button>
+  );
+}
+
+/** Thanh điều khiển nổi khi đang phát (Tạm dừng / Tiếp / Dừng). */
+export function AudioDock() {
+  const a = useAudioSnap();
+  if (a.status === "idle") return null;
+  return (
+    <div class="audio-dock" data-testid="audio-dock" data-status={a.status}>
+      <span class="ad-ico">{a.status === "playing" ? "🔊" : "⏸"}</span>
+      <span class="ad-label">{a.seq ? `${a.label || "Tự phát"} ${a.seq.i}/${a.seq.n}` : a.label || "Đang phát"}</span>
+      <button class="ad-btn" id="audio-toggle" aria-label={a.status === "playing" ? "Tạm dừng" : "Tiếp tục"} onClick={toggleAudio}>{a.status === "playing" ? "⏸" : "▶"}</button>
+      <button class="ad-btn" id="audio-stop" aria-label="Dừng" onClick={stopAudio}>■</button>
+    </div>
   );
 }
 

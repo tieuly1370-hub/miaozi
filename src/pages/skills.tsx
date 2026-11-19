@@ -1,4 +1,4 @@
-import { SpeakTry } from "../v2/ui2";
+import { SpeakTry } from "../v2/speakTry";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { ALL_WORDS, ALL_SENTENCES, LESSONS, type Word } from "../data/curriculum";
 import { mockExam, weeklyTest } from "../data/exams";

@@ -56,7 +56,7 @@ export function secRule(id: SecId, n: number): string {
   switch (id) {
     case "s1": return "Chép mỗi chữ sai 3 lần trên ô 田 rồi bấm “Xác nhận đã chép phạt xong”. Không có lỗi phạt thì mục này tự xong (0%).";
     case "s2": return `Mở xem đủ ${L.words.length} từ (chạm từng thẻ), nghe hết hội thoại 1 lần, và tick “Đã xem xong video bài giảng” (sau khi mở link Nhai).`;
-    case "s3": return "Đọc bài, làm 5 câu trắc nghiệm, đúng ≥ 4/5. Trượt thì chờ 10 phút rồi làm lại.";
+    case "s3": return "Đọc bài, làm 5 câu trắc nghiệm, đúng ≥ 4/5. Trượt thì làm lại ngay.";
     case "s4": return `Viết theo nét đủ ${L.words.length} từ (mỗi chữ cho phép sai tối đa 5 nét) + đặt 3 câu được Miao chấm “Đạt”.`;
     case "s5": return `Nói đạt ≥ 80% ít nhất ${speakNeed(n)} câu mẫu (máy hiện chữ nghe được và %).`;
     case "s6a": return "Nghe + đọc trắc nghiệm, đúng ngay lần đầu ≥ 80%. Từ sai chuyển sang chép phạt ở Mục 1.";

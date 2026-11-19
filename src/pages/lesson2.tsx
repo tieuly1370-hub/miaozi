@@ -1,8 +1,8 @@
-/** v2.0 — trang bài: 6 mục cố định, mục sáng/mờ theo chế độ, nút hoàn thành phải “kiếm” được. */
+/** v2.1 — trang bài: 6 mục cố định, mục gợi ý lấp lánh (không làm mờ mục khác), nút hoàn thành phải “kiếm” được. */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { pinyin as toPinyin } from "pinyin-pro";
 import { getState } from "../store";
-import { playId, stopAudio } from "../audio";
+import { audioState, playSequence, stopAudio, toggleAudio } from "../audio";
 import { HANZI_INFO, PART_VI, nhaiHanziUrl } from "../data/hanziInfo";
 import { shuffle, v2Items, v2Judge, type Item } from "../gate";
 import { gradeSentence, type GradeResult } from "../v2/grader";
@@ -12,16 +12,15 @@ import {
 } from "../v2/lessons";
 import {
   active, addTo, completeSection, currentMode, earned, finishCheck, finishS3, hasPenalty, lessonUnlockedV2, openPenalties, oweSection,
-  passPlacement, patchSub, retryLeftMs, secOf, sentPassed, subOf, recordTest,
+  passPlacement, patchSub, secOf, sentPassed, subOf, recordTest, logSkills,
 } from "../v2/state2";
-import { Miao, PctBar, SixBar, SpeakTry } from "../v2/ui2";
-import { AudioBtn, Button, Card, Switch, cls, go } from "../ui";
+import { Miao, PctBar, SixBar } from "../v2/ui2";
+import { SpeakTry } from "../v2/speakTry";
+import { AudioBtn, Button, Card, CarrierNote, Switch, cls, go, useAudioSnap } from "../ui";
 import { ExamRunner } from "./exam";
 import { WriteWord, hanChars } from "./write";
 
-const MODE_VI = { company: "🏢 Công ty", low: "🔋 Cạn pin", standard: "⚡ Tiêu chuẩn", burst: "🔥 Bứt phá" } as const;
-const fmtMin = (ms: number) => `${Math.ceil(ms / 60000)} phút`;
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const MODE_VI = { company: "🏢 Công ty", low: "🔋 Cạn pin" } as const;
 const py = (zh: string) => toPinyin(zh, { type: "string", nonZh: "consecutive" }) as string;
 
 export function LessonV2(props: { n: number; sec?: string }) {
@@ -50,31 +49,29 @@ export function LessonV2(props: { n: number; sec?: string }) {
   if (placement) return <PlacementRun n={n} onDone={() => setPlacement(false)} />;
   const pct = percent(sec);
   return (
-    <div class={cls("stack lesson2", company && "doc")} data-testid="lesson2">
+    <div class="stack lesson2" data-testid="lesson2">
       <Card>
         <div class="row spread">
           <div>
             <p class="muted small">{isExtended(n) ? "Từ vựng mở rộng" : "HSK1"} · Bài {n}/{LESSON_COUNT}</p>
             <h2 class="h2" data-testid="lesson-title">{L.titleVi}</h2>
           </div>
-          <span class="chip" data-testid="lesson-mode">{mode ? MODE_VI[mode] : "Chưa chọn chế độ"}</span>
+          <span class="chip" data-testid="lesson-mode">{mode ? MODE_VI[mode] : "Gợi ý tự động"}</span>
         </div>
         <PctBar pct={pct} />
         <SixBar sec={sec} active={act} onPick={(id) => setOpen(id as SecId)} />
-        {!mode && <p class="notice">Chưa chọn chế độ hôm nay — đang sáng theo Tiêu chuẩn. <a href="#/">Chọn chế độ</a></p>}
+        <p class="muted small" data-testid="suggest-line">✨ Đang gợi ý: {act.length ? act.map((id) => `Mục ${SEC_SHORT[id]}`).join(", ") : "không còn mục nào"}</p>
       </Card>
-      {!company && <Miao text={introText(n)} />}
+      <Miao text={introText(n)} />
       {company && <CompanyBar n={n} showPy={showPy} setShowPy={setShowPy} />}
       {SEC_ORDER.map((id) => (
         <Section key={id} n={n} id={id} on={act.includes(id)} open={open === id} setOpen={(v) => setOpen(v ? id : null)} showPy={showPy} />
       ))}
-      {pct < 100 && !company && (
+      {pct < 100 && (
         <Card class="dim-card">
           <h3 class="h3">Đã biết bài này rồi?</h3>
           <p class="muted">Thi vượt bài: nghe, đọc, viết từ trí nhớ, nói. Đúng ngay lần đầu ≥ 85% thì cả bài tính xong 100%.</p>
-          {retryLeftMs("test:placement:" + n) > 0
-            ? <p class="notice">Vừa trượt. Chờ {fmtMin(retryLeftMs("test:placement:" + n))} nữa.</p>
-            : <Button kind="ghost" id="placement-start" onClick={() => setPlacement(true)}>Thi vượt bài {n}</Button>}
+          <Button kind="ghost" id="placement-start" onClick={() => setPlacement(true)}>Thi vượt bài {n}</Button>
         </Card>
       )}
       {pct >= 100 && (
@@ -89,26 +86,17 @@ export function LessonV2(props: { n: number; sec?: string }) {
 
 /* ---------------- Chế độ Công ty: tự phát cả bài + ẩn/hiện pinyin ---------------- */
 function CompanyBar(props: { n: number; showPy: boolean; setShowPy: (v: boolean) => void }) {
-  const [playing, setPlaying] = useState(false);
-  const stop = useRef(false);
+  const a = useAudioSnap();
   const L = lesson(props.n);
-  const run = async () => {
-    setPlaying(true); stop.current = false;
-    const ids = [...L.words.map((w) => w.id), ...L.sentences.map((s) => s.id)];
-    for (const id of ids) {
-      if (stop.current) break;
-      try { const a = await playId(id); await new Promise<void>((r) => { a.onended = () => r(); a.onerror = () => r(); setTimeout(r, 15000); }); } catch { /* */ }
-      if (stop.current) break;
-      await sleep(2000);
-    }
-    setPlaying(false);
-  };
-  useEffect(() => () => { stop.current = true; stopAudio(); }, []);
+  const label = `Bài ${props.n}`;
+  const playing = a.status !== "idle" && a.label === label;
+  const run = () => { void playSequence([...L.words.map((w) => w.id), ...L.sentences.map((s) => s.id)], 2000, label); };
+  useEffect(() => () => { if (audioState().label === label) stopAudio(); }, []);
   return (
-    <Card class="doc-bar" data-testid="company-bar">
+    <Card class="company-bar" data-testid="company-bar">
       <div class="row wrap">
         {playing
-          ? <Button small kind="ghost" onClick={() => { stop.current = true; stopAudio(); setPlaying(false); }}>■ Dừng</Button>
+          ? <><Button small kind="ghost" id="autoplay-pause" onClick={toggleAudio}>{a.status === "paused" ? "▶ Tiếp" : "⏸ Tạm dừng"}</Button><Button small kind="ghost" id="autoplay-stop" onClick={stopAudio}>■ Dừng</Button></>
           : <Button small kind="ghost" id="autoplay-all" onClick={run}>▶ Phát Audio tự động toàn bài</Button>}
         <Button small kind="ghost" id="toggle-pinyin" onClick={() => props.setShowPy(!props.showPy)}>{props.showPy ? "Ẩn Pinyin" : "Hiện Pinyin"}</Button>
       </div>
@@ -126,7 +114,7 @@ function Section(props: { n: number; id: SecId; on: boolean; open: boolean; setO
   const done = !!r?.done;
   const s1Empty = id === "s1" && !hasPenalty();
   return (
-    <section class={cls("card sec", props.on ? "sec-on" : "sec-dim", done && "sec-done", r?.owed && !done && "sec-owed")} data-testid={"sec-" + id} data-active={props.on ? "1" : "0"}>
+    <section class={cls("card sec", props.on && "sec-on", done && "sec-done", r?.owed && !done && "sec-owed")} data-testid={"sec-" + id} data-active={props.on ? "1" : "0"}>
       <button class="sec-head" onClick={() => props.setOpen(!props.open)} data-testid={"open-" + id}>
         <span class="sec-num">{SEC_SHORT[id]}</span>
         <span class="sec-title">{SEC_TITLE[id]}</span>
@@ -236,16 +224,11 @@ function S2(props: { n: number; showPy: boolean }) {
   const n = props.n;
   const L = lesson(n); const u = subOf(n); const nl = nhaiLesson(n);
   const [openW, setOpenW] = useState<string | null>(null);
-  const [playing, setPlaying] = useState(false);
+  const au = useAudioSnap();
+  const playing = au.status !== "idle" && au.label === "Hội thoại";
   const seen = L.words.filter((w) => u.vocabSeen.includes(w.id)).length;
   const playDialog = async () => {
-    setPlaying(true);
-    for (const s of L.sentences) {
-      try { const a = await playId(s.id); await new Promise<void>((r) => { a.onended = () => r(); a.onerror = () => r(); setTimeout(r, 15000); }); } catch { /* */ }
-      await sleep(600);
-    }
-    setPlaying(false);
-    patchSub(n, { dialog: true });
+    if (await playSequence(L.sentences.map((s) => s.id), 600, "Hội thoại")) patchSub(n, { dialog: true });
   };
   return (
     <div class="stack" data-testid="s2">
@@ -261,6 +244,7 @@ function S2(props: { n: number; showPy: boolean }) {
             {openW === w.id && (
               <div class="vrow-body">
                 <AudioBtn id={w.id} /> <AudioBtn id={w.id} slow />
+                <CarrierNote id={w.id} />
                 <div class="decomp">
                   {hanChars(w.hanzi).map((c) => {
                     const h = HANZI_INFO[c];
@@ -282,7 +266,7 @@ function S2(props: { n: number; showPy: boolean }) {
       <ol class="dialog">
         {L.sentences.map((s) => <li key={s.id}><span class="hanzi-inline">{s.hanzi}</span> {props.showPy && <span class="py">{s.pinyin}</span>} <span class="muted">{s.vi}</span> <AudioBtn id={s.id} /></li>)}
       </ol>
-      <Button kind="blue" id="play-dialog" disabled={playing} onClick={playDialog}>{playing ? "Đang phát…" : "▶ Nghe cả hội thoại"}</Button>
+      {playing ? <Button kind="blue" id="play-dialog" onClick={stopAudio}>■ Dừng hội thoại</Button> : <Button kind="blue" id="play-dialog" onClick={playDialog}>▶ Nghe cả hội thoại</Button>}
       {!getState().settings.companyMode || true ? (
         <div class="video-card" data-testid="video-card">
           <a class="btn primary wide" href={nl?.vocabUrl || NHAI_GENERAL.vocab} target="_blank" rel="noreferrer" id="video-link" onClick={() => patchSub(n, { videoOpened: true })}>📺 Xem video bài giảng chi tiết tại NhaiHSK</a>
@@ -311,7 +295,6 @@ function S3(props: { n: number; showPy: boolean }) {
   }, [n, u.s3?.at]);
   const [ans, setAns] = useState<Record<number, number>>({});
   const [result, setResult] = useState<number | null>(null);
-  const wait = retryLeftMs(`s3:${n}`);
   return (
     <div class="stack" data-testid="s3">
       <h4 class="h4">Ngữ pháp trọng tâm (học trên Nhai)</h4>
@@ -326,7 +309,8 @@ function S3(props: { n: number; showPy: boolean }) {
       <Button small kind="ghost" onClick={() => setShowVi(!showVi)}>{showVi ? "Ẩn bản dịch" : "Xem bản dịch (sau khi làm bài)"}</Button>
       {showVi && <p class="muted">{P.vi}</p>}
       <h4 class="h4">5 câu trắc nghiệm {u.s3 && <span class="chip green tiny">đã đạt {u.s3.score}/5</span>}</h4>
-      {wait > 0 && result === null ? <p class="notice">Vừa trượt. Đọc lại bài, {fmtMin(wait)} nữa làm lại.</p> : (
+      {(
+
         <>
           {qs.map((q, i) => (
             <div key={i} class="mcq" data-testid="s3-q">
@@ -338,7 +322,8 @@ function S3(props: { n: number; showPy: boolean }) {
           ))}
           {result === null
             ? <Button kind="primary" id="s3-submit" disabled={Object.keys(ans).length < qs.length} onClick={() => { const sc = qs.filter((q, i) => ans[i] === q.a).length; setResult(sc); finishS3(n, sc); }}>Nộp bài</Button>
-            : <p class={result >= 4 ? "chip green" : "bad-text"} data-testid="s3-result">{result}/5 — {result >= 4 ? "Đạt." : "Chưa đạt (cần 4/5). Chờ 10 phút rồi làm lại."}</p>}
+            : <div class="row"><p class={result >= 4 ? "chip green" : "bad-text"} data-testid="s3-result">{result}/5 — {result >= 4 ? "Đạt." : "Chưa đạt (cần 4/5). Đọc lại bài rồi làm lại ngay."}</p>
+                {result < 4 && <Button small kind="ghost" id="s3-retry" onClick={() => { setAns({}); setResult(null); }}>Làm lại ngay</Button>}</div>}
         </>
       )}
     </div>
@@ -422,11 +407,11 @@ function S6(props: { n: number; which: "s6a" | "s6b" }) {
   const [out, setOut] = useState<null | { pass: boolean; first: number; total: number; wrong: string[] }>(null);
   const u = subOf(n);
   const rec = u[which];
-  const wait = retryLeftMs(`${which}:${n}`);
   const title = which === "s6a" ? `Kiểm tra 6A — bài ${n}` : `Kiểm tra 6B — bài ${n}`;
   if (items) {
     return <ExamRunner items={items} title={title} onFinish={(o) => {
       const j = v2Judge(o.items, o.firstOk);
+      logSkills(which, o.items, o.firstOk);
       finishCheck(n, which, j.pass, j.score, j.wrong.map((i) => ({ hanzi: i.answerHanzi, wordId: i.wordId })));
       setOut({ pass: j.pass, first: j.first, total: j.total, wrong: j.wrong.map((i) => i.answerHanzi) });
       setItems(null);
@@ -442,8 +427,7 @@ function S6(props: { n: number; which: "s6a" | "s6b" }) {
           {out.wrong.length > 0 && <p class="small">Chữ sai → chép phạt ở Mục 1: <span class="hanzi-inline">{[...new Set(out.wrong)].join(" ")}</span></p>}
         </div>
       )}
-      {wait > 0 ? <p class="notice">Vừa trượt. Ôn lại, {fmtMin(wait)} nữa thi lại.</p>
-        : <Button kind="primary" id={"start-" + which} onClick={() => { setOut(null); setItems(v2Items(which, n, getState().mistakes.map((m) => m.wordId || ""))); }}>{rec ? "Thi lại" : "Bắt đầu"}</Button>}
+      {<Button kind="primary" id={"start-" + which} onClick={() => { setOut(null); setItems(v2Items(which, n, getState().mistakes.map((m) => m.wordId || ""))); }}>{rec ? "Thi lại" : "Bắt đầu"}</Button>}
     </div>
   );
 }

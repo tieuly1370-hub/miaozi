@@ -1,10 +1,13 @@
 /** Smart Queue Engine v2 — thuần logic (không DOM) để test được bằng node. */
 export type SecId = "s1" | "s2" | "s3" | "s4" | "s5" | "s6a" | "s6b";
-export type Mode = "company" | "low" | "standard" | "burst";
+/** v2.1: chỉ còn Công ty và Cạn pin. Không chọn chế độ → app tự gợi ý mục tiếp theo. ("Xin nghỉ" là hành động trong ngày, không phải chế độ.) */
+export type Mode = "company" | "low";
 export const SEC_ORDER: SecId[] = ["s1", "s2", "s3", "s4", "s5", "s6a", "s6b"];
 export const WEIGHT: Record<SecId, number> = { s1: 0, s2: 25, s3: 25, s4: 20, s5: 15, s6a: 7.5, s6b: 7.5 };
 export const SILENT: SecId[] = ["s2", "s3", "s6a"];
-export const MODE_MIN: Record<Mode, number> = { company: 20, low: 15, standard: 45, burst: 90 };
+export const MODE_MIN: Record<Mode, number> = { company: 20, low: 15 };
+/** Số mục gợi ý khi không chọn chế độ. */
+export const SUGGEST_N = 1;
 export const LOW_MAX = 3;
 
 export interface SecRec { done?: boolean; at?: number; owed?: { at: number; due: string; reason: string } }
@@ -26,14 +29,12 @@ export function activeSections(mode: Mode | null, sec: SecMap, hasPenalty: boole
   switch (mode) {
     case "company": return rest.filter((id) => SILENT.includes(id));
     case "low": return [...pen, ...rest.slice(0, 1)];
-    case "standard": return [...pen, ...rest.slice(0, 2)];
-    case "burst": return [...pen, ...rest];
-    default: return [...pen, ...rest.slice(0, 2)];
+    default: return [...pen, ...rest.slice(0, SUGGEST_N)];
   }
 }
 
 /** Mục sẽ đạt sau khi làm hết các mục được làm sáng. */
-export function percentAfter(mode: Mode, sec: SecMap, hasPenalty: boolean): number {
+export function percentAfter(mode: Mode | null, sec: SecMap, hasPenalty: boolean): number {
   const next: SecMap = { ...sec };
   for (const id of activeSections(mode, sec, hasPenalty)) next[id] = { done: true };
   return percent(next);
@@ -82,7 +83,7 @@ export function useLow(le: LowEnergy | undefined, now: Date): LowEnergy | null {
   return { weekStart: cur.weekStart, count: cur.count + 1, days: [...cur.days, today] };
 }
 export const LOW_LABEL = (left: number) => `🔋 Cạn pin 15p (Còn ${left}/3 lượt tuần này)`;
-export const LOW_EMPTY_MSG = "Bạn đã dùng hết 3 lượt Cạn pin tuần này, hãy chọn Tiêu chuẩn hoặc Chế độ Công ty nhé!";
+export const LOW_EMPTY_MSG = "Bạn đã dùng hết 3 lượt Cạn pin tuần này, hãy học theo gợi ý hoặc chọn Chế độ Công ty nhé!";
 
 /* ---------- streak ---------- */
 /** Chuỗi: ngày học hoặc ngày "bận" (dời ca) đều giữ chuỗi; ngày trống làm đứt chuỗi. Hôm nay chưa học thì chưa đứt. */
@@ -98,4 +99,21 @@ export function streakFrom(studied: Set<string>, busy: Set<string>, today: Date,
     d.setDate(d.getDate() - 1);
   }
   return n;
+}
+
+/* ---------- Xin nghỉ ---------- */
+/**
+ * Hôm sau ngày "Xin nghỉ": thêm chép phạt.
+ * - Case 1: chưa có chép phạt nào đang chờ → giao ≥ 5 từ của bài gần nhất.
+ * - Case 2: đang có chép phạt chờ → thêm ≥ 5 từ nữa.
+ * - Trần: tổng số từ phải chép (đang chờ + thêm) ≤ toàn bộ từ mới của bài trước.
+ * Trả về danh sách từ cần thêm (có thể rỗng khi đã chạm trần).
+ */
+export const OFF_ADD = 5;
+export function offPenaltyWords(pending: string[], lessonWords: string[], pick: (a: string[]) => string[] = (a) => a): string[] {
+  const pend = new Set(pending);
+  const cap = new Set(lessonWords).size;
+  const room = Math.max(0, cap - pend.size);
+  const pool = pick([...new Set(lessonWords)].filter((w) => !pend.has(w)));
+  return pool.slice(0, Math.min(OFF_ADD, room));
 }

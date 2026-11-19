@@ -27,10 +27,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
 }
-body.company {
-  --pink: #EDE6E0; --yellow: #EDE8DC; --purple: #E6E0EA; --blue: #E0E6EA;
-  --green: #E2E8DC; --peach: #EDE4DC; --accent: #6B534E; --shadow: none;
-}
+
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; border: none; background: none; }
 a { color: var(--accent); text-decoration: none; }
@@ -255,12 +252,12 @@ a.seg, .seg { color: var(--ink); }
 .tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
 .list-btn { width: 100%; text-align: left; }
 
-/* discreet company */
-body.company .logo { background: #e8e0d8; }
-body.company .tutor { background: #eeeae3; }
-body.company .chip, body.company .btn.pink, body.company .btn.yellow,
-body.company .btn.purple, body.company .btn.blue, body.company .btn.green,
-body.company .rm-item .num { background: #efe9e1; }
+
+
+
+
+
+
 
 /* ---------- v1.1 ---------- */
 .hanzi-inline { font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", serif; font-size: 1.1em; }
@@ -406,20 +403,17 @@ body.company .rm-item .num { background: #efe9e1; }
 /* =================== v2.0 Miaozi =================== */
 .cat-logo { background: #FFF3DC; padding: 0; overflow: hidden; }
 .tutor .avatar.cat { background: #FFF3DC; padding: 0; overflow: hidden; display: grid; place-items: center; }
-body.company {
-  --bg: #F4F4F4; --card: #FFFFFF; --line: #E2E2E2; --ink: #2A2A2A; --muted: #6E6E6E; --accent: #505050;
-  --pink: #EEEEEE; --yellow: #EEEEEE; --purple: #EEEEEE; --blue: #EEEEEE; --green: #E6EDE6; --peach: #EEEEEE; --shadow: none;
-}
-body.company .logo, body.company .doc-logo { background: #E8E8E8; color: #555; }
-body.company .card { border-radius: 6px; }
-body.company .btn { border-radius: 6px; }
+
+
+
+
 .doc-note { font-size: 13px; color: var(--muted); border-left: 3px solid var(--line); padding: 4px 10px; margin: 0; }
 .doc-bar .row { gap: 8px; }
 .row.wrap { flex-wrap: wrap; }
 
 .pctbar { position: relative; height: 22px; border-radius: 99px; background: var(--line); overflow: hidden; margin: 10px 0 8px; }
 .pctbar > span { display: block; height: 100%; background: linear-gradient(90deg, #F4B860, #E0874F); transition: width .4s; }
-body.company .pctbar > span { background: #9a9a9a; }
+
 .pctbar > b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; }
 .sixbar { display: flex; gap: 4px; margin: 6px 0; }
 .sixbar .cell { flex-basis: 0; min-width: 34px; padding: 7px 2px; border-radius: 8px; background: var(--card); border: 1.5px solid var(--line); font-size: 12px; font-weight: 600; color: var(--muted); }
@@ -428,10 +422,10 @@ body.company .pctbar > span { background: #9a9a9a; }
 .sixbar .cell.owed { background: #FBE3C8; border-color: #E0A15A; color: #7a4a12; }
 
 .sec { padding: 0; overflow: hidden; transition: opacity .2s; }
-.sec-dim { opacity: .48; }
-.sec-dim:focus-within, .sec-dim:hover { opacity: .8; }
+
+
 .sec-on { border: 2px solid var(--accent); box-shadow: 0 0 0 3px rgba(182, 78, 92, .08); }
-body.company .sec-on { border-color: #777; box-shadow: none; }
+
 .sec-done { border-color: #9BCB8A; }
 .sec-owed { border-style: dashed; border-color: #E0A15A; }
 .sec-head { display: flex; align-items: center; gap: 10px; width: 100%; padding: 14px 16px 6px; text-align: left; }
@@ -448,7 +442,6 @@ body.company .sec-on { border-color: #777; box-shadow: none; }
 .dim-card { opacity: .85; }
 
 .modes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 10px 0; }
-@media (min-width: 720px) { .modes { grid-template-columns: repeat(4, 1fr); } }
 .mode-btn { display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 12px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--card); min-height: 74px; }
 .mode-btn.on { border-color: var(--accent); background: var(--yellow); }
 .mode-btn:disabled { opacity: .45; cursor: not-allowed; }
@@ -512,6 +505,60 @@ body.company .sec-on { border-color: #777; box-shadow: none; }
 .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 12px; }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
 textarea.input { font-size: 15px; }
-body.company .nav { background: rgba(250, 250, 250, 0.96); border-top-color: #E2E2E2; }
-body.company .mode-btn.on { background: #EDEDED; border-color: #777; }
-body.company .tutor, body.company .tutor.calm, body.company .tutor.nudge { background: #F0F0F0; }
+
+
+
+
+/* =================== v2.1 =================== */
+/* Mục được gợi ý: lấp lánh (không làm mờ mục khác) */
+@keyframes miao-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(224, 135, 79, .0), 0 0 0 2px rgba(224, 135, 79, .55); } 50% { box-shadow: 0 0 14px 2px rgba(244, 184, 96, .55), 0 0 0 2px rgba(224, 135, 79, .9); } }
+@keyframes miao-shine { 0% { background-position: -160% 0; } 60%, 100% { background-position: 260% 0; } }
+.sec-on { border: 2px solid #E0874F; animation: miao-glow 2.4s ease-in-out infinite; }
+.sec-on .sec-head { background-image: linear-gradient(110deg, transparent 30%, rgba(255, 236, 190, .85) 48%, transparent 66%); background-size: 220% 100%; background-repeat: no-repeat; animation: miao-shine 3.2s ease-in-out infinite; border-radius: 10px; }
+.sec-on .sec-num::after { content: "✨"; font-size: 12px; margin-left: 2px; }
+.sixbar .cell.act { border-color: #E0874F; color: var(--ink); animation: miao-glow 2.4s ease-in-out infinite; position: relative; }
+.sixbar .cell.act::after { content: "✦"; position: absolute; top: -7px; right: -3px; font-size: 11px; color: #E0874F; }
+@media (prefers-reduced-motion: reduce) {
+  .sec-on, .sixbar .cell.act, .sec-on .sec-head, .nav-main .ico { animation: none !important; }
+  .sec-on { box-shadow: 0 0 0 3px rgba(224, 135, 79, .35); }
+}
+.company-bar .row { gap: 8px; }
+
+/* Thanh điều hướng: Bài học nổi bật ở giữa */
+.nav { overflow: visible; }
+.nav a.nav-main { position: relative; color: var(--ink); font-weight: 700; }
+.nav a.nav-main .ico {
+  width: 58px; height: 58px; margin-top: -26px; border-radius: 50%; display: grid; place-items: center; font-size: 24px; color: #fff;
+  background: linear-gradient(135deg, #F4B860, #E0654F); box-shadow: 0 6px 16px rgba(224, 101, 79, .35); border: 4px solid var(--bg);
+}
+.nav a.nav-main.on .ico { box-shadow: 0 0 0 3px rgba(224, 101, 79, .3), 0 6px 16px rgba(224, 101, 79, .4); }
+
+/* Bộ phát âm thanh chung */
+.audio-dock {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--nav-h) + var(--safe-b) + 10px); z-index: 25;
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 14px; border-radius: 99px;
+  background: #3A2E2B; color: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, .25); font-size: 13px; max-width: calc(100% - 24px);
+}
+.audio-dock .ad-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.audio-dock .ad-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(255, 255, 255, .14); color: #fff; font-size: 15px; }
+.btn.playing { outline: 2px solid #E0874F; }
+
+/* Streak */
+.streak-chip { cursor: pointer; }
+.streak-big { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center; }
+.streak-big b { display: block; font-size: 40px; line-height: 1.1; color: #E0654F; }
+.streak-big span { color: var(--muted); font-size: 13px; }
+.cal-d.k-studied { background: #E6F4E3; border-color: #9CCB93; }
+.cal-d.k-off { background: #E3EEFA; border-color: #9DBDE6; }
+.cal-d.k-missed { background: #FBE7E5; border-color: #E5A39B; }
+.legend i.k-studied { background: #9CCB93; } .legend i.k-off { background: #9DBDE6; } .legend i.k-missed { background: #E5A39B; }
+
+/* Chế độ: 3 nút */
+.modes { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 420px) { .modes { grid-template-columns: 1fr; } .mode-btn { min-height: 0; } }
+.report { border: 2px solid #F4B860; background: #FFF8EA; }
+.listening { display: flex; flex-direction: column; gap: 8px; padding: 10px; border-radius: 12px; background: var(--yellow); }
+.rec-dot { width: 10px; height: 10px; border-radius: 50%; background: #E0654F; display: inline-block; animation: miao-pulse 1s infinite; }
+@keyframes miao-pulse { 50% { opacity: .3; } }
+.page-loading { text-align: center; padding: 30px 0; }
+.shadow-card { border: 2px solid #9DBDE6; }

@@ -139,7 +139,33 @@ function buildItem(sen: Sentence, skill: "listen" | "read", key: string): Item {
     : { key, skill, t: "build", label: sen.hanzi, vi: sen.vi, answerHanzi: han(sen.hanzi), prompt: `Dịch sang tiếng Trung: “${sen.vi}”`, chunks, answer, secs };
 }
 
+/**
+ * Trợ từ / thanh nhẹ: máy đọc riêng một chữ nghe sai nên file âm đọc cả cụm (khớp public/audio/index.json, trường "c").
+ * Bài nghe phải công bằng: phát cụm → đáp án và phương án cũng là cụm, chỉ khác đúng chữ cần nghe.
+ */
+export const CARRIER: Record<string, string> = {
+  "n01-06": "你们", "n03-02": "我的", "n03-18": "好吗", "n04-05": "你呢", "n07-09": "好吧", "n07-15": "你呢", "n09-07": "桌子上", "n12-05": "好了", "n14-07": "好了",
+};
+const NEUTRAL_ALT: Record<string, string[]> = {
+  // chỉ dùng phương án nghe khác hẳn (bỏ đồng âm như 的/得/地, 们/门) để câu hỏi công bằng
+  "们": ["吗", "么", "呢", "的"], "的": ["了", "呢", "吗", "吧"], "吗": ["吧", "呢", "了", "的"], "呢": ["吗", "吧", "了", "的"],
+  "吧": ["吗", "呢", "了", "的"], "了": ["吗", "吧", "呢", "的"], "上": ["下", "里", "前", "后"],
+};
+export function carrierPick(w: Word, key: string, recheck = false): Item | null {
+  const phrase = CARRIER[w.id];
+  if (!phrase) return null;
+  const c = han(w.hanzi);
+  const i = phrase.lastIndexOf(c);
+  if (i < 0) return null;
+  const alts = (NEUTRAL_ALT[c] || []).map((a) => phrase.slice(0, i) + a + phrase.slice(i + c.length)).filter((x) => x !== phrase);
+  const options = shuffle([phrase, ...alts.slice(0, 4)]).map((h, k) => ({ id: "c" + k + h, text: h, hanzi: h }));
+  const answer = options.find((o) => o.hanzi === phrase)!.id;
+  return { key, skill: "listen", t: "pick", label: phrase, vi: `${w.vi} (trong cụm ${phrase})`, answerHanzi: phrase, wordId: w.id, audio: w.id,
+    prompt: `Nghe cả cụm (chữ “${c}” đọc nhẹ nên đọc kèm chữ khác) rồi chọn đúng cụm.`, options, answer, secs: 20, recheck };
+}
+
 function hanziPick(w: Word, skill: "listen" | "read", key: string, recheck = false): Item {
+  if (skill === "listen") { const ci = carrierPick(w, key, recheck); if (ci) return ci; }
   const opts = [w.hanzi, ...variants(w.hanzi, skill === "listen" ? "sound" : "look", 4, new Set([w.hanzi]))];
   const options = shuffle(opts).map((h, i) => ({ id: "o" + i + h, text: h, hanzi: h }));
   const answer = options.find((o) => o.hanzi === w.hanzi)!.id;
@@ -302,7 +328,7 @@ export function judge(skill: GSkill, items: Item[], firstOk: Record<string, bool
 
 /* =================== v2.0: bài kiểm tra 6A / 6B / thi vượt bài / tuần / tháng =================== */
 export type V2Test = "s6a" | "s6b" | "placement" | "weekly" | "monthly";
-const notNum = (w: Word) => !/^[一二三四五六七八九十零百]$/.test(w.hanzi);
+const notNum = (w: Word) => !/^[一二三四五六七八九十零百]$/.test(w.hanzi) && !CARRIER[w.id]; // trợ từ đọc nhẹ: không bắt nói riêng một chữ
 const writable = (w: Word) => han(w.hanzi).length > 0 && han(w.hanzi).length <= 3;
 const shortSent = (s: Sentence) => s.pinyinNum.split(/\s+/).length <= 7;
 

@@ -7,7 +7,9 @@ import {
   sessionsOn, padDate, requiredSessions, penaltyId, sessionComplete, latePenalty, missedPenalty, twicePenalty, isOffDay, atHm,
 } from "./schedule";
 import { ALL_WORDS, type Word } from "./data/curriculum";
-import { GSKILLS, type GSkill } from "./gate";
+/** v2.1: khai báo tại chỗ (không kéo gate.ts + pinyin-pro vào gói tải đầu). Phải khớp GSKILLS trong gate.ts. */
+export type GSkill = "listen" | "read" | "speak" | "write";
+const GSKILLS: GSkill[] = ["listen", "read", "speak", "write"];
 import { DEFAULT_V2, migrateV2, v2Rollover, type V2State } from "./v2/state2";
 
 export interface Progress {
@@ -146,9 +148,35 @@ export function isReady(): boolean {
   return !!state;
 }
 
+let quietChange = false;
+const changeHooks = new Set<() => void>();
 function emit() {
   listeners.forEach((f) => f());
   schedulePersist();
+  if (!quietChange && state) { try { localStorage.setItem(CHANGED_KEY, String(Date.now())); } catch { /* */ } changeHooks.forEach((f) => f()); }
+}
+/* ---------- v2.1: dấu thời gian thay đổi + nạp dữ liệu đồng bộ ---------- */
+const CHANGED_KEY = "miaozi-changed-at";
+export function changedAt(): number { try { return Number(localStorage.getItem(CHANGED_KEY) || 0); } catch { return 0; } }
+export function onLocalChange(f: () => void): () => void { changeHooks.add(f); return () => { changeHooks.delete(f); }; }
+export const SYNC_KEYS = ["settings", "progress", "streak", "srs", "mistakes", "sessions", "notes", "penalties", "onboarded", "v2"] as const;
+export function syncSnapshot(): Record<string, unknown> {
+  const s = getState() as unknown as Record<string, unknown>;
+  return JSON.parse(JSON.stringify(Object.fromEntries(SYNC_KEYS.map((k) => [k, s[k]]))));
+}
+/** Áp dữ liệu đã gộp từ Drive (không tính là thay đổi mới trên máy này). */
+export function applySynced(data: Record<string, unknown>, at: number) {
+  const s = getState() as unknown as Record<string, unknown>;
+  for (const k of SYNC_KEYS) if (data[k] !== undefined) s[k] = data[k];
+  const st = getState();
+  st.settings = { ...DEFAULT_SETTINGS, ...st.settings };
+  st.progress = { ...DEFAULT_PROGRESS, ...st.progress };
+  st.v2 = { ...DEFAULT_V2(), ...st.v2 };
+  migrateV2(st, false);
+  ensureCards();
+  try { localStorage.setItem(CHANGED_KEY, String(at)); } catch { /* */ }
+  quietChange = true;
+  try { emit(); } finally { quietChange = false; }
 }
 /** Cho module v2: báo thay đổi (render + lưu). */
 export function touch() { emit(); }
@@ -216,7 +244,8 @@ export async function load(): Promise<AppState> {
     ensureCards();
   })();
   await ready;
-  emit();
+  quietChange = true;
+  try { emit(); } finally { quietChange = false; }
   return state!;
 }
 
@@ -705,11 +734,8 @@ export function gateRec(n: number, k: GSkill): GateRec | undefined {
 }
 
 /** Kỹ năng này hôm nay có được thi không. */
-export function gateBlockedUntil(n: number, k: GSkill): string | null {
-  const r = gateRec(n, k);
-  if (!r || r.pass || !r.retryOn) return null;
-  return r.retryOn > padDate(new Date()) ? r.retryOn : null;
-}
+/** v2.1: bỏ mọi thời gian chờ thi lại. */
+export function gateBlockedUntil(_n: number, _k: GSkill): string | null { return null; }
 
 export function unitPassed(n: number): boolean {
   const g = getState().progress.gate[n];
@@ -765,7 +791,7 @@ export function completeSessionCheck(kind: "morning" | "evening" | "weeklyTest",
   const now = new Date();
   const k = checkKey(kind, now);
   const prev = s.progress.checks[k];
-  s.progress.checks[k] = { pass: pass || !!prev?.pass, at: Date.now(), tries: (prev?.tries || 0) + 1, score: total ? correct / total : 0, why, retryAt: pass ? undefined : Date.now() + 10 * 60000 };
+  s.progress.checks[k] = { pass: pass || !!prev?.pass, at: Date.now(), tries: (prev?.tries || 0) + 1, score: total ? correct / total : 0, why, retryAt: undefined /* v2.1: bỏ thời gian chờ */ };
   const planned = sessionsOn(now, s.settings).find((p) => p.kind === kind);
   const session: PlannedSession = planned || {
     id: `${padDate(now)}:makeup-${kind}`, date: padDate(now), kind, start: now, end: now, minMinutes: 0,

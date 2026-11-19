@@ -119,7 +119,7 @@ export function recognizeAlts(lang = "zh-CN", maxMs = 8000): Promise<string[]> {
   });
 }
 
-interface SpeechRec {
+export interface SpeechRec {
   lang: string;
   interimResults: boolean;
   maxAlternatives: number;
@@ -129,6 +129,12 @@ interface SpeechRec {
   onresult: ((ev: unknown) => void) | null;
   onerror: ((ev: unknown) => void) | null;
   onend: (() => void) | null;
+  onspeechstart?: (() => void) | null;
+  abort?: () => void;
+}
+export function speechCtor(): (new () => SpeechRec) | null {
+  const w = window as unknown as { webkitSpeechRecognition?: new () => SpeechRec; SpeechRecognition?: new () => SpeechRec };
+  return w.SpeechRecognition || w.webkitSpeechRecognition || null;
 }
 
 export type SylScore = {
@@ -399,7 +405,7 @@ export async function recordMic(maxMs = 4000): Promise<{ samples: Float32Array; 
   return { samples, sampleRate: sr, blob };
 }
 
-export async function recordUntilSilent(opts?: { maxMs?: number; minMs?: number }): Promise<{ samples: Float32Array; sampleRate: number }> {
+export async function recordUntilSilent(opts?: { maxMs?: number; minMs?: number; until?: () => boolean; onLoud?: () => void }): Promise<{ samples: Float32Array; sampleRate: number }> {
   const maxMs = opts?.maxMs ?? 5000;
   const minMs = opts?.minMs ?? 600;
   const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
@@ -422,7 +428,8 @@ export async function recordUntilSilent(opts?: { maxMs?: number; minMs?: number 
     let peak = 0;
     for (let i = 0; i < data.length; i++) peak = Math.max(peak, Math.abs(data[i]));
     const t = ctx.currentTime;
-    if (peak > 0.04) lastLoud = t;
+    if (peak > 0.04) { lastLoud = t; opts?.onLoud?.(); }
+    if (opts?.until) { if (opts.until() || t - started >= maxMs / 1000) resolveFn(); return; }
     if (t - started >= maxMs / 1000) resolveFn();
     else if (t - started >= minMs / 1000 && t - lastLoud > 0.55) resolveFn();
   };

@@ -2,6 +2,22 @@
 
 Web app (PWA) học tiếng Trung HSK1 cùng gia sư mèo **Miao**. Học trên Nhai HSK, tổng hợp – ôn – kiểm tra – kỷ luật ở Miaozi. Tiếng Việt, chạy trên máy, miễn phí.
 
+## 2.1.0 — sửa theo góp ý: 3 chế độ, không chờ thi lại, Streak, Luyện thêm, đồng bộ Drive
+
+- **Bài nghe trợ từ (吗 呢 吧 了 的 们 上):** âm đọc cả cụm (好吗, 你呢…) nên câu hỏi và phương án cũng là cả cụm, chỉ khác đúng chữ cần nghe (`CARRIER` trong `src/gate.ts`, khớp `public/audio/index.json` trường `c`). Không bắt nói riêng một trợ từ.
+- **Chế độ:** chỉ còn 🏢 Công ty (giao diện bình thường, gợi ý mục 2/3/6A, tự phát cách 2 s + ẩn pinyin), 🔋 Cạn pin (3 lượt/tuần, reset thứ Hai) và 🛌 Xin nghỉ. Không chọn → tự gợi ý mục tiếp theo. Ngày đã chọn Tiêu chuẩn/Bứt phá được chuyển thành "không chọn".
+- **Xin nghỉ:** không đứt chuỗi; lần mở app sau đó sinh chép phạt: chưa có phạt → 5 từ của bài gần nhất; đang có phạt → thêm 5 từ; tổng ≤ số từ mới của bài (`offPenaltyWords` trong `src/v2/queue.ts`).
+- **Không làm mờ mục;** mục gợi ý lấp lánh (tắt hiệu ứng khi máy bật giảm chuyển động).
+- **Bỏ mọi thời gian chờ thi lại** (mục 3, 6A/6B, tuần, tháng, thi vượt bài).
+- **Thanh dưới:** Hôm nay · Viết · BÀI HỌC (nút giữa) · Luyện thêm · Cài đặt. Luyện thêm = shadowing Nhai, dịch, đọc hiểu, kiểm tra.
+- **Streak** (`#/streak`, mở từ chuỗi ở Hôm nay hoặc Cài đặt): chỉ lịch ngày học / xin nghỉ / bỏ lỡ + chuỗi hiện tại, dài nhất.
+- **Bộ phát chung** (`src/audio.ts`): một âm tại một thời điểm, thanh nổi Tạm dừng/Tiếp/Dừng, chuỗi tự phát dừng được.
+- **Nói:** nghe liên tục tới khi im 2,5 s sau khi nói (không dừng trước 3 s, tối đa 15 s) hoặc bấm "Xong"; Android tự kết thúc thì mở lại (`src/v2/speakTiming.ts`, `src/v2/listen.ts`).
+- **Báo cáo điểm yếu** thứ Hai ở Hôm nay: chữ sai nhiều nhất 7 ngày, kỹ năng yếu nhất (từ bài 6A/6B/tuần/tháng); Miao giao chép phạt ≤ 5 chữ sai nhiều nhất.
+- **Tải nhanh:** các trang tải lười; gói đầu 717.74 kB (gzip 277.74) → ~206 kB (gzip ~67).
+- **Đồng bộ Google Drive** (`src/sync/`): Google Identity Services + Drive REST, phạm vi `drive.appdata`, file `miaozi-sync.json` trong thư mục ẩn của app. Gộp: từng bản ghi bản mới hơn thắng, chuỗi/lịch sử hợp lại, mục đã xong giữ xong. Client ID ở `src/sync/config.ts`; origin được phép: `https://tieuly1370-hub.github.io`, `http://localhost:5173`. Không có máy chủ nên token sống ~1 giờ; hết hạn thì bấm "Đồng bộ ngay".
+- Kiểm thử: `node --experimental-strip-types tests/{queue,speak_timing,merge}.test.ts`; `npx esbuild tests/carrier.test.ts --bundle --platform=node --format=esm --outfile=/tmp/c.mjs && node /tmp/c.mjs`; Playwright `scripts/test_v21.py` (thay `test_v2.py`).
+
 ## 2.0.0 — Miaozi: 6 mục / bài, 4 chế độ, Smart Queue
 
 - Đổi tên Lò Hán → **Miaozi**, gia sư Miêu → **Miao** (mèo SVG tự vẽ, icon PWA tạo từ SVG). Dữ liệu IndexedDB giữ nguyên tên cũ `lohan` để không mất tiến độ.
