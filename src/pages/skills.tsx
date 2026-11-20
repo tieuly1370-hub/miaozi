@@ -11,6 +11,7 @@ import {
   addMistake, bumpSpeak, dueReview, getState, markIntroduced, markWeekDone, noteInput, passMock,
   plannedToday, recordAnswer, srsReview, startActivity,
 } from "../store";
+import { QuickMnemonic, StarBtn } from "../v2/charui";
 import { AudioBtn, Bar, Button, Card, Decomp, Options, PinyinReveal, PitchChart, WordFace, go, useAutoPlay } from "../ui";
 
 export function ReviewPage() {
@@ -60,6 +61,7 @@ export function ReviewPage() {
             {skill === "write" && <div class="hanzi">{word.hanzi}</div>}
             <div>{word.vi}</div>
             <Decomp word={word} />
+            {[...word.hanzi].filter((c) => /[\u3400-\u9fff]/.test(c)).map((c) => <div key={c} class="row char-acts"><span class="hanzi xs">{c}</span><StarBtn char={c} small /><QuickMnemonic char={c} /></div>)}
           </div>
         ) : (
           <Button kind="ghost" wide onClick={() => setShowVi(true)}>Lật nghĩa</Button>

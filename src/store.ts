@@ -11,6 +11,7 @@ import { ALL_WORDS, type Word } from "./data/curriculum";
 export type GSkill = "listen" | "read" | "speak" | "write";
 const GSKILLS: GSkill[] = ["listen", "read", "speak", "write"];
 import { DEFAULT_V2, migrateV2, v2Rollover, type V2State } from "./v2/state2";
+import { miaoAnswer } from "./v2/miaoBus";
 
 export interface Progress {
   week0Passed: boolean;
@@ -87,7 +88,7 @@ export interface NotePage {
 }
 
 export interface Stroke {
-  pts: { x: number; y: number; p: number }[];
+  pts: { x: number; y: number; p: number; t?: number }[];
   color: string;
   width: number;
   eraser: boolean;
@@ -442,6 +443,7 @@ export function stopActivity() {
 export function recordAnswer(ok: boolean, word?: Word, kind?: string) {
   const s = getState();
   s.today.total += 1;
+  miaoAnswer(ok);
   if (ok) s.today.correct += 1;
   else if (word) {
     addMistake(word, kind || "luyện tập");
@@ -477,7 +479,11 @@ export function addMistake(word: Word, kind: string, note?: string) {
 export function srsReview(id: string, quality: number) {
   const s = getState();
   const card = s.srs[id] || newCard(id);
-  s.srs[id] = review(card, quality);
+  const next = review(card, quality);
+  // v2.2: từ có chữ khó ⭐ → ôn lại sớm gấp đôi
+  const w = WORD_ID_MAP().get(id.split("::")[0]);
+  if (w && quality >= 3 && [...w.hanzi].some((c) => s.v2.stars?.[c])) { next.interval = Math.max(0.25, next.interval / 2); next.due = next.last + next.interval * 86400000; }
+  s.srs[id] = next;
   emit();
 }
 
@@ -501,9 +507,12 @@ export function bumpDueCards(n: number) {
   emit();
 }
 
+let _wmap: Map<string, Word> | null = null;
+const WORD_ID_MAP = () => (_wmap ||= new Map(ALL_WORDS.map((w) => [w.id, w])));
 export function dueReview(): Card[] {
   const s = getState();
-  return dueCards(s.srs).filter((c) => c.introduced);
+  const star = (c: Card) => { const w = WORD_ID_MAP().get(c.id.split("::")[0]); return w && [...w.hanzi].some((h) => s.v2.stars?.[h]) ? 0 : 1; };
+  return dueCards(s.srs).filter((c) => c.introduced).sort((a, b) => star(a) - star(b) || a.due - b.due);
 }
 
 export function finishSessionIfQualified(session: PlannedSession) {

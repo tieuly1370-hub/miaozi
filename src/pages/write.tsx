@@ -6,6 +6,11 @@ import { getState, markPenaltyDone, saveNote, setPenaltyWritten, type Stroke } f
 import type { Penalty } from "../schedule";
 import { AudioBtn, Button, Card, Switch, cls, go, useAutoPlay } from "../ui";
 import { setWrite } from "../v2/state2";
+import { miaoAnswer } from "../v2/miaoBus";
+import { HANZI_INFO } from "../data/hanziInfo";
+import { mnemonicFor } from "../v2/mnemo";
+import { PartChips, StarBtn } from "../v2/charui";
+import { PEN_DEFAULT, drawPenStroke, penPt, type PenPt } from "../v2/pen";
 
 const charCache = new Map<string, unknown>();
 
@@ -22,7 +27,7 @@ export const hanChars = (s: string) => [...s].filter((c) => /[\u3400-\u9fff]/.te
 
 type BoxState = "wait" | "active" | "ok" | "bad";
 
-/** Một ô hanzi-writer: viết theo nét, có nút viết lại và xem mẫu. */
+/** Một ô hanzi-writer: viết theo nét (chấm nét giữ nguyên), mực bút máy vẽ đè trên canvas, có Hoàn tác nét vừa viết. */
 export function WriteBox(props: {
   character: string;
   active?: boolean;
@@ -32,20 +37,58 @@ export function WriteBox(props: {
   onResult?: (ok: boolean, mistakes: number) => void;
 }) {
   const host = useRef<HTMLDivElement>(null);
+  const ink = useRef<HTMLCanvasElement>(null);
   const writerRef = useRef<ReturnType<typeof HanziWriter.create> | null>(null);
+  const kept = useRef<PenPt[][]>([]);
+  const pending = useRef<PenPt[] | null>(null);
+  const cur = useRef<PenPt[] | null>(null);
+  const strokeNum = useRef(0);
+  const missRef = useRef(0);
   const [msg, setMsg] = useState("");
   const [mistakes, setMistakes] = useState(0);
   const [round, setRound] = useState(0);
+  const [startAt, setStartAt] = useState(0);
   const [done, setDone] = useState<null | boolean>(null);
+  const [canUndo, setCanUndo] = useState(false);
   const active = props.active !== false;
+  const penW = getState().settings.penWidth ?? PEN_DEFAULT;
+  const redraw = () => {
+    const c = ink.current; if (!c) return;
+    const ctx = c.getContext("2d")!; ctx.clearRect(0, 0, c.width, c.height);
+    const base = c.width * 0.026 * penW;
+    for (const st of kept.current) drawPenStroke(ctx, st, base, INK, c.width, c.height);
+    if (pending.current) { ctx.globalAlpha = 0.5; drawPenStroke(ctx, pending.current, base, INK, c.width, c.height); ctx.globalAlpha = 1; }
+    if (cur.current) drawPenStroke(ctx, cur.current, base, INK, c.width, c.height);
+  };
+  // mực bút máy: nghe pointer trên ô (không chặn sự kiện → hanzi-writer vẫn chấm nét như cũ)
+  useEffect(() => {
+    const el = host.current, c = ink.current;
+    if (!el || !c || !active) return;
+    const fit = () => { const r = el.getBoundingClientRect(); const d = window.devicePixelRatio || 1; c.width = Math.max(1, r.width * d); c.height = Math.max(1, r.height * d); redraw(); };
+    fit();
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const down = (e: PointerEvent) => { cur.current = [penPt(e, el)]; };
+    const move = (e: PointerEvent) => { if (!cur.current) return; for (const ev of (e.getCoalescedEvents?.() || [e])) cur.current.push(penPt(ev, el)); redraw(); };
+    const up = () => {
+      if (!cur.current) return;
+      pending.current = cur.current; cur.current = null; redraw();
+      clearTimeout(timer); timer = setTimeout(() => { pending.current = null; redraw(); }, 450);
+    };
+    el.addEventListener("pointerdown", down);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
+    return () => { clearTimeout(timer); el.removeEventListener("pointerdown", down); window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); };
+  }, [active, props.character, round, penW]);
   useEffect(() => {
     const el = host.current;
     if (!el) return;
-    el.innerHTML = "";
+    const svgHost = el.querySelector(".hw-svg") as HTMLDivElement;
+    svgHost.innerHTML = "";
     let writer: ReturnType<typeof HanziWriter.create> | null = null;
-    let miss = 0;
     let cancelled = false;
-    setMistakes(0);
+    if (!startAt) { kept.current = []; missRef.current = 0; setMistakes(0); }
+    pending.current = null; strokeNum.current = startAt; setCanUndo(startAt > 0); redraw();
     setDone(null);
     setMsg(active ? "Viết theo đúng thứ tự nét" : "Chờ chữ trước");
     (async () => {
@@ -53,15 +96,16 @@ export function WriteBox(props: {
         const data = await loadCharData(props.character);
         if (cancelled || !host.current) return;
         const size = props.size || host.current.clientWidth || 220;
-        writer = HanziWriter.create(host.current, props.character, {
+        writer = HanziWriter.create(svgHost, props.character, {
           width: size,
           height: size,
           padding: 8,
           showOutline: !props.hideOutline,
           showCharacter: false,
-          strokeColor: "#3A2F2A",
-          outlineColor: active ? "#E8D8C8" : "#F3EAE0",
-          drawingColor: "#B64E5C",
+          strokeColor: "#D9C7D1",
+          outlineColor: active ? "#EADFE5" : "#F3EEF2",
+          drawingColor: "rgba(0,0,0,0)",
+          highlightColor: "#C3D7EC",
           drawingWidth: 22,
           strokeAnimationSpeed: 1.2,
           charDataLoader: (_c: string, onComplete: (d: unknown) => void) => onComplete(data),
@@ -69,13 +113,18 @@ export function WriteBox(props: {
         writerRef.current = writer;
         if (!active) return;
         writer.quiz({
-          onMistake: () => { miss += 1; setMistakes(miss); setMsg("Sai nét hoặc sai thứ tự — viết lại nét đó."); },
-          onCorrectStroke: () => setMsg("Đúng nét."),
-          onComplete: (s: { totalMistakes?: number }) => {
-            const m = s.totalMistakes ?? miss;
+          quizStartStrokeNum: startAt,
+          onMistake: () => { missRef.current += 1; setMistakes(missRef.current); pending.current = null; redraw(); setMsg("Sai nét hoặc sai thứ tự — viết lại nét đó."); },
+          onCorrectStroke: () => {
+            if (pending.current) { kept.current = [...kept.current, pending.current]; pending.current = null; redraw(); }
+            strokeNum.current += 1; setCanUndo(true); setMsg("Đúng nét.");
+          },
+          onComplete: () => {
+            const m = missRef.current;
             const ok = m <= 5; // bút tablet đôi khi không nhạy: cho sai tối đa 5 nét/chữ
-            setDone(ok);
+            setDone(ok); setCanUndo(false);
             setMsg(ok ? "Đạt." : `Xong nhưng sai ${m} nét. Bấm “Viết lại” để luyện thêm.`);
+            miaoAnswer(ok);
             props.onResult?.(ok, m);
           },
         });
@@ -86,19 +135,28 @@ export function WriteBox(props: {
     })();
     return () => { cancelled = true; try { writer?.cancelQuiz(); } catch { /* */ } writerRef.current = null; };
   }, [props.character, active, round, props.hideOutline]);
+  const undo = () => {
+    if (done !== null || strokeNum.current <= 0) return;
+    kept.current = kept.current.slice(0, -1);
+    setStartAt(strokeNum.current - 1); setRound((r) => r + 1);
+  };
   return (
     <div data-testid="write-box" class={cls("wbox", active && "on", done === true && "ok", done === false && "bad")}>
-      <div class="writer-host rice-bg" ref={host} style={props.size ? { width: props.size, height: props.size } : undefined} />
+      <div class="writer-host rice-bg" ref={host} style={props.size ? { width: props.size, height: props.size } : undefined}>
+        <div class="hw-svg" />
+        <canvas class="ink" ref={ink} aria-hidden="true" />
+      </div>
       <div class="wbox-foot">
         <span class="muted">{msg}{mistakes ? ` · sai ${mistakes}` : ""}</span>
         {active && (
           <span class="tools tight">
-            <Button small kind="ghost" onClick={() => setRound(round + 1)}>Viết lại</Button>
+            <Button small kind="ghost" id="undo-stroke" disabled={!canUndo} onClick={undo}>↶ Hoàn tác</Button>
+            <Button small kind="ghost" onClick={() => { setStartAt(0); setRound(round + 1); }}>Viết lại</Button>
             <Button small kind="ghost" onClick={() => {
               const w = writerRef.current;
               if (!w) return;
-              w.cancelQuiz();
-              w.animateCharacter({ onComplete: () => setRound((r) => r + 1) });
+              w.cancelQuiz(); kept.current = []; redraw();
+              w.animateCharacter({ onComplete: () => { setStartAt(0); setRound((r) => r + 1); } });
             }}>Xem mẫu</Button>
           </span>
         )}
@@ -106,25 +164,27 @@ export function WriteBox(props: {
     </div>
   );
 }
+const INK = "#2F2430";
 
-/** Từ nhiều chữ: mỗi chữ một ô, viết lần lượt từ trái sang phải. */
-export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?: (ok: boolean) => void; size?: number; hideOutline?: boolean }) {
+/** Từ nhiều chữ: mỗi chữ một ô, viết lần lượt từ trái sang phải. `one` = chỉ hiện ô đang viết (màn tablet, ô to). */
+export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?: (ok: boolean) => void; size?: number; hideOutline?: boolean; one?: boolean; onChar?: (c: string) => void }) {
   const chars = hanChars(props.word.hanzi);
   const [k, setK] = useState(0);
   const [res, setRes] = useState<BoxState[]>(() => chars.map((_, i) => (i === 0 ? "active" : "wait")));
   useEffect(() => { setK(0); setRes(chars.map((_, i) => (i === 0 ? "active" : "wait"))); }, [props.word.hanzi]);
+  useEffect(() => { if (chars[k]) props.onChar?.(chars[k]); }, [k, props.word.hanzi]);
   if (!chars.length) return <p>Không có chữ để viết.</p>;
   const doneCount = res.filter((r) => r === "ok" || r === "bad").length;
   return (
-    <div data-testid="write-word">
+    <div data-testid="write-word" class={cls(props.one && "one")}>
       <div class="row spread">
         <span class="muted">Chữ {Math.min(k + 1, chars.length)}/{chars.length}</span>
         <span class="steps">{chars.map((c, i) => (
           <span key={i} class={cls("step-dot", res[i] === "ok" && "ok", res[i] === "bad" && "bad", i === k && doneCount < chars.length && "on")}>{c}</span>
         ))}</span>
       </div>
-      <div class={cls("wword", chars.length > 1 && "multi")}>
-        {chars.map((c, i) => (
+      <div class={cls("wword", chars.length > 1 && !props.one && "multi")}>
+        {chars.map((c, i) => (props.one && i !== Math.min(k, chars.length - 1) ? null :
           <WriteBox
             key={props.word.hanzi + i}
             character={c}
@@ -139,7 +199,7 @@ export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?
                 if (next.every((x) => x === "ok" || x === "bad")) props.onDone?.(next.every((x) => x === "ok"));
                 return next;
               });
-              if (i === k && i + 1 < chars.length) setK(i + 1);
+              if (i === k && i + 1 < chars.length) setTimeout(() => setK(i + 1), props.one ? 700 : 0);
             }}
           />
         ))}
@@ -148,7 +208,16 @@ export function WriteWord(props: { word: { hanzi: string; id?: string }; onDone?
   );
 }
 
-/** Luyện viết — trạng thái (bài, từ đang viết, ẩn mẫu, từ đã đạt) lưu trong store nên sang “Ghi chú tay” rồi quay lại không mất. */
+/** Kích thước ô viết theo màn: tablet ngang ~440, tablet dọc ~480, điện thoại vừa bề ngang. */
+export function useBoxSize(): number {
+  const calc = () => { const w = window.innerWidth, h = window.innerHeight; return w >= 1024 && w > h ? Math.max(320, Math.min(440, h - 300)) : w >= 768 ? Math.min(480, w - 120) : Math.min(300, w - 72); };
+  const [s, setS] = useState(calc);
+  useEffect(() => { const f = () => setS(calc()); window.addEventListener("resize", f); return () => window.removeEventListener("resize", f); }, []);
+  return s;
+}
+
+/** Luyện viết — trạng thái (bài, từ đang viết, ẩn mẫu, từ đã đạt) lưu trong store nên sang “Ghi chú tay” rồi quay lại không mất.
+ *  v2.2: tablet ngang = cột trái danh sách từ + bên phải lưới chữ / ô chữ mễ to / bảng thông tin chữ. */
 export function WritePage() {
   const s = getState();
   const cap = Math.max(1, s.v2.lesson);
@@ -157,31 +226,72 @@ export function WritePage() {
   const words = LESSONS[lesson - 1].words;
   const i = Math.min(ws.idx || 0, Math.max(0, words.length - 1));
   const w = words[i];
+  const size = useBoxSize();
+  const [infoChar, setInfoChar] = useState<string>("");
   useAutoPlay(w?.id);
   if (!w) return <Card>Chưa có chữ.</Card>;
   const doneN = words.filter((x) => ws.done[x.id]).length;
+  const miss = new Set(s.mistakes.map((m) => m.hanzi).join(""));
+  const tiles = [...new Set(words.flatMap((x) => hanChars(x.hanzi)))];
+  const ch = infoChar && hanChars(w.hanzi).includes(infoChar) ? infoChar : hanChars(w.hanzi)[0];
+  const info = HANZI_INFO[ch];
+  const m = mnemonicFor(ch);
   return (
-    <div class="stack" data-testid="write-page">
-      <Card>
-        <div class="row spread">
-          <h2 class="h2">Viết theo nét</h2>
-          <select data-testid="write-lesson" value={lesson} onChange={(e) => setWrite({ lesson: Number((e.target as HTMLSelectElement).value), idx: 0 })}>
-            {LESSONS.filter((l) => l.id <= cap).map((l) => <option value={l.id} key={l.id}>Bài {l.id}</option>)}
-          </select>
+    <div class="write-l" data-testid="write-page">
+      <aside class="card col-words">
+        <div class="cw-head"><div><div class="h-kicker">Bài {lesson}</div><b>{LESSONS[lesson - 1].titleVi || LESSONS[lesson - 1].titleZh}</b></div><span class="tiny">{doneN}/{words.length} từ</span></div>
+        <div class="word-list">
+          {words.map((x, k) => (
+            <button key={x.id} class={cls("word", k === i && "is-now")} onClick={() => setWrite({ idx: k })} data-testid="write-word-item">
+              <span class={cls("dot", ws.done[x.id] ? "dot-ok" : hanChars(x.hanzi).some((c) => miss.has(c)) ? "dot-bad" : k === i && "dot-now")} />
+              <span class="hz-w">{x.hanzi}</span><span class="py">{x.pinyin}</span><span class="vi">{x.vi}</span>
+            </button>
+          ))}
         </div>
-        <p data-testid="write-pos">Từ {i + 1}/{words.length}: <strong>{w.vi}</strong> <AudioBtn id={w.id} /> <span class="chip tiny">đã đạt {doneN}/{words.length}</span></p>
-        <Switch on={ws.hide} label="Ẩn nét mẫu (viết không nhìn)" onChange={(v) => setWrite({ hide: v })} />
-        <WriteWord key={w.id + (ws.hide ? "h" : "")} word={w} hideOutline={ws.hide} onDone={(ok) => { if (ok) setWrite({ done: { ...getState().v2.write.done, [w.id]: true } }); }} />
-        {ws.done[w.id] && <p class="chip green">Từ này đã viết đạt.</p>}
-        <div class="row" style={{ marginTop: 10 }}>
-          <Button kind="ghost" disabled={i === 0} onClick={() => setWrite({ idx: i - 1 })}>Trước</Button>
-          <Button kind="primary" wide id="write-next" disabled={i + 1 >= words.length} onClick={() => setWrite({ idx: i + 1 })}>Từ tiếp</Button>
+      </aside>
+      <section class="col-write">
+        <div class="write-head">
+          <div><b class="wh-title">Viết theo nét</b> <span class="tiny" data-testid="write-pos">Từ {i + 1}/{words.length} · {w.hanzi} · {w.vi}</span></div>
+          <div class="row">
+            <AudioBtn id={w.id} />
+            <select data-testid="write-lesson" class="sel" value={lesson} onChange={(e) => setWrite({ lesson: Number((e.target as HTMLSelectElement).value), idx: 0 })}>
+              {LESSONS.filter((l) => l.id <= cap).map((l) => <option value={l.id} key={l.id}>Bài {l.id}</option>)}
+            </select>
+          </div>
         </div>
-      </Card>
-      <div class="grid cols-2">
-        <Button kind="yellow" wide onClick={() => go("/sheets")}>Xuất giấy luyện viết (PDF)</Button>
-        <Button kind="ghost" wide id="to-notes" onClick={() => go("/notes")}>Ghi chú tay</Button>
-      </div>
+        <div class="tiles" data-testid="char-tiles">
+          {tiles.map((c) => (
+            <button key={c} class={cls("tile", hanChars(w.hanzi).includes(c) && "is-now", miss.has(c) && "is-miss", !!s.v2.stars?.[c] && "is-star")}
+              onClick={() => { const k = words.findIndex((x) => x.hanzi.includes(c)); if (k >= 0 && k !== i) setWrite({ idx: k }); setInfoChar(c); }}>{c}</button>
+          ))}
+        </div>
+        <div class="write-stage">
+          <div class="mizi-wrap">
+            <WriteWord key={w.id + (ws.hide ? "h" : "")} one size={size} word={w} hideOutline={ws.hide} onChar={setInfoChar} onDone={(ok) => { if (ok) setWrite({ done: { ...getState().v2.write.done, [w.id]: true } }); }} />
+            <div class="mizi-actions">
+              <Button small kind="ghost" disabled={i === 0} onClick={() => setWrite({ idx: i - 1 })}>‹ Trước</Button>
+              <Switch on={ws.hide} label="Ẩn mẫu" onChange={(v) => setWrite({ hide: v })} />
+              <Button small kind="pink" id="write-next" disabled={i + 1 >= words.length} onClick={() => setWrite({ idx: i + 1 })}>Từ tiếp ›</Button>
+            </div>
+            {ws.done[w.id] && <p class="chip green">Từ này đã viết đạt.</p>}
+          </div>
+          <div class="card info" data-testid="char-info">
+            <div class="info-top"><span class="big">{ch}</span><StarBtn char={ch} /></div>
+            <div class="meta">
+              <span class="py-lg">{w.pinyin}</span>
+              <span class="vi-lg">{m?.gloss || w.vi}</span>
+              {info && <span class="hv">Hán Việt: {info.hv}</span>}
+            </div>
+            <hr />
+            {m && m.parts.length > 0 && <div class="compose"><div class="block-label">Cấu tạo</div><PartChips char={ch} /></div>}
+            {m && <div class="mnemonic"><div class="block-label">Mẹo nhớ</div><p class="note" data-testid="mnemo-line">{m.line}</p></div>}
+          </div>
+        </div>
+        <div class="write-foot">
+          <Button small kind="ghost" onClick={() => go("/sheets")}>Xuất giấy luyện viết (PDF)</Button>
+          <Button small kind="ghost" id="to-notes" onClick={() => go("/notes")}>Ghi chú tay</Button>
+        </div>
+      </section>
     </div>
   );
 }
@@ -218,7 +328,7 @@ export function InkPad(props: {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const strokes = useRef<Stroke[]>(props.initial.map((s) => ({ ...s, pts: [...s.pts] })));
   const cur = useRef<Stroke | null>(null);
-  const [color, setColor] = useState("#3A2F2A");
+  const [color, setColor] = useState("#2F2430");
   const [eraser, setEraser] = useState(false);
   const [width, setWidth] = useState(3);
 
@@ -251,6 +361,7 @@ export function InkPad(props: {
       ctx.stroke();
     }
     const paint = (st: Stroke) => {
+      if (!st.eraser && st.pts.length) { drawPenStroke(ctx, st.pts, st.width * dpr * 1.5, st.color, W, H); return; } // v2.2: nét bút máy
       if (st.pts.length < 2) return;
       ctx.globalCompositeOperation = st.eraser ? "destination-out" : "source-over";
       ctx.strokeStyle = st.color;
@@ -284,6 +395,7 @@ export function InkPad(props: {
       x: (e.clientX - r.left) / r.width,
       y: (e.clientY - r.top) / r.height,
       p: e.pressure || 0.5,
+      t: e.timeStamp,
     };
   };
 
@@ -324,7 +436,7 @@ export function InkPad(props: {
   return (
     <div>
       <div class="tools">
-        {["#3A2F2A", "#B64E5C", "#3E8A55", "#3A5EA8"].map((c) => (
+        {["#2F2430", "#A85A78", "#2C6A45", "#5B7FA3"].map((c) => (
           <button key={c} class="icon-btn" style={{ background: c }} onClick={() => { setColor(c); setEraser(false); }} />
         ))}
         <Button small kind={eraser ? "primary" : "ghost"} onClick={() => setEraser(!eraser)}>Tẩy</Button>
@@ -646,27 +758,17 @@ function CopyRow(props: { char: string; n: number; model?: boolean; onChange: (u
 /** Ô viết tay nhỏ: có bỏ nét cuối và xóa ô. */
 function MiniPad(props: { char: string; model?: boolean; onChange: (dataUrl: string) => void }) {
   const ref = useRef<HTMLCanvasElement>(null);
-  const strokes = useRef<{ x: number; y: number; p: number }[][]>([]);
-  const cur = useRef<{ x: number; y: number; p: number }[] | null>(null);
+  const strokes = useRef<PenPt[][]>([]);
+  const cur = useRef<PenPt[] | null>(null);
   const [count, setCount] = useState(0);
   const redraw = () => {
     const c = ref.current;
     if (!c) return;
     const ctx = c.getContext("2d")!;
     ctx.clearRect(0, 0, c.width, c.height);
-    ctx.strokeStyle = "#3A2F2A";
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
     const all = cur.current ? [...strokes.current, cur.current] : strokes.current;
-    for (const st of all) {
-      ctx.beginPath();
-      st.forEach((pt, i) => {
-        ctx.lineWidth = c.width * 0.035 * (0.7 + pt.p * 0.8);
-        if (i === 0) ctx.moveTo(pt.x * c.width, pt.y * c.height); else ctx.lineTo(pt.x * c.width, pt.y * c.height);
-      });
-      if (st.length === 1) ctx.lineTo(st[0].x * c.width + 0.5, st[0].y * c.height);
-      ctx.stroke();
-    }
+    const base = c.width * 0.03 * (getState().settings.penWidth ?? PEN_DEFAULT);
+    for (const st of all) drawPenStroke(ctx, st, base, INK, c.width, c.height); // v2.2: nét bút máy
   };
   const emit = () => {
     setCount(strokes.current.length);
@@ -679,7 +781,7 @@ function MiniPad(props: { char: string; model?: boolean; onChange: (dataUrl: str
     const r = c.getBoundingClientRect();
     c.width = Math.max(1, r.width * dpr);
     c.height = Math.max(1, r.height * dpr);
-    const pos = (e: PointerEvent) => { const b = c.getBoundingClientRect(); return { x: (e.clientX - b.left) / b.width, y: (e.clientY - b.top) / b.height, p: e.pressure || 0.5 }; };
+    const pos = (e: PointerEvent) => penPt(e, c);
     const down = (e: PointerEvent) => { e.preventDefault(); c.setPointerCapture(e.pointerId); cur.current = [pos(e)]; redraw(); };
     const move = (e: PointerEvent) => { if (!cur.current) return; e.preventDefault(); cur.current.push(pos(e)); redraw(); };
     const up = () => { if (cur.current) { strokes.current.push(cur.current); cur.current = null; redraw(); emit(); } };

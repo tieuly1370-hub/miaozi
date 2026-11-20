@@ -1,3 +1,4 @@
+import { miaoSrc } from "./v2/miao";
 import { ComponentChildren } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { audioState, autoPlay, carrierFor, playId, stopAudio, subscribeAudio, toggleAudio, type AudioSnap } from "./audio";
@@ -139,11 +140,11 @@ export function PinyinReveal(props: { pinyin: string; firstIntro?: boolean; onHi
 }
 
 export function TutorBubble(props: { mood: TutorMood; text: string }) {
-  const face = { cheer: "🐱", nudge: "🐱", scold: "😾", proud: "😺", calm: "🐱" }[props.mood];
+  const face = ({ cheer: "vui", nudge: "nghi_ngo", scold: "kho_chiu", proud: "dac_y", calm: "ngai_ngu" } as const)[props.mood] || "vui";
   return (
     <div class={cls("tutor", props.mood)} data-testid="tutor">
-      <div class="avatar">{face}</div>
-      <p><strong>Miao. </strong>{props.text}</p>
+      <div class="avatar"><img class="miao-face" src={miaoSrc(face)} width={44} height={44} alt="Miao" /></div>
+      <p>{props.text}</p>
     </div>
   );
 }
@@ -260,15 +261,15 @@ export function PitchChart(props: {
   };
   return (
     <svg class="pitch" viewBox={`0 0 ${w} ${h}`} ref={ref} aria-label="Đường cao độ">
-      <text x={pad} y={12} fontSize="9" fill="#7A6A62">cao</text>
-      <text x={pad} y={h - 4} fontSize="9" fill="#7A6A62">thấp</text>
+      <text x={pad} y={12} fontSize="9" fill="#8A7380">cao</text>
+      <text x={pad} y={h - 4} fontSize="9" fill="#8A7380">thấp</text>
       {props.segs?.map((s, i) => (
-        <rect key={i} x={x(s.start)} y={pad} width={Math.max(2, x(s.end) - x(s.start))} height={h - pad * 2} fill="#CBE7F8" opacity="0.4" />
+        <rect key={i} x={x(s.start)} y={pad} width={Math.max(2, x(s.end) - x(s.start))} height={h - pad * 2} fill="#D5E4F4" opacity="0.4" />
       ))}
-      <path d={path(props.refTimes, props.refHz)} fill="none" stroke="#3E8A55" stroke-width="2" />
-      {props.userTimes && <path d={path(props.userTimes, props.userHz || [])} fill="none" stroke="#B64E5C" stroke-width="2" />}
-      <text x={w - 80} y={12} fontSize="9" fill="#3E8A55">mẫu</text>
-      <text x={w - 48} y={12} fontSize="9" fill="#B64E5C">chủ</text>
+      <path d={path(props.refTimes, props.refHz)} fill="none" stroke="#2C6A45" stroke-width="2" />
+      {props.userTimes && <path d={path(props.userTimes, props.userHz || [])} fill="none" stroke="#A85A78" stroke-width="2" />}
+      <text x={w - 80} y={12} fontSize="9" fill="#2C6A45">mẫu</text>
+      <text x={w - 48} y={12} fontSize="9" fill="#A85A78">chủ</text>
     </svg>
   );
 }

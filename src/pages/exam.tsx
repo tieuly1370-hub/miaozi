@@ -1,6 +1,7 @@
 /** Bài thi chặt: cổng 4 kỹ năng, kiểm tra cuối ca, kiểm tra tuần. */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import HanziWriter from "hanzi-writer";
+import { miaoAnswer } from "../v2/miaoBus";
 import { LESSONS, WORD_BY_ID } from "../data/curriculum";
 import { playId } from "../audio";
 import { speechAvailable } from "../speech";
@@ -51,6 +52,7 @@ export function ExamRunner(props: { items: Item[]; title: string; onFinish: (o: 
     const n = (tries.current[k] || 0) + 1;
     tries.current[k] = n;
     if (!(k in firstOk.current)) firstOk.current[k] = ok;
+    miaoAnswer(ok);
     if (ok) {
       finalOk.current[k] = true;
       setPos((p) => p + 1);
@@ -216,7 +218,7 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
         writer = HanziWriter.create(host.current, chars[k], {
           width: size, height: size, padding: 10,
           showOutline: false, showCharacter: false, showHintAfterMisses: false as unknown as number,
-          highlightOnComplete: false, strokeColor: "#3A2F2A", drawingColor: "#B64E5C", drawingWidth: 22,
+          highlightOnComplete: false, strokeColor: "#2F2430", drawingColor: "#A85A78", drawingWidth: 22,
           charDataLoader: (_c: string, cb: (d: unknown) => void) => cb(data),
         });
         writer.quiz({

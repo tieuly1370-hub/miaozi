@@ -4,6 +4,7 @@ import { syncConfigured } from "../sync/config";
 import { DEFAULT_SETTINGS, type Settings, type Shift } from "../schedule";
 import { claimReward, exportPayload, getState, importPayload, patchSettings, weekKey } from "../store";
 import { Button, Card, Switch, go } from "../ui";
+import { PEN_DEFAULT, PEN_MAX, PEN_MIN } from "../v2/pen";
 
 export function SettingsPage() {
   const s = getState();
@@ -25,15 +26,19 @@ export function SettingsPage() {
           <span>Phần thưởng tuần (khi hoàn thành tuần)</span>
           <input value={st.weeklyReward} onInput={(e) => patchSettings({ weeklyReward: (e.target as HTMLInputElement).value })} placeholder="ví dụ: trà sữa" />
         </div>
-        <Switch on={st.companyMode} onChange={(v) => patchSettings({ companyMode: v })} label="Chế độ Công ty (gợi ý mục im lặng 2, 3, 6A)" />
+        <Switch on={st.companyMode} onChange={(v) => patchSettings({ companyMode: v })} label="Chế độ Công ty" />
         <Switch on={st.notify} onChange={(v) => patchSettings({ notify: v })} label="Thông báo khi app đang mở" />
         <Switch on={st.autoplay !== false} onChange={(v) => patchSettings({ autoplay: v })} label="Tự phát âm khi sang từ / câu mới" />
+        <label class="field pen-field" data-testid="pen-width">
+          <span>Độ dày bút máy <b>{(st.penWidth ?? PEN_DEFAULT).toFixed(1)}</b></span>
+          <input type="range" min={PEN_MIN} max={PEN_MAX} step={0.1} value={st.penWidth ?? PEN_DEFAULT} onInput={(e) => patchSettings({ penWidth: Number((e.target as HTMLInputElement).value) })} />
+        </label>
         <Button kind="ghost" wide id="settings-streak" onClick={() => go("/streak")}>🔥 Streak — lịch chuỗi ngày học</Button>
       </Card>
       <SyncCard />
       <Card>
         <h3 class="h3">Giờ nhắc học</h3>
-        <p class="muted">Từ 2.0 giờ giấc linh hoạt: các ca dưới đây chỉ dùng để gửi thông báo nhắc, không còn phạt bỏ ca. Kiến thức thì vẫn chặt.</p>
+        <p class="muted small">Chỉ để nhắc học, không phạt bỏ ca.</p>
         <ShiftEd title="Ca sáng (công ty)" shift={st.morning} onChange={(p) => setShift("morning", p)} />
         <ShiftEd title="Ca tối (ở nhà)" shift={st.evening} onChange={(p) => setShift("evening", p)} />
         <ShiftEd title="Kiểm tra tuần (Chủ nhật)" shift={st.sundayWeeklyTest} onChange={(p) => setShift("sundayWeeklyTest", p)} />
@@ -49,13 +54,13 @@ export function SettingsPage() {
       )}
       <Card>
         <h3 class="h3">Thẻ trên thông báo / màn hình khóa</h3>
-        <p class="muted">Web app không làm được widget khóa màn hình như app gốc. Khi chủ cho phép thông báo, Android có thể hiện thẻ trên màn hình khóa. App cũng nhắc khi đến giờ ca học (chỉ khi đang mở trang, và im nếu bật chế độ công ty).</p>
+        <p class="muted small">Cho phép thông báo để thẻ hiện trên màn hình khóa Android.</p>
         <Button kind="blue" wide onClick={() => void notifyCard(setMsg)}>Gửi thẻ ôn lên thông báo</Button>
         {msg && <p class="muted">{msg}</p>}
       </Card>
       <Card>
         <h3 class="h3">Dữ liệu giữa các máy</h3>
-        <p class="muted">Xuất file JSON, chuyển sang máy kia rồi nhập vào. Đồng bộ mây (Gist) sẽ thêm sau — lớp lưu trữ đã tách sẵn.</p>
+        <p class="muted small">Xuất file JSON rồi nhập ở máy kia.</p>
         <div class="tools">
           <Button kind="yellow" onClick={async () => {
             const data = await exportPayload();
@@ -78,7 +83,7 @@ export function SettingsPage() {
       </Card>
       <Card>
         <h3 class="h3">Dùng ngoại tuyến</h3>
-        <p class="muted">Cài ra màn hình chính (trình duyệt: “Thêm vào màn hình chính”). Bấm nút dưới để tải sẵn âm thanh và dữ liệu nét — lần sau học không cần mạng.</p>
+        <p class="muted small">Tải sẵn âm thanh và nét chữ để học khi mất mạng.</p>
         <Button kind="purple" wide onClick={() => void precacheAll(setMsg)}>Tải dữ liệu ngoại tuyến</Button>
         <div class="tools" style={{ marginTop: 8 }}>
           <Button kind="ghost" small onClick={() => go("/dict")}>Tra từ HSK1</Button>
@@ -86,11 +91,14 @@ export function SettingsPage() {
           <Button kind="ghost" small onClick={() => go("/penalty")}>Chép phạt</Button>
           <Button kind="ghost" small onClick={() => go("/review")}>Ôn thẻ</Button>
           <Button kind="ghost" small onClick={() => go("/speak")}>Luyện nói</Button>
-          <Button kind="ghost" small onClick={() => go("/reading")}>Bài đọc</Button>
           <Button kind="ghost" small onClick={() => go("/week0")}>Tuần 0: pinyin, nét, bộ thủ</Button>
         </div>
       </Card>
-      <p class="muted" style={{ textAlign: "center" }}>Miaozi {__APP_VERSION__}</p>
+      <Card data-testid="about">
+        <h3 class="h3">Giới thiệu</h3>
+        <p class="small">Miaozi {__APP_VERSION__}</p>
+        <p class="muted small">Bộ thủ và tách chữ: <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noreferrer">Make Me a Hanzi</a> (Shaunak Kishore; dữ liệu theo LGPL và Arphic Public License). Nét chữ: hanzi-writer-data (Arphic). Mẹo nhớ HSK1 do Miaozi soạn.</p>
+      </Card>
     </div>
   );
 }

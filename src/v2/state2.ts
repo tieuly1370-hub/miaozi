@@ -8,6 +8,9 @@ import {
   LOW_EMPTY_MSG, type LowEnergy, type Mode, type SecId, type SecMap,
 } from "./queue";
 import { LESSON_COUNT, lesson, speakNeed } from "./lessons";
+import { miaoEvent } from "./miaoBus";
+import { canPinTrigger } from "./miao";
+import { newCard, review, type Card } from "../srs";
 
 export interface LessonSub {
   intro?: boolean;
@@ -48,12 +51,17 @@ export interface V2State {
   skillLog: SkillLog[];
   /** v2.1: tuần đã xem / đã giao phạt báo cáo điểm yếu (key = thứ Hai). */
   report: Record<string, { seen?: boolean; penalized?: boolean }>;
+  /** v2.2: chữ khó đã đánh dấu ⭐ (chữ → lúc đánh dấu). */
+  stars: Record<string, number>;
+  /** v2.2: thẻ ôn bộ thủ (SRS, khóa = bộ thủ) + thống kê quiz. */
+  rad: Record<string, import("../srs").Card>;
+  radQuiz: { right: number; total: number; days: string[] };
 }
 
 export const DEFAULT_V2 = (): V2State => ({
   version: 2, lesson: 1, sec: {}, sub: {}, modeByDay: {}, days: {}, busy: [], legacy: null,
   write: { lesson: 1, idx: 0, hide: false, done: {} }, retry: {}, tests: {}, pomodoro: null, owedPenalized: {},
-  offApplied: {}, skillLog: [], report: {},
+  offApplied: {}, skillLog: [], report: {}, stars: {}, rad: {}, radQuiz: { right: 0, total: 0, days: [] },
 });
 
 /** Lên 2.0 từ 1.2: giữ chuỗi/lịch sử/phạt; bài hiện tại = bài đang mở khóa (chủ vẫn đang ở bài 1). */
@@ -74,6 +82,8 @@ export function migrateV2(st: AppState, fresh: boolean) {
   v.write = { ...DEFAULT_V2().write, ...(v.write || {}) };
   v.retry = {}; v.tests = v.tests || {}; v.owedPenalized = v.owedPenalized || {};
   v.offApplied = v.offApplied || {}; v.skillLog = v.skillLog || []; v.report = v.report || {};
+  // v2.2: thêm trường mới (cộng thêm, không đụng dữ liệu cũ)
+  v.stars = v.stars || {}; v.rad = v.rad || {}; v.radQuiz = v.radQuiz || { right: 0, total: 0, days: [] };
   // v2.1: bỏ Tiêu chuẩn / Bứt phá — ngày nào đã chọn 2 chế độ này coi như "không chọn" (app tự gợi ý).
   for (const [d, m] of Object.entries(v.modeByDay || {})) if (m !== "company" && m !== "low") delete v.modeByDay[d];
 }
@@ -167,9 +177,11 @@ function day(k = todayKey()): DayLog { const v = S(); return (v.days[k] = v.days
 export function chooseMode(m: "low"): string | null {
   const v = S();
   if (m === "low") {
+    const before = lowLeft(v.low, new Date());
     const next = useLow(v.low, new Date());
     if (!next) return LOW_EMPTY_MSG;
     v.low = next;
+    if (canPinTrigger(before, lowLeft(next, new Date()))) miaoEvent("can_pin");
   }
   if (getState().settings.companyMode) getState().settings = { ...getState().settings, companyMode: false };
   v.modeByDay[todayKey()] = m;
@@ -206,6 +218,7 @@ export function completeSection(n: number, id: SecId): boolean {
   logSection(n, id);
   maybeAdvance(n);
   touch();
+  miaoEvent("thanh_tich");
   return true;
 }
 
@@ -240,6 +253,21 @@ export function recordTest(key: string, pass: boolean, score: number) {
   const prev = v.tests[key];
   v.tests[key] = { pass: pass || !!prev?.pass, score: Math.max(score, prev?.score || 0), at: Date.now(), tries: (prev?.tries || 0) + 1 };
   if (pass) { const d = day(); if (!d.tests.includes(key)) d.tests.push(key); }
+  touch();
+  if (pass) miaoEvent("thanh_tich");
+}
+
+/* ---------------- v2.2: chữ khó ⭐ + ôn bộ thủ ---------------- */
+export function isStar(c: string): boolean { return !!S().stars?.[c]; }
+export function toggleStar(c: string) { const v = S(); v.stars = { ...(v.stars || {}) }; if (v.stars[c]) delete v.stars[c]; else v.stars[c] = Date.now(); touch(); }
+export function starList(): string[] { return Object.entries(S().stars || {}).sort((a, b) => a[1] - b[1]).map((x) => x[0]); }
+/** Từ có chứa chữ khó → thẻ ôn quay lại sớm gấp đôi. */
+export function starBoost(hanzi: string): boolean { const st = S().stars || {}; return [...hanzi].some((c) => !!st[c]); }
+export function radReview(k: string, q: number) { const v = S(); v.rad = { ...(v.rad || {}), [k]: review(v.rad?.[k] || newCard(k), q) }; touch(); }
+export function radCard(k: string): Card | undefined { return S().rad?.[k]; }
+export function radQuizLog(ok: boolean) {
+  const v = S(); const q = v.radQuiz || { right: 0, total: 0, days: [] };
+  v.radQuiz = { right: q.right + (ok ? 1 : 0), total: q.total + 1, days: q.days.includes(todayKey()) ? q.days : [...q.days, todayKey()].slice(-60) };
   touch();
 }
 

@@ -2,12 +2,16 @@
 import { useState } from "preact/hooks";
 import { getState } from "../store";
 import { LOW_LABEL, LOW_EMPTY_MSG, mondayOf, percent, streakFrom, ymd } from "../v2/queue";
-import { LESSON_COUNT, SEC_SHORT, lesson, isExtended } from "../v2/lessons";
+import { LESSON_COUNT, SEC_SHORT, SEC_TITLE, lesson, isExtended } from "../v2/lessons";
 import {
   SKILL_NAME, active, chooseMode, currentMode, dismissReport, hasPenalty, isOffToday, lowLeftNow, markOff, openPenalties, owedList, secOf,
   setCompany, streakNow, studiedDays, todayKey, weakReport,
 } from "../v2/state2";
-import { Miao, PctBar, Pomodoro, SixBar } from "../v2/ui2";
+import { MiaoFace, PctBar, Pomodoro, SixBar } from "../v2/ui2";
+import { miaoEvent } from "../v2/miaoBus";
+import { dueReview } from "../store";
+import { WORD_BY_ID } from "../data/curriculum";
+import { SEC_ORDER } from "../v2/queue";
 import { Button, Card, cls, go } from "../ui";
 
 export function TodayV2() {
@@ -33,69 +37,103 @@ export function TodayV2() {
   const rep = showReport ? weakReport(st, now) : null;
   const pens = openPenalties();
   const penWords = [...new Set(pens.flatMap((p) => p.dueChars))];
-  const line = off ? "Hôm nay chủ xin nghỉ. Chuỗi giữ nguyên, nhưng mai Miao giao chép phạt. Nghỉ cho đáng."
-    : mode === "company" ? "Chế độ Công ty: chỉ gợi ý mục im lặng 2, 3, 6A. Đeo tai nghe, tự phát audio."
-    : mode === "low" ? "Cạn pin 15 phút: làm đúng mục đang sáng là đủ giữ chuỗi."
-    : `Mục tiếp theo đang sáng. Làm xong phải đạt điều kiện mục đó — Miao không cho tick suông.${rep?.weakest ? ` Tuần trước yếu nhất: ${SKILL_NAME[rep.weakest]}.` : ""}`;
+  const line = off ? "Hôm nay xin nghỉ. Chuỗi giữ, mai chép phạt."
+    : mode === "company" ? "Công ty: gợi ý mục im lặng 2, 3, 6A. Đeo tai nghe nhé."
+    : mode === "low" ? "Cạn pin 15 phút: làm đúng mục đang sáng là đủ."
+    : `${act.length ? `Mục ${act.map((id) => SEC_SHORT[id]).join(", ")} đang chờ. ` : ""}Làm đạt mới tính — Miao không cho tick suông.`;
+  const DOW = ["Chủ nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+  const doneN = SEC_ORDER.filter((id) => sec[id]?.done).length;
+  const next = SEC_ORDER.find((id) => id !== "s1" && !sec[id]?.done && !act.includes(id));
+  const due = dueReview().slice(0, 3).map((c) => WORD_BY_ID[c.id.split("::")[0]]).filter(Boolean);
+  const weak = (st.mistakes || []).slice().sort((a, b) => (b.times || 1) - (a.times || 1)).slice(0, 4);
   return (
-    <div class="stack" data-testid="today2">
-      <Miao text={line} />
-      {rep && (
-        <Card class="report" data-testid="weak-report">
-          <div class="row spread"><h2 class="h3">Báo cáo điểm yếu tuần trước</h2><Button small kind="ghost" onClick={dismissReport}>Đã xem</Button></div>
-          {rep.words.length ? <p>Chữ sai nhiều nhất: {rep.words.map((w) => <span key={w.hanzi} class="chip"><span class="hanzi-inline">{w.hanzi}</span> ×{w.times}</span>)}</p> : <p class="muted">Tuần trước không có chữ nào sai. Giữ vậy.</p>}
-          {rep.skills.length > 0 && <p>Kỹ năng: {rep.skills.map((k) => `${SKILL_NAME[k.skill] || k.skill} ${k.pct}%`).join(" · ")}{rep.weakest ? <> — <b>yếu nhất: {SKILL_NAME[rep.weakest]}</b></> : null}</p>}
-          {rep.words.length > 0 && <p class="muted small">Miao đã đưa các chữ này vào chép phạt (Mục 1).</p>}
-        </Card>
-      )}
-      <Card>
-        <div class="row spread">
-          <h2 class="h3">Hôm nay</h2>
-          <button class="chip streak-chip" data-testid="streak" onClick={() => go("/streak")}>🔥 Chuỗi {streakNow()} ngày ›</button>
+    <div class="today2" data-testid="today2">
+      <div class="tcol">
+        <div class="card hello" data-testid="tutor">
+          <div class="cat-wrap"><MiaoFace size={64} expr={off ? "nghi_ngo" : "ngai_ngu"} /></div>
+          <div class="hello-body">
+            <div class="greet">Chào {st.settings.displayName || "chủ"}</div>
+            <div class="date">{DOW[now.getDay()]}, {now.getDate()} tháng {now.getMonth() + 1}</div>
+            <div class="bubble">{line}</div>
+            <button class="chip pink streak-chip" data-testid="streak" onClick={() => go("/streak")}>🔥 Chuỗi {streakNow()} ngày ›</button>
+          </div>
         </div>
-        <div class="modes">
-          <button class={cls("mode-btn", mode === "company" && "on")} data-testid="mode-company" onClick={() => setCompany(!company)}>
-            <b>🏢 Chế độ Công ty</b><span class="muted small">Gợi ý mục im lặng 2, 3, 6A · tự phát audio</span>
-          </button>
-          <button class={cls("mode-btn", mode === "low" && "on")} data-testid="mode-low" disabled={left <= 0 && !lowUsedToday} onClick={() => setMsg(chooseMode("low"))}>
-            <b>{LOW_LABEL(left)}</b><span class="muted small">Mục 1 (nếu có phạt) + đúng 1 mục tiếp</span>
-          </button>
-          <button class={cls("mode-btn", off && "on")} data-testid="mode-off" disabled={off} onClick={() => setAskOff(true)}>
-            <b>🛌 Xin nghỉ</b><span class="muted small">{off ? "Hôm nay đã xin nghỉ" : "Không đứt chuỗi · mai chép phạt ≥ 5 từ"}</span>
-          </button>
+        {rep && (
+          <Card class="report" data-testid="weak-report">
+            <div class="row spread"><h2 class="h3">Điểm yếu tuần trước</h2><Button small kind="ghost" onClick={dismissReport}>Đã xem</Button></div>
+            {rep.words.length ? <p>Chữ sai nhiều: {rep.words.map((w) => <span key={w.hanzi} class="chip"><span class="hanzi-inline">{w.hanzi}</span> ×{w.times}</span>)}</p> : <p class="muted">Tuần trước không sai chữ nào.</p>}
+            {rep.skills.length > 0 && <p class="small">Kỹ năng: {rep.skills.map((k) => `${SKILL_NAME[k.skill] || k.skill} ${k.pct}%`).join(" · ")}{rep.weakest ? <> — <b>yếu nhất: {SKILL_NAME[rep.weakest]}</b></> : null}</p>}
+            {rep.words.length > 0 && <p class="muted small">Đã đưa vào chép phạt (Mục 1).</p>}
+          </Card>
+        )}
+        <div class="card modes-card">
+          <div class="modes">
+            <button class={cls("mode-btn", mode === "company" && "on")} data-testid="mode-company" onClick={() => setCompany(!company)}>
+              <span class="m-ico">🏢</span><span><b>Công ty</b><span class="muted small">Mục im lặng · tự phát audio</span></span>
+            </button>
+            <button class={cls("mode-btn", mode === "low" && "on")} data-testid="mode-low" disabled={left <= 0 && !lowUsedToday} onClick={() => setMsg(chooseMode("low"))}>
+              <span class="m-ico">🔋</span><span><b>Cạn pin</b><span class="muted small">Còn {left}/3 lượt tuần này · 15 phút</span></span>
+            </button>
+            <button class={cls("mode-btn", off && "on")} data-testid="mode-off" disabled={off} onClick={() => { setAskOff(true); miaoEvent("xin_nghi"); }}>
+              <span class="m-ico">🌙</span><span><b>Xin nghỉ</b><span class="muted small">{off ? "Hôm nay đã xin nghỉ" : "Giữ chuỗi · mai chép phạt ≥ 5 từ"}</span></span>
+            </button>
+          </div>
+          {askOff && !off && (
+            <div class="notice" data-testid="off-ask">
+              <p>Xin nghỉ hôm nay? Chuỗi giữ nguyên. Mai chép phạt {penWords.length ? "thêm ≥ 5 từ vào bài đang có" : "≥ 5 từ của bài gần nhất"}.</p>
+              <div class="row"><Button small kind="primary" id="off-confirm" onClick={() => { markOff(); setAskOff(false); }}>Xin nghỉ</Button><Button small kind="ghost" onClick={() => setAskOff(false)}>Thôi, học tiếp</Button></div>
+            </div>
+          )}
+          {(msg || (left <= 0 && !lowUsedToday)) && <p class="notice" data-testid="low-msg">{msg || LOW_EMPTY_MSG}</p>}
+          <Pomodoro />
         </div>
-        {askOff && !off && (
-          <div class="notice" data-testid="off-ask">
-            <p>Xin nghỉ hôm nay? Chuỗi giữ nguyên. Mai Miao giao chép phạt: {penWords.length ? "thêm ít nhất 5 từ vào bài phạt đang có" : "ít nhất 5 từ của bài gần nhất"} (tối đa bằng số từ mới của bài).</p>
-            <div class="row"><Button small kind="primary" id="off-confirm" onClick={() => { markOff(); setAskOff(false); }}>Xin nghỉ</Button><Button small kind="ghost" onClick={() => setAskOff(false)}>Thôi, học tiếp</Button></div>
+        <div class="card agenda">
+          <div class="h-kicker">Hôm nay</div>
+          <div class="h-title">Việc nên làm</div>
+          <div class="agenda-list">
+            {act.map((id) => (
+              <button key={id} class="ag-item is-suggest" onClick={() => go(`/lesson/${n}/${id}`)}><span class="ag-num">{SEC_SHORT[id]}</span><span class="ag-title">{SEC_TITLE[id]}</span><span class="ag-tag"><span class="sparkle">✦</span> Đang gợi ý</span></button>
+            ))}
+            {next && <button class="ag-item" onClick={() => go(`/lesson/${n}/${next}`)}><span class="ag-num">{SEC_SHORT[next]}</span><span class="ag-title">{SEC_TITLE[next]}</span><span class="ag-tag">Tiếp theo</span></button>}
+            {owed.map((o) => <a key={o.n + o.id} data-testid="owed" class={cls("ag-item", o.overdue && "is-bad")} href={`#/lesson/${o.n}/${o.id}`}><span class="ag-num">{SEC_SHORT[o.id]}</span><span class="ag-title">Nợ: Bài {o.n} · Mục {SEC_SHORT[o.id]}</span><span class="ag-tag">hạn {o.due.slice(8)}/{o.due.slice(5, 7)}{o.overdue ? " · quá hạn" : ""}</span></a>)}
+            <button class={cls("ag-item", isSunday && "is-suggest")} id="weekly-btn" onClick={() => go("/test/weekly")}><span class="ag-num">CN</span><span class="ag-title">Kiểm tra tuần</span><span class="ag-tag">{v.tests[wk]?.pass ? "✓ Đã đạt" : isSunday ? "Hôm nay" : "Chủ nhật"}</span></button>
+            <button class={cls("ag-item", monthOpen && "is-suggest")} id="monthly-btn" onClick={() => go("/test/monthly")}><span class="ag-num">Th</span><span class="ag-title">Kiểm tra tháng</span><span class="ag-tag">{v.tests[mk]?.pass ? "✓ Đã đạt" : monthOpen ? "Đang mở" : "Tuần cuối tháng"}</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="tcol">
+        <div class="card lesson-card">
+          <div class="row spread"><div><div class="h-kicker">Bài đang học</div><div class="h-title">Bài {n}: {lesson(n).titleVi}</div></div><span class="tiny">{doneN}/{SEC_ORDER.length} mục</span></div>
+          <PctBar pct={percent(sec)} />
+          <div class="secs">
+            {SEC_ORDER.map((id) => {
+              const r = sec[id]; const sug = act.includes(id);
+              return (
+                <button key={id} class={cls("sec-row", r?.done && "is-done", sug && "is-suggest", r?.owed && !r.done && "is-owed")} onClick={() => go(`/lesson/${n}/${id}`)} data-testid={"cell-" + id}>
+                  <span class="mark">{r?.done ? "✓" : sug ? "✦" : ""}</span><span class="n">{SEC_SHORT[id]}</span><span class="t">{SEC_TITLE[id]}</span>
+                  <span class="st">{r?.done ? "Xong" : sug ? "Đang gợi ý" : r?.owed ? "Nợ" : "Chưa làm"}</span>
+                </button>
+              );
+            })}
+          </div>
+          <p class="muted small" data-testid="today-active">{mode ? "Chế độ này gợi ý" : "Gợi ý tiếp theo"}: {act.length ? act.map((id) => `Mục ${SEC_SHORT[id]}`).join(", ") : "không còn mục nào"}{hasPenalty() ? ` · có chép phạt (${penWords.length} từ)` : ""}</p>
+          <div class="lesson-actions">
+            <Button kind="pink" id="go-lesson" onClick={() => go("/lesson/" + n)}>Vào bài {n}</Button>
+            <Button kind="blue" onClick={() => go("/roadmap")}>Lộ trình {LESSON_COUNT} bài</Button>
+          </div>
+        </div>
+        {weak.length > 0 && (
+          <div class="card side-card">
+            <h3>Điểm yếu gần đây</h3>
+            <div class="weak-chars">{weak.map((m) => <span key={m.id} class="wch"><span class="hz">{m.hanzi}</span>×{m.times || 1}</span>)}</div>
           </div>
         )}
-        {(msg || (left <= 0 && !lowUsedToday)) && <p class="notice" data-testid="low-msg">{msg || LOW_EMPTY_MSG}</p>}
-        <Pomodoro />
-      </Card>
-      <Card>
-        <h2 class="h3">Bài {n}: {lesson(n).titleVi}</h2>
-        <PctBar pct={percent(sec)} />
-        <SixBar sec={sec} active={act} onPick={(id) => go(`/lesson/${n}/${id}`)} />
-        <p data-testid="today-active">{mode ? "Chế độ này gợi ý" : "Gợi ý tiếp theo"}: {act.length ? act.map((id) => `Mục ${SEC_SHORT[id]}`).join(", ") : "không còn mục nào"}{hasPenalty() ? ` · có chép phạt (${penWords.length} từ)` : ""}</p>
-        <Button kind="primary" wide id="go-lesson" onClick={() => go("/lesson/" + n)}>Vào bài {n}</Button>
-      </Card>
-      {owed.length > 0 && (
-        <Card data-testid="owed">
-          <h3 class="h3">Đang nợ</h3>
-          <ul>{owed.map((o) => <li key={o.n + o.id} class={o.overdue ? "bad-text" : ""}><a href={`#/lesson/${o.n}/${o.id}`}>Bài {o.n} · Mục {SEC_SHORT[o.id]}</a> — {o.reason} · hạn {o.due.slice(8)}/{o.due.slice(5, 7)}{o.overdue ? " (quá hạn!)" : ""}</li>)}</ul>
-        </Card>
-      )}
-      <Card>
-        <h3 class="h3">Kiểm tra</h3>
-        <div class="grid cols-2">
-          <Button kind={isSunday ? "primary" : "ghost"} id="weekly-btn" onClick={() => go("/test/weekly")}>Kiểm tra tuần {v.tests[wk]?.pass ? "✓" : isSunday ? "(hôm nay)" : "(Chủ nhật)"}</Button>
-          <Button kind={monthOpen ? "primary" : "ghost"} id="monthly-btn" onClick={() => go("/test/monthly")}>Kiểm tra tháng {v.tests[mk]?.pass ? "✓" : monthOpen ? "(đang mở)" : "(tuần cuối tháng)"}</Button>
+        <div class="card side-card">
+          <h3>Ôn nhanh</h3>
+          {due.length ? <div class="review-list">{due.map((w) => <div key={w.id} class="rv"><span class="hz">{w.hanzi}</span><span><span class="py">{w.pinyin}</span><br /><span class="vi">{w.vi}</span></span><span class="chip blue tiny">đến hạn</span></div>)}</div>
+            : <p class="muted small">Chưa có thẻ đến hạn.</p>}
+          <Button kind="ghost" wide onClick={() => go("/review")}>Ôn thẻ đến hạn</Button>
         </div>
-      </Card>
-      <div class="grid cols-2">
-        <Button kind="ghost" onClick={() => go("/streak")}>🔥 Streak</Button>
-        <Button kind="ghost" onClick={() => go("/roadmap")}>Lộ trình {LESSON_COUNT} bài</Button>
       </div>
     </div>
   );

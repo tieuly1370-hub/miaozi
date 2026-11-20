@@ -3,6 +3,9 @@ import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { pinyin as toPinyin } from "pinyin-pro";
 import { getState } from "../store";
 import { audioState, playSequence, stopAudio, toggleAudio } from "../audio";
+import { miaoAnswer } from "../v2/miaoBus";
+import { PEN_DEFAULT, drawPenStroke, penPt, type PenPt } from "../v2/pen";
+import { QuickMnemonic, StarBtn } from "../v2/charui";
 import { HANZI_INFO, PART_VI, nhaiHanziUrl } from "../data/hanziInfo";
 import { shuffle, v2Items, v2Judge, type Item } from "../gate";
 import { gradeSentence, type GradeResult } from "../v2/grader";
@@ -182,25 +185,20 @@ function S1(props: { n: number }) {
 /** Ô 田 lớn: bút/chuột, bỏ nét, xóa, chữ tiếp. */
 function BigPad(props: { char: string; model: boolean; onNext: () => void }) {
   const ref = useRef<HTMLCanvasElement>(null);
-  const strokes = useRef<{ x: number; y: number; p: number }[][]>([]);
-  const cur = useRef<{ x: number; y: number; p: number }[] | null>(null);
+  const strokes = useRef<PenPt[][]>([]);
+  const cur = useRef<PenPt[] | null>(null);
   const [n, setN] = useState(0);
   const redraw = () => {
     const c = ref.current; if (!c) return;
     const g = c.getContext("2d")!; g.clearRect(0, 0, c.width, c.height);
-    g.strokeStyle = "#3A2F2A"; g.lineCap = "round"; g.lineJoin = "round";
-    for (const st of cur.current ? [...strokes.current, cur.current] : strokes.current) {
-      g.beginPath();
-      st.forEach((pt, k) => { g.lineWidth = c.width * 0.03 * (0.7 + pt.p * 0.8); if (k === 0) g.moveTo(pt.x * c.width, pt.y * c.height); else g.lineTo(pt.x * c.width, pt.y * c.height); });
-      if (st.length === 1) g.lineTo(st[0].x * c.width + 0.5, st[0].y * c.height);
-      g.stroke();
-    }
+    const base = c.width * 0.026 * (getState().settings.penWidth ?? PEN_DEFAULT);
+    for (const st of cur.current ? [...strokes.current, cur.current] : strokes.current) drawPenStroke(g, st, base, "#2F2430", c.width, c.height); // v2.2: bút máy
   };
   useEffect(() => {
     const c = ref.current; if (!c) return;
     const dpr = window.devicePixelRatio || 1; const b = c.getBoundingClientRect();
     c.width = Math.max(1, b.width * dpr); c.height = Math.max(1, b.height * dpr);
-    const pos = (e: PointerEvent) => { const r = c.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height, p: e.pressure || 0.5 }; };
+    const pos = (e: PointerEvent) => penPt(e, c);
     const down = (e: PointerEvent) => { e.preventDefault(); c.setPointerCapture(e.pointerId); cur.current = [pos(e)]; redraw(); };
     const move = (e: PointerEvent) => { if (!cur.current) return; e.preventDefault(); cur.current.push(pos(e)); redraw(); };
     const up = () => { if (cur.current) { strokes.current.push(cur.current); cur.current = null; redraw(); setN(strokes.current.length); } };
@@ -252,7 +250,8 @@ function S2(props: { n: number; showPy: boolean }) {
                       <div class="part" key={c} data-testid="hanzi-info">
                         <div><span class="hanzi xs">{c}</span> <b>{h?.hv || ""}</b> {h?.parts?.length ? <span class="muted">= {h.parts.map((p) => `${p}${PART_VI[p] ? ` (${PART_VI[p]})` : ""}`).join(" + ")}</span> : null}</div>
                         {h?.note && <div class="small">{h.note}</div>}
-                        <a class="small" href={nhaiHanziUrl(c)} target="_blank" rel="noreferrer">Chữ {c} trên Nhai ↗</a>
+                        <div class="row char-acts"><StarBtn char={c} small /><a class="small" href={nhaiHanziUrl(c)} target="_blank" rel="noreferrer">Chữ {c} trên Nhai ↗</a></div>
+                        <QuickMnemonic char={c} />
                       </div>
                     );
                   })}
@@ -321,7 +320,7 @@ function S3(props: { n: number; showPy: boolean }) {
             </div>
           ))}
           {result === null
-            ? <Button kind="primary" id="s3-submit" disabled={Object.keys(ans).length < qs.length} onClick={() => { const sc = qs.filter((q, i) => ans[i] === q.a).length; setResult(sc); finishS3(n, sc); }}>Nộp bài</Button>
+            ? <Button kind="primary" id="s3-submit" disabled={Object.keys(ans).length < qs.length} onClick={() => { const sc = qs.filter((q, i) => ans[i] === q.a).length; qs.forEach((q, i) => miaoAnswer(ans[i] === q.a)); setResult(sc); finishS3(n, sc); }}>Nộp bài</Button>
             : <div class="row"><p class={result >= 4 ? "chip green" : "bad-text"} data-testid="s3-result">{result}/5 — {result >= 4 ? "Đạt." : "Chưa đạt (cần 4/5). Đọc lại bài rồi làm lại ngay."}</p>
                 {result < 4 && <Button small kind="ghost" id="s3-retry" onClick={() => { setAns({}); setResult(null); }}>Làm lại ngay</Button>}</div>}
         </>
@@ -366,7 +365,7 @@ function SentBox(props: { n: number; k: number; task: ReturnType<typeof sentTask
       <p><b>Câu {props.k + 1}.</b> {props.task.hint} <span class="muted">Từ bắt buộc: <span class="hanzi-inline">{props.task.keys.join("、")}</span></span></p>
       <input class="input" value={text} placeholder="Gõ câu bằng chữ Hán…" onInput={(e) => setText((e.target as HTMLInputElement).value)} data-testid="sent-input" />
       <div class="row">
-        <Button small kind="primary" class="grade-btn" onClick={() => { const r = gradeSentence(text, props.task, props.known); setRes(r); if (r.pass) sentPassed(props.n, props.k, text); }}>Chấm điểm câu</Button>
+        <Button small kind="primary" class="grade-btn" onClick={() => { const r = gradeSentence(text, props.task, props.known); setRes(r); miaoAnswer(r.pass); if (r.pass) sentPassed(props.n, props.k, text); }}>Chấm điểm câu</Button>
         <Button small kind="ghost" onClick={() => setEx(!ex)}>Câu mẫu</Button>
         {props.passed && <span class="chip green tiny">Đạt</span>}
       </div>

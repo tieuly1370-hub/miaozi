@@ -10,6 +10,7 @@ import { NHAI_GENERAL, nhaiLesson, passagesUpTo } from "../v2/lessons";
 import { logSkills, recordTest } from "../v2/state2";
 import { Button, Card, cls, go } from "../ui";
 import { ExamRunner } from "./exam";
+import { miaoAnswer } from "../v2/miaoBus";
 
 export function ReadingPage(props: { embedded?: boolean } = {}) {
   const n = getState().v2.lesson;
@@ -20,8 +21,8 @@ export function ReadingPage(props: { embedded?: boolean } = {}) {
     <div class="stack" data-testid="reading">
       <Card>
         <h2 class={props.embedded ? "h3" : "h2"}>📖 Đọc hiểu theo cấp</h2>
-        <p class="muted">Miaozi tự soạn, chỉ dùng chữ đã học tới bài hiện tại. Cấp 1 → 3 tăng dần.</p>
-        <a class="btn ghost small" href={NHAI_GENERAL.reading} target="_blank" rel="noreferrer">Thêm bài đọc HSK1 trên Nhai ↗</a>
+        <p class="muted small">Chỉ dùng chữ đã học · cấp 1 → 3.</p>
+        <a class="btn ghost small" href={NHAI_GENERAL.reading} target="_blank" rel="noreferrer">Thêm bài đọc trên Nhai ↗</a>
       </Card>
       {list.map((p) => (
         <Card key={p.id}>
@@ -33,7 +34,7 @@ export function ReadingPage(props: { embedded?: boolean } = {}) {
                 const k = p.id + i; const a = ans[k];
                 return (
                   <div key={i} class="mcq"><p>{i + 1}. {q.q}</p>
-                    <div class="opts">{q.opts.map((o, j) => <button key={j} class={cls("opt", a !== undefined && j === q.a && "ok", a === j && j !== q.a && "bad")} disabled={a !== undefined} onClick={() => setAns({ ...ans, [k]: j })}>{o}</button>)}</div>
+                    <div class="opts">{q.opts.map((o, j) => <button key={j} class={cls("opt", a !== undefined && j === q.a && "ok", a === j && j !== q.a && "bad")} disabled={a !== undefined} onClick={() => { setAns({ ...ans, [k]: j }); miaoAnswer(j === q.a); }}>{o}</button>)}</div>
                   </div>
                 );
               })}
@@ -92,28 +93,37 @@ export function PracticePage() {
   const s = pool[i % Math.max(1, pool.length)];
   const ok = s && normalizeAsr(text).replace(/[^\u4e00-\u9fff]/g, "") === normalizeAsr(s.hanzi).replace(/[^\u4e00-\u9fff]/g, "");
   const nl = nhaiLesson(Math.min(n, 15));
+  const v = getState().v2;
+  const radN = Object.values(v.rad || {}).filter((c) => c.reps >= 1).length;
+  const stars = Object.keys(v.stars || {}).length;
   return (
-    <div class="stack" data-testid="practice">
-      <Card class="shadow-card">
-        <h2 class="h3">🎧 Shadowing &amp; video</h2>
-        <p class="muted small">“{NHAI_GENERAL.shadowingLabel}” trên Nhai — video ngắn, nghe rồi nói đuổi từng câu.</p>
-        <a class="btn primary wide" id="shadowing-link" href={NHAI_GENERAL.shadowing} target="_blank" rel="noreferrer">Mở Shadowing HSK1 trên Nhai ↗</a>
-        {nl && <a class="btn ghost wide" href={NHAI_GENERAL.grammar} target="_blank" rel="noreferrer">Video ngữ pháp HSK1 trên Nhai ↗</a>}
-      </Card>
-      <Card>
-        <h2 class="h3">✍️ Dịch Việt → Trung</h2>
-        {s && <>
-          <p class="exam-prompt">{s.vi}</p>
-          <input class="input" value={text} placeholder="Gõ câu tiếng Trung…" onInput={(e) => { setText((e.target as HTMLInputElement).value); setShown(false); }} />
-          <div class="row"><Button small kind="primary" onClick={() => setShown(true)}>Kiểm tra</Button><Button small kind="ghost" onClick={() => { setI(i + 1); setText(""); setShown(false); }}>Câu khác</Button></div>
-          {shown && <p class={ok ? "ok-text" : "bad-text"}>{ok ? "Đúng." : <>Đáp án: <span class="hanzi-inline">{s.hanzi}</span> ({s.pinyin})</>}</p>}
-        </>}
-      </Card>
-      <ReadingPage embedded />
-      <Card>
-        <h2 class="h3">Kiểm tra</h2>
-        <div class="grid cols-2"><Button kind="ghost" onClick={() => go("/test/weekly")}>Kiểm tra tuần</Button><Button kind="ghost" onClick={() => go("/test/monthly")}>Kiểm tra tháng</Button></div>
-      </Card>
+    <div class="stack practice-grid" data-testid="practice">
+      <div class="pcol">
+        <Card class="shadow-card">
+          <h2 class="h3">🎧 Shadowing &amp; video</h2>
+          <p class="muted small">{NHAI_GENERAL.shadowingLabel} trên Nhai — nghe rồi nói đuổi.</p>
+          <a class="btn primary wide" id="shadowing-link" href={NHAI_GENERAL.shadowing} target="_blank" rel="noreferrer">Mở Shadowing HSK1 ↗</a>
+          {nl && <a class="btn ghost wide" href={NHAI_GENERAL.grammar} target="_blank" rel="noreferrer">Video ngữ pháp HSK1 ↗</a>}
+        </Card>
+        <div class="grid cols-2 practice-links">
+          <button class="card link-card" id="to-radicals" data-testid="to-radicals" onClick={() => go("/radicals")}>
+            <span class="lc-hz hanzi">部</span><b>Ôn bộ thủ</b><span class="muted small">50 bộ hay gặp · đã thuộc {radN}</span>
+          </button>
+          <button class="card link-card" id="to-hard" data-testid="to-hard" onClick={() => go("/hard")}>
+            <span class="lc-hz">⭐</span><b>Chữ khó</b><span class="muted small">{stars} chữ đã đánh dấu</span>
+          </button>
+        </div>
+        <Card>
+          <h2 class="h3">✍️ Dịch Việt → Trung</h2>
+          {s && <>
+            <p class="exam-prompt">{s.vi}</p>
+            <input class="input" value={text} placeholder="Gõ câu tiếng Trung…" onInput={(e) => { setText((e.target as HTMLInputElement).value); setShown(false); }} />
+            <div class="row"><Button small kind="primary" onClick={() => { if (!shown) miaoAnswer(!!ok); setShown(true); }}>Kiểm tra</Button><Button small kind="ghost" onClick={() => { setI(i + 1); setText(""); setShown(false); }}>Câu khác</Button></div>
+            {shown && <p class={ok ? "ok-text" : "bad-text"}>{ok ? "Đúng." : <>Đáp án: <span class="hanzi-inline">{s.hanzi}</span> ({s.pinyin})</>}</p>}
+          </>}
+        </Card>
+      </div>
+      <div class="pcol"><ReadingPage embedded /></div>
     </div>
   );
 }

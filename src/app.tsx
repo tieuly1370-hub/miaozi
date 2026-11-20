@@ -6,7 +6,7 @@ import { useHash, go, Back, cls } from "./ui";
 import { UpdateBanner } from "./update";
 import { tutorLine } from "./tutor";
 import { TodayV2, RoadmapV2, StreakPage } from "./pages/home2";
-import { CatSvg } from "./v2/ui2";
+import { CatSvg, MiaoBubble, MiaoFace } from "./v2/ui2";
 import { startTicker, streakNow } from "./v2/state2";
 import { startAutoSync } from "./sync/drive";
 import { AudioDock } from "./ui";
@@ -54,18 +54,15 @@ export function App() {
           </div>
         </div>
         {route.back && <Back to={route.back} />}
-        <button
-          class={cls("icon-btn", s.settings.companyMode && "on")}
-          title="Chế độ công ty"
-          onClick={() => patchSettings({ companyMode: !s.settings.companyMode })}
-        >{s.settings.companyMode ? "▣" : "☕"}</button>
       </header>
       <UpdateBanner />
       <main>
         {showOnboard ? <OnboardingGate /> : route.view}
       </main>
       <AudioDock />
+      <MiaoBubble idle={EXERCISE.test(path.replace(/^#/, ""))} />
       <nav class="nav" data-testid="nav">
+        <div class="rail-brand" onClick={() => go("/")}><MiaoFace size={44} expr="vui" /><span>Miaozi</span></div>
         <a class={route.tab === "today" ? "on" : ""} href="#/" data-nav="today"><span class="ico">☀</span>Hôm nay</a>
         <a class={route.tab === "write" ? "on" : ""} href="#/write" data-nav="write"><span class="ico">写</span>Viết</a>
         <a class={cls("nav-main", route.tab === "road" && "on")} href={"#/lesson/" + s.v2.lesson} data-nav="lesson"><span class="ico">课</span>Bài học</a>
@@ -75,6 +72,9 @@ export function App() {
     </div>
   );
 }
+
+/** Trang làm bài → Miao ngồi ở góc (bong bóng thoại hiện khi trả lời). */
+const EXERCISE = /^\/(lesson|gate|check|test|review|listen|speak|write|radicals|practice|mock|week0|reading|penalty|weekly|hard)/;
 
 function OnboardingGate() {
   useEffect(() => {}, []);
@@ -102,6 +102,7 @@ const LOADERS = {
   textbook: () => import("./pages/textbook"),
   lesson2: () => import("./pages/lesson2"),
   practice: () => import("./pages/practice"),
+  radicals: () => import("./pages/radicals"),
 };
 type ModKey = keyof typeof LOADERS;
 const MODS: Partial<Record<ModKey, Record<string, unknown>>> = {};
@@ -134,6 +135,8 @@ function parse(path: string): { view: ComponentChildren; tab: string; back?: str
   if (parts[0] === "roadmap-old") return wrap(<L m="home" c="Roadmap" />, "road");
   if (parts[0] === "streak" || parts[0] === "calendar") return wrap(<StreakPage />, "today", "/");
   if (parts[0] === "reading") return wrap(<L m="practice" c="ReadingPage" />, "practice", "/practice");
+  if (parts[0] === "radicals") return wrap(<L key={p} m="radicals" c="RadicalsPage" p={{ tab: parts[1] }} />, "practice", parts[1] ? "/radicals" : "/practice");
+  if (parts[0] === "hard") return wrap(<L m="radicals" c="HardCharsPage" />, "practice", "/practice");
   if (parts[0] === "practice" || parts[0] === "extras") return wrap(<L m="practice" c="PracticePage" />, "practice");
   if (parts[0] === "test") return wrap(<L key={parts[1]} m="practice" c="TestPage" p={{ kind: parts[1] === "monthly" ? "monthly" : "weekly" }} />, "today", "/");
   if (parts[0] === "today" && parts[1] === "morning") return wrap(<L key="m" m="home" c="ShiftPage" p={{ shift: "morning" }} />, "today", "/");

@@ -5,36 +5,44 @@ import { Button, cls } from "../ui";
 import { SEC_ORDER, WEIGHT, type SecMap } from "./queue";
 import { SEC_SHORT } from "./lessons";
 import { setPomodoro } from "./state2";
+import { onMiao } from "./miaoBus";
+import { miaoSrc, type MiaoSay } from "./miao";
+import type { MiaoExpr } from "../data/miaoLines";
 
-/** Mèo Miao — SVG tự vẽ (tai nhọn, mắt tròn, ria). */
-export function CatSvg(props: { size?: number; mood?: "calm" | "proud" | "scold" }) {
+/** Miao 2.2 — mèo mướp cam (ảnh biểu cảm có sẵn trong public/miao). */
+export function MiaoFace(props: { expr?: MiaoExpr; size?: number; class?: string }) {
   const s = props.size || 40;
-  const mood = props.mood || "calm";
+  return <img class={cls("miao-face", props.class)} src={miaoSrc(props.expr || "vui")} width={s} height={s} alt="Miao" draggable={false} />;
+}
+/** Giữ tên cũ cho chỗ còn gọi (logo). */
+export function CatSvg(props: { size?: number; mood?: "calm" | "proud" | "scold" }) {
+  return <MiaoFace size={props.size} expr={props.mood === "scold" ? "kho_chiu" : props.mood === "proud" ? "dac_y" : "vui"} />;
+}
+
+/** Lời Miao trong thẻ (v2.1: Chế độ Công ty vẫn hiện bình thường). */
+export function Miao(props: { text: string; mood?: "calm" | "proud" | "scold"; expr?: MiaoExpr; testid?: string }) {
+  const expr = props.expr || (props.mood === "scold" ? "kho_chiu" : props.mood === "proud" ? "dac_y" : "ngai_ngu");
   return (
-    <svg width={s} height={s} viewBox="0 0 64 64" aria-hidden="true" class="cat-svg">
-      <path d="M12 26 L14 8 L27 19 Q32 17.5 37 19 L50 8 L52 26 Q56 34 52 44 Q46 56 32 56 Q18 56 12 44 Q8 34 12 26Z" fill="#F4B860" stroke="#5A3E36" stroke-width="2.2" stroke-linejoin="round" />
-      <path d="M16 13 L24 20 L17 24Z M48 13 L40 20 L47 24Z" fill="#F6C9C3" />
-      <path d="M26 21 Q28 15 32 21 Q36 15 38 21" fill="none" stroke="#D9913A" stroke-width="2" stroke-linecap="round" />
-      {mood === "scold" ? (
-        <g stroke="#3A2F2A" stroke-width="2.6" stroke-linecap="round"><path d="M20 33 L27 35" /><path d="M44 33 L37 35" /></g>
-      ) : mood === "proud" ? (
-        <g fill="none" stroke="#3A2F2A" stroke-width="2.6" stroke-linecap="round"><path d="M20 35 Q23.5 31 27 35" /><path d="M37 35 Q40.5 31 44 35" /></g>
-      ) : (
-        <g fill="#3A2F2A"><ellipse cx="23.5" cy="35" rx="3" ry="3.6" /><ellipse cx="40.5" cy="35" rx="3" ry="3.6" /><circle cx="24.6" cy="33.8" r="1" fill="#fff" /><circle cx="41.6" cy="33.8" r="1" fill="#fff" /></g>
-      )}
-      <path d="M30 41 L34 41 L32 43.5Z" fill="#D66B6B" />
-      <path d="M32 43.5 Q32 47 28.5 47 M32 43.5 Q32 47 35.5 47" fill="none" stroke="#5A3E36" stroke-width="1.6" stroke-linecap="round" />
-      <g stroke="#5A3E36" stroke-width="1.2" stroke-linecap="round"><path d="M8 38 L20 40" /><path d="M8 44 L20 43" /><path d="M56 38 L44 40" /><path d="M56 44 L44 43" /></g>
-    </svg>
+    <div class={cls("tutor", props.mood || "calm")} data-testid={props.testid || "tutor"}>
+      <div class="avatar cat"><MiaoFace size={44} expr={expr} /></div>
+      <p>{props.text}</p>
+    </div>
   );
 }
 
-/** Lời Miao (v2.1: Chế độ Công ty vẫn hiện bình thường). */
-export function Miao(props: { text: string; mood?: "calm" | "proud" | "scold"; testid?: string }) {
+/** Bong bóng Miao nổi ở góc: nghe miaoBus, tự ẩn sau ~3 giây, không chặn bấm (pointer-events: none). */
+export function MiaoBubble(props: { idle?: boolean }) {
+  const [say, setSay] = useState<MiaoSay | null>(null);
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const off = onMiao((x) => { setSay(x); clearTimeout(t); t = setTimeout(() => setSay(null), 3200); });
+    return () => { off(); clearTimeout(t); };
+  }, []);
+  if (!say && !props.idle) return null;
   return (
-    <div class={cls("tutor", props.mood || "calm")} data-testid={props.testid || "tutor"}>
-      <div class="avatar cat"><CatSvg size={40} mood={props.mood} /></div>
-      <p><strong>Miao. </strong>{props.text}</p>
+    <div class={cls("miao-float", say && "talk")} data-testid="miao-float" aria-live="polite">
+      {say && <div class="miao-say" data-testid="miao-bubble" data-group={say.group} data-id={say.line.id}>{say.line.text}</div>}
+      <MiaoFace size={say ? 64 : 48} expr={say ? say.line.expr : "ngai_ngu"} />
     </div>
   );
 }

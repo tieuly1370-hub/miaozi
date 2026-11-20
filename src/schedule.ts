@@ -14,6 +14,8 @@ export interface Shift {
 }
 
 export interface Settings {
+  /** v2.2: độ dày bút máy (hệ số, mặc định 1.2). */
+  penWidth?: number;
   displayName: string;
   companyMode: boolean;
   weeklyReward: string;

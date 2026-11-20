@@ -1,0 +1,4895 @@
+{
+ "你": {
+  "hv": "nhĩ",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "尔",
+    "nhĩ",
+    "ngươi"
+   ]
+  ],
+  "text": "Chữ 你 (nhĩ): người 亻 đứng cạnh ngươi 尔.",
+  "hint_en": "Pronoun 尔 for a person 亻"
+ },
+ "好": {
+  "hv": "hảo",
+  "vi": "",
+  "parts": [
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ],
+   [
+    "子",
+    "tử",
+    "con"
+   ]
+  ],
+  "text": "Chữ 好 (hảo): phụ nữ 女 đứng cạnh con 子.",
+  "hint_en": "A woman 女 with a son 子"
+ },
+ "王": {
+  "hv": "vương",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "土",
+    "thổ",
+    "đất"
+   ]
+  ],
+  "text": "Chữ 王 (vương): một 一 ở trên, đất 土 ở dưới.",
+  "hint_en": "A man 十 bridging heaven and earth (both 一)"
+ },
+ "老": {
+  "hv": "lão",
+  "vi": "",
+  "parts": [
+   [
+    "耂",
+    "",
+    ""
+   ],
+   [
+    "匕",
+    "chủy",
+    "cái thìa"
+   ]
+  ],
+  "text": "Chữ 老 (lão): mảnh 耂 ở trên, cái thìa 匕 ở dưới.",
+  "hint_en": "A person bent over with long hair 匕 and a crutch; compare 耂"
+ },
+ "师": {
+  "hv": "sư",
+  "vi": "",
+  "parts": [
+   [
+    "刂",
+    "đao",
+    "dao"
+   ],
+   [
+    "帀",
+    "táp",
+    ""
+   ]
+  ],
+  "text": "Chữ 师 (sư): dao 刂 đứng cạnh táp 帀.",
+  "hint_en": "To skillfully wield 帀 a knife 刂"
+ },
+ "大": {
+  "hv": "đại",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "人",
+    "nhân",
+    "người"
+   ]
+  ],
+  "text": "Chữ 大 (đại): một 一 đan vào người 人.",
+  "hint_en": "A man 人 with outstretched arms"
+ },
+ "家": {
+  "hv": "gia",
+  "vi": "",
+  "parts": [
+   [
+    "宀",
+    "miên",
+    "mái nhà"
+   ],
+   [
+    "豕",
+    "thỉ",
+    "con heo"
+   ]
+  ],
+  "text": "Chữ 家 (gia): mái nhà 宀 ở trên, con heo 豕 ở dưới.",
+  "hint_en": "roof"
+ },
+ "学": {
+  "hv": "học",
+  "vi": "",
+  "parts": [
+   [
+    "⺍",
+    "tiểu",
+    ""
+   ],
+   [
+    "冖",
+    "mịch",
+    "khăn trùm"
+   ],
+   [
+    "子",
+    "tử",
+    "con"
+   ]
+  ],
+  "text": "Chữ 学 (học): tiểu ⺍ + khăn trùm 冖 + con 子.",
+  "hint_en": "A building 冖 where children 子 study; ⺍ provides the pronunciation"
+ },
+ "生": {
+  "hv": "sinh",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "土",
+    "thổ",
+    "đất"
+   ]
+  ],
+  "text": "Chữ 生 (sinh): một 一 đan vào đất 土.",
+  "hint_en": " A shoot 屮 growing in the soil 土"
+ },
+ "们": {
+  "hv": "môn",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "门",
+    "môn",
+    "cửa"
+   ]
+  ],
+  "text": "Chữ 们 (môn): người 亻 đứng cạnh cửa 门.",
+  "hint_en": "people"
+ },
+ "您": {
+  "hv": "nâm",
+  "vi": "",
+  "parts": [
+   [
+    "你",
+    "nhĩ",
+    "bạn"
+   ],
+   [
+    "心",
+    "tâm",
+    "tim"
+   ]
+  ],
+  "text": "Chữ 您 (nâm): bạn 你 ở trên, tim 心 ở dưới.",
+  "hint_en": "You 你 said with affection 心"
+ },
+ "谢": {
+  "hv": "tạ",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "射",
+    "xạ",
+    ""
+   ]
+  ],
+  "text": "Chữ 谢 (tạ): lời nói 讠 đứng cạnh xạ 射.",
+  "hint_en": "speech"
+ },
+ "不": {
+  "hv": "bất",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ]
+  ],
+  "text": "Chữ 不 (bất): gồm một 一.",
+  "hint_en": "A bird flying toward the sky 一"
+ },
+ "客": {
+  "hv": "khách",
+  "vi": "",
+  "parts": [
+   [
+    "宀",
+    "miên",
+    "mái nhà"
+   ],
+   [
+    "各",
+    "các",
+    "mỗi"
+   ]
+  ],
+  "text": "Chữ 客 (khách): mái nhà 宀 ở trên, mỗi 各 ở dưới.",
+  "hint_en": "A person 各 welcomed under one's roof 宀; 各 also provides the pronunciation"
+ },
+ "气": {
+  "hv": "khí",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ]
+  ],
+  "text": "Chữ 气 (khí): gồm người 亻.",
+  "hint_en": "A person 亻 breathing air"
+ },
+ "同": {
+  "hv": "đồng",
+  "vi": "",
+  "parts": [
+   [
+    "凡",
+    "",
+    ""
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 同 (đồng): mảnh 凡 trùm lên miệng 口.",
+  "hint_en": "Sharing a common 凡 tongue 口"
+ },
+ "再": {
+  "hv": "tái",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "冉",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 再 (tái): một 一 ở trên, mảnh 冉 ở dưới.",
+  "hint_en": "Two fish 冉 caught on a line 一"
+ },
+ "见": {
+  "hv": "kiến",
+  "vi": "",
+  "parts": [
+   [
+    "冂",
+    "quynh",
+    "vùng biên"
+   ],
+   [
+    "儿",
+    "nhân",
+    "chân người"
+   ]
+  ],
+  "text": "Chữ 见 (kiến): vùng biên 冂 trùm lên chân người 儿.",
+  "hint_en": "Simplified form of 見; a man 儿 with the eye 目 emphasized"
+ },
+ "请": {
+  "hv": "thỉnh",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "青",
+    "thanh",
+    "xanh"
+   ]
+  ],
+  "text": "Chữ 请 (thỉnh): lời nói 讠 đứng cạnh xanh 青.",
+  "hint_en": "speech"
+ },
+ "问": {
+  "hv": "vấn",
+  "vi": "",
+  "parts": [
+   [
+    "门",
+    "môn",
+    "cửa"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 问 (vấn): cửa 门 trùm lên miệng 口.",
+  "hint_en": "mouth"
+ },
+ "叫": {
+  "hv": "khiếu",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "丩",
+    "củ",
+    ""
+   ]
+  ],
+  "text": "Chữ 叫 (khiếu): miệng 口 đứng cạnh củ 丩.",
+  "hint_en": "mouth"
+ },
+ "什": {
+  "hv": "thập",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "十",
+    "thập",
+    "mười"
+   ]
+  ],
+  "text": "Chữ 什 (thập): người 亻 đứng cạnh mười 十.",
+  "hint_en": "A file of ten 十 people 亻"
+ },
+ "么": {
+  "hv": "ma",
+  "vi": "",
+  "parts": [
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ],
+   [
+    "厶",
+    "khư",
+    ""
+   ]
+  ],
+  "text": "Chữ 么 (ma): nét phẩy 丿 ở trên, khư 厶 ở dưới.",
+  "hint_en": ""
+ },
+ "名": {
+  "hv": "danh",
+  "vi": "",
+  "parts": [
+   [
+    "夕",
+    "tịch",
+    "buổi tối"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 名 (danh): buổi tối 夕 che phía trên miệng 口.",
+  "hint_en": "A name called out 口 to hail someone at night 夕"
+ },
+ "字": {
+  "hv": "tự",
+  "vi": "",
+  "parts": [
+   [
+    "宀",
+    "miên",
+    "mái nhà"
+   ],
+   [
+    "子",
+    "tử",
+    "con"
+   ]
+  ],
+  "text": "Chữ 字 (tự): mái nhà 宀 ở trên, con 子 ở dưới.",
+  "hint_en": "A child 子 in a house 宀; 子 also provides the pronunciation"
+ },
+ "我": {
+  "hv": "ngã",
+  "vi": "",
+  "parts": [
+   [
+    "扌",
+    "thủ",
+    "tay"
+   ],
+   [
+    "戈",
+    "qua",
+    "giáo"
+   ]
+  ],
+  "text": "Chữ 我 (ngã): tay 扌 đứng cạnh giáo 戈.",
+  "hint_en": "A hand 扌 holding a weapon 戈"
+ },
+ "是": {
+  "hv": "thị",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ],
+   [
+    "疋",
+    "sơ",
+    ""
+   ]
+  ],
+  "text": "Chữ 是 (thị): mặt trời 日 ở trên, sơ 疋 ở dưới.",
+  "hint_en": "To speak 日 directly 疋"
+ },
+ "对": {
+  "hv": "đối",
+  "vi": "",
+  "parts": [
+   [
+    "又",
+    "hựu",
+    "tay phải"
+   ],
+   [
+    "寸",
+    "thốn",
+    "tấc"
+   ]
+  ],
+  "text": "Chữ 对 (đối): tay phải 又 đứng cạnh tấc 寸.",
+  "hint_en": "A pair 又 of hands 寸"
+ },
+ "起": {
+  "hv": "khởi",
+  "vi": "",
+  "parts": [
+   [
+    "走",
+    "tẩu",
+    "chạy"
+   ],
+   [
+    "己",
+    "kỷ",
+    "bản thân"
+   ]
+  ],
+  "text": "Chữ 起 (khởi): bản thân 己 ngồi trên chạy 走.",
+  "hint_en": "walk"
+ },
+ "没": {
+  "hv": "một",
+  "vi": "",
+  "parts": [
+   [
+    "氵",
+    "thủy",
+    "nước"
+   ],
+   [
+    "殳",
+    "thù",
+    ""
+   ]
+  ],
+  "text": "Chữ 没 (một): nước 氵 đứng cạnh thù 殳.",
+  "hint_en": "water"
+ },
+ "关": {
+  "hv": "quan",
+  "vi": "",
+  "parts": [
+   [
+    "丷",
+    "bát",
+    ""
+   ],
+   [
+    "天",
+    "thiên",
+    "trời"
+   ]
+  ],
+  "text": "Chữ 关 (quan): bát 丷 ở trên, trời 天 ở dưới.",
+  "hint_en": ""
+ },
+ "系": {
+  "hv": "hệ",
+  "vi": "",
+  "parts": [
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ],
+   [
+    "糸",
+    "mịch",
+    "sợi tơ"
+   ]
+  ],
+  "text": "Chữ 系 (hệ): nét phẩy 丿 ở trên, sợi tơ 糸 ở dưới.",
+  "hint_en": "thread"
+ },
+ "事": {
+  "hv": "sự",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "彐",
+    "kệ",
+    ""
+   ],
+   [
+    "亅",
+    "quyết",
+    ""
+   ]
+  ],
+  "text": "Chữ 事 (sự): một 一 + miệng 口 + kệ 彐 + quyết 亅.",
+  "hint_en": ""
+ },
+ "很": {
+  "hv": "ngận",
+  "vi": "",
+  "parts": [
+   [
+    "彳",
+    "xích",
+    "bước"
+   ],
+   [
+    "艮",
+    "cấn",
+    ""
+   ]
+  ],
+  "text": "Chữ 很 (ngận): bước 彳 đứng cạnh cấn 艮.",
+  "hint_en": "step"
+ },
+ "高": {
+  "hv": "cao",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "冋",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 高 (cao): cái nắp 亠, miệng 口, mảnh 冋 chồng lên nhau.",
+  "hint_en": "A tall palace"
+ },
+ "兴": {
+  "hv": "hưng",
+  "vi": "",
+  "parts": [
+   [
+    "⺍",
+    "tiểu",
+    ""
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "八",
+    "bát",
+    "tám"
+   ]
+  ],
+  "text": "Chữ 兴 (hưng): tiểu ⺍, một 一, tám 八 chồng lên nhau.",
+  "hint_en": ""
+ },
+ "认": {
+  "hv": "nhận",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "人",
+    "nhân",
+    "người"
+   ]
+  ],
+  "text": "Chữ 认 (nhận): lời nói 讠 đứng cạnh người 人.",
+  "hint_en": "speech"
+ },
+ "识": {
+  "hv": "thức",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "只",
+    "chỉ",
+    ""
+   ]
+  ],
+  "text": "Chữ 识 (thức): lời nói 讠 đứng cạnh chỉ 只.",
+  "hint_en": "speech"
+ },
+ "也": {
+  "hv": "dã",
+  "vi": "",
+  "parts": [
+   [
+    "乚",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 也 (dã): gồm mảnh 乚.",
+  "hint_en": ""
+ },
+ "人": {
+  "hv": "nhân",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 人 (nhân): tự là một hình — nhớ cả khối.",
+  "hint_en": "The legs of a human being"
+ },
+ "的": {
+  "hv": "đích",
+  "vi": "",
+  "parts": [
+   [
+    "白",
+    "bạch",
+    "trắng"
+   ],
+   [
+    "勺",
+    "chước",
+    ""
+   ]
+  ],
+  "text": "Chữ 的 (đích): trắng 白 đứng cạnh chước 勺.",
+  "hint_en": ""
+ },
+ "中": {
+  "hv": "trung",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "丨",
+    "cổn",
+    "nét sổ"
+   ]
+  ],
+  "text": "Chữ 中 (trung): miệng 口 đan vào nét sổ 丨.",
+  "hint_en": "A line 丨 through the center of a box 口"
+ },
+ "国": {
+  "hv": "quốc",
+  "vi": "",
+  "parts": [
+   [
+    "囗",
+    "vi",
+    "vây quanh"
+   ],
+   [
+    "玉",
+    "ngọc",
+    ""
+   ]
+  ],
+  "text": "Chữ 国 (quốc): vây quanh 囗 bao quanh ngọc 玉.",
+  "hint_en": "Treasure 玉 within a country's borders 囗"
+ },
+ "法": {
+  "hv": "pháp",
+  "vi": "",
+  "parts": [
+   [
+    "氵",
+    "thủy",
+    "nước"
+   ],
+   [
+    "去",
+    "khứ",
+    "đi"
+   ]
+  ],
+  "text": "Chữ 法 (pháp): nước 氵 đứng cạnh đi 去.",
+  "hint_en": "The course 去 followed by a stream 氵"
+ },
+ "文": {
+  "hv": "văn",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "乂",
+    "nghệ",
+    ""
+   ]
+  ],
+  "text": "Chữ 文 (văn): cái nắp 亠 ở trên, nghệ 乂 ở dưới.",
+  "hint_en": "A tattooed chest, representing writing"
+ },
+ "这": {
+  "hv": "giá",
+  "vi": "",
+  "parts": [
+   [
+    "辶",
+    "sước",
+    "bước đi"
+   ],
+   [
+    "文",
+    "văn",
+    "văn"
+   ]
+  ],
+  "text": "Chữ 这 (giá): văn 文 ngồi trên bước đi 辶.",
+  "hint_en": ""
+ },
+ "谁": {
+  "hv": "thùy",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "隹",
+    "chuy",
+    "chim"
+   ]
+  ],
+  "text": "Chữ 谁 (thùy): lời nói 讠 đứng cạnh chim 隹.",
+  "hint_en": "speech"
+ },
+ "女": {
+  "hv": "nữ",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 女 (nữ): tự là một hình — nhớ cả khối.",
+  "hint_en": "A woman turned to the side"
+ },
+ "朋": {
+  "hv": "bằng",
+  "vi": "",
+  "parts": [
+   [
+    "月",
+    "nguyệt",
+    "trăng / thịt"
+   ],
+   [
+    "月",
+    "nguyệt",
+    "trăng / thịt"
+   ]
+  ],
+  "text": "Chữ 朋 (bằng): trăng / thịt 月 đứng cạnh trăng / thịt 月.",
+  "hint_en": "Two people 月 walking together"
+ },
+ "友": {
+  "hv": "hữu",
+  "vi": "",
+  "parts": [
+   [
+    "又",
+    "hựu",
+    "tay phải"
+   ]
+  ],
+  "text": "Chữ 友 (hữu): gồm tay phải 又.",
+  "hint_en": "Two hands 又 joined, representing friendship; 又 also provides the pronunciation"
+ },
+ "哪": {
+  "hv": "na",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "那",
+    "na",
+    ""
+   ]
+  ],
+  "text": "Chữ 哪 (na): miệng 口 đứng cạnh na 那.",
+  "hint_en": "mouth"
+ },
+ "她": {
+  "hv": "tha",
+  "vi": "",
+  "parts": [
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ],
+   [
+    "也",
+    "dã",
+    "cũng"
+   ]
+  ],
+  "text": "Chữ 她 (tha): phụ nữ 女 đứng cạnh cũng 也.",
+  "hint_en": "A woman 女 beside you 也"
+ },
+ "泰": {
+  "hv": "thái",
+  "vi": "",
+  "parts": [
+   [
+    "氺",
+    "thủy",
+    ""
+   ]
+  ],
+  "text": "Chữ 泰 (thái): gồm thủy 氺.",
+  "hint_en": "Water 氺 contained by a dam"
+ },
+ "喂": {
+  "hv": "uy",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "畏",
+    "úy",
+    ""
+   ]
+  ],
+  "text": "Chữ 喂 (uy): miệng 口 đứng cạnh úy 畏.",
+  "hint_en": "mouth"
+ },
+ "姐": {
+  "hv": "tỷ",
+  "vi": "",
+  "parts": [
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ],
+   [
+    "且",
+    "thả",
+    ""
+   ]
+  ],
+  "text": "Chữ 姐 (tỷ): phụ nữ 女 đứng cạnh thả 且.",
+  "hint_en": "woman"
+ },
+ "工": {
+  "hv": "công",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "丄",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 工 (công): một 一 ở trên, mảnh 丄 ở dưới.",
+  "hint_en": "A spade or other workman's tool"
+ },
+ "作": {
+  "hv": "tác",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "乍",
+    "sạ",
+    ""
+   ]
+  ],
+  "text": "Chữ 作 (tác): người 亻 đứng cạnh sạ 乍.",
+  "hint_en": "A person 亻 making something for the first time 乍; 乍 also provides the pronunciation"
+ },
+ "还": {
+  "hv": "hoàn",
+  "vi": "",
+  "parts": [
+   [
+    "辶",
+    "sước",
+    "bước đi"
+   ],
+   [
+    "不",
+    "bất",
+    ""
+   ]
+  ],
+  "text": "Chữ 还 (hoàn): bất 不 ngồi trên bước đi 辶.",
+  "hint_en": "Not 不 moving 辶"
+ },
+ "忙": {
+  "hv": "mang",
+  "vi": "",
+  "parts": [
+   [
+    "忄",
+    "tâm",
+    "tim"
+   ],
+   [
+    "亡",
+    "vong",
+    "mất"
+   ]
+  ],
+  "text": "Chữ 忙 (mang): tim 忄 đứng cạnh mất 亡.",
+  "hint_en": "A heart 忄 faced with death 亡; 亡 also provides the pronunciation"
+ },
+ "吗": {
+  "hv": "ma",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "马",
+    "mã",
+    "ngựa"
+   ]
+  ],
+  "text": "Chữ 吗 (ma): miệng 口 đứng cạnh ngựa 马.",
+  "hint_en": "mouth"
+ },
+ "太": {
+  "hv": "thái",
+  "vi": "",
+  "parts": [
+   [
+    "大",
+    "đại",
+    "lớn"
+   ],
+   [
+    "丶",
+    "chủ",
+    "nét chấm"
+   ]
+  ],
+  "text": "Chữ 太 (thái): lớn 大 trùm lên nét chấm 丶.",
+  "hint_en": "A giant 大 with a normal-sized man 丶 for scale"
+ },
+ "想": {
+  "hv": "tưởng",
+  "vi": "",
+  "parts": [
+   [
+    "相",
+    "tương",
+    ""
+   ],
+   [
+    "心",
+    "tâm",
+    "tim"
+   ]
+  ],
+  "text": "Chữ 想 (tưởng): tương 相 ở trên, tim 心 ở dưới.",
+  "hint_en": "mind"
+ },
+ "有": {
+  "hv": "hữu",
+  "vi": "",
+  "parts": [
+   [
+    "月",
+    "nguyệt",
+    "trăng / thịt"
+   ]
+  ],
+  "text": "Chữ 有 (hữu): gồm trăng / thịt 月.",
+  "hint_en": ""
+ },
+ "多": {
+  "hv": "đa",
+  "vi": "",
+  "parts": [
+   [
+    "夕",
+    "tịch",
+    "buổi tối"
+   ],
+   [
+    "夕",
+    "tịch",
+    "buổi tối"
+   ]
+  ],
+  "text": "Chữ 多 (đa): buổi tối 夕 ở trên, buổi tối 夕 ở dưới.",
+  "hint_en": "Two nights 夕, suggesting many"
+ },
+ "少": {
+  "hv": "thiểu",
+  "vi": "",
+  "parts": [
+   [
+    "小",
+    "tiểu",
+    "nhỏ"
+   ],
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ]
+  ],
+  "text": "Chữ 少 (thiểu): nhỏ 小 ở trên, nét phẩy 丿 ở dưới.",
+  "hint_en": "Grains of sand; 小 provides the pronunciation and meaning"
+ },
+ "个": {
+  "hv": "cá",
+  "vi": "",
+  "parts": [
+   [
+    "人",
+    "nhân",
+    "người"
+   ],
+   [
+    "丨",
+    "cổn",
+    "nét sổ"
+   ]
+  ],
+  "text": "Chữ 个 (cá): người 人 ở trên, nét sổ 丨 ở dưới.",
+  "hint_en": "A tally 丨 of people 人"
+ },
+ "哥": {
+  "hv": "ca",
+  "vi": "",
+  "parts": [
+   [
+    "可",
+    "khả",
+    "được"
+   ],
+   [
+    "可",
+    "khả",
+    "được"
+   ]
+  ],
+  "text": "Chữ 哥 (ca): được 可 ở trên, được 可 ở dưới.",
+  "hint_en": "One person talking 可 over another 可"
+ },
+ "呢": {
+  "hv": "ni",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "尼",
+    "ni",
+    ""
+   ]
+  ],
+  "text": "Chữ 呢 (ni): miệng 口 đứng cạnh ni 尼.",
+  "hint_en": "mouth"
+ },
+ "几": {
+  "hv": "kỷ",
+  "vi": "",
+  "parts": [
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ],
+   [
+    "乙",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 几 (kỷ): nét phẩy 丿 đứng cạnh mảnh 乙.",
+  "hint_en": "A small table; compare 丌"
+ },
+ "口": {
+  "hv": "khẩu",
+  "vi": "",
+  "parts": [
+   [
+    "冂",
+    "quynh",
+    "vùng biên"
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ]
+  ],
+  "text": "Chữ 口 (khẩu): vùng biên 冂 ở trên, một 一 ở dưới.",
+  "hint_en": "An open mouth"
+ },
+ "爸": {
+  "hv": "ba",
+  "vi": "",
+  "parts": [
+   [
+    "父",
+    "phụ",
+    "cha"
+   ],
+   [
+    "巴",
+    "ba",
+    ""
+   ]
+  ],
+  "text": "Chữ 爸 (ba): cha 父 ở trên, ba 巴 ở dưới.",
+  "hint_en": "father"
+ },
+ "妈": {
+  "hv": "ma",
+  "vi": "",
+  "parts": [
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ],
+   [
+    "马",
+    "mã",
+    "ngựa"
+   ]
+  ],
+  "text": "Chữ 妈 (ma): phụ nữ 女 đứng cạnh ngựa 马.",
+  "hint_en": "woman"
+ },
+ "妹": {
+  "hv": "muội",
+  "vi": "",
+  "parts": [
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ],
+   [
+    "未",
+    "vị",
+    ""
+   ]
+  ],
+  "text": "Chữ 妹 (muội): phụ nữ 女 đứng cạnh vị 未.",
+  "hint_en": "woman"
+ },
+ "和": {
+  "hv": "hòa",
+  "vi": "",
+  "parts": [
+   [
+    "禾",
+    "hòa",
+    "lúa"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 和 (hòa): lúa 禾 đứng cạnh miệng 口.",
+  "hint_en": "mouth"
+ },
+ "儿": {
+  "hv": "nhi",
+  "vi": "",
+  "parts": [
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ],
+   [
+    "乚",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 儿 (nhi): nét phẩy 丿 đứng cạnh mảnh 乚.",
+  "hint_en": "Simplified form of 兒, a picture of a child; compare 人"
+ },
+ "子": {
+  "hv": "tử",
+  "vi": "",
+  "parts": [
+   [
+    "了",
+    "liễu",
+    ""
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ]
+  ],
+  "text": "Chữ 子 (tử): liễu 了 đan vào một 一.",
+  "hint_en": "A child in a wrap, with outstretched arms but bundled legs"
+ },
+ "孩": {
+  "hv": "hài",
+  "vi": "",
+  "parts": [
+   [
+    "子",
+    "tử",
+    "con"
+   ],
+   [
+    "亥",
+    "hợi",
+    ""
+   ]
+  ],
+  "text": "Chữ 孩 (hài): con 子 đứng cạnh hợi 亥.",
+  "hint_en": "child"
+ },
+ "岁": {
+  "hv": "tuế",
+  "vi": "",
+  "parts": [
+   [
+    "山",
+    "",
+    ""
+   ],
+   [
+    "夕",
+    "tịch",
+    "buổi tối"
+   ]
+  ],
+  "text": "Chữ 岁 (tuế): mảnh 山 ở trên, buổi tối 夕 ở dưới.",
+  "hint_en": ""
+ },
+ "他": {
+  "hv": "tha",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "也",
+    "dã",
+    "cũng"
+   ]
+  ],
+  "text": "Chữ 他 (tha): người 亻 đứng cạnh cũng 也.",
+  "hint_en": "An additional, \"also\" 也  person 亻"
+ },
+ "今": {
+  "hv": "kim",
+  "vi": "",
+  "parts": [
+   [
+    "人",
+    "nhân",
+    "người"
+   ]
+  ],
+  "text": "Chữ 今 (kim): gồm người 人.",
+  "hint_en": "A mouth 亼 talking about things"
+ },
+ "年": {
+  "hv": "niên",
+  "vi": "",
+  "parts": [
+   [
+    "干",
+    "can",
+    ""
+   ]
+  ],
+  "text": "Chữ 年 (niên): gồm can 干.",
+  "hint_en": "A man 干 carrying grain, representing the annual harvest"
+ },
+ "一": {
+  "hv": "nhất",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 一 (nhất): tự là một hình — nhớ cả khối.",
+  "hint_en": "Represents heaven (天), earth (旦), or the number 1"
+ },
+ "二": {
+  "hv": "nhị",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ]
+  ],
+  "text": "Chữ 二 (nhị): một 一 ở trên, một 一 ở dưới.",
+  "hint_en": "Two  parallel lines; compare 一 (one) and 三 (three)"
+ },
+ "三": {
+  "hv": "tam",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "二",
+    "nhị",
+    "hai"
+   ]
+  ],
+  "text": "Chữ 三 (tam): một 一 ở trên, hai 二 ở dưới.",
+  "hint_en": "Three  parallel lines; compare 一 (one) and 二 (two)"
+ },
+ "四": {
+  "hv": "tứ",
+  "vi": "",
+  "parts": [
+   [
+    "囗",
+    "vi",
+    "vây quanh"
+   ],
+   [
+    "儿",
+    "nhân",
+    "chân người"
+   ]
+  ],
+  "text": "Chữ 四 (tứ): vây quanh 囗 bao quanh chân người 儿.",
+  "hint_en": "A child 儿 in a room with four walls 囗"
+ },
+ "五": {
+  "hv": "ngũ",
+  "vi": "",
+  "parts": [
+   [
+    "二",
+    "nhị",
+    "hai"
+   ]
+  ],
+  "text": "Chữ 五 (ngũ): gồm hai 二.",
+  "hint_en": "Five elements (the cross with the extra stroke) between heaven 一 and earth 一 "
+ },
+ "六": {
+  "hv": "lục",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "八",
+    "bát",
+    "tám"
+   ]
+  ],
+  "text": "Chữ 六 (lục): cái nắp 亠 ở trên, tám 八 ở dưới.",
+  "hint_en": ""
+ },
+ "七": {
+  "hv": "thất",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "乚",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 七 (thất): một 一 đan vào mảnh 乚.",
+  "hint_en": ""
+ },
+ "八": {
+  "hv": "bát",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 八 (bát): tự là một hình — nhớ cả khối.",
+  "hint_en": "Two bent lines meaning \"to divide\""
+ },
+ "九": {
+  "hv": "cửu",
+  "vi": "",
+  "parts": [
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ],
+   [
+    "乙",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 九 (cửu): nét phẩy 丿 đan vào mảnh 乙.",
+  "hint_en": "An elbow"
+ },
+ "十": {
+  "hv": "thập",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "丨",
+    "cổn",
+    "nét sổ"
+   ]
+  ],
+  "text": "Chữ 十 (thập): một 一 đan vào nét sổ 丨.",
+  "hint_en": ""
+ },
+ "零": {
+  "hv": "linh",
+  "vi": "",
+  "parts": [
+   [
+    "雨",
+    "vũ",
+    "mưa"
+   ],
+   [
+    "令",
+    "lệnh",
+    ""
+   ]
+  ],
+  "text": "Chữ 零 (linh): mưa 雨 ở trên, lệnh 令 ở dưới.",
+  "hint_en": "raindrop"
+ },
+ "两": {
+  "hv": "lưỡng",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "冂",
+    "quynh",
+    "vùng biên"
+   ],
+   [
+    "从",
+    "tòng",
+    ""
+   ]
+  ],
+  "text": "Chữ 两 (lưỡng): một 一 + vùng biên 冂 + tòng 从.",
+  "hint_en": "Two people 从 together in a cart"
+ },
+ "百": {
+  "hv": "bách",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "白",
+    "bạch",
+    "trắng"
+   ]
+  ],
+  "text": "Chữ 百 (bách): một 一 ở trên, trắng 白 ở dưới.",
+  "hint_en": "one"
+ },
+ "千": {
+  "hv": "thiên",
+  "vi": "",
+  "parts": [
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ],
+   [
+    "十",
+    "thập",
+    "mười"
+   ]
+  ],
+  "text": "Chữ 千 (thiên): nét phẩy 丿 ở trên, mười 十 ở dưới.",
+  "hint_en": ""
+ },
+ "天": {
+  "hv": "thiên",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "大",
+    "đại",
+    "lớn"
+   ]
+  ],
+  "text": "Chữ 天 (thiên): một 一 ở trên, lớn 大 ở dưới.",
+  "hint_en": "The heavens 一 above a man 大"
+ },
+ "号": {
+  "hv": "hiệu",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "丂",
+    "khảo",
+    ""
+   ]
+  ],
+  "text": "Chữ 号 (hiệu): miệng 口 ở trên, khảo 丂 ở dưới.",
+  "hint_en": "mouth"
+ },
+ "月": {
+  "hv": "nguyệt",
+  "vi": "",
+  "parts": [
+   [
+    "冂",
+    "quynh",
+    "vùng biên"
+   ],
+   [
+    "二",
+    "nhị",
+    "hai"
+   ]
+  ],
+  "text": "Chữ 月 (nguyệt): vùng biên 冂 trùm lên hai 二.",
+  "hint_en": "A crescent moon"
+ },
+ "日": {
+  "hv": "nhật",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ]
+  ],
+  "text": "Chữ 日 (nhật): miệng 口 bao quanh một 一.",
+  "hint_en": "The sun"
+ },
+ "星": {
+  "hv": "tinh",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ],
+   [
+    "生",
+    "sinh",
+    "sinh"
+   ]
+  ],
+  "text": "Chữ 星 (tinh): mặt trời 日 ở trên, sinh 生 ở dưới.",
+  "hint_en": "sun"
+ },
+ "期": {
+  "hv": "kỳ",
+  "vi": "",
+  "parts": [
+   [
+    "其",
+    "kỳ",
+    ""
+   ],
+   [
+    "月",
+    "nguyệt",
+    "trăng / thịt"
+   ]
+  ],
+  "text": "Chữ 期 (kỳ): kỳ 其 đứng cạnh trăng / thịt 月.",
+  "hint_en": "moon"
+ },
+ "休": {
+  "hv": "hưu",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "木",
+    "mộc",
+    "cây"
+   ]
+  ],
+  "text": "Chữ 休 (hưu): người 亻 đứng cạnh cây 木.",
+  "hint_en": "A person 亻 leaning against a tree 木"
+ },
+ "息": {
+  "hv": "tức",
+  "vi": "",
+  "parts": [
+   [
+    "自",
+    "tự",
+    "tự mình"
+   ],
+   [
+    "心",
+    "tâm",
+    "tim"
+   ]
+  ],
+  "text": "Chữ 息 (tức): tự mình 自 ở trên, tim 心 ở dưới.",
+  "hint_en": "To breathe (life, 心) through one's nose 自; 心 also provides the pronunciation"
+ },
+ "会": {
+  "hv": "hội",
+  "vi": "",
+  "parts": [
+   [
+    "人",
+    "nhân",
+    "người"
+   ],
+   [
+    "云",
+    "vân",
+    "mây"
+   ]
+  ],
+  "text": "Chữ 会 (hội): người 人 ở trên, mây 云 ở dưới.",
+  "hint_en": "People 人 speaking 云"
+ },
+ "做": {
+  "hv": "tố",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "故",
+    "cố",
+    ""
+   ]
+  ],
+  "text": "Chữ 做 (tố): người 亻 đứng cạnh cố 故.",
+  "hint_en": "Someone 亻 who causes things to happen 故; 故 also provides the pronuncation"
+ },
+ "饭": {
+  "hv": "phạn",
+  "vi": "",
+  "parts": [
+   [
+    "饣",
+    "thực",
+    "ăn"
+   ],
+   [
+    "反",
+    "phản",
+    ""
+   ]
+  ],
+  "text": "Chữ 饭 (phạn): ăn 饣 đứng cạnh phản 反.",
+  "hint_en": "food"
+ },
+ "面": {
+  "hv": "diện",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 面 (diện): tự là một hình — nhớ cả khối.",
+  "hint_en": "A person's face"
+ },
+ "条": {
+  "hv": "điều",
+  "vi": "",
+  "parts": [
+   [
+    "夂",
+    "truy",
+    ""
+   ],
+   [
+    "木",
+    "mộc",
+    "cây"
+   ]
+  ],
+  "text": "Chữ 条 (điều): truy 夂 ở trên, cây 木 ở dưới.",
+  "hint_en": ""
+ },
+ "饺": {
+  "hv": "giảo",
+  "vi": "",
+  "parts": [
+   [
+    "饣",
+    "thực",
+    "ăn"
+   ],
+   [
+    "交",
+    "giao",
+    "giao"
+   ]
+  ],
+  "text": "Chữ 饺 (giảo): ăn 饣 đứng cạnh giao 交.",
+  "hint_en": "food"
+ },
+ "些": {
+  "hv": "ta",
+  "vi": "",
+  "parts": [
+   [
+    "此",
+    "thử",
+    ""
+   ],
+   [
+    "二",
+    "nhị",
+    "hai"
+   ]
+  ],
+  "text": "Chữ 些 (ta): thử 此 ở trên, hai 二 ở dưới.",
+  "hint_en": "two"
+ },
+ "菜": {
+  "hv": "thái",
+  "vi": "",
+  "parts": [
+   [
+    "艹",
+    "thảo",
+    "cỏ"
+   ],
+   [
+    "采",
+    "thải",
+    ""
+   ]
+  ],
+  "text": "Chữ 菜 (thái): cỏ 艹 ở trên, thải 采 ở dưới.",
+  "hint_en": "plant"
+ },
+ "下": {
+  "hv": "hạ",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "卜",
+    "bốc",
+    ""
+   ]
+  ],
+  "text": "Chữ 下 (hạ): một 一 ở trên, bốc 卜 ở dưới.",
+  "hint_en": "One stroke under another; compare 上 (above)"
+ },
+ "班": {
+  "hv": "ban",
+  "vi": "",
+  "parts": [
+   [
+    "王",
+    "vương",
+    "ngọc / vua"
+   ],
+   [
+    "刂",
+    "đao",
+    "dao"
+   ],
+   [
+    "王",
+    "vương",
+    "ngọc / vua"
+   ]
+  ],
+  "text": "Chữ 班 (ban): ngọc / vua 王, dao 刂 và ngọc / vua 王 xếp hàng ngang.",
+  "hint_en": "Cutting 刂 a piece of jade 王 in two, symbolizing two classes"
+ },
+ "新": {
+  "hv": "tân",
+  "vi": "",
+  "parts": [
+   [
+    "亲",
+    "",
+    ""
+   ],
+   [
+    "斤",
+    "cân",
+    "rìu"
+   ]
+  ],
+  "text": "Chữ 新 (tân): mảnh 亲 đứng cạnh rìu 斤.",
+  "hint_en": "A freshly chopped 斤 tree 亲"
+ },
+ "电": {
+  "hv": "điện",
+  "vi": "",
+  "parts": [
+   [
+    "曰",
+    "",
+    ""
+   ],
+   [
+    "乚",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 电 (điện): mảnh 曰 đan vào mảnh 乚.",
+  "hint_en": "Simplified form of 電; lightning 申 from a storm cloud 雨"
+ },
+ "脑": {
+  "hv": "não",
+  "vi": "",
+  "parts": [
+   [
+    "⺼",
+    "nguyệt",
+    "trăng; thịt"
+   ],
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "凶",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 脑 (não): trăng; thịt ⺼ + cái nắp 亠 + mảnh 凶.",
+  "hint_en": "flesh"
+ },
+ "真": {
+  "hv": "chân",
+  "vi": "",
+  "parts": [
+   [
+    "直",
+    "",
+    ""
+   ],
+   [
+    "几",
+    "kỷ",
+    "cái ghế"
+   ]
+  ],
+  "text": "Chữ 真 (chân): mảnh 直 ở trên, cái ghế 几 ở dưới.",
+  "hint_en": "A straight 直 (that is, level) table 几"
+ },
+ "看": {
+  "hv": "khán",
+  "vi": "",
+  "parts": [
+   [
+    "手",
+    "thủ",
+    "tay"
+   ],
+   [
+    "目",
+    "mục",
+    "mắt"
+   ]
+  ],
+  "text": "Chữ 看 (khán): tay 手 ở trên, mắt 目 ở dưới.",
+  "hint_en": "Shielding one's eyes 目 with a hand 手 to look to the distance"
+ },
+ "喜": {
+  "hv": "hỉ",
+  "vi": "",
+  "parts": [
+   [
+    "壴",
+    "",
+    ""
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 喜 (hỉ): mảnh 壴 ở trên, miệng 口 ở dưới.",
+  "hint_en": "Singing 口 and beating drums 壴"
+ },
+ "欢": {
+  "hv": "hoan",
+  "vi": "",
+  "parts": [
+   [
+    "又",
+    "hựu",
+    "tay phải"
+   ],
+   [
+    "欠",
+    "khiếm",
+    "há miệng"
+   ]
+  ],
+  "text": "Chữ 欢 (hoan): tay phải 又 đứng cạnh há miệng 欠.",
+  "hint_en": ""
+ },
+ "它": {
+  "hv": "tha",
+  "vi": "",
+  "parts": [
+   [
+    "宀",
+    "miên",
+    "mái nhà"
+   ],
+   [
+    "匕",
+    "chủy",
+    "cái thìa"
+   ]
+  ],
+  "text": "Chữ 它 (tha): mái nhà 宀 ở trên, cái thìa 匕 ở dưới.",
+  "hint_en": ""
+ },
+ "手": {
+  "hv": "thủ",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 手 (thủ): tự là một hình — nhớ cả khối.",
+  "hint_en": "A hand with the fingers splayed"
+ },
+ "机": {
+  "hv": "cơ",
+  "vi": "",
+  "parts": [
+   [
+    "木",
+    "mộc",
+    "cây"
+   ],
+   [
+    "几",
+    "kỷ",
+    "cái ghế"
+   ]
+  ],
+  "text": "Chữ 机 (cơ): cây 木 đứng cạnh cái ghế 几.",
+  "hint_en": "A table 几 made of wood 木; 几 also provides the pronunciation"
+ },
+ "话": {
+  "hv": "thoại",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "舌",
+    "thiệt",
+    "lưỡi"
+   ]
+  ],
+  "text": "Chữ 话 (thoại): lời nói 讠 đứng cạnh lưỡi 舌.",
+  "hint_en": "A spoken 讠 tongue 舌; 舌 also provides the pronunciation"
+ },
+ "明": {
+  "hv": "minh",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ],
+   [
+    "月",
+    "nguyệt",
+    "trăng / thịt"
+   ]
+  ],
+  "text": "Chữ 明 (minh): mặt trời 日 đứng cạnh trăng / thịt 月.",
+  "hint_en": "The light of the sun 日 and moon 月"
+ },
+ "去": {
+  "hv": "khứ",
+  "vi": "",
+  "parts": [
+   [
+    "土",
+    "thổ",
+    "đất"
+   ],
+   [
+    "厶",
+    "khư",
+    ""
+   ]
+  ],
+  "text": "Chữ 去 (khứ): đất 土 ở trên, khư 厶 ở dưới.",
+  "hint_en": ""
+ },
+ "超": {
+  "hv": "siêu",
+  "vi": "",
+  "parts": [
+   [
+    "走",
+    "tẩu",
+    "chạy"
+   ],
+   [
+    "召",
+    "triệu",
+    ""
+   ]
+  ],
+  "text": "Chữ 超 (siêu): triệu 召 ngồi trên chạy 走.",
+  "hint_en": "run"
+ },
+ "市": {
+  "hv": "thị",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "巾",
+    "cân",
+    "khăn"
+   ]
+  ],
+  "text": "Chữ 市 (thị): cái nắp 亠 ở trên, khăn 巾 ở dưới.",
+  "hint_en": ""
+ },
+ "买": {
+  "hv": "mãi",
+  "vi": "",
+  "parts": [
+   [
+    "乛",
+    "",
+    ""
+   ],
+   [
+    "头",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 买 (mãi): mảnh 乛 ở trên, mảnh 头 ở dưới.",
+  "hint_en": ""
+ },
+ "东": {
+  "hv": "đông",
+  "vi": "",
+  "parts": [
+   [
+    "七",
+    "thất",
+    ""
+   ],
+   [
+    "小",
+    "tiểu",
+    "nhỏ"
+   ]
+  ],
+  "text": "Chữ 东 (đông): thất 七 đan vào nhỏ 小.",
+  "hint_en": "Simplified form of 東, the sun 日 rising behind a tree 木"
+ },
+ "西": {
+  "hv": "tây",
+  "vi": "",
+  "parts": [
+   [
+    "兀",
+    "",
+    ""
+   ],
+   [
+    "囗",
+    "vi",
+    "vây quanh"
+   ]
+  ],
+  "text": "Chữ 西 (tây): mảnh 兀 đan vào vây quanh 囗.",
+  "hint_en": "A bird settling into its nest, representing sunset; compare 東"
+ },
+ "牛": {
+  "hv": "ngưu",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 牛 (ngưu): tự là một hình — nhớ cả khối.",
+  "hint_en": "An ox's horned head"
+ },
+ "奶": {
+  "hv": "nãi",
+  "vi": "",
+  "parts": [
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ],
+   [
+    "乃",
+    "nãi",
+    ""
+   ]
+  ],
+  "text": "Chữ 奶 (nãi): phụ nữ 女 đứng cạnh nãi 乃.",
+  "hint_en": "woman"
+ },
+ "吃": {
+  "hv": "ngật",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "乞",
+    "khất",
+    ""
+   ]
+  ],
+  "text": "Chữ 吃 (ngật): miệng 口 đứng cạnh khất 乞.",
+  "hint_en": "mouth"
+ },
+ "晚": {
+  "hv": "vãn",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ],
+   [
+    "免",
+    "miễn",
+    ""
+   ]
+  ],
+  "text": "Chữ 晚 (vãn): mặt trời 日 đứng cạnh miễn 免.",
+  "hint_en": "Avoiding 免 the sun 日; 免 also provides the pronunciation"
+ },
+ "那": {
+  "hv": "na",
+  "vi": "",
+  "parts": [
+   [
+    "阝",
+    "phụ",
+    "gò / ấp"
+   ]
+  ],
+  "text": "Chữ 那 (na): gồm gò / ấp 阝.",
+  "hint_en": ""
+ },
+ "边": {
+  "hv": "biên",
+  "vi": "",
+  "parts": [
+   [
+    "辶",
+    "sước",
+    "bước đi"
+   ],
+   [
+    "力",
+    "lực",
+    "sức"
+   ]
+  ],
+  "text": "Chữ 边 (biên): sức 力 ngồi trên bước đi 辶.",
+  "hint_en": "walk"
+ },
+ "包": {
+  "hv": "bao",
+  "vi": "",
+  "parts": [
+   [
+    "勹",
+    "bao",
+    ""
+   ],
+   [
+    "巳",
+    "tỵ",
+    ""
+   ]
+  ],
+  "text": "Chữ 包 (bao): bao 勹 ôm góc tỵ 巳.",
+  "hint_en": "To swaddle 勹 a baby 巳; 勹 also provides the pronunciation"
+ },
+ "非": {
+  "hv": "phi",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 非 (phi): tự là một hình — nhớ cả khối.",
+  "hint_en": "Two bird's wings opposed; two people back-to-back"
+ },
+ "常": {
+  "hv": "thường",
+  "vi": "",
+  "parts": [
+   [
+    "尚",
+    "",
+    ""
+   ],
+   [
+    "巾",
+    "cân",
+    "khăn"
+   ]
+  ],
+  "text": "Chữ 常 (thường): mảnh 尚 ở trên, khăn 巾 ở dưới.",
+  "hint_en": "cloth"
+ },
+ "米": {
+  "hv": "mễ",
+  "vi": "",
+  "parts": [
+   [
+    "丷",
+    "bát",
+    ""
+   ],
+   [
+    "木",
+    "mộc",
+    "cây"
+   ]
+  ],
+  "text": "Chữ 米 (mễ): bát 丷 đan vào cây 木.",
+  "hint_en": "Grains of rice"
+ },
+ "怎": {
+  "hv": "chẩm",
+  "vi": "",
+  "parts": [
+   [
+    "乍",
+    "sạ",
+    ""
+   ],
+   [
+    "心",
+    "tâm",
+    "tim"
+   ]
+  ],
+  "text": "Chữ 怎 (chẩm): sạ 乍 ở trên, tim 心 ở dưới.",
+  "hint_en": "heart"
+ },
+ "坐": {
+  "hv": "tọa",
+  "vi": "",
+  "parts": [
+   [
+    "从",
+    "tòng",
+    ""
+   ],
+   [
+    "土",
+    "thổ",
+    "đất"
+   ]
+  ],
+  "text": "Chữ 坐 (tọa): tòng 从 đan vào đất 土.",
+  "hint_en": "Two people 从 sitting on the ground 土"
+ },
+ "出": {
+  "hv": "xuất",
+  "vi": "",
+  "parts": [
+   [
+    "屮",
+    "",
+    ""
+   ],
+   [
+    "凵",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 出 (xuất): mảnh 屮 ở trên, mảnh 凵 ở dưới.",
+  "hint_en": "A sprout 屮 growing out of a container 凵"
+ },
+ "租": {
+  "hv": "tô",
+  "vi": "",
+  "parts": [
+   [
+    "禾",
+    "hòa",
+    "lúa"
+   ],
+   [
+    "且",
+    "thả",
+    ""
+   ]
+  ],
+  "text": "Chữ 租 (tô): lúa 禾 đứng cạnh thả 且.",
+  "hint_en": "Regularly paid 且 tribute in grain 禾"
+ },
+ "车": {
+  "hv": "xa",
+  "vi": "",
+  "parts": [
+   [
+    "七",
+    "thất",
+    ""
+   ],
+   [
+    "十",
+    "thập",
+    "mười"
+   ]
+  ],
+  "text": "Chữ 车 (xa): thất 七 đan vào mười 十.",
+  "hint_en": "Simplified form of 車, a cart with two wheels, seen from above"
+ },
+ "安": {
+  "hv": "an",
+  "vi": "",
+  "parts": [
+   [
+    "宀",
+    "miên",
+    "mái nhà"
+   ],
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ]
+  ],
+  "text": "Chữ 安 (an): mái nhà 宀 ở trên, phụ nữ 女 ở dưới.",
+  "hint_en": "A woman 女 safe in a house 宀"
+ },
+ "店": {
+  "hv": "điếm",
+  "vi": "",
+  "parts": [
+   [
+    "广",
+    "nghiễm",
+    "mái rộng"
+   ],
+   [
+    "占",
+    "chiêm",
+    ""
+   ]
+  ],
+  "text": "Chữ 店 (điếm): mái rộng 广 che phía trên chiêm 占.",
+  "hint_en": "building"
+ },
+ "现": {
+  "hv": "hiện",
+  "vi": "",
+  "parts": [
+   [
+    "王",
+    "vương",
+    "ngọc / vua"
+   ],
+   [
+    "见",
+    "kiến",
+    "thấy"
+   ]
+  ],
+  "text": "Chữ 现 (hiện): ngọc / vua 王 đứng cạnh thấy 见.",
+  "hint_en": "To see 见 jade 王; 见 also provides the pronunciation"
+ },
+ "在": {
+  "hv": "tại",
+  "vi": "",
+  "parts": [
+   [
+    "才",
+    "",
+    ""
+   ],
+   [
+    "土",
+    "thổ",
+    "đất"
+   ]
+  ],
+  "text": "Chữ 在 (tại): mảnh 才 che phía trên đất 土.",
+  "hint_en": "earth"
+ },
+ "点": {
+  "hv": "điểm",
+  "vi": "",
+  "parts": [
+   [
+    "占",
+    "chiêm",
+    ""
+   ],
+   [
+    "灬",
+    "hỏa",
+    "lửa"
+   ]
+  ],
+  "text": "Chữ 点 (điểm): chiêm 占 ở trên, lửa 灬 ở dưới.",
+  "hint_en": "fire"
+ },
+ "早": {
+  "hv": "tảo",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ],
+   [
+    "十",
+    "thập",
+    "mười"
+   ]
+  ],
+  "text": "Chữ 早 (tảo): mặt trời 日 ở trên, mười 十 ở dưới.",
+  "hint_en": "The first rays 十 of the sun 日"
+ },
+ "上": {
+  "hv": "thượng",
+  "vi": "",
+  "parts": [
+   [
+    "⺊",
+    "",
+    ""
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ]
+  ],
+  "text": "Chữ 上 (thượng): mảnh ⺊ ở trên, một 一 ở dưới.",
+  "hint_en": "One stroke on top of another; compare 下 (below)"
+ },
+ "午": {
+  "hv": "ngọ",
+  "vi": "",
+  "parts": [
+   [
+    "丿",
+    "phiệt",
+    "nét phẩy"
+   ],
+   [
+    "干",
+    "can",
+    ""
+   ]
+  ],
+  "text": "Chữ 午 (ngọ): nét phẩy 丿 đan vào can 干.",
+  "hint_en": ""
+ },
+ "分": {
+  "hv": "phân",
+  "vi": "",
+  "parts": [
+   [
+    "八",
+    "bát",
+    "tám"
+   ],
+   [
+    "刀",
+    "đao",
+    "dao"
+   ]
+  ],
+  "text": "Chữ 分 (phân): tám 八 ở trên, dao 刀 ở dưới.",
+  "hint_en": "Pieces 八 being further subdivided with a knife 刀 "
+ },
+ "课": {
+  "hv": "khóa",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "果",
+    "quả",
+    "quả"
+   ]
+  ],
+  "text": "Chữ 课 (khóa): lời nói 讠 đứng cạnh quả 果.",
+  "hint_en": "speech"
+ },
+ "吧": {
+  "hv": "ba",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "巴",
+    "ba",
+    ""
+   ]
+  ],
+  "text": "Chữ 吧 (ba): miệng 口 đứng cạnh ba 巴.",
+  "hint_en": "mouth"
+ },
+ "影": {
+  "hv": "ảnh",
+  "vi": "",
+  "parts": [
+   [
+    "景",
+    "cảnh",
+    ""
+   ],
+   [
+    "彡",
+    "sam",
+    ""
+   ]
+  ],
+  "text": "Chữ 影 (ảnh): cảnh 景 đứng cạnh sam 彡.",
+  "hint_en": "sunlight"
+ },
+ "院": {
+  "hv": "viện",
+  "vi": "",
+  "parts": [
+   [
+    "阝",
+    "phụ",
+    "gò / ấp"
+   ],
+   [
+    "完",
+    "hoàn",
+    ""
+   ]
+  ],
+  "text": "Chữ 院 (viện): gò / ấp 阝 đứng cạnh hoàn 完.",
+  "hint_en": "place"
+ },
+ "半": {
+  "hv": "bán",
+  "vi": "",
+  "parts": [
+   [
+    "丷",
+    "bát",
+    ""
+   ],
+   [
+    "牛",
+    "ngưu",
+    "trâu"
+   ]
+  ],
+  "text": "Chữ 半 (bán): bát 丷 đan vào trâu 牛.",
+  "hint_en": "A cow 牛 splitting 丷 wood in half"
+ },
+ "里": {
+  "hv": "lý",
+  "vi": "",
+  "parts": [
+   [
+    "田",
+    "điền",
+    "ruộng"
+   ],
+   [
+    "土",
+    "thổ",
+    "đất"
+   ]
+  ],
+  "text": "Chữ 里 (lý): ruộng 田 ở trên, đất 土 ở dưới.",
+  "hint_en": "Unit of measure for farm 田 land 土"
+ },
+ "医": {
+  "hv": "y",
+  "vi": "",
+  "parts": [
+   [
+    "匸",
+    "",
+    ""
+   ],
+   [
+    "矢",
+    "thỉ",
+    "mũi tên"
+   ]
+  ],
+  "text": "Chữ 医 (y): mảnh 匸 ôm lấy mũi tên 矢.",
+  "hint_en": "arrow"
+ },
+ "钟": {
+  "hv": "chung",
+  "vi": "",
+  "parts": [
+   [
+    "钅",
+    "kim",
+    "kim loại"
+   ],
+   [
+    "中",
+    "trung",
+    "giữa"
+   ]
+  ],
+  "text": "Chữ 钟 (chung): kim loại 钅 đứng cạnh giữa 中.",
+  "hint_en": "metal"
+ },
+ "后": {
+  "hv": "hậu",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 后 (hậu): gồm miệng 口.",
+  "hint_en": ""
+ },
+ "房": {
+  "hv": "phòng",
+  "vi": "",
+  "parts": [
+   [
+    "户",
+    "hộ",
+    "cửa một cánh"
+   ],
+   [
+    "方",
+    "phương",
+    "phương"
+   ]
+  ],
+  "text": "Chữ 房 (phòng): cửa một cánh 户 che phía trên phương 方.",
+  "hint_en": "door"
+ },
+ "间": {
+  "hv": "gian",
+  "vi": "",
+  "parts": [
+   [
+    "门",
+    "môn",
+    "cửa"
+   ],
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ]
+  ],
+  "text": "Chữ 间 (gian): cửa 门 trùm lên mặt trời 日.",
+  "hint_en": "The sun 日 shining through a doorway 门"
+ },
+ "外": {
+  "hv": "ngoại",
+  "vi": "",
+  "parts": [
+   [
+    "夕",
+    "tịch",
+    "buổi tối"
+   ],
+   [
+    "卜",
+    "bốc",
+    ""
+   ]
+  ],
+  "text": "Chữ 外 (ngoại): buổi tối 夕 đứng cạnh bốc 卜.",
+  "hint_en": "Night-time 夕 divinations 卜; the supernatural, the foreign"
+ },
+ "只": {
+  "hv": "chỉ",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "八",
+    "bát",
+    "tám"
+   ]
+  ],
+  "text": "Chữ 只 (chỉ): miệng 口 ở trên, tám 八 ở dưới.",
+  "hint_en": "Simple words 八 coming from the mouth 口"
+ },
+ "小": {
+  "hv": "tiểu",
+  "vi": "",
+  "parts": [
+   [
+    "亅",
+    "quyết",
+    ""
+   ],
+   [
+    "八",
+    "bát",
+    "tám"
+   ]
+  ],
+  "text": "Chữ 小 (tiểu): quyết 亅 đan vào tám 八.",
+  "hint_en": "Dividing 八 by a line 亅"
+ },
+ "猫": {
+  "hv": "miêu",
+  "vi": "",
+  "parts": [
+   [
+    "犭",
+    "khuyển",
+    "thú"
+   ],
+   [
+    "苗",
+    "miêu",
+    ""
+   ]
+  ],
+  "text": "Chữ 猫 (miêu): thú 犭 đứng cạnh miêu 苗.",
+  "hint_en": "animal"
+ },
+ "桌": {
+  "hv": "trác",
+  "vi": "",
+  "parts": [
+   [
+    "卓",
+    "trác",
+    ""
+   ],
+   [
+    "木",
+    "mộc",
+    "cây"
+   ]
+  ],
+  "text": "Chữ 桌 (trác): trác 卓 ở trên, cây 木 ở dưới.",
+  "hint_en": ""
+ },
+ "漂": {
+  "hv": "phiêu",
+  "vi": "",
+  "parts": [
+   [
+    "氵",
+    "thủy",
+    "nước"
+   ],
+   [
+    "票",
+    "phiếu",
+    ""
+   ]
+  ],
+  "text": "Chữ 漂 (phiêu): nước 氵 đứng cạnh phiếu 票.",
+  "hint_en": "water"
+ },
+ "亮": {
+  "hv": "lượng",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "冖",
+    "mịch",
+    "khăn trùm"
+   ],
+   [
+    "几",
+    "kỷ",
+    "cái ghế"
+   ]
+  ],
+  "text": "Chữ 亮 (lượng): cái nắp 亠 + miệng 口 + khăn trùm 冖 + cái ghế 几.",
+  "hint_en": "A lit oil lamp"
+ },
+ "校": {
+  "hv": "hiệu",
+  "vi": "",
+  "parts": [
+   [
+    "木",
+    "mộc",
+    "cây"
+   ],
+   [
+    "交",
+    "giao",
+    "giao"
+   ]
+  ],
+  "text": "Chữ 校 (hiệu): cây 木 đứng cạnh giao 交.",
+  "hint_en": "wood"
+ },
+ "书": {
+  "hv": "thư",
+  "vi": "",
+  "parts": [
+   [
+    "丨",
+    "cổn",
+    "nét sổ"
+   ]
+  ],
+  "text": "Chữ 书 (thư): gồm nét sổ 丨.",
+  "hint_en": "A mark made by a pen ⺺"
+ },
+ "前": {
+  "hv": "tiền",
+  "vi": "",
+  "parts": [
+   [
+    "丷",
+    "bát",
+    ""
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "刖",
+    "ngoạt",
+    ""
+   ]
+  ],
+  "text": "Chữ 前 (tiền): bát 丷 + một 一 + ngoạt 刖.",
+  "hint_en": ""
+ },
+ "能": {
+  "hv": "năng",
+  "vi": "",
+  "parts": [
+   [
+    "厶",
+    "khư",
+    ""
+   ],
+   [
+    "⺼",
+    "nguyệt",
+    "trăng; thịt"
+   ],
+   [
+    "匕",
+    "chủy",
+    "cái thìa"
+   ],
+   [
+    "匕",
+    "chủy",
+    "cái thìa"
+   ]
+  ],
+  "text": "Chữ 能 (năng): khư 厶 + trăng; thịt ⺼ + cái thìa 匕 + cái thìa 匕.",
+  "hint_en": "A bear's head 厶, body ⺼, and claws 匕"
+ },
+ "到": {
+  "hv": "đáo",
+  "vi": "",
+  "parts": [
+   [
+    "至",
+    "chí",
+    ""
+   ],
+   [
+    "刂",
+    "đao",
+    "dao"
+   ]
+  ],
+  "text": "Chữ 到 (đáo): chí 至 đứng cạnh dao 刂.",
+  "hint_en": "arrive"
+ },
+ "病": {
+  "hv": "bệnh",
+  "vi": "",
+  "parts": [
+   [
+    "疒",
+    "nạch",
+    "bệnh"
+   ],
+   [
+    "丙",
+    "bính",
+    ""
+   ]
+  ],
+  "text": "Chữ 病 (bệnh): bệnh 疒 che phía trên bính 丙.",
+  "hint_en": "sickness"
+ },
+ "胡": {
+  "hv": "hồ",
+  "vi": "",
+  "parts": [
+   [
+    "古",
+    "cổ",
+    "cổ"
+   ],
+   [
+    "⺼",
+    "nguyệt",
+    "trăng; thịt"
+   ]
+  ],
+  "text": "Chữ 胡 (hồ): cổ 古 đứng cạnh trăng; thịt ⺼.",
+  "hint_en": "meat"
+ },
+ "椅": {
+  "hv": "ỷ",
+  "vi": "",
+  "parts": [
+   [
+    "木",
+    "mộc",
+    "cây"
+   ],
+   [
+    "奇",
+    "kỳ",
+    ""
+   ]
+  ],
+  "text": "Chữ 椅 (ỷ): cây 木 đứng cạnh kỳ 奇.",
+  "hint_en": "wood"
+ },
+ "本": {
+  "hv": "bản",
+  "vi": "",
+  "parts": [
+   [
+    "木",
+    "mộc",
+    "cây"
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ]
+  ],
+  "text": "Chữ 本 (bản): cây 木 đan vào một 一.",
+  "hint_en": "A tree 木 with its roots highlighted"
+ },
+ "第": {
+  "hv": "đệ",
+  "vi": "",
+  "parts": [
+   [
+    "⺮",
+    "trúc",
+    "tre"
+   ],
+   [
+    "弟",
+    "đệ",
+    "em trai"
+   ]
+  ],
+  "text": "Chữ 第 (đệ): tre ⺮ ở trên, em trai 弟 ở dưới.",
+  "hint_en": "Bamboo strips ⺮ arrayed in sequence; 弟 provides the pronunciation"
+ },
+ "习": {
+  "hv": "tập",
+  "vi": "",
+  "parts": [
+   [
+    "冫",
+    "băng",
+    "băng"
+   ]
+  ],
+  "text": "Chữ 习 (tập): gồm băng 冫.",
+  "hint_en": ""
+ },
+ "白": {
+  "hv": "bạch",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ]
+  ],
+  "text": "Chữ 白 (bạch): gồm mặt trời 日.",
+  "hint_en": "A burning candle; the rays of the sun"
+ },
+ "读": {
+  "hv": "độc",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "卖",
+    "mại",
+    ""
+   ]
+  ],
+  "text": "Chữ 读 (độc): lời nói 讠 đứng cạnh mại 卖.",
+  "hint_en": "To show off 卖 one's literacy 讠"
+ },
+ "唱": {
+  "hv": "xướng",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "昌",
+    "xương",
+    ""
+   ]
+  ],
+  "text": "Chữ 唱 (xướng): miệng 口 đứng cạnh xương 昌.",
+  "hint_en": "mouth"
+ },
+ "歌": {
+  "hv": "ca",
+  "vi": "",
+  "parts": [
+   [
+    "哥",
+    "ca",
+    ""
+   ],
+   [
+    "欠",
+    "khiếm",
+    "há miệng"
+   ]
+  ],
+  "text": "Chữ 歌 (ca): ca 哥 đứng cạnh há miệng 欠.",
+  "hint_en": "breath"
+ },
+ "听": {
+  "hv": "thính",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "斤",
+    "cân",
+    "rìu"
+   ]
+  ],
+  "text": "Chữ 听 (thính): miệng 口 đứng cạnh rìu 斤.",
+  "hint_en": "Words 口 reaching an ear 斤"
+ },
+ "视": {
+  "hv": "thị",
+  "vi": "",
+  "parts": [
+   [
+    "礻",
+    "thị",
+    "thần"
+   ],
+   [
+    "见",
+    "kiến",
+    "thấy"
+   ]
+  ],
+  "text": "Chữ 视 (thị): thần 礻 đứng cạnh thấy 见.",
+  "hint_en": "see"
+ },
+ "狗": {
+  "hv": "cẩu",
+  "vi": "",
+  "parts": [
+   [
+    "犭",
+    "khuyển",
+    "thú"
+   ],
+   [
+    "句",
+    "cú",
+    ""
+   ]
+  ],
+  "text": "Chữ 狗 (cẩu): thú 犭 đứng cạnh cú 句.",
+  "hint_en": "dog"
+ },
+ "玩": {
+  "hv": "ngoạn",
+  "vi": "",
+  "parts": [
+   [
+    "王",
+    "vương",
+    "ngọc / vua"
+   ],
+   [
+    "元",
+    "nguyên",
+    "đầu"
+   ]
+  ],
+  "text": "Chữ 玩 (ngoạn): ngọc / vua 王 đứng cạnh đầu 元.",
+  "hint_en": "jade"
+ },
+ "杯": {
+  "hv": "bôi",
+  "vi": "",
+  "parts": [
+   [
+    "木",
+    "mộc",
+    "cây"
+   ],
+   [
+    "不",
+    "bất",
+    ""
+   ]
+  ],
+  "text": "Chữ 杯 (bôi): cây 木 đứng cạnh bất 不.",
+  "hint_en": "tree"
+ },
+ "售": {
+  "hv": "thụ",
+  "vi": "",
+  "parts": [
+   [
+    "隹",
+    "chuy",
+    "chim"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 售 (thụ): chim 隹 ở trên, miệng 口 ở dưới.",
+  "hint_en": "A street vendor talks 口 incessantly, like a bird 隹"
+ },
+ "货": {
+  "hv": "hóa",
+  "vi": "",
+  "parts": [
+   [
+    "化",
+    "hóa",
+    ""
+   ],
+   [
+    "贝",
+    "bối",
+    "tiền (vỏ sò)"
+   ]
+  ],
+  "text": "Chữ 货 (hóa): hóa 化 ở trên, tiền (vỏ sò) 贝 ở dưới.",
+  "hint_en": "money"
+ },
+ "员": {
+  "hv": "viên",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "贝",
+    "bối",
+    "tiền (vỏ sò)"
+   ]
+  ],
+  "text": "Chữ 员 (viên): miệng 口 ở trên, tiền (vỏ sò) 贝 ở dưới.",
+  "hint_en": "money"
+ },
+ "钱": {
+  "hv": "tiền",
+  "vi": "",
+  "parts": [
+   [
+    "钅",
+    "kim",
+    "kim loại"
+   ],
+   [
+    "戋",
+    "tiên",
+    ""
+   ]
+  ],
+  "text": "Chữ 钱 (tiền): kim loại 钅 đứng cạnh tiên 戋.",
+  "hint_en": "money"
+ },
+ "块": {
+  "hv": "khối",
+  "vi": "",
+  "parts": [
+   [
+    "土",
+    "thổ",
+    "đất"
+   ],
+   [
+    "夬",
+    "quyết",
+    ""
+   ]
+  ],
+  "text": "Chữ 块 (khối): đất 土 đứng cạnh quyết 夬.",
+  "hint_en": "earth"
+ },
+ "水": {
+  "hv": "thủy",
+  "vi": "",
+  "parts": [
+   [
+    "亅",
+    "quyết",
+    ""
+   ]
+  ],
+  "text": "Chữ 水 (thủy): gồm quyết 亅.",
+  "hint_en": "A river running between two banks; compare 川"
+ },
+ "果": {
+  "hv": "quả",
+  "vi": "",
+  "parts": [
+   [
+    "田",
+    "điền",
+    "ruộng"
+   ],
+   [
+    "木",
+    "mộc",
+    "cây"
+   ]
+  ],
+  "text": "Chữ 果 (quả): ruộng 田 ở trên, cây 木 ở dưới.",
+  "hint_en": "Fruit 田 growing on a tree 木"
+ },
+ "斤": {
+  "hv": "cân",
+  "vi": "",
+  "parts": [
+   [
+    "厂",
+    "",
+    ""
+   ],
+   [
+    "下",
+    "hạ",
+    "dưới"
+   ]
+  ],
+  "text": "Chữ 斤 (cân): mảnh 厂 che phía trên dưới 下.",
+  "hint_en": ""
+ },
+ "苹": {
+  "hv": "bình",
+  "vi": "",
+  "parts": [
+   [
+    "艹",
+    "thảo",
+    "cỏ"
+   ],
+   [
+    "平",
+    "bình",
+    "bằng"
+   ]
+  ],
+  "text": "Chữ 苹 (bình): cỏ 艹 ở trên, bằng 平 ở dưới.",
+  "hint_en": "plant"
+ },
+ "便": {
+  "hv": "tiện",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "更",
+    "canh",
+    ""
+   ]
+  ],
+  "text": "Chữ 便 (tiện): người 亻 đứng cạnh canh 更.",
+  "hint_en": ""
+ },
+ "宜": {
+  "hv": "nghi",
+  "vi": "",
+  "parts": [
+   [
+    "宀",
+    "miên",
+    "mái nhà"
+   ],
+   [
+    "且",
+    "thả",
+    ""
+   ]
+  ],
+  "text": "Chữ 宜 (nghi): mái nhà 宀 ở trên, thả 且 ở dưới.",
+  "hint_en": "A memorial service 且 held in a house 宀"
+ },
+ "商": {
+  "hv": "thương",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "丷",
+    "bát",
+    ""
+   ],
+   [
+    "冏",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 商 (thương): cái nắp 亠 + bát 丷 + mảnh 冏.",
+  "hint_en": "bright"
+ },
+ "衣": {
+  "hv": "y",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ]
+  ],
+  "text": "Chữ 衣 (y): gồm cái nắp 亠.",
+  "hint_en": "A woman's dress"
+ },
+ "服": {
+  "hv": "phục",
+  "vi": "",
+  "parts": [
+   [
+    "月",
+    "nguyệt",
+    "trăng / thịt"
+   ],
+   [
+    "卩",
+    "",
+    ""
+   ],
+   [
+    "又",
+    "hựu",
+    "tay phải"
+   ]
+  ],
+  "text": "Chữ 服 (phục): trăng / thịt 月 + mảnh 卩 + tay phải 又.",
+  "hint_en": "A person 卩 putting on 又 a coat 月"
+ },
+ "件": {
+  "hv": "kiện",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "牛",
+    "ngưu",
+    "trâu"
+   ]
+  ],
+  "text": "Chữ 件 (kiện): người 亻 đứng cạnh trâu 牛.",
+  "hint_en": "A man 亻 dividing up a cow 牛"
+ },
+ "元": {
+  "hv": "nguyên",
+  "vi": "",
+  "parts": [
+   [
+    "二",
+    "nhị",
+    "hai"
+   ],
+   [
+    "儿",
+    "nhân",
+    "chân người"
+   ]
+  ],
+  "text": "Chữ 元 (nguyên): hai 二 ở trên, chân người 儿 ở dưới.",
+  "hint_en": "A man 儿 with two lines emphasizing their head 二"
+ },
+ "样": {
+  "hv": "dạng",
+  "vi": "",
+  "parts": [
+   [
+    "木",
+    "mộc",
+    "cây"
+   ],
+   [
+    "羊",
+    "dương",
+    "dê"
+   ]
+  ],
+  "text": "Chữ 样 (dạng): cây 木 đứng cạnh dê 羊.",
+  "hint_en": "tree"
+ },
+ "贵": {
+  "hv": "quý",
+  "vi": "",
+  "parts": [
+   [
+    "中",
+    "trung",
+    "giữa"
+   ],
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "贝",
+    "bối",
+    "tiền (vỏ sò)"
+   ]
+  ],
+  "text": "Chữ 贵 (quý): giữa 中 + một 一 + tiền (vỏ sò) 贝.",
+  "hint_en": "money"
+ },
+ "穿": {
+  "hv": "xuyên",
+  "vi": "",
+  "parts": [
+   [
+    "穴",
+    "huyệt",
+    "hang"
+   ],
+   [
+    "牙",
+    "nha",
+    "răng"
+   ]
+  ],
+  "text": "Chữ 穿 (xuyên): hang 穴 ở trên, răng 牙 ở dưới.",
+  "hint_en": "tooth"
+ },
+ "男": {
+  "hv": "nam",
+  "vi": "",
+  "parts": [
+   [
+    "田",
+    "điền",
+    "ruộng"
+   ],
+   [
+    "力",
+    "lực",
+    "sức"
+   ]
+  ],
+  "text": "Chữ 男 (nam): ruộng 田 ở trên, sức 力 ở dưới.",
+  "hint_en": "Someone who can work 力 the farm 田"
+ },
+ "时": {
+  "hv": "thời",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ],
+   [
+    "寸",
+    "thốn",
+    "tấc"
+   ]
+  ],
+  "text": "Chữ 时 (thời): mặt trời 日 đứng cạnh tấc 寸.",
+  "hint_en": "day"
+ },
+ "候": {
+  "hv": "hậu",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "矦",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 候 (hậu): người 亻 đứng cạnh mảnh 矦.",
+  "hint_en": "person"
+ },
+ "知": {
+  "hv": "tri",
+  "vi": "",
+  "parts": [
+   [
+    "矢",
+    "thỉ",
+    "mũi tên"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 知 (tri): mũi tên 矢 đứng cạnh miệng 口.",
+  "hint_en": "mouth"
+ },
+ "道": {
+  "hv": "đạo",
+  "vi": "",
+  "parts": [
+   [
+    "辶",
+    "sước",
+    "bước đi"
+   ],
+   [
+    "首",
+    "thủ",
+    "đầu"
+   ]
+  ],
+  "text": "Chữ 道 (đạo): đầu 首 ngồi trên bước đi 辶.",
+  "hint_en": "walk"
+ },
+ "正": {
+  "hv": "chính",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "止",
+    "chỉ",
+    "dừng"
+   ]
+  ],
+  "text": "Chữ 正 (chính): một 一 ở trên, dừng 止 ở dưới.",
+  "hint_en": "A foot 止 stopping in the right place 一"
+ },
+ "找": {
+  "hv": "trảo",
+  "vi": "",
+  "parts": [
+   [
+    "扌",
+    "thủ",
+    "tay"
+   ],
+   [
+    "戈",
+    "qua",
+    "giáo"
+   ]
+  ],
+  "text": "Chữ 找 (trảo): tay 扌 đứng cạnh giáo 戈.",
+  "hint_en": "To go searching with a spear 戈 in hand 扌"
+ },
+ "开": {
+  "hv": "khai",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "廾",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 开 (khai): một 一 ở trên, mảnh 廾 ở dưới.",
+  "hint_en": "Simplified form of 開; hands 廾 lifting the latch 一 of a door"
+ },
+ "弟": {
+  "hv": "đệ",
+  "vi": "",
+  "parts": [
+   [
+    "丷",
+    "bát",
+    ""
+   ],
+   [
+    "弓",
+    "cung",
+    "cây cung"
+   ]
+  ],
+  "text": "Chữ 弟 (đệ): bát 丷 ở trên, cây cung 弓 ở dưới.",
+  "hint_en": ""
+ },
+ "床": {
+  "hv": "sàng",
+  "vi": "",
+  "parts": [
+   [
+    "广",
+    "nghiễm",
+    "mái rộng"
+   ],
+   [
+    "木",
+    "mộc",
+    "cây"
+   ]
+  ],
+  "text": "Chữ 床 (sàng): mái rộng 广 che phía trên cây 木.",
+  "hint_en": "A house 广 made out of wood 木; 广 also provides the pronunciation"
+ },
+ "睡": {
+  "hv": "thụy",
+  "vi": "",
+  "parts": [
+   [
+    "目",
+    "mục",
+    "mắt"
+   ],
+   [
+    "垂",
+    "thùy",
+    ""
+   ]
+  ],
+  "text": "Chữ 睡 (thụy): mắt 目 đứng cạnh thùy 垂.",
+  "hint_en": "eye"
+ },
+ "觉": {
+  "hv": "giác",
+  "vi": "",
+  "parts": [
+   [
+    "⺍",
+    "tiểu",
+    ""
+   ],
+   [
+    "冖",
+    "mịch",
+    "khăn trùm"
+   ],
+   [
+    "见",
+    "kiến",
+    "thấy"
+   ]
+  ],
+  "text": "Chữ 觉 (giác): tiểu ⺍, khăn trùm 冖, thấy 见 chồng lên nhau.",
+  "hint_en": "see"
+ },
+ "昨": {
+  "hv": "tạc",
+  "vi": "",
+  "parts": [
+   [
+    "日",
+    "nhật",
+    "mặt trời"
+   ],
+   [
+    "乍",
+    "sạ",
+    ""
+   ]
+  ],
+  "text": "Chữ 昨 (tạc): mặt trời 日 đứng cạnh sạ 乍.",
+  "hint_en": "day"
+ },
+ "说": {
+  "hv": "thuyết",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "兑",
+    "đoài",
+    ""
+   ]
+  ],
+  "text": "Chữ 说 (thuyết): lời nói 讠 đứng cạnh đoài 兑.",
+  "hint_en": "speech"
+ },
+ "要": {
+  "hv": "yếu",
+  "vi": "",
+  "parts": [
+   [
+    "覀",
+    "á",
+    ""
+   ],
+   [
+    "女",
+    "nữ",
+    "phụ nữ"
+   ]
+  ],
+  "text": "Chữ 要 (yếu): á 覀 ở trên, phụ nữ 女 ở dưới.",
+  "hint_en": "A woman 女 with hands on her waist 覀"
+ },
+ "雨": {
+  "hv": "vũ",
+  "vi": "",
+  "parts": [
+   [
+    "帀",
+    "táp",
+    ""
+   ]
+  ],
+  "text": "Chữ 雨 (vũ): gồm táp 帀.",
+  "hint_en": "Rain drops falling from a cloud 帀"
+ },
+ "了": {
+  "hv": "liễu",
+  "vi": "",
+  "parts": [
+   [
+    "乛",
+    "",
+    ""
+   ],
+   [
+    "亅",
+    "quyết",
+    ""
+   ]
+  ],
+  "text": "Chữ 了 (liễu): mảnh 乛 ở trên, quyết 亅 ở dưới.",
+  "hint_en": "A child swaddled in blanklets; compare 子"
+ },
+ "得": {
+  "hv": "đắc",
+  "vi": "",
+  "parts": [
+   [
+    "彳",
+    "xích",
+    "bước"
+   ],
+   [
+    "旦",
+    "đán",
+    ""
+   ],
+   [
+    "寸",
+    "thốn",
+    "tấc"
+   ]
+  ],
+  "text": "Chữ 得 (đắc): bước 彳 + đán 旦 + tấc 寸.",
+  "hint_en": "A hand 寸 grabbing a shell 旦"
+ },
+ "冷": {
+  "hv": "lãnh",
+  "vi": "",
+  "parts": [
+   [
+    "冫",
+    "băng",
+    "băng"
+   ],
+   [
+    "令",
+    "lệnh",
+    ""
+   ]
+  ],
+  "text": "Chữ 冷 (lãnh): băng 冫 đứng cạnh lệnh 令.",
+  "hint_en": "ice"
+ },
+ "雪": {
+  "hv": "tuyết",
+  "vi": "",
+  "parts": [
+   [
+    "雨",
+    "vũ",
+    "mưa"
+   ],
+   [
+    "彐",
+    "kệ",
+    ""
+   ]
+  ],
+  "text": "Chữ 雪 (tuyết): mưa 雨 ở trên, kệ 彐 ở dưới.",
+  "hint_en": "rain"
+ },
+ "来": {
+  "hv": "lai",
+  "vi": "",
+  "parts": [
+   [
+    "未",
+    "vị",
+    ""
+   ],
+   [
+    "丷",
+    "bát",
+    ""
+   ]
+  ],
+  "text": "Chữ 来 (lai): vị 未 đan vào bát 丷.",
+  "hint_en": "A wheat plant that has not yet borne fruit; compare 來"
+ },
+ "公": {
+  "hv": "công",
+  "vi": "",
+  "parts": [
+   [
+    "八",
+    "bát",
+    "tám"
+   ],
+   [
+    "厶",
+    "khư",
+    ""
+   ]
+  ],
+  "text": "Chữ 公 (công): tám 八 ở trên, khư 厶 ở dưới.",
+  "hint_en": "To divide 八 what is private 厶"
+ },
+ "司": {
+  "hv": "ty",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 司 (ty): gồm miệng 口.",
+  "hint_en": "A person speaking orders 口 and raising their arm"
+ },
+ "药": {
+  "hv": "dược",
+  "vi": "",
+  "parts": [
+   [
+    "艹",
+    "thảo",
+    "cỏ"
+   ],
+   [
+    "约",
+    "ước",
+    ""
+   ]
+  ],
+  "text": "Chữ 药 (dược): cỏ 艹 ở trên, ước 约 ở dưới.",
+  "hint_en": "plant"
+ },
+ "回": {
+  "hv": "hồi",
+  "vi": "",
+  "parts": [
+   [
+    "囗",
+    "vi",
+    "vây quanh"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 回 (hồi): vây quanh 囗 bao quanh miệng 口.",
+  "hint_en": "Originally, a spiral signifying return"
+ },
+ "喝": {
+  "hv": "hát",
+  "vi": "",
+  "parts": [
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "曷",
+    "hạt",
+    ""
+   ]
+  ],
+  "text": "Chữ 喝 (hát): miệng 口 đứng cạnh hạt 曷.",
+  "hint_en": "mouth"
+ },
+ "热": {
+  "hv": "nhiệt",
+  "vi": "",
+  "parts": [
+   [
+    "执",
+    "chấp",
+    ""
+   ],
+   [
+    "灬",
+    "hỏa",
+    "lửa"
+   ]
+  ],
+  "text": "Chữ 热 (nhiệt): chấp 执 ở trên, lửa 灬 ở dưới.",
+  "hint_en": "fire"
+ },
+ "可": {
+  "hv": "khả",
+  "vi": "",
+  "parts": [
+   [
+    "丁",
+    "đinh",
+    ""
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ]
+  ],
+  "text": "Chữ 可 (khả): đinh 丁 đan vào miệng 口.",
+  "hint_en": "vigorous"
+ },
+ "以": {
+  "hv": "dĩ",
+  "vi": "",
+  "parts": [
+   [
+    "人",
+    "nhân",
+    "người"
+   ]
+  ],
+  "text": "Chữ 以 (dĩ): gồm người 人.",
+  "hint_en": ""
+ },
+ "题": {
+  "hv": "đề",
+  "vi": "",
+  "parts": [
+   [
+    "是",
+    "thị",
+    "là"
+   ],
+   [
+    "页",
+    "hiệt",
+    "đầu"
+   ]
+  ],
+  "text": "Chữ 题 (đề): đầu 页 ngồi trên là 是.",
+  "hint_en": "head"
+ },
+ "卖": {
+  "hv": "mại",
+  "vi": "",
+  "parts": [
+   [
+    "十",
+    "thập",
+    "mười"
+   ],
+   [
+    "买",
+    "mãi",
+    ""
+   ]
+  ],
+  "text": "Chữ 卖 (mại): mười 十 ở trên, mãi 买 ở dưới.",
+  "hint_en": "buy"
+ },
+ "打": {
+  "hv": "đả",
+  "vi": "",
+  "parts": [
+   [
+    "扌",
+    "thủ",
+    "tay"
+   ],
+   [
+    "丁",
+    "đinh",
+    ""
+   ]
+  ],
+  "text": "Chữ 打 (đả): tay 扌 đứng cạnh đinh 丁.",
+  "hint_en": "hand"
+ },
+ "务": {
+  "hv": "vụ",
+  "vi": "",
+  "parts": [
+   [
+    "夂",
+    "truy",
+    ""
+   ],
+   [
+    "力",
+    "lực",
+    "sức"
+   ]
+  ],
+  "text": "Chữ 务 (vụ): truy 夂 ở trên, sức 力 ở dưới.",
+  "hint_en": ""
+ },
+ "士": {
+  "hv": "sĩ",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 士 (sĩ): tự là một hình — nhớ cả khối.",
+  "hint_en": ""
+ },
+ "给": {
+  "hv": "cấp",
+  "vi": "",
+  "parts": [
+   [
+    "纟",
+    "mịch",
+    "sợi tơ"
+   ],
+   [
+    "合",
+    "hợp",
+    "hợp"
+   ]
+  ],
+  "text": "Chữ 给 (cấp): sợi tơ 纟 đứng cạnh hợp 合.",
+  "hint_en": "thread"
+ },
+ "鸡": {
+  "hv": "kê",
+  "vi": "",
+  "parts": [
+   [
+    "又",
+    "hựu",
+    "tay phải"
+   ],
+   [
+    "鸟",
+    "điểu",
+    "chim"
+   ]
+  ],
+  "text": "Chữ 鸡 (kê): tay phải 又 đứng cạnh chim 鸟.",
+  "hint_en": "Another 又 kind of bird 鸟"
+ },
+ "蛋": {
+  "hv": "đản",
+  "vi": "",
+  "parts": [
+   [
+    "疋",
+    "sơ",
+    ""
+   ],
+   [
+    "虫",
+    "trùng",
+    "sâu bọ"
+   ]
+  ],
+  "text": "Chữ 蛋 (đản): sơ 疋 ở trên, sâu bọ 虫 ở dưới.",
+  "hint_en": "insect"
+ },
+ "先": {
+  "hv": "tiên",
+  "vi": "",
+  "parts": [
+   [
+    "土",
+    "thổ",
+    "đất"
+   ],
+   [
+    "儿",
+    "nhân",
+    "chân người"
+   ]
+  ],
+  "text": "Chữ 先 (tiên): đất 土 ở trên, chân người 儿 ở dưới.",
+  "hint_en": "Someone stepping 止 in front of another person 儿"
+ },
+ "茶": {
+  "hv": "trà",
+  "vi": "",
+  "parts": [
+   [
+    "艹",
+    "thảo",
+    "cỏ"
+   ],
+   [
+    "人",
+    "nhân",
+    "người"
+   ],
+   [
+    "木",
+    "mộc",
+    "cây"
+   ]
+  ],
+  "text": "Chữ 茶 (trà): cỏ 艹 + người 人 + cây 木.",
+  "hint_en": "plant"
+ },
+ "火": {
+  "hv": "hỏa",
+  "vi": "",
+  "parts": [
+   [
+    "丷",
+    "bát",
+    ""
+   ],
+   [
+    "人",
+    "nhân",
+    "người"
+   ]
+  ],
+  "text": "Chữ 火 (hỏa): bát 丷 đan vào người 人.",
+  "hint_en": "Flames"
+ },
+ "写": {
+  "hv": "tả",
+  "vi": "",
+  "parts": [
+   [
+    "冖",
+    "mịch",
+    "khăn trùm"
+   ],
+   [
+    "与",
+    "dữ",
+    ""
+   ]
+  ],
+  "text": "Chữ 写 (tả): khăn trùm 冖 ở trên, dữ 与 ở dưới.",
+  "hint_en": ""
+ },
+ "都": {
+  "hv": "đô",
+  "vi": "",
+  "parts": [
+   [
+    "者",
+    "giả",
+    ""
+   ],
+   [
+    "阝",
+    "phụ",
+    "gò / ấp"
+   ]
+  ],
+  "text": "Chữ 都 (đô): giả 者 đứng cạnh gò / ấp 阝.",
+  "hint_en": "city"
+ },
+ "汉": {
+  "hv": "hán",
+  "vi": "",
+  "parts": [
+   [
+    "氵",
+    "thủy",
+    "nước"
+   ],
+   [
+    "又",
+    "hựu",
+    "tay phải"
+   ]
+  ],
+  "text": "Chữ 汉 (hán): nước 氵 đứng cạnh tay phải 又.",
+  "hint_en": "Simplified form of 漢; the Han 𦰩 river 氵"
+ },
+ "语": {
+  "hv": "ngữ",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "吾",
+    "ngô",
+    ""
+   ]
+  ],
+  "text": "Chữ 语 (ngữ): lời nói 讠 đứng cạnh ngô 吾.",
+  "hint_en": "words"
+ },
+ "爱": {
+  "hv": "ái",
+  "vi": "",
+  "parts": [
+   [
+    "爫",
+    "trảo",
+    ""
+   ],
+   [
+    "冖",
+    "mịch",
+    "khăn trùm"
+   ],
+   [
+    "友",
+    "hữu",
+    "bạn"
+   ]
+  ],
+  "text": "Chữ 爱 (ái): trảo 爫 + khăn trùm 冖 + bạn 友.",
+  "hint_en": "To bring a friend 友 into one's house 冖"
+ },
+ "北": {
+  "hv": "bắc",
+  "vi": "",
+  "parts": [
+   [
+    "匕",
+    "chủy",
+    "cái thìa"
+   ]
+  ],
+  "text": "Chữ 北 (bắc): gồm cái thìa 匕.",
+  "hint_en": "Two people 匕 sitting back-to-back; phonetic loan for \"north\""
+ },
+ "京": {
+  "hv": "kinh",
+  "vi": "",
+  "parts": [
+   [
+    "亠",
+    "đầu",
+    "cái nắp"
+   ],
+   [
+    "口",
+    "khẩu",
+    "miệng"
+   ],
+   [
+    "小",
+    "tiểu",
+    "nhỏ"
+   ]
+  ],
+  "text": "Chữ 京 (kinh): cái nắp 亠, miệng 口, nhỏ 小 chồng lên nhau.",
+  "hint_en": "A capital building on a hill"
+ },
+ "飞": {
+  "hv": "phi",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 飞 (phi): tự là một hình — nhớ cả khối.",
+  "hint_en": "A bird flapping its wings"
+ },
+ "场": {
+  "hv": "trường",
+  "vi": "",
+  "parts": [
+   [
+    "土",
+    "thổ",
+    "đất"
+   ],
+   [
+    "勿",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 场 (trường): đất 土 đứng cạnh mảnh 勿.",
+  "hint_en": "earth"
+ },
+ "接": {
+  "hv": "tiếp",
+  "vi": "",
+  "parts": [
+   [
+    "扌",
+    "thủ",
+    "tay"
+   ],
+   [
+    "妾",
+    "thiếp",
+    ""
+   ]
+  ],
+  "text": "Chữ 接 (tiếp): tay 扌 đứng cạnh thiếp 妾.",
+  "hint_en": "hand"
+ },
+ "住": {
+  "hv": "trú",
+  "vi": "",
+  "parts": [
+   [
+    "亻",
+    "nhân",
+    "người"
+   ],
+   [
+    "主",
+    "chủ",
+    "chủ"
+   ]
+  ],
+  "text": "Chữ 住 (trú): người 亻 đứng cạnh chủ 主.",
+  "hint_en": "A person 亻 who hosts 主; 主 also provides the pronunciation"
+ },
+ "次": {
+  "hv": "thứ",
+  "vi": "",
+  "parts": [
+   [
+    "冫",
+    "băng",
+    "băng"
+   ],
+   [
+    "欠",
+    "khiếm",
+    "há miệng"
+   ]
+  ],
+  "text": "Chữ 次 (thứ): băng 冫 đứng cạnh há miệng 欠.",
+  "hint_en": "A person 欠 yawning multiple times 冫"
+ },
+ "干": {
+  "hv": "can",
+  "vi": "",
+  "parts": [
+   [
+    "一",
+    "nhất",
+    "một"
+   ],
+   [
+    "十",
+    "thập",
+    "mười"
+   ]
+  ],
+  "text": "Chữ 干 (can): một 一 ở trên, mười 十 ở dưới.",
+  "hint_en": "A club or axe"
+ },
+ "楼": {
+  "hv": "lâu",
+  "vi": "",
+  "parts": [
+   [
+    "木",
+    "mộc",
+    "cây"
+   ],
+   [
+    "娄",
+    "",
+    ""
+   ]
+  ],
+  "text": "Chữ 楼 (lâu): cây 木 đứng cạnh mảnh 娄.",
+  "hint_en": "wood"
+ },
+ "教": {
+  "hv": "giáo",
+  "vi": "",
+  "parts": [
+   [
+    "孝",
+    "hiếu",
+    ""
+   ],
+   [
+    "攵",
+    "phộc",
+    "đánh"
+   ]
+  ],
+  "text": "Chữ 教 (giáo): hiếu 孝 đứng cạnh đánh 攵.",
+  "hint_en": "script"
+ },
+ "汽": {
+  "hv": "khí",
+  "vi": "",
+  "parts": [
+   [
+    "氵",
+    "thủy",
+    "nước"
+   ],
+   [
+    "气",
+    "khí",
+    "hơi"
+   ]
+  ],
+  "text": "Chữ 汽 (khí): nước 氵 đứng cạnh hơi 气.",
+  "hint_en": "Liquid 氵 gas 气; 气 also provides the pronunciation"
+ },
+ "票": {
+  "hv": "phiếu",
+  "vi": "",
+  "parts": [
+   [
+    "覀",
+    "á",
+    ""
+   ],
+   [
+    "示",
+    "thị",
+    "bày ra"
+   ]
+  ],
+  "text": "Chữ 票 (phiếu): á 覀 ở trên, bày ra 示 ở dưới.",
+  "hint_en": "Flames 覀 over an altar 示, referring to a Chinese tradition of burning fake money as an offering"
+ },
+ "身": {
+  "hv": "thân",
+  "vi": "",
+  "parts": [],
+  "text": "Chữ 身 (thân): tự là một hình — nhớ cả khối.",
+  "hint_en": "A pregnant woman"
+ },
+ "笑": {
+  "hv": "tiếu",
+  "vi": "",
+  "parts": [
+   [
+    "⺮",
+    "trúc",
+    "tre"
+   ],
+   [
+    "夭",
+    "yêu",
+    ""
+   ]
+  ],
+  "text": "Chữ 笑 (tiếu): tre ⺮ ở trên, yêu 夭 ở dưới.",
+  "hint_en": "A person 夭 with a big grin ⺮"
+ },
+ "球": {
+  "hv": "cầu",
+  "vi": "",
+  "parts": [
+   [
+    "王",
+    "vương",
+    "ngọc / vua"
+   ],
+   [
+    "求",
+    "cầu",
+    "cầu xin"
+   ]
+  ],
+  "text": "Chữ 球 (cầu): ngọc / vua 王 đứng cạnh cầu xin 求.",
+  "hint_en": "jade"
+ },
+ "地": {
+  "hv": "địa",
+  "vi": "",
+  "parts": [
+   [
+    "土",
+    "thổ",
+    "đất"
+   ],
+   [
+    "也",
+    "dã",
+    "cũng"
+   ]
+  ],
+  "text": "Chữ 地 (địa): đất 土 đứng cạnh cũng 也.",
+  "hint_en": "earth"
+ },
+ "南": {
+  "hv": "nam",
+  "vi": "",
+  "parts": [
+   [
+    "十",
+    "thập",
+    "mười"
+   ],
+   [
+    "冂",
+    "quynh",
+    "vùng biên"
+   ]
+  ],
+  "text": "Chữ 南 (nam): mười 十 ở trên, vùng biên 冂 ở dưới.",
+  "hint_en": "A musical bell"
+ },
+ "进": {
+  "hv": "tiến",
+  "vi": "",
+  "parts": [
+   [
+    "辶",
+    "sước",
+    "bước đi"
+   ],
+   [
+    "井",
+    "tỉnh",
+    "giếng"
+   ]
+  ],
+  "text": "Chữ 进 (tiến): giếng 井 ngồi trên bước đi 辶.",
+  "hint_en": "walk"
+ },
+ "记": {
+  "hv": "ký",
+  "vi": "",
+  "parts": [
+   [
+    "讠",
+    "ngôn",
+    "lời nói"
+   ],
+   [
+    "己",
+    "kỷ",
+    "bản thân"
+   ]
+  ],
+  "text": "Chữ 记 (ký): lời nói 讠 đứng cạnh bản thân 己.",
+  "hint_en": "A private 己 note 讠; 己 also provides the pronunciation"
+ },
+ "动": {
+  "hv": "động",
+  "vi": "",
+  "parts": [
+   [
+    "云",
+    "vân",
+    "mây"
+   ],
+   [
+    "力",
+    "lực",
+    "sức"
+   ]
+  ],
+  "text": "Chữ 动 (động): mây 云 đứng cạnh sức 力.",
+  "hint_en": "strength"
+ },
+ "网": {
+  "hv": "võng",
+  "vi": "",
+  "parts": [
+   [
+    "冂",
+    "quynh",
+    "vùng biên"
+   ],
+   [
+    "乂",
+    "nghệ",
+    ""
+   ],
+   [
+    "乂",
+    "nghệ",
+    ""
+   ]
+  ],
+  "text": "Chữ 网 (võng): vùng biên 冂 + nghệ 乂 + nghệ 乂.",
+  "hint_en": "A net for catching fish"
+ }
+}
