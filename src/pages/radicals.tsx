@@ -2,6 +2,7 @@
 import { useMemo, useState } from "preact/hooks";
 import { RADICALS, type Radical } from "../data/radicals";
 import { HANZI_INFO } from "../data/hanziInfo";
+import { face, makeQuiz, type RadQ as Q } from "../v2/radQuiz";
 import { getState } from "../store";
 import { dueCards } from "../srs";
 import { radQuizLog, radReview, starList, toggleStar } from "../v2/state2";
@@ -10,8 +11,6 @@ import { mnemonicFor } from "../v2/mnemo";
 import { Button, Card, cls, go } from "../ui";
 
 const BY_K = Object.fromEntries(RADICALS.map((r) => [r.k, r]));
-const shuffle = <T,>(a: T[]) => { const x = [...a]; for (let i = x.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x[i], x[j]] = [x[j], x[i]]; } return x; };
-const face = (r: Radical) => [r.f, ...r.v].join(" ");
 const learned = () => RADICALS.filter((r) => (getState().v2.rad?.[r.k]?.reps || 0) >= 1).length;
 
 export function RadicalsPage(props: { tab?: string }) {
@@ -90,18 +89,6 @@ function RadCards() {
   );
 }
 
-type Q = { kind: "meaning" | "which" | "find"; r: Radical; prompt: string; show: string; opts: string[]; ans: string };
-function makeQuiz(n = 10): Q[] {
-  const out: Q[] = [];
-  for (const r of shuffle(RADICALS).slice(0, n)) {
-    const others = shuffle(RADICALS.filter((x) => x.k !== r.k)).slice(0, 3);
-    const kind = (["meaning", "which", "find"] as const)[out.length % 3];
-    if (kind === "meaning") out.push({ kind, r, prompt: "Bộ này nghĩa là gì?", show: face(r), opts: shuffle([r, ...others].map((x) => x.vi)), ans: r.vi });
-    else if (kind === "which") { const c = shuffle(r.ex)[0]; out.push({ kind, r, prompt: `Chữ ${c} thuộc bộ nào?`, show: c, opts: shuffle([r, ...others].map((x) => x.f)), ans: r.f }); }
-    else { const c = shuffle(r.ex)[0]; out.push({ kind, r, prompt: `Chữ nào có bộ ${r.f} (${r.hv})?`, show: r.f, opts: shuffle([c, ...others.map((x) => shuffle(x.ex)[0])]), ans: c }); }
-  }
-  return out;
-}
 function RadQuiz() {
   const [qs, setQs] = useState(() => makeQuiz());
   const [i, setI] = useState(0);
@@ -122,8 +109,9 @@ function RadQuiz() {
   return (
     <Card class="rad-quiz" data-testid="rad-quiz">
       <p class="muted small">Câu {i + 1}/{qs.length}</p>
-      <p class="exam-prompt" data-testid="rad-q">{q.prompt}</p>
+      <p class="exam-prompt" data-testid="rad-q" data-kind={q.kind}>{q.prompt}</p>
       <div class="rq-show hanzi">{q.show}</div>
+      {q.hint && <p class="muted small rq-hint" data-testid="rad-hint">{q.hint}</p>}
       <div class="opts cols-2">{q.opts.map((o) => (
         <button key={o} class={cls("opt", q.kind !== "meaning" && "opt-hz", pick && o === q.ans && "ok", pick === o && o !== q.ans && "bad")} data-testid="rad-opt" data-ok={o === q.ans ? "1" : "0"} disabled={!!pick} onClick={() => answer(o)}>{o}</button>
       ))}</div>

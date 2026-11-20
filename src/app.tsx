@@ -13,6 +13,7 @@ import { startAutoSync } from "./sync/drive";
 import { AudioDock } from "./ui";
 import * as Q from "./v2/queue";
 import * as V2 from "./v2/state2";
+import { makeQuiz as makeRadQuiz } from "./v2/radQuiz";
 
 export function App() {
   const [ok, setOk] = useState(false);
@@ -37,6 +38,30 @@ export function App() {
     return () => clearInterval(t);
   }, [ok]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const pin = () => {
+      const vv = window.visualViewport;
+      const land = window.matchMedia("(min-width: 1024px) and (orientation: landscape)").matches;
+      if (!vv || land) { root.style.setProperty("--vv-bottom", "0px"); return; }
+      const visualBottom = vv.offsetTop + vv.height;
+      const layoutBottom = Math.max(window.innerHeight, document.documentElement.clientHeight);
+      const gap = Math.max(0, Math.round(layoutBottom - visualBottom));
+      root.style.setProperty("--vv-bottom", gap + "px");
+    };
+    pin();
+    window.visualViewport?.addEventListener("resize", pin);
+    window.visualViewport?.addEventListener("scroll", pin);
+    window.addEventListener("resize", pin);
+    window.addEventListener("orientationchange", pin);
+    return () => {
+      window.visualViewport?.removeEventListener("resize", pin);
+      window.visualViewport?.removeEventListener("scroll", pin);
+      window.removeEventListener("resize", pin);
+      window.removeEventListener("orientationchange", pin);
+    };
+  }, []);
+
   if (!ok) return <div class="app"><p class="muted">Đang mở Miaozi…</p></div>;
   const s = getState();
   // v2.0: vào thẳng trang Hôm nay (Tuần 0 pinyin vẫn mở ở Thêm → Tuần 0).
@@ -45,6 +70,7 @@ export function App() {
   const route = parse(path);
 
   return (
+    <>
     <div class="app">
       <header class="top">
         <div class="brand" onClick={() => go("/")} style={{ cursor: "pointer" }}>
@@ -62,6 +88,7 @@ export function App() {
         {showOnboard ? <OnboardingGate /> : route.view}
       </main>
       <AudioDock />
+    </div>
       <nav class="nav" data-testid="nav">
         <div class="rail-brand" onClick={() => go("/")}><MiaoTopFace size={48} /><span>Miaozi</span></div>
         <a class={route.tab === "today" ? "on" : ""} href="#/" data-nav="today"><span class="ico">☀</span>Hôm nay</a>
@@ -70,7 +97,7 @@ export function App() {
         <a class={route.tab === "practice" ? "on" : ""} href="#/practice" data-nav="practice"><span class="ico">练</span>Luyện thêm</a>
         <a class={route.tab === "more" ? "on" : ""} href="#/settings" data-nav="settings"><span class="ico">⚙</span>Cài đặt</a>
       </nav>
-    </div>
+    </>
   );
 }
 
@@ -182,6 +209,7 @@ function installDebug() {
     getState,
     debugSeed,
     miao: { answer: miaoAnswer, event: miaoEvent },
+    makeRadQuiz,
     padDate,
     atHm,
     completeWeek0: async (score = 1) => {

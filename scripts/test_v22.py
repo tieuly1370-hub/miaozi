@@ -143,6 +143,47 @@ def bubble_box(p): b = p.locator("[data-testid=miao-bubble]"); return b.bounding
 def bubble_at_top(p, limit=76):
     bb = bubble_box(p); return bb is not None and bb["y"] >= 0 and bb["y"] + bb["height"] <= limit
 
+
+def fix2_shots(br):
+    """Ảnh sửa v2.2.1: quiz bộ thủ (chữ ≠ bộ, có gợi ý) + nav dính đáy trên điện thoại 412x915."""
+    vp = {"width": 412, "height": 915}
+    ctx = br.new_context(viewport=vp, locale="vi-VN", device_scale_factor=2)
+    p = ctx.new_page(); T = "v2.2.1 phone412: "
+    p.on("pageerror", lambda e: errs.append(f"fix2 pageerror {e}"))
+    at(p, 2026, 11, 19); fresh(p)
+    go(p, "/radicals/quiz"); p.wait_for_selector("[data-testid=rad-q]")
+    got = {"which": False, "meaning": False}
+    for _ in range(16):
+        if p.locator("[data-testid=rad-quiz-done]").count():
+            p.click("text=Làm lượt mới"); p.wait_for_selector("[data-testid=rad-q]"); continue
+        prompt = p.inner_text("[data-testid=rad-q]")
+        kind = p.locator("[data-testid=rad-q]").get_attribute("data-kind") or ("which" if "thuộc bộ nào" in prompt else "meaning" if "nghĩa là gì" in prompt else "find")
+        if kind == "which" and not got["which"]:
+            prompt = p.inner_text("[data-testid=rad-q]")
+            show = p.inner_text("[data-testid=rad-quiz] .rq-show").strip()
+            opts = [o.inner_text().strip() for o in p.locator("[data-testid=rad-opt]").all()]
+            check(T + "Câu thuộc bộ nào: chữ hỏi khác bộ (không phải 女→女)", show not in opts and "thuộc bộ nào" in prompt, f"{prompt} show={show} opts={opts}")
+            check(T + "Câu thuộc bộ nào có pinyin/nghĩa", p.locator("[data-testid=rad-hint]").count() == 1, p.inner_text("body")[:80])
+            shot(p, "fix2-phone-radq-component"); got["which"] = True
+        elif kind == "meaning" and not got["meaning"]:
+            hint = p.inner_text("[data-testid=rad-hint]") if p.locator("[data-testid=rad-hint]").count() else ""
+            check(T + "Câu nghĩa có ví dụ chữ HSK1", hint.startswith("vd.") and any("\u4e00" <= c <= "\u9fff" for c in hint), hint)
+            shot(p, "fix2-phone-radq-meaning"); got["meaning"] = True
+        if got["which"] and got["meaning"]: break
+        p.locator("[data-testid=rad-opt]").first.click(); p.wait_for_timeout(150)
+        if p.locator("#rad-next").count(): p.click("#rad-next"); p.wait_for_timeout(150)
+    check(T + "Chụp được cả hai dạng câu quiz", got["which"] and got["meaning"], str(got))
+    go(p, "/radicals"); p.wait_for_selector("[data-testid=rad-list]")
+    p.evaluate("window.scrollTo(0, document.body.scrollHeight)"); p.wait_for_timeout(300)
+    nav = p.locator("[data-testid=nav]").bounding_box()
+    labels_bb = [a.bounding_box() for a in p.locator("[data-testid=nav] a").all()]
+    main_ico = p.locator("[data-testid=nav] a.nav-main .ico").bounding_box()
+    check(T + "Nav dính đáy sau khi cuộn, nhãn và nút 课 hiện đủ",
+          abs(nav["y"] + nav["height"] - vp["height"]) <= 1 and all(b["y"] + b["height"] <= vp["height"] + 0.5 for b in labels_bb) and main_ico["y"] + main_ico["height"] <= vp["height"] + 0.5,
+          f"nav={nav} labels={[round(b['y']+b['height'],1) for b in labels_bb]}")
+    shot(p, "fix2-phone-nav")
+    ctx.close()
+
 def v22_suite(br):
     for dev, vp in (("land", {"width": 1280, "height": 853}), ("port", {"width": 853, "height": 1280}), ("phone", {"width": 390, "height": 844})):
         ctx = br.new_context(viewport=vp, locale="vi-VN", device_scale_factor=2 if dev == "phone" else 1.5, permissions=["clipboard-read", "clipboard-write"])
@@ -165,6 +206,11 @@ def v22_suite(br):
             check(T + "Hôm nay 2 cột", len(c) == 2 and c[1]["x"] > c[0]["x"] + c[0]["width"] - 2 and abs(c[0]["y"] - c[1]["y"]) < 4)
         else:
             check(T + "Thanh điều hướng dưới", nb["y"] + nb["height"] >= vp["height"] - 1 and nb["width"] >= vp["width"] - 1, str(nb))
+            labels_bb = [a.bounding_box() for a in p.locator("[data-testid=nav] a").all()]
+            main_ico = p.locator("[data-testid=nav] a.nav-main .ico").bounding_box()
+            check(T + "Nhãn nav và nút 课 nằm trọn trong khung nhìn", 
+                  all(b["y"] >= 0 and b["y"] + b["height"] <= vp["height"] + 0.5 for b in labels_bb) and main_ico["y"] >= 0 and main_ico["y"] + main_ico["height"] <= vp["height"] + 0.5,
+                  str([(round(b["y"],1), round(b["y"]+b["height"],1)) for b in labels_bb] + [main_ico]))
         g = p.locator("[data-testid=greet]")
         gid, gtxt = g.get_attribute("data-id"), g.inner_text()
         check(T + "Lời chào Miao lấy từ dữ liệu (loi_chao) + không còn câu máy móc", (gid or "").startswith("loi_chao_") and "đang chờ." not in gtxt and "tick suông" not in gtxt, f"{g.get_attribute('data-ctx')}: {gtxt}")
@@ -249,6 +295,13 @@ def v22_suite(br):
         p.click("[data-testid=rad-flip]"); p.click("#rad-good"); p.wait_for_timeout(200)
         check(T + "Thẻ bộ thủ SRS ghi nhận", st(p, "Object.keys(s.v2.rad || {}).length") >= 1)
         go(p, "/radicals/quiz"); p.wait_for_selector("[data-testid=rad-q]")
+        kind0 = p.locator("[data-testid=rad-q]").get_attribute("data-kind") or ""
+        if kind0 == "which":
+            show0 = p.inner_text("[data-testid=rad-quiz] .rq-show").strip()
+            opts0 = [o.inner_text().strip() for o in p.locator("[data-testid=rad-opt]").all()]
+            check(T + "Câu «thuộc bộ nào» không hỏi chữ trùng bộ", show0 not in opts0, f"{p.inner_text('[data-testid=rad-q]')} {opts0}")
+        if kind0 in ("which", "meaning"):
+            check(T + "Câu quiz có dòng gợi ý", p.locator("[data-testid=rad-hint]").count() == 1)
         p.locator("[data-testid=rad-opt][data-ok='0']").first.click(); p.wait_for_timeout(300)
         bub = p.locator("[data-testid=miao-bubble]")
         check(T + "Sai 1 lần → Miao nói (nhóm sai lần đầu)", bub.count() == 1 and bub.get_attribute("data-group") == "sai_lan_dau", bub.get_attribute("data-group") if bub.count() else "-")
@@ -469,10 +522,11 @@ window.__audioEls = []; const _A = window.Audio; window.Audio = function(u) { co
         # ---------- Đồng bộ Drive (giao diện) + phiên bản ----------
         go(p, "/settings"); p.wait_for_selector("[data-testid=sync-card]")
         check(T + "Đồng bộ Drive đã cấu hình (có nút Đăng nhập Google)", p.locator("#sync-login").count() == 1 and "Chưa cấu hình" not in p.inner_text("[data-testid=sync-card]"))
-        check(T + "Cài đặt hiện Miaozi 2.2.0", "Miaozi 2.2.0" in p.inner_text("body"))
+        check(T + "Cài đặt hiện Miaozi 2.2.1", "Miaozi 2.2.1" in p.inner_text("body"))
         shot(p, f"{dev}-settings-sync")
         ctx.close()
     v22_suite(br)
+    fix2_shots(br)
     br.close()
 
 bad = [r for r in results if not r[1]]

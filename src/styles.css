@@ -32,7 +32,7 @@
   --safe-t: env(safe-area-inset-top, 0px);
 }
 * { box-sizing: border-box; }
-html, body, #app { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); }
+html, body, #app { margin: 0; min-height: 100%; min-height: 100vh; min-height: 100dvh; background: var(--bg); color: var(--ink); }
 body {
   font-family: ui-sans-serif, system-ui, "Segoe UI", "PingFang SC", "Noto Sans", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   line-height: 1.45;
@@ -46,6 +46,7 @@ a { color: var(--accent); text-decoration: none; }
 a.seg, .seg { color: var(--ink); }
 
 .app {
+  min-height: 100vh;
   min-height: 100dvh;
   padding: calc(12px + var(--safe-t)) 16px calc(var(--nav-h) + 16px + var(--safe-b));
   max-width: 980px;
@@ -148,9 +149,9 @@ a.seg, .seg { color: var(--ink); }
 .opt.sel { border-color: var(--accent); }
 
 .nav {
-  position: fixed; left: 0; right: 0; bottom: 0;
+  position: fixed; left: 0; right: 0; bottom: 0; bottom: var(--vv-bottom, 0px);
   height: calc(var(--nav-h) + var(--safe-b));
-  padding: 0 max(0px, calc((100% - 980px) / 2)) var(--safe-b);
+  padding: 0 max(0px, calc((100% - 980px) / 2)) env(safe-area-inset-bottom, 0px);
   background: rgba(255, 251, 253, 0.94);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--line);
@@ -798,6 +799,7 @@ a { color: var(--accent); }
 .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 .rc-grades { margin-top: 10px; }
 .rq-show { text-align: center; font-size: 64px; margin: 4px 0 12px; }
+.rq-hint { text-align: center; margin: -6px 0 12px; }
 .opts.cols-2 { grid-template-columns: 1fr 1fr; }
 .opt-hz { font-size: 26px; text-align: center; font-family: "Noto Sans CJK SC", "Noto Sans SC", sans-serif; }
 .rq-foot { margin-top: 10px; gap: 10px; }

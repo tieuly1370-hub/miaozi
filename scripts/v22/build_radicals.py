@@ -22,15 +22,15 @@ RAD = {
  "木": ("木", [], "mộc", "cây"), "一": ("一", [], "nhất", "một"), "日": ("日", [], "nhật", "mặt trời, ngày"),
  "女": ("女", [], "nữ", "phụ nữ"), "十": ("十", [], "thập", "mười"), "水": ("氵", ["水"], "thủy", "nước"),
  "玉": ("王", ["玉"], "ngọc", "ngọc"), "宀": ("宀", [], "miên", "mái nhà"), "心": ("心", ["忄"], "tâm", "tim, lòng"),
- "辵": ("辶", [], "sước", "bước đi"), "月": ("月", ["⺼"], "nguyệt / nhục", "trăng; thịt"), "土": ("土", [], "thổ", "đất"),
- "大": ("大", [], "đại", "lớn"), "子": ("子", [], "tử", "con"), "八": ("八", ["丷"], "bát", "tám, chia ra"),
+ "辵": ("辶", [], "sước", "đi"), "月": ("月", ["⺼"], "nguyệt / nhục", "trăng; thịt"), "土": ("土", [], "thổ", "đất"),
+ "大": ("大", [], "đại", "lớn"), "子": ("子", [], "tử", "con"), "八": ("八", ["丷"], "bát", "tám"),
  "艸": ("艹", [], "thảo", "cỏ"), "手": ("扌", ["手"], "thủ", "tay"), "巾": ("巾", [], "cân", "khăn"),
  "见": ("见", [], "kiến", "nhìn thấy"), "白": ("白", [], "bạch", "trắng"), "丨": ("丨", [], "cổn", "nét sổ"),
- "囗": ("囗", [], "vi", "vây quanh"), "儿": ("儿", [], "nhân (đi)", "chân người"), "二": ("二", [], "nhị", "hai"),
- "雨": ("雨", [], "vũ", "mưa"), "目": ("目", [], "mục", "mắt"), "欠": ("欠", [], "khiếm", "há miệng"),
+ "囗": ("囗", [], "vi", "vây quanh"), "儿": ("儿", [], "nhân (đi)", "chân"), "二": ("二", [], "nhị", "hai"),
+ "雨": ("雨", [], "vũ", "mưa"), "目": ("目", [], "mục", "mắt"), "欠": ("欠", [], "khiếm", "thiếu, ngáp"),
  "阜": ("阝", [], "phụ", "gò đất"), "火": ("火", ["灬"], "hỏa", "lửa"), "刀": ("刂", ["刀"], "đao", "dao"),
  "门": ("门", [], "môn", "cửa"), "走": ("走", [], "tẩu", "chạy"), "糸": ("纟", ["糸"], "mịch", "sợi tơ"),
- "亅": ("亅", [], "quyết", "nét móc"), "彳": ("彳", [], "xích", "bước chân"), "夕": ("夕", [], "tịch", "buổi tối"),
+ "亅": ("亅", [], "quyết", "nét móc"), "彳": ("彳", [], "xích", "bước"), "夕": ("夕", [], "tịch", "buổi tối"),
  "小": ("小", ["⺌"], "tiểu", "nhỏ"), "食": ("饣", ["食"], "thực", "ăn"), "斤": ("斤", [], "cân", "cái rìu"),
  "广": ("广", [], "nghiễm", "mái hiên"), "金": ("钅", ["金"], "kim", "kim loại"), "犬": ("犭", ["犬"], "khuyển", "chó, thú"),
  "亠": ("亠", [], "đầu", "cái nắp"), "竹": ("⺮", ["竹"], "trúc", "tre"), "冫": ("冫", [], "băng", "nước đá"),
@@ -90,3 +90,32 @@ out = "// Sinh bởi scripts/v22/build_radicals.py — mảnh chữ: [Hán Việ
 out += "export const PARTS: Record<string, [string, string]> = " + json.dumps(parts, ensure_ascii=False) + ";\n"
 (ROOT / "src/data/hanziParts.ts").write_text(out, encoding="utf8")
 print("parts:", len(parts), "no hv:", [p for p, x in parts.items() if not x[0]])
+
+# ---- Tập hợp mảnh chữ (cây phân giải MMAH) + pinyin cho quiz bộ thủ ----
+IDC = set("⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻")
+def han_chars(s):
+    return [c for c in s if ("\u2e80" <= c <= "\u9fff") or ("\U00020000" <= c <= "\U0002ffff")]
+def comps_of(ch, seen=None):
+    if seen is None: seen = set()
+    if ch in seen: return set()
+    seen.add(ch)
+    out = set()
+    d = MM.get(ch, {}).get("decomposition") or ""
+    for c in han_chars(d):
+        if c in IDC: continue
+        out.add(c)
+        out |= comps_of(c, seen)
+    r = MM.get(ch, {}).get("radical")
+    if r: out.add(r)
+    return out
+comps, pys = {}, {}
+for ch in INFO:
+    cs = comps_of(ch)
+    comps[ch] = "".join(sorted(cs))
+    py = (MM.get(ch, {}).get("pinyin") or [""])
+    pys[ch] = py[0] if py else ""
+out = "// Sinh bởi scripts/v22/build_radicals.py — mảnh chữ (cây phân giải MMAH) + pinyin cho 278 chữ HSK1.\n"
+out += "export const HANZI_COMPS: Record<string, string> = " + json.dumps(comps, ensure_ascii=False) + ";\n"
+out += "export const HANZI_PY: Record<string, string> = " + json.dumps(pys, ensure_ascii=False) + ";\n"
+(ROOT / "src/data/hanziComps.ts").write_text(out, encoding="utf8")
+print("comps:", len(comps), "with py:", sum(1 for v in pys.values() if v))
