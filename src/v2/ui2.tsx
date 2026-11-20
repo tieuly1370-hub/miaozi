@@ -31,18 +31,30 @@ export function Miao(props: { text: string; mood?: "calm" | "proud" | "scold"; e
 }
 
 /** Bong bóng Miao nổi ở góc: nghe miaoBus, tự ẩn sau ~3 giây, không chặn bấm (pointer-events: none). */
-export function MiaoBubble(props: { idle?: boolean }) {
+/** Câu Miao đang nói (tự tắt sau ~3,2 s). Dùng cho bong bóng + mặt mèo ở đầu trang (logo header / thanh trái). */
+export function useMiaoSay(): MiaoSay | null {
   const [say, setSay] = useState<MiaoSay | null>(null);
   useEffect(() => {
     let t: ReturnType<typeof setTimeout> | undefined;
     const off = onMiao((x) => { setSay(x); clearTimeout(t); t = setTimeout(() => setSay(null), 3200); });
     return () => { off(); clearTimeout(t); };
   }, []);
-  if (!say && !props.idle) return null;
+  return say;
+}
+
+/** Mặt Miao ở góc trên (logo): đổi biểu cảm theo câu đang nói. */
+export function MiaoTopFace(props: { size: number; rest?: MiaoExpr }) {
+  const say = useMiaoSay();
+  return <span class={cls("miao-top", say && "talk")}><MiaoFace size={props.size} expr={say ? say.line.expr : props.rest || "vui"} /></span>;
+}
+
+/** Bong bóng thoại — nằm trong thanh đầu trang (dính trên cùng khi cuộn), cạnh mèo ở góc trên trái: tay viết ở nửa dưới không che. */
+export function MiaoBubble() {
+  const say = useMiaoSay();
+  if (!say) return null;
   return (
-    <div class={cls("miao-float", say && "talk")} data-testid="miao-float" aria-live="polite">
-      {say && <div class="miao-say" data-testid="miao-bubble" data-group={say.group} data-id={say.line.id}>{say.line.text}</div>}
-      <MiaoFace size={say ? 64 : 48} expr={say ? say.line.expr : "ngai_ngu"} />
+    <div class="miao-float talk" data-testid="miao-float" aria-live="polite">
+      <div class="miao-say" data-testid="miao-bubble" data-group={say.group} data-id={say.line.id} data-expr={say.line.expr}>{say.line.text}</div>
     </div>
   );
 }

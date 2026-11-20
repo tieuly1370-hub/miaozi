@@ -1,6 +1,8 @@
 // node --experimental-strip-types tests/miao.test.ts
 import { createMiao, canPinTrigger, MIAO_RULES } from "../src/v2/miao.ts";
 import { MIAO_LINES } from "../src/data/miaoLines.ts";
+import { MIAO_GREET } from "../src/data/miaoGreet.ts";
+import { fillGreet, greetCtx, joinVi, pickGreet } from "../src/v2/greet.ts";
 import { useLow, lowLeft } from "../src/v2/queue.ts";
 let fail = 0;
 const ok = (n: string, c: boolean, x = "") => { console.log((c ? "PASS " : "FAIL ") + n + (x ? " — " + x : "")); if (!c) fail++; };
@@ -58,5 +60,18 @@ const D = "2026-11-20";
   ok("Mã câu không trùng", new Set(MIAO_LINES.map((l) => l.id)).size === MIAO_LINES.length);
   ok("Mọi luật có câu thoại", MIAO_RULES.every((r) => MIAO_LINES.some((l) => l.group === r.group)));
   ok("Câu của chủ giữ nguyên văn", MIAO_LINES.some((l) => l.text === "Không hổ là sen của tôi!") && MIAO_LINES.some((l) => l.text === "Não hôm nay nghỉ phép rồi à?"));
+}
+{ // lời chào Hôm nay (loi_chao)
+  const base = { off: false, mode: "", penN: 0, act: ["s2"], allDone: false, firstOpen: false };
+  ok("Chào: nghỉ > cạn pin > công ty > chép phạt", greetCtx({ ...base, off: true, mode: "low", penN: 3 }) === "nghi" && greetCtx({ ...base, mode: "low", penN: 3 }) === "can_pin" && greetCtx({ ...base, mode: "company", penN: 3 }) === "cong_ty" && greetCtx({ ...base, penN: 3 }) === "chep_phat");
+  ok("Chào: xong hết / mở app lần đầu / đang chờ mục", greetCtx({ ...base, allDone: true }) === "xong_het" && greetCtx({ ...base, act: [] }) === "xong_het" && greetCtx({ ...base, firstOpen: true }) === "mo_app" && greetCtx(base) === "cho_muc");
+  const ctxs = ["cho_muc", "chep_phat", "xong_het", "cong_ty", "can_pin", "nghi", "mo_app"];
+  ok("Chào: mỗi ngữ cảnh 8–12 câu", ctxs.every((c) => { const n = MIAO_GREET.filter((g) => g.ctx === c).length; return n >= 8 && n <= 12; }));
+  ok("Chào: câu chờ mục / công ty / mở app có chỗ điền tên mục; chép phạt có số chữ", MIAO_GREET.filter((g) => ["cho_muc", "cong_ty", "mo_app"].includes(g.ctx)).every((g) => g.text.includes("{muc}")) && MIAO_GREET.filter((g) => g.ctx === "chep_phat").every((g) => g.text.includes("{n}")));
+  ok("Chào: công ty luôn nhắc tai nghe", MIAO_GREET.filter((g) => g.ctx === "cong_ty").every((g) => /tai nghe/i.test(g.text)));
+  let last: string | undefined, rep = false;
+  for (let i = 0; i < 200; i++) { const g = pickGreet(MIAO_GREET, "cho_muc", last)!; if (g.id === last) rep = true; last = g.id; }
+  ok("Chào: không lặp câu vừa hiện", !rep);
+  ok("Chào: điền tên mục + viết hoa đầu câu", fillGreet("{muc} còn nằm đó kìa.", { muc: "bài kiểm tra 6A" }) === "Bài kiểm tra 6A còn nằm đó kìa." && joinVi(["Nạp từ", "Luyện nói", "bài kiểm tra 6A"]) === "Nạp từ, Luyện nói và bài kiểm tra 6A");
 }
 console.log(fail ? `${fail} FAIL` : "ALL PASS"); if (fail) process.exit(1);

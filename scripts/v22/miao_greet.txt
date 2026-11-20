@@ -1,0 +1,72 @@
+# Lời chào Hôm nay (nhóm loi_chao). Dòng "## ctx expr" mở một ngữ cảnh; {muc} = tên mục, {n} = số chữ. Sinh src/data/miaoGreet.ts bằng scripts/v22/build_miao_lines.py.
+## cho_muc ngai_ngu
+{muc} còn nằm đó kìa, làm xong đi rồi tôi ngủ tiếp.
+Hôm nay tới lượt {muc}. Làm cho đàng hoàng, tôi chấm đấy.
+{muc} chờ bạn từ sáng rồi đấy, sen.
+Làm {muc} đi, xong rồi muốn nằm đâu thì nằm.
+Đừng lướt điện thoại nữa, {muc} đang đợi kìa.
+Tôi dọn sẵn {muc} rồi, bạn chỉ việc vào học thôi.
+{muc} thôi mà, có gì đâu mà chần chừ.
+Làm xong {muc} thì tôi khen, làm qua loa thì tôi chê. Rõ chưa?
+Hôm nay học {muc} nhé. Tick bừa là tôi biết ngay.
+Vào {muc} đi, tôi nằm đây giám sát.
+## chep_phat nghi_ngo
+Còn {n} chữ chép phạt đấy. Chép xong rồi hẵng tính chuyện khác.
+{n} chữ hôm trước viết sai vẫn chờ bạn chép kìa.
+Nợ {n} chữ chép phạt. Tôi không quên đâu, bạn cũng đừng quên.
+Chép phạt {n} chữ trước đi, sai thì phải chịu chứ.
+Có {n} chữ cần chép lại. Chép cho nhớ, lần sau đỡ sai.
+{n} chữ chép phạt đang xếp hàng. Làm nhanh còn học bài mới.
+Trước khi học tiếp, trả nợ {n} chữ chép phạt cho tôi.
+Chữ sai không tự biến mất đâu, chép {n} chữ đi nào.
+Hôm nay mở hàng bằng {n} chữ chép phạt nhé, sen.
+## xong_het vui
+Xong hết rồi à? Được đấy, giờ tôi ngủ tiếp được rồi.
+Hôm nay làm đủ rồi, tôi công nhận. Đi nghỉ đi.
+Không còn gì để làm. Hiếm lắm mới thấy bạn chăm thế.
+Xong việc rồi thì ôn vài thẻ cho vui, không thì đi ngủ.
+Làm hết rồi đấy, mai giữ phong độ này nhé.
+Tốt lắm, hôm nay không có gì để tôi chê.
+Đủ bài rồi. Thưởng bạn một ngày không bị cà khịa.
+Hôm nay sạch nợ. Tôi đi ngủ đây, đừng gọi.
+Nhìn bảng tiến độ sạch sẽ thế này tôi cũng thấy vui.
+## cong_ty ngai_ngu
+Ở công ty thì làm mấy mục im lặng thôi: {muc}. Nhớ đeo tai nghe.
+Đeo tai nghe vào rồi làm {muc}, đừng để sếp nghe thấy tiếng Trung.
+Giờ làm việc thì học lén cho khéo: {muc}, đeo tai nghe, khỏi nói ra tiếng.
+Chế độ công ty: chỉ {muc} thôi. Tai nghe đeo vào, âm để nhỏ.
+Học kín đáo thôi, {muc} là đủ, nhớ đeo tai nghe. Phần nói để về nhà.
+Sếp đi qua thì chuyển tab nhé. Còn lại làm {muc}, nhớ tai nghe.
+Không ai biết bạn đang học đâu, miễn là có tai nghe. Làm {muc} đi.
+Ở công ty cũng phải học. {muc} thôi, im lặng mà làm, đeo tai nghe vào.
+Tai nghe đâu rồi? Có rồi thì vào {muc}.
+## can_pin nghi_ngo
+Cạn pin thì 15 phút thôi, làm đúng mục đang sáng là được.
+Hết pin à? Thôi, 15 phút, làm mục đang sáng rồi đi sạc.
+15 phút thôi nhé. Mục đang sáng làm xong là tôi tha.
+Pin yếu thì học ít, nhưng không được học bừa.
+Ừ, chế độ tiết kiệm pin. Làm một mục đang sáng là đủ.
+Mệt thì làm ít thôi, đừng bỏ hẳn là được.
+15 phút ngắn lắm, đừng lướt điện thoại mất 10 phút.
+Bạn hết pin, tôi cũng hết pin. Làm nhanh mục đang sáng rồi cùng ngủ.
+Cạn pin vẫn hơn bỏ học. Vào mục đang sáng đi.
+## nghi nghi_ngo
+Hôm nay bạn xin nghỉ rồi. Chuỗi tôi giữ cho, mai chép phạt nhé.
+Nghỉ thì nghỉ, nhưng mai có bài chép phạt chờ đấy.
+Ngày nghỉ của sen. Tôi cũng tranh thủ ngủ đây.
+Chuỗi vẫn giữ, đừng lo. Mai quay lại trả nợ là được.
+Đi chơi vui vẻ, mai về tôi giao chép phạt.
+Nghỉ một hôm không sao, nghỉ hai hôm là có chuyện đấy.
+Hôm nay tôi không cà khịa nữa. Mai thì chưa chắc.
+Nghỉ cho khỏe, mai học cho ra học.
+Bạn nghỉ, tôi canh chuỗi. Mai nhớ quay lại.
+## mo_app ngai_ngu
+Dậy rồi à? Hôm nay vào {muc} trước nhé.
+Ồ, sen tới rồi. Tôi vừa định ngủ thêm giấc nữa. Làm {muc} đi.
+Hôm nay có {muc}, đừng để tôi phải nhắc lần hai.
+Mở app là tốt rồi, giờ thì mở luôn {muc}.
+Cuối cùng cũng chịu vào học. {muc} đang chờ đấy.
+Tôi chờ bạn mãi. Hôm nay bắt đầu từ {muc}.
+Hôm nay học {muc} nhé. Làm xong tôi khen, hứa đấy.
+Ngáp... à bạn đây rồi. {muc} trước, chuyện khác tính sau.
+Ngày mới, bài mới. Vào {muc} đi sen.

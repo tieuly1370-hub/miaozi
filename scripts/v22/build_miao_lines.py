@@ -43,3 +43,18 @@ out += 'export type MiaoExpr = "vui" | "dac_y" | "ngai_ngu" | "kho_chiu" | "cuoi
 out += "export type MiaoLine = { id: string; group: string; text: string; expr: MiaoExpr };\n"
 out += "export const MIAO_LINES: MiaoLine[] = " + json.dumps(rows, ensure_ascii=False, indent=0).replace("\n", "") + ";\n"
 (ROOT / "src/data/miaoLines.ts").write_text(out, encoding="utf8")
+
+# ---- Lời chào Hôm nay (loi_chao, có ngữ cảnh ctx) → src/data/miaoGreet.ts (chỉ trang Hôm nay tải) ----
+greet, ctx, ex = [], None, None
+for l in (ROOT / "scripts/v22/miao_greet.txt").read_text(encoding="utf8").split("\n"):
+    l = l.strip()
+    if not l or l.startswith("# "): continue
+    if l.startswith("## "): ctx, ex = l[3:].split(); k = 0; continue
+    k += 1; greet.append({"id": f"loi_chao_{ctx}_{k:02d}", "group": "loi_chao", "ctx": ctx, "text": l, "expr": ex})
+print({c: sum(g["ctx"] == c for g in greet) for c in dict.fromkeys(g["ctx"] for g in greet)})
+gout = "// Sinh bởi scripts/v22/build_miao_lines.py từ scripts/v22/miao_greet.txt — lời chào Hôm nay. {muc} = tên mục, {n} = số chữ.\n"
+gout += 'import type { MiaoLine } from "./miaoLines";\n'
+gout += 'export type GreetCtx = "cho_muc" | "chep_phat" | "xong_het" | "cong_ty" | "can_pin" | "nghi" | "mo_app";\n'
+gout += "export type GreetLine = MiaoLine & { ctx: GreetCtx };\n"
+gout += "export const MIAO_GREET: GreetLine[] = " + json.dumps(greet, ensure_ascii=False, indent=0).replace("\n", "") + ";\n"
+(ROOT / "src/data/miaoGreet.ts").write_text(gout, encoding="utf8")

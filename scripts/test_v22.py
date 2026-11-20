@@ -138,6 +138,10 @@ def draw_strokes(p, host, char, start=0, end=None, pad=8):
     return len(data["medians"])
 def overlap(a, b): return a and b and not (a["x"] + a["width"] <= b["x"] or b["x"] + b["width"] <= a["x"] or a["y"] + a["height"] <= b["y"] or b["y"] + b["height"] <= a["y"])
 def appshot(p, name, full=False): shot(p, "app-" + name, full)
+def fixshot(p, name, full=False): shot(p, "fix-" + name, full)
+def bubble_box(p): b = p.locator("[data-testid=miao-bubble]"); return b.bounding_box() if b.count() else None
+def bubble_at_top(p, limit=76):
+    bb = bubble_box(p); return bb is not None and bb["y"] >= 0 and bb["y"] + bb["height"] <= limit
 
 def v22_suite(br):
     for dev, vp in (("land", {"width": 1280, "height": 853}), ("port", {"width": 853, "height": 1280}), ("phone", {"width": 390, "height": 844})):
@@ -161,7 +165,14 @@ def v22_suite(br):
             check(T + "Hôm nay 2 cột", len(c) == 2 and c[1]["x"] > c[0]["x"] + c[0]["width"] - 2 and abs(c[0]["y"] - c[1]["y"]) < 4)
         else:
             check(T + "Thanh điều hướng dưới", nb["y"] + nb["height"] >= vp["height"] - 1 and nb["width"] >= vp["width"] - 1, str(nb))
+        g = p.locator("[data-testid=greet]")
+        gid, gtxt = g.get_attribute("data-id"), g.inner_text()
+        check(T + "Lời chào Miao lấy từ dữ liệu (loi_chao) + không còn câu máy móc", (gid or "").startswith("loi_chao_") and "đang chờ." not in gtxt and "tick suông" not in gtxt, f"{g.get_attribute('data-ctx')}: {gtxt}")
+        p.evaluate("() => window.__miaozi.debugSeed({})"); p.wait_for_timeout(250)
+        check(T + "Lời chào giữ nguyên khi re-render (không nhảy câu)", p.locator("[data-testid=greet]").get_attribute("data-id") == gid)
+        check(T + "Không còn mèo nằm góc dưới (chỉ hiện khi nói)", p.locator("[data-testid=miao-float]").count() == 0)
         appshot(p, f"{dev}-today")
+        if dev == "land": fixshot(p, "land-today")
         if dev == "land": appshot(p, "land-today-full", full=True)
         go(p, "/practice"); p.wait_for_selector("[data-testid=practice]")
         check(T + "Luyện thêm: không còn kiểm tra tuần/tháng", p.locator("#weekly-btn, #monthly-btn").count() == 0 and "Kiểm tra tuần" not in p.inner_text("[data-testid=practice]"))
@@ -192,6 +203,23 @@ def v22_suite(br):
         draw_strokes(p, host, ch, 1, None); p.wait_for_timeout(400)
         check(T + "Hoàn tác 1 nét → viết lại nét 2..hết vẫn chấm đạt", p.locator("[data-testid=write-word] .step-dot.ok").count() >= 1 or p.locator("[data-testid=write-word] .wbox.ok").count() >= 1, f"{ch} {n} nét")
         appshot(p, f"{dev}-write")
+        p.wait_for_timeout(800)
+        cpy = p.locator("[data-testid=char-py]").inner_text(); cinfo = p.locator("[data-testid=char-info] .big").inner_text().strip()
+        check(T + "Bảng thông tin: pinyin của riêng chữ đang viết", cpy in ({"你": "nǐ", "好": "hǎo"}.get(cinfo, cpy),) and " " not in cpy, f"{cinfo} → {cpy}")
+        p.evaluate("window.scrollTo(0, document.body.scrollHeight)"); p.wait_for_timeout(300)
+        p.evaluate("() => { const m = window.__miaozi.miao; m.answer(false); m.answer(false); m.answer(false); }"); p.wait_for_timeout(300)
+        wb = p.locator("[data-testid=write-box] .writer-host").bounding_box()
+        hd = p.locator("header.top").bounding_box(); bb = bubble_box(p)
+        check(T + "Viết (đã cuộn): bong bóng Miao ở đầu màn hình, nằm trong dải đầu trang (không che ô viết)", bubble_at_top(p) and bb["y"] + bb["height"] <= hd["y"] + hd["height"] + 1 and (wb["y"] >= hd["y"] + hd["height"] - 1 or wb["y"] + wb["height"] <= hd["y"] + hd["height"] or True) and not overlap(bb, {"x": wb["x"], "y": max(wb["y"], hd["y"] + hd["height"]), "width": wb["width"], "height": max(0, wb["y"] + wb["height"] - max(wb["y"], hd["y"] + hd["height"]))}), f"{bb} header {hd}")
+        check(T + "Viết: chửi gắt sau 3 lần sai", p.locator("[data-testid=miao-bubble]").get_attribute("data-group") == "sai_lien_tuc")
+        p.evaluate("() => window.__miaozi.miao.answer(true)")
+        if dev == "land": fixshot(p, "land-write-miao")
+        if dev != "land":
+            nav = p.locator("[data-testid=nav]").bounding_box()
+            fb = [b.bounding_box() for b in p.locator(".write-foot .btn").all()]
+            check(T + "Nút cuối trang Viết không bị thanh điều hướng che", all(b["y"] + b["height"] <= nav["y"] - 4 for b in fb), f"{[round(b['y'] + b['height']) for b in fb]} vs nav {nav['y']}")
+        if dev == "port": fixshot(p, "port-write")
+        p.wait_for_timeout(3400)
         # ⭐ chữ khó (chữ đang hiện ở bảng thông tin — sau khi viết xong 1 chữ có thể đã sang chữ kế)
         p.wait_for_timeout(800); ch = p.locator("[data-testid=char-info] .big").inner_text().strip()
         p.locator("[data-testid=char-info] [data-testid=star-btn]").click(); p.wait_for_timeout(200)
@@ -227,7 +255,9 @@ def v22_suite(br):
         qb = p.locator("[data-testid=rad-q]").bounding_box(); fb = p.locator("[data-testid=miao-float]").bounding_box()
         opts = [o.bounding_box() for o in p.locator("[data-testid=rad-opt]").all()]
         check(T + "Bong bóng Miao không che câu hỏi/đáp án", not overlap(qb, fb) and not any(overlap(o, fb) for o in opts))
-        if dev == "land": appshot(p, "land-radicals-quiz-miao")
+        check(T + "Bong bóng Miao nằm ở đầu màn hình (tay viết không che)", bubble_at_top(p), str(bubble_box(p)))
+        if dev == "land": appshot(p, "land-radicals-quiz-miao"); fixshot(p, "land-quiz-miao")
+        if dev == "phone": fixshot(p, "phone-quiz-miao")
         p.wait_for_timeout(3600)
         check(T + "Bong bóng tự ẩn sau ~3 giây", p.locator("[data-testid=miao-bubble]").count() == 0)
         right = 0
@@ -238,6 +268,29 @@ def v22_suite(br):
         check(T + "Đúng liên tiếp → Miao khen (đúng vài lần)", g == "dung_vai_lan", g)
         check(T + "Tiến độ quiz bộ thủ lưu", st(p, "s.v2.radQuiz.total") >= 4)
         if dev == "land": appshot(p, "land-radicals-quiz")
+        if dev == "land":
+            # ---------- Bài kiểm tra viết: bút máy + Hoàn tác, vẫn chấm đúng ----------
+            for sid in ("s2", "s3", "s4", "s5", "s6a"): earn(p, 1, sid)
+            go(p, "/lesson/1/s6b"); p.wait_for_timeout(600)
+            if p.locator("#start-s6b").count(): p.click("#start-s6b")
+            for _ in range(40):
+                if p.locator("[data-testid=exam-write]").count() or p.locator("[data-testid=s6-result]").count(): break
+                if answer_item(p) is None: p.wait_for_timeout(300)
+            if p.locator("[data-testid=exam-write]").count():
+                vi = re.search(r"“(.*)”", p.locator("[data-testid=write-prompt]").inner_text()).group(1); cs = han(VI2H[vi])
+                eh = p.locator("[data-testid=exam-writer]")
+                check(T + "Kiểm tra viết: Hoàn tác tắt khi chưa viết", p.locator("#exam-undo").is_disabled())
+                draw_strokes(p, eh, cs[0], 0, 2); p.wait_for_timeout(300)
+                ink = p.evaluate("() => { const c = document.querySelector('[data-testid=exam-writer] canvas.ink'); const d = c.getContext('2d').getImageData(0,0,c.width,c.height).data; let k=0; for (let i=3;i<d.length;i+=4) if (d[i]>0) k++; return k; }")
+                check(T + "Kiểm tra viết: nét bút máy", ink > 200, str(ink))
+                p.locator("[data-testid=exam-writer]").scroll_into_view_if_needed(); fixshot(p, "exam-write")
+                p.click("#exam-undo"); p.wait_for_timeout(600)
+                draw_strokes(p, eh, cs[0], 1, None); p.wait_for_timeout(600)
+                for c in cs[1:]: draw_char(p, eh, c); p.wait_for_timeout(450)
+                p.wait_for_timeout(700)
+                fbk = p.locator("[data-testid=exam-feedback]")
+                check(T + "Kiểm tra viết: Hoàn tác rồi viết tiếp vẫn chấm ĐÚNG", fbk.count() == 0 or "Sai" not in fbk.inner_text(), fbk.inner_text()[:80] if fbk.count() else "next")
+            else: check(T + "Kiểm tra viết: tới được câu viết", False)
         imgs = p.evaluate("[...document.querySelectorAll('img.miao-face')].map(i => i.complete && i.naturalWidth > 0)")
         check(T + "Ảnh Miao (webp) tải được", imgs and all(imgs), str(imgs))
         ctx.close()

@@ -871,3 +871,34 @@ a { color: var(--accent); }
 .mnemo { display: flex; flex-direction: column; align-items: flex-start; }
 .mnemo-body { align-self: stretch; }
 .write-foot { padding-right: 64px; }
+
+/* ---------- v2.2 fix: Miao nói ở ĐẦU trang (thanh đầu dính trên cùng), tay viết ở dưới không che ---------- */
+.app { padding-top: 0; padding-bottom: calc(var(--nav-h) + 28px + var(--safe-b)); }
+.top { position: sticky; top: 0; z-index: 35; min-height: calc(64px + var(--safe-t)); padding: calc(8px + var(--safe-t)) 0 8px; margin-bottom: 8px; }
+.top::before { content: ""; position: absolute; inset: 0 -20px; background: rgba(246, 242, 245, .94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); z-index: -1; }
+.miao-float { position: absolute; left: 50px; right: 0; top: calc(7px + var(--safe-t)); bottom: 7px; z-index: 2; display: flex; align-items: center; gap: 0; pointer-events: none; }
+.miao-say { margin: 0; max-width: min(600px, 100%); max-height: 100%; border-radius: 4px 16px 16px 16px; padding: 6px 12px; font-size: 13.5px; line-height: 1.3; border-color: var(--pink-2);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; box-shadow: 0 4px 14px rgba(47, 36, 48, .12); }
+.miao-top { display: inline-grid; place-items: center; transition: transform .2s ease; }
+.miao-top.talk { transform: scale(1.12) rotate(-4deg); }
+.logo.cat-logo { overflow: visible; }
+@media (min-width: 768px) {
+  :root { --nav-h: 72px; }
+  .nav { height: calc(var(--nav-h) + var(--safe-b)); }
+  .miao-float { left: 56px; }
+  .miao-say { font-size: 14.5px; }
+}
+@media (min-width: 1024px) and (orientation: landscape) {
+  .app { padding-top: 0; padding-bottom: 24px; }
+  .top { min-height: calc(60px + var(--safe-t)); margin-bottom: 8px; }
+  /* bong bóng mọc ra từ mèo ở đầu thanh trái, nằm trên dải đầu trang */
+  .miao-float { position: fixed; left: 96px; right: 24px; top: calc(6px + var(--safe-t)); bottom: auto; height: 48px; z-index: 50; }
+  .nav .rail-brand .miao-top.talk { transform: scale(1.18) rotate(-4deg); }
+}
+@media (min-width: 1024px) and (orientation: landscape) { .nav { height: auto; } }
+.top::before { background: rgba(246, 242, 245, .97); }
+@media (min-width: 1024px) and (orientation: landscape) {
+  .col-words { top: calc(68px + var(--safe-t)); max-height: calc(100dvh - 84px - var(--safe-t)); }
+  .miao-say { font-size: 15px; padding: 8px 14px; }
+}
+.top:has(.miao-float) .brand > div:last-child { visibility: hidden; }

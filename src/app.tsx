@@ -6,7 +6,8 @@ import { useHash, go, Back, cls } from "./ui";
 import { UpdateBanner } from "./update";
 import { tutorLine } from "./tutor";
 import { TodayV2, RoadmapV2, StreakPage } from "./pages/home2";
-import { CatSvg, MiaoBubble, MiaoFace } from "./v2/ui2";
+import { MiaoBubble, MiaoTopFace } from "./v2/ui2";
+import { miaoAnswer, miaoEvent } from "./v2/miaoBus";
 import { startTicker, streakNow } from "./v2/state2";
 import { startAutoSync } from "./sync/drive";
 import { AudioDock } from "./ui";
@@ -47,22 +48,22 @@ export function App() {
     <div class="app">
       <header class="top">
         <div class="brand" onClick={() => go("/")} style={{ cursor: "pointer" }}>
-          <div class="logo cat-logo"><CatSvg size={38} /></div>
+          <div class="logo cat-logo"><MiaoTopFace size={40} /></div>
           <div>
             <h1>Miaozi</h1>
             <p>{s.settings.companyMode ? "🏢 Công ty · " : ""}chuỗi {streakNow()} ngày · {s.settings.displayName}</p>
           </div>
         </div>
         {route.back && <Back to={route.back} />}
+        <MiaoBubble />
       </header>
       <UpdateBanner />
       <main>
         {showOnboard ? <OnboardingGate /> : route.view}
       </main>
       <AudioDock />
-      <MiaoBubble idle={EXERCISE.test(path.replace(/^#/, ""))} />
       <nav class="nav" data-testid="nav">
-        <div class="rail-brand" onClick={() => go("/")}><MiaoFace size={44} expr="vui" /><span>Miaozi</span></div>
+        <div class="rail-brand" onClick={() => go("/")}><MiaoTopFace size={48} /><span>Miaozi</span></div>
         <a class={route.tab === "today" ? "on" : ""} href="#/" data-nav="today"><span class="ico">☀</span>Hôm nay</a>
         <a class={route.tab === "write" ? "on" : ""} href="#/write" data-nav="write"><span class="ico">写</span>Viết</a>
         <a class={cls("nav-main", route.tab === "road" && "on")} href={"#/lesson/" + s.v2.lesson} data-nav="lesson"><span class="ico">课</span>Bài học</a>
@@ -74,7 +75,6 @@ export function App() {
 }
 
 /** Trang làm bài → Miao ngồi ở góc (bong bóng thoại hiện khi trả lời). */
-const EXERCISE = /^\/(lesson|gate|check|test|review|listen|speak|write|radicals|practice|mock|week0|reading|penalty|weekly|hard)/;
 
 function OnboardingGate() {
   useEffect(() => {}, []);
@@ -181,6 +181,7 @@ function installDebug() {
     V2,
     getState,
     debugSeed,
+    miao: { answer: miaoAnswer, event: miaoEvent },
     padDate,
     atHm,
     completeWeek0: async (score = 1) => {

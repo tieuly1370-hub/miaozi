@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "preact/hooks";
 /** Nét bút máy (fountain pen): dày mỏng theo lực bút + tốc độ, hai đầu vuốt nhọn. Dùng chung cho ô viết, ghi chú tay, chép phạt. */
 export interface PenPt { x: number; y: number; p: number; t?: number }
 export const PEN_DEFAULT = 1.2;
@@ -41,3 +42,48 @@ export const penPt = (e: PointerEvent, el: Element): PenPt => {
   const r = el.getBoundingClientRect();
   return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height, p: e.pressure || 0.5, t: e.timeStamp };
 };
+
+/** Mực bút máy đè lên ô hanzi-writer: nghe pointer (không chặn → hanzi-writer vẫn chấm nét). Nét vừa vẽ chờ chấm:
+ *  `accept()` khi hanzi-writer báo đúng nét (giữ lại), `reject()` khi sai (xoá), `pop()` cho Hoàn tác, `clear()` khi viết lại. */
+export function usePenInk(host: { current: HTMLElement | null }, ink: { current: HTMLCanvasElement | null }, active: boolean, width: number | undefined, deps: unknown[], color = "#2F2430") {
+  const kept = useRef<PenPt[][]>([]);
+  const pending = useRef<PenPt[] | null>(null);
+  const cur = useRef<PenPt[] | null>(null);
+  const penW = width ?? PEN_DEFAULT;
+  const redraw = () => {
+    const c = ink.current; if (!c) return;
+    const ctx = c.getContext("2d"); if (!ctx) return;
+    ctx.clearRect(0, 0, c.width, c.height);
+    const base = c.width * 0.026 * penW;
+    for (const st of kept.current) drawPenStroke(ctx, st, base, color, c.width, c.height);
+    if (pending.current) { ctx.globalAlpha = 0.5; drawPenStroke(ctx, pending.current, base, color, c.width, c.height); ctx.globalAlpha = 1; }
+    if (cur.current) drawPenStroke(ctx, cur.current, base, color, c.width, c.height);
+  };
+  useEffect(() => {
+    const el = host.current, c = ink.current;
+    if (!el || !c || !active) return;
+    const fit = () => { const r = el.getBoundingClientRect(); const d = window.devicePixelRatio || 1; c.width = Math.max(1, r.width * d); c.height = Math.max(1, r.height * d); redraw(); };
+    fit();
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const down = (e: PointerEvent) => { cur.current = [penPt(e, el)]; };
+    const move = (e: PointerEvent) => { if (!cur.current) return; for (const ev of (e.getCoalescedEvents?.() || [e])) cur.current.push(penPt(ev, el)); redraw(); };
+    const up = () => {
+      if (!cur.current) return;
+      pending.current = cur.current; cur.current = null; redraw();
+      clearTimeout(timer); timer = setTimeout(() => { pending.current = null; redraw(); }, 450);
+    };
+    el.addEventListener("pointerdown", down);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
+    return () => { clearTimeout(timer); el.removeEventListener("pointerdown", down); window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); };
+  }, [active, penW, ...deps]);
+  return {
+    redraw,
+    accept: () => { if (pending.current) { kept.current = [...kept.current, pending.current]; pending.current = null; redraw(); } },
+    reject: () => { pending.current = null; redraw(); },
+    pop: () => { kept.current = kept.current.slice(0, -1); redraw(); },
+    clear: () => { kept.current = []; pending.current = null; cur.current = null; redraw(); },
+    dropPending: () => { pending.current = null; },
+  };
+}

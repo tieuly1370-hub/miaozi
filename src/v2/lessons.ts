@@ -70,7 +70,7 @@ export function introText(n: number): string {
   const nl = nhaiLesson(n);
   const pats = (nl?.patterns || []).map((p) => p.name).slice(0, 3);
   const words = L.words.slice(0, 5).map((w) => w.hanzi).join("、");
-  return `Bài ${n}: “${L.titleVi}”. Mục tiêu: nhớ mặt chữ, âm và nghĩa của ${L.words.length} từ (${words}…), đọc hiểu ${L.sentences.length} câu mẫu${pats.length ? `, dùng được mẫu ${pats.join(" / ")}` : ""}. Học trên Nhai, quay về đây chứng minh. Không đạt thì không qua.`;
+  return `Bài ${n} “${L.titleVi}”: ${L.words.length} từ (${words}…) và ${L.sentences.length} câu mẫu${pats.length ? `, mẫu câu ${pats.join(" / ")}` : ""}. Học trên Nhai xong thì về đây làm cho tôi xem. Làm đạt mới được qua bài, đừng mong tôi châm chước.`;
 }
 
 export function wordsOf(n: number): Word[] { return lesson(n).words; }

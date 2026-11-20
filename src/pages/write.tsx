@@ -10,7 +10,7 @@ import { miaoAnswer } from "../v2/miaoBus";
 import { HANZI_INFO } from "../data/hanziInfo";
 import { mnemonicFor } from "../v2/mnemo";
 import { PartChips, StarBtn } from "../v2/charui";
-import { PEN_DEFAULT, drawPenStroke, penPt, type PenPt } from "../v2/pen";
+import { PEN_DEFAULT, drawPenStroke, penPt, usePenInk, type PenPt } from "../v2/pen";
 
 const charCache = new Map<string, unknown>();
 
@@ -27,6 +27,26 @@ export const hanChars = (s: string) => [...s].filter((c) => /[\u3400-\u9fff]/.te
 
 type BoxState = "wait" | "active" | "ok" | "bad";
 
+const TONE: Record<string, string> = { a: "āáǎà", e: "ēéěè", i: "īíǐì", o: "ōóǒò", u: "ūúǔù", "ü": "ǖǘǚǜ" };
+/** "hao3" → "hǎo" (thanh nhẹ 5 → không dấu). */
+export function numToMark(s: string): string {
+  const m = /^([a-zü:]+)([1-5])$/.exec(s.toLowerCase());
+  if (!m) return s;
+  const b = m[1].replace(/v|u:/g, "ü"), t = Number(m[2]);
+  if (t === 5) return b;
+  let i = b.search(/[ae]/);
+  if (i < 0) i = b.indexOf("ou");
+  if (i < 0) { for (let j = b.length - 1; j >= 0; j--) if (TONE[b[j]]) { i = j; break; } }
+  return i < 0 ? b : b.slice(0, i) + TONE[b[i]][t - 1] + b.slice(i + 1);
+}
+/** Pinyin của riêng một chữ trong từ: ưu tiên từ 1 chữ trong giáo trình, không thì lấy âm tiết tương ứng của từ. */
+export function charPinyin(w: Word, ch: string): string {
+  const single = ALL_WORDS.find((x) => x.hanzi === ch);
+  if (single) return single.pinyin;
+  const cs = hanChars(w.hanzi), sy = (w.pinyinNum || "").trim().split(/\s+/), i = cs.indexOf(ch);
+  return sy.length === cs.length && i >= 0 ? numToMark(sy[i]) : w.pinyin;
+}
+
 /** Một ô hanzi-writer: viết theo nét (chấm nét giữ nguyên), mực bút máy vẽ đè trên canvas, có Hoàn tác nét vừa viết. */
 export function WriteBox(props: {
   character: string;
@@ -39,9 +59,6 @@ export function WriteBox(props: {
   const host = useRef<HTMLDivElement>(null);
   const ink = useRef<HTMLCanvasElement>(null);
   const writerRef = useRef<ReturnType<typeof HanziWriter.create> | null>(null);
-  const kept = useRef<PenPt[][]>([]);
-  const pending = useRef<PenPt[] | null>(null);
-  const cur = useRef<PenPt[] | null>(null);
   const strokeNum = useRef(0);
   const missRef = useRef(0);
   const [msg, setMsg] = useState("");
@@ -51,35 +68,7 @@ export function WriteBox(props: {
   const [done, setDone] = useState<null | boolean>(null);
   const [canUndo, setCanUndo] = useState(false);
   const active = props.active !== false;
-  const penW = getState().settings.penWidth ?? PEN_DEFAULT;
-  const redraw = () => {
-    const c = ink.current; if (!c) return;
-    const ctx = c.getContext("2d")!; ctx.clearRect(0, 0, c.width, c.height);
-    const base = c.width * 0.026 * penW;
-    for (const st of kept.current) drawPenStroke(ctx, st, base, INK, c.width, c.height);
-    if (pending.current) { ctx.globalAlpha = 0.5; drawPenStroke(ctx, pending.current, base, INK, c.width, c.height); ctx.globalAlpha = 1; }
-    if (cur.current) drawPenStroke(ctx, cur.current, base, INK, c.width, c.height);
-  };
-  // mực bút máy: nghe pointer trên ô (không chặn sự kiện → hanzi-writer vẫn chấm nét như cũ)
-  useEffect(() => {
-    const el = host.current, c = ink.current;
-    if (!el || !c || !active) return;
-    const fit = () => { const r = el.getBoundingClientRect(); const d = window.devicePixelRatio || 1; c.width = Math.max(1, r.width * d); c.height = Math.max(1, r.height * d); redraw(); };
-    fit();
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const down = (e: PointerEvent) => { cur.current = [penPt(e, el)]; };
-    const move = (e: PointerEvent) => { if (!cur.current) return; for (const ev of (e.getCoalescedEvents?.() || [e])) cur.current.push(penPt(ev, el)); redraw(); };
-    const up = () => {
-      if (!cur.current) return;
-      pending.current = cur.current; cur.current = null; redraw();
-      clearTimeout(timer); timer = setTimeout(() => { pending.current = null; redraw(); }, 450);
-    };
-    el.addEventListener("pointerdown", down);
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", up);
-    window.addEventListener("pointercancel", up);
-    return () => { clearTimeout(timer); el.removeEventListener("pointerdown", down); window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); };
-  }, [active, props.character, round, penW]);
+  const pen = usePenInk(host, ink, active, getState().settings.penWidth, [props.character, round], INK);
   useEffect(() => {
     const el = host.current;
     if (!el) return;
@@ -87,8 +76,8 @@ export function WriteBox(props: {
     svgHost.innerHTML = "";
     let writer: ReturnType<typeof HanziWriter.create> | null = null;
     let cancelled = false;
-    if (!startAt) { kept.current = []; missRef.current = 0; setMistakes(0); }
-    pending.current = null; strokeNum.current = startAt; setCanUndo(startAt > 0); redraw();
+    if (!startAt) { pen.clear(); missRef.current = 0; setMistakes(0); }
+    pen.reject(); strokeNum.current = startAt; setCanUndo(startAt > 0);
     setDone(null);
     setMsg(active ? "Viết theo đúng thứ tự nét" : "Chờ chữ trước");
     (async () => {
@@ -114,9 +103,9 @@ export function WriteBox(props: {
         if (!active) return;
         writer.quiz({
           quizStartStrokeNum: startAt,
-          onMistake: () => { missRef.current += 1; setMistakes(missRef.current); pending.current = null; redraw(); setMsg("Sai nét hoặc sai thứ tự — viết lại nét đó."); },
+          onMistake: () => { missRef.current += 1; setMistakes(missRef.current); pen.reject(); setMsg("Sai nét hoặc sai thứ tự — viết lại nét đó."); },
           onCorrectStroke: () => {
-            if (pending.current) { kept.current = [...kept.current, pending.current]; pending.current = null; redraw(); }
+            pen.accept();
             strokeNum.current += 1; setCanUndo(true); setMsg("Đúng nét.");
           },
           onComplete: () => {
@@ -137,7 +126,7 @@ export function WriteBox(props: {
   }, [props.character, active, round, props.hideOutline]);
   const undo = () => {
     if (done !== null || strokeNum.current <= 0) return;
-    kept.current = kept.current.slice(0, -1);
+    pen.pop();
     setStartAt(strokeNum.current - 1); setRound((r) => r + 1);
   };
   return (
@@ -155,7 +144,7 @@ export function WriteBox(props: {
             <Button small kind="ghost" onClick={() => {
               const w = writerRef.current;
               if (!w) return;
-              w.cancelQuiz(); kept.current = []; redraw();
+              w.cancelQuiz(); pen.clear();
               w.animateCharacter({ onComplete: () => { setStartAt(0); setRound((r) => r + 1); } });
             }}>Xem mẫu</Button>
           </span>
@@ -278,7 +267,7 @@ export function WritePage() {
           <div class="card info" data-testid="char-info">
             <div class="info-top"><span class="big">{ch}</span><StarBtn char={ch} /></div>
             <div class="meta">
-              <span class="py-lg">{w.pinyin}</span>
+              <span class="py-lg" data-testid="char-py">{charPinyin(w, ch)}</span>{hanChars(w.hanzi).length > 1 && <span class="tiny">trong {w.hanzi} · {w.pinyin}</span>}
               <span class="vi-lg">{m?.gloss || w.vi}</span>
               {info && <span class="hv">Hán Việt: {info.hv}</span>}
             </div>
@@ -679,7 +668,7 @@ function PenaltyTask({ p }: { p: Penalty }) {
               <CopyRow char={ch} n={p.copies} model={model} onChange={(urls) => { setImgs((m) => ({ ...m, [ch]: urls })); setPenaltyWritten(p.id, ch, urls.filter(Boolean).length); }} />
             </div>
           ))}
-          <Button kind="primary" wide id="submit-penalty" disabled={written < total} onClick={() => { markPenaltyDone(p.id, { kind: "app", at: Date.now() }); setMsg("Đã nộp trong app. Miao ghi nhận."); }}>{written < total ? `Còn ${total - written} ô nữa` : "Nộp bài"}</Button>
+          <Button kind="primary" wide id="submit-penalty" disabled={written < total} onClick={() => { markPenaltyDone(p.id, { kind: "app", at: Date.now() }); setMsg("Nộp rồi, tôi ghi nhận. Lần sau viết đúng luôn cho đỡ phải chép."); }}>{written < total ? `Còn ${total - written} ô nữa` : "Nộp bài"}</Button>
           <Button kind="ghost" wide disabled={written < total} onClick={async () => {
             const { buildProofPdf, downloadBlob } = await import("../pdf");
             const blob = await buildProofPdf({ title: "Miaozi — bài chép phạt", subtitle: why, attempts: chars.map((ch) => ({ char: ch, images: imgs[ch] || [] })) });
@@ -705,7 +694,7 @@ function PenaltyTask({ p }: { p: Penalty }) {
                   if (!f) return;
                   const thumb = f.type.startsWith("image/") ? await makeThumb(f) : undefined;
                   markPenaltyDone(p.id, { kind: "upload", at: Date.now(), name: f.name, thumb });
-                  setMsg("Đã nộp. Miao ghi nhận rồi!");
+                  setMsg("Nộp rồi, tôi xem rồi. Lần sau đừng để tôi phạt nữa nhé.");
                 }} />
               </label>
             </li>

@@ -1,5 +1,7 @@
 /** v2.1 — Hôm nay (Công ty / Cạn pin / Xin nghỉ, gợi ý mục, báo cáo điểm yếu thứ Hai), lộ trình, Streak. */
-import { useState } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
+import { MIAO_GREET } from "../data/miaoGreet";
+import { SEC_SAY, fillGreet, greetCtx, joinVi, pickGreet } from "../v2/greet";
 import { getState } from "../store";
 import { LOW_LABEL, LOW_EMPTY_MSG, mondayOf, percent, streakFrom, ymd } from "../v2/queue";
 import { LESSON_COUNT, SEC_SHORT, SEC_TITLE, lesson, isExtended } from "../v2/lessons";
@@ -37,10 +39,17 @@ export function TodayV2() {
   const rep = showReport ? weakReport(st, now) : null;
   const pens = openPenalties();
   const penWords = [...new Set(pens.flatMap((p) => p.dueChars))];
-  const line = off ? "Hôm nay xin nghỉ. Chuỗi giữ, mai chép phạt."
-    : mode === "company" ? "Công ty: gợi ý mục im lặng 2, 3, 6A. Đeo tai nghe nhé."
-    : mode === "low" ? "Cạn pin 15 phút: làm đúng mục đang sáng là đủ."
-    : `${act.length ? `Mục ${act.map((id) => SEC_SHORT[id]).join(", ")} đang chờ. ` : ""}Làm đạt mới tính — Miao không cho tick suông.`;
+  // Lời chào: dữ liệu ở src/data/miaoGreet.ts; bốc 1 câu mỗi lần vào trang (không đổi khi re-render), không lặp câu lần trước.
+  const [firstOpen] = useState(() => { try { const k = "miaozi.greetDay", t = ymd(new Date()); const f = localStorage.getItem(k) !== t; localStorage.setItem(k, t); return f; } catch { return false; } });
+  const gctx = greetCtx({ off, mode: mode || "", penN: penWords.length, act, allDone: SEC_ORDER.every((id) => id === "s1" || sec[id]?.done), firstOpen });
+  const muc = joinVi(act.map((id) => SEC_SAY[id] || SEC_TITLE[id]));
+  const greet = useMemo(() => {
+    let last: string | null = null; try { last = localStorage.getItem("miaozi.greetLast"); } catch { /* */ }
+    const g = pickGreet(MIAO_GREET, gctx, last);
+    try { if (g) localStorage.setItem("miaozi.greetLast", g.id); } catch { /* */ }
+    return g;
+  }, [gctx, muc, penWords.length]);
+  const line = greet ? fillGreet(greet.text, { muc, n: penWords.length }) : "";
   const DOW = ["Chủ nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
   const doneN = SEC_ORDER.filter((id) => sec[id]?.done).length;
   const next = SEC_ORDER.find((id) => id !== "s1" && !sec[id]?.done && !act.includes(id));
@@ -50,11 +59,11 @@ export function TodayV2() {
     <div class="today2" data-testid="today2">
       <div class="tcol">
         <div class="card hello" data-testid="tutor">
-          <div class="cat-wrap"><MiaoFace size={64} expr={off ? "nghi_ngo" : "ngai_ngu"} /></div>
+          <div class="cat-wrap"><MiaoFace size={64} expr={greet?.expr || "ngai_ngu"} /></div>
           <div class="hello-body">
             <div class="greet">Chào {st.settings.displayName || "chủ"}</div>
             <div class="date">{DOW[now.getDay()]}, {now.getDate()} tháng {now.getMonth() + 1}</div>
-            <div class="bubble">{line}</div>
+            <div class="bubble" data-testid="greet" data-ctx={gctx} data-id={greet?.id}>{line}</div>
             <button class="chip pink streak-chip" data-testid="streak" onClick={() => go("/streak")}>🔥 Chuỗi {streakNow()} ngày ›</button>
           </div>
         </div>
@@ -80,7 +89,7 @@ export function TodayV2() {
           </div>
           {askOff && !off && (
             <div class="notice" data-testid="off-ask">
-              <p>Xin nghỉ hôm nay? Chuỗi giữ nguyên. Mai chép phạt {penWords.length ? "thêm ≥ 5 từ vào bài đang có" : "≥ 5 từ của bài gần nhất"}.</p>
+              <p>Xin nghỉ hôm nay à? Chuỗi tôi giữ cho, nhưng mai chép phạt {penWords.length ? "thêm ít nhất 5 từ vào bài đang nợ" : "ít nhất 5 từ của bài gần nhất"} đấy.</p>
               <div class="row"><Button small kind="primary" id="off-confirm" onClick={() => { markOff(); setAskOff(false); }}>Xin nghỉ</Button><Button small kind="ghost" onClick={() => setAskOff(false)}>Thôi, học tiếp</Button></div>
             </div>
           )}

@@ -1,6 +1,7 @@
 /** Bài thi chặt: cổng 4 kỹ năng, kiểm tra cuối ca, kiểm tra tuần. */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import HanziWriter from "hanzi-writer";
+import { usePenInk } from "../v2/pen";
 import { miaoAnswer } from "../v2/miaoBus";
 import { LESSONS, WORD_BY_ID } from "../data/curriculum";
 import { playId } from "../audio";
@@ -200,34 +201,43 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
   const [k, setK] = useState(0);
   const [miss, setMiss] = useState(0);
   const [locked, setLocked] = useState(false);
+  const [round, setRound] = useState(0);
+  const [canUndo, setCanUndo] = useState(false);
   const host = useRef<HTMLDivElement>(null);
+  const ink = useRef<HTMLCanvasElement>(null);
+  const startAt = useRef(0), strokeN = useRef(0), missR = useRef(0);
+  const [size] = useState(() => (window.innerWidth >= 768 ? 360 : Math.min(280, window.innerWidth - 72)));
+  // v2.2: mực bút máy (độ dày theo Cài đặt) + Hoàn tác như trang Viết; chấm nét vẫn do hanzi-writer (sai > 5 nét/chữ = trượt).
+  const pen = usePenInk(host, ink, !locked, getState().settings.penWidth, [k, round]);
   const done = (ok: boolean, d?: string) => { if (locked) return; setLocked(true); props.onAnswer(ok, d); };
   useEffect(() => {
-    const el = host.current;
+    const el = host.current?.querySelector(".hw-svg") as HTMLDivElement | null;
     if (!el || locked) return;
     el.innerHTML = "";
     let writer: ReturnType<typeof HanziWriter.create> | null = null;
     let cancelled = false;
-    let m = 0;
-    setMiss(0);
+    if (!startAt.current) { missR.current = 0; setMiss(0); pen.clear(); }
+    pen.reject(); strokeN.current = startAt.current; setCanUndo(startAt.current > 0);
     (async () => {
       try {
         const data = await loadCharData(chars[k]);
         if (cancelled || !host.current) return;
-        const size = Math.min(280, host.current.clientWidth || 260);
-        writer = HanziWriter.create(host.current, chars[k], {
+        writer = HanziWriter.create(el, chars[k], {
           width: size, height: size, padding: 10,
           showOutline: false, showCharacter: false, showHintAfterMisses: false as unknown as number,
-          highlightOnComplete: false, strokeColor: "#2F2430", drawingColor: "#A85A78", drawingWidth: 22,
+          highlightOnComplete: false, strokeColor: "#D9C7D1", drawingColor: "rgba(0,0,0,0)", drawingWidth: 22,
           charDataLoader: (_c: string, cb: (d: unknown) => void) => cb(data),
         });
         writer.quiz({
+          quizStartStrokeNum: startAt.current,
           onMistake: () => {
-            m += 1; setMiss(m);
+            missR.current += 1; const m = missR.current; setMiss(m); pen.reject();
             if (m > MAX_MISS) { try { writer?.cancelQuiz(); } catch { /* */ } done(false, `Sai ${m} nét ở chữ thứ ${k + 1} — tính trượt.`); }
           },
+          onCorrectStroke: () => { pen.accept(); strokeN.current += 1; setCanUndo(true); },
           onComplete: () => {
-            if (cancelled || m > MAX_MISS) return;
+            if (cancelled || missR.current > MAX_MISS) return;
+            setCanUndo(false); startAt.current = 0;
             if (k + 1 < chars.length) setK(k + 1);
             else done(true);
           },
@@ -237,7 +247,8 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
       }
     })();
     return () => { cancelled = true; try { writer?.cancelQuiz(); } catch { /* */ } };
-  }, [k]);
+  }, [k, round]);
+  const undo = () => { if (locked || strokeN.current <= 0) return; pen.pop(); startAt.current = strokeN.current - 1; setRound((r) => r + 1); };
   return (
     <Card data-testid="exam-write">
       <Timer secs={30 + 30 * chars.length} onTimeout={() => done(false, "Hết giờ.")} />
@@ -248,8 +259,14 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
         <span class="muted">Chữ {k + 1}/{chars.length}</span>
         <span class="steps">{chars.map((_, i) => <span key={i} class={cls("step-dot", i < k && "ok", i === k && "on")}>{i < k ? "✓" : i + 1}</span>)}</span>
       </div>
-      <div class="writer-host rice-bg exam-writer" data-testid="exam-writer" ref={host} />
-      <p class="muted">{miss ? `Đã sai ${miss} nét ở chữ này.` : " "}</p>
+      <div class="writer-host rice-bg exam-writer" data-testid="exam-writer" ref={host} style={{ width: size, height: size }}>
+        <div class="hw-svg" />
+        <canvas class="ink" ref={ink} aria-hidden="true" />
+      </div>
+      <div class="row spread">
+        <span class="muted">{miss ? `Đã sai ${miss} nét ở chữ này.` : " "}</span>
+        <Button small kind="ghost" id="exam-undo" disabled={!canUndo || locked} onClick={undo}>↶ Hoàn tác</Button>
+      </div>
     </Card>
   );
 }
@@ -275,7 +292,7 @@ function SpeakView(props: { item: Extract<Item, { t: "speak" }>; onAnswer: (ok: 
 /* =================== Kết quả =================== */
 
 function ResultView(props: { results: SkillResult[]; title: string; pass: boolean; redo: string[]; onBack: () => void; retry?: string }) {
-  const line = tutorLine(props.pass ? "gatePass" : "gateFail", getState().settings);
+  const line = useMemo(() => tutorLine(props.pass ? "gatePass" : "gateFail", getState().settings), [props.pass]);
   return (
     <div class="stack" data-testid="exam-result">
       <TutorBubble mood={line.mood} text={line.text} />
