@@ -55,10 +55,10 @@ export function secRule(id: SecId, n: number): string {
   const L = lesson(n);
   switch (id) {
     case "s1": return "Chép mỗi chữ sai 3 lần trên ô 田 rồi bấm “Xác nhận đã chép phạt xong”. Không có lỗi phạt thì mục này tự xong (0%).";
-    case "s2": return `Mở xem đủ ${L.words.length} từ (chạm từng thẻ), nghe hết hội thoại 1 lần, và tick “Đã xem xong video bài giảng” (sau khi mở link Nhai).`;
-    case "s3": return "Đọc bài, làm 5 câu trắc nghiệm, đúng ≥ 4/5. Trượt thì làm lại ngay.";
-    case "s4": return `Viết theo nét đủ ${L.words.length} từ (mỗi chữ cho phép sai tối đa 5 nét) + đặt 3 câu được Miao chấm “Đạt”.`;
-    case "s5": return `Nói đạt ≥ 80% ít nhất ${speakNeed(n)} câu mẫu (máy hiện chữ nghe được và %).`;
+    case "s2": return `Học từ vựng (${L.words.length} từ), nghe hội thoại và xem video nếu được — rồi bấm “Đánh dấu hoàn thành”. Không bắt buộc làm hết mới đánh dấu.`;
+    case "s3": return "Đọc bài và làm câu trắc nghiệm nếu được — rồi bấm “Đánh dấu hoàn thành”. Không bắt buộc đạt 4/5 mới đánh dấu.";
+    case "s4": return `Viết theo nét và đặt câu nếu được — rồi bấm “Đánh dấu hoàn thành”. Không bắt buộc viết hết ${L.words.length} từ hay đạt 3 câu mới đánh dấu.`;
+    case "s5": return `Luyện nói câu mẫu nếu micro hoạt động (có thể Bỏ qua từng câu khi không thu âm được) — rồi bấm “Đánh dấu hoàn thành”.`;
     case "s6a": return "Nghe + đọc trắc nghiệm, đúng ngay lần đầu ≥ 80%. Từ sai chuyển sang chép phạt ở Mục 1.";
     case "s6b": return "Viết chữ từ trí nhớ (sai tối đa 5 nét/chữ) + nói câu, đúng ngay lần đầu ≥ 80%.";
   }

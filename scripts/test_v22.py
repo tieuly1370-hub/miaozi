@@ -251,7 +251,7 @@ def v22_suite(br):
         check(T + "Cài đặt: không còn nút Bài đọc", p.locator("button:has-text('Bài đọc')").count() == 0)
         check(T + "Cài đặt: ghi nguồn Make Me a Hanzi", "Make Me a Hanzi" in p.inner_text("[data-testid=about]"))
         check(T + "Cài đặt: độ dày bút mặc định 1.2", p.locator("[data-testid=pen-width] input").first.input_value() in ("1.2", "1.20"))
-        check(T + "Cài đặt hiện Miaozi 2.2.2", "Miaozi 2.2.2" in p.inner_text("[data-testid=about]"))
+        check(T + "Cài đặt hiện Miaozi 2.3.0", "Miaozi 2.3.0" in p.inner_text("[data-testid=about]"))
         check(T + "Cài đặt: có Xoá chép phạt và Bắt đầu lại", p.locator("#clear-penalties").count() == 1 and p.locator("#full-reset").count() == 1)
         p.evaluate("""() => { const M = window.__miaozi; M.debugSeed({ penalties: [{ id: 't-pen', hanzi: '你', dueChars: ['你'], copies: 3, done: false, createdAt: Date.now() }] }); }""")
         p.wait_for_timeout(200)
@@ -398,9 +398,66 @@ def v22_suite(br):
         ctx.close()
 
 
+def v23_checks(br):
+    """v2.3: hoàn thành mục 2 không cần điều kiện, Nạp từ 2 cột, ẩn ô chữ khi viết ngang, bỏ qua nói khi không ASR."""
+    out = Path("/workspace/hsk/shots/v23"); out.mkdir(parents=True, exist_ok=True)
+    ctx = br.new_context(viewport={"width": 1280, "height": 800}, locale="vi-VN", device_scale_factor=1)
+    p = ctx.new_page(); T = "v2.3 land1280: "
+    p.on("pageerror", lambda e: errs.append(f"v23 land pageerror {e}"))
+    at(p, 2026, 11, 19); fresh(p)
+    go(p, "/lesson/1"); p.wait_for_selector("#complete-s2")
+    btn = p.locator("#complete-s2")
+    check(T + "Mục 2: nút Đánh dấu hoàn thành bật sẵn (không cần điều kiện)", btn.is_enabled() and btn.inner_text().strip() == "Đánh dấu hoàn thành", btn.inner_text())
+    p.click("[data-testid=open-s2]"); p.wait_for_selector("[data-testid=s2]")
+    rows = p.locator("[data-testid=vocab-row]").all()
+    b0, b1 = rows[0].bounding_box(), rows[1].bounding_box()
+    two_col = b0 and b1 and abs(b0["y"] - b1["y"]) < 20 and b1["x"] > b0["x"] + 80
+    check(T + "Nạp từ tablet: 2 cột", two_col, f"{b0} {b1}")
+    # xổ một từ rồi kiểm tra hàng đó còn trong khung
+    rows[0].locator("[data-testid=vocab-word]").click(); p.wait_for_timeout(250)
+    open_bb = p.locator("[data-testid=vocab-row].open").bounding_box()
+    check(T + "Nạp từ: từ đang mở còn trong khung nhìn", bool(open_bb) and open_bb["y"] >= 0 and open_bb["y"] < 800, str(open_bb))
+    p.screenshot(path=str(out / "land-nap-tu-2col.png"))
+    btn.click(); p.wait_for_timeout(250)
+    check(T + "Mục 2: bấm đánh dấu thì xong (không cần xem hết từ)", "Xong" in p.locator("[data-testid=sec-s2]").inner_text())
+    go(p, "/write"); p.wait_for_selector("[data-testid=write-page]")
+    tiles = p.locator("[data-testid=char-tiles]")
+    check(T + "Viết ngang: ẩn lưới ô chữ (đã có list trái)", tiles.count() == 1 and not tiles.is_visible())
+    check(T + "Viết ngang: còn danh sách từ bên trái", p.locator(".col-words").is_visible() and p.locator("[data-testid=write-word-item]").count() >= 2)
+    p.screenshot(path=str(out / "land-write-no-tiles.png"))
+    ctx.close()
+
+    ctx = br.new_context(viewport={"width": 390, "height": 844}, locale="vi-VN", device_scale_factor=2)
+    ctx.add_init_script("""
+      Object.defineProperty(window, 'SpeechRecognition', { configurable: true, writable: true, value: undefined });
+      Object.defineProperty(window, 'webkitSpeechRecognition', { configurable: true, writable: true, value: undefined });
+      window.__miaoziAsr = null;
+    """)
+    p = ctx.new_page(); T = "v2.3 phone: "
+    p.on("pageerror", lambda e: errs.append(f"v23 phone pageerror {e}"))
+    at(p, 2026, 11, 19); fresh(p)
+    go(p, "/lesson/1/s5"); p.wait_for_selector("[data-testid=s5]")
+    p.wait_for_selector("[data-testid=speak-try]")
+    no_asr = p.locator("[data-testid=speak-no-asr]").count() >= 1 or "không có nhận giọng nói" in p.inner_text("[data-testid=s5]")
+    has_skip = p.locator("[data-testid=speak-skip], #speak-skip").count() >= 1 or "Bỏ qua" in p.inner_text("[data-testid=s5]")
+    check(T + "Nói khi không ASR: hiện thông báo + nút Bỏ qua", no_asr and has_skip, f"asr={p.locator('[data-testid=speak-no-asr]').count()} skip={p.locator('#speak-skip').count()} text={p.inner_text('[data-testid=s5]')[:220]}")
+    if has_skip:
+        skip = p.locator("[data-testid=s5] [data-testid=speak-skip] button").first
+        skip.scroll_into_view_if_needed(); skip.click(); p.wait_for_timeout(400)
+        res_n = p.locator("[data-testid=speak-res]").count()
+        res_t = p.locator("[data-testid=speak-res]").first.inner_text() if res_n else ""
+        spoken = st(p, "(s.v2.sub[1] && s.v2.sub[1].spoken) ? s.v2.sub[1].spoken.length : 0")
+        check(T + "Bỏ qua câu nói thì tính đã xong câu", res_n >= 1 and "Đã bỏ qua" in res_t and spoken > 0, f"res={res_n} text={res_t!r} spoken={spoken}")
+        p.screenshot(path=str(out / "phone-speak-skip.png"))
+    go(p, "/lesson/1"); p.wait_for_selector("#complete-s5")
+    check(T + "Mục 5: đánh dấu hoàn thành bật sẵn", p.locator("#complete-s5").is_enabled())
+    p.screenshot(path=str(out / "phone-mark-complete.png"))
+    ctx.close()
+
+
 with sync_playwright() as pw:
     br = pw.chromium.launch(channel="chrome", args=["--no-sandbox", "--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream", "--autoplay-policy=no-user-gesture-required"])
-    for dev, vp in (() if os.environ.get("V22_ONLY") else (("tablet", {"width": 1280, "height": 853}), ("phone", {"width": 390, "height": 844}))):
+    for dev, vp in (() if os.environ.get("V22_ONLY") or os.environ.get("V23_ONLY") else (("tablet", {"width": 1280, "height": 853}), ("phone", {"width": 390, "height": 844}))):
         ctx = br.new_context(viewport=vp, locale="vi-VN", device_scale_factor=2 if dev == "phone" else 1.5)
         ctx.add_init_script(INIT + """
 window.__audioEls = []; const _A = window.Audio; window.Audio = function(u) { const a = new _A(u); window.__audioEls.push(a); return a; }; window.Audio.prototype = _A.prototype;""")
@@ -571,12 +628,14 @@ window.__audioEls = []; const _A = window.Audio; window.Audio = function(u) { co
         # ---------- Đồng bộ Drive (giao diện) + phiên bản ----------
         go(p, "/settings"); p.wait_for_selector("[data-testid=sync-card]")
         check(T + "Đồng bộ Drive đã cấu hình (có nút Đăng nhập Google)", p.locator("#sync-login").count() == 1 and "Chưa cấu hình" not in p.inner_text("[data-testid=sync-card]"))
-        check(T + "Cài đặt hiện Miaozi 2.2.2", "Miaozi 2.2.2" in p.inner_text("body"))
+        check(T + "Cài đặt hiện Miaozi 2.3.0", "Miaozi 2.3.0" in p.inner_text("body"))
         shot(p, f"{dev}-settings-sync")
         ctx.close()
-    v22_suite(br)
-    fix2_shots(br)
-    fix3_shots(br)
+    if not os.environ.get("V23_ONLY"):
+        v22_suite(br)
+        fix2_shots(br)
+        fix3_shots(br)
+    v23_checks(br)
     br.close()
 
 bad = [r for r in results if not r[1]]

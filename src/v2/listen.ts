@@ -2,6 +2,7 @@
  * Nói → chấm (v2.1). Nghe liên tục (continuous + interim) cho tới khi im ≥ 2,5 s sau khi đã nói, tối đa 15 s,
  * hoặc bấm “Xong”. Android hay tự kết thúc sau mỗi câu → tự khởi động lại cho tới khi hết giờ.
  * Android chỉ chạy nhận giọng (thu song song tranh micro); máy khác thu thêm để đo cao độ (chỉ tham khảo).
+ * v2.3: lỗi mạng/micro là fatal sau vài lần thử, không khởi động lại nhận giọng vô hạn; có thể Bỏ qua ở giao diện.
  */
 import { pitchContour, recordUntilSilent, speechAvailable, speechCtor } from "../speech";
 import { gatedContour, scoreSpeech, sylls, tonesFromContour, type V2Score } from "./speakScore";
@@ -24,6 +25,7 @@ export function startListening(expected: string, onInterim?: (text: string) => v
   if (!Ctor) return { stop: () => {}, result: Promise.reject(new Error("no-asr")) };
   const t0 = performance.now();
   let hasSpeech = false, lastSpeech = t0, finished = false, fatal: string | null = null;
+  let netFails = 0, quickEnds = 0, lastStart = t0;
   const finals: string[][] = [];
   let sessionFinals: string[][] = [];
   let interim = "";
@@ -48,17 +50,27 @@ export function startListening(expected: string, onInterim?: (text: string) => v
     };
     r.onerror = (ev: unknown) => {
       const err = (ev as { error?: string }).error || "";
-      if (err === "not-allowed" || err === "service-not-allowed" || err === "audio-capture") { fatal = err; finish(); }
+      // Quyền / không bắt được tiếng / dịch vụ cấm → dừng hẳn.
+      if (err === "not-allowed" || err === "service-not-allowed" || err === "audio-capture") { fatal = err; finish(); return; }
+      // Mạng (hay gặp trên máy không có dịch vụ Google / Wi‑Fi yếu): thử lại vài lần rồi báo lỗi, không kẹt vòng lặp.
+      if (err === "network" || err === "aborted") {
+        netFails += 1;
+        if (netFails >= 3) { fatal = err === "aborted" ? "network" : err; finish(); }
+      }
     };
     r.onend = () => {
       finals.push(...sessionFinals); sessionFinals = [];
       if (finished) { resolveDone(); return; }
       // Android: tự kết thúc sau mỗi lượt → mở lại cho tới khi đủ điều kiện dừng.
-      try { rec = new Ctor(); wire(rec); rec.start(); } catch { finish(); resolveDone(); }
+      // Nếu start/end lập tức (dịch vụ nhận giọng chết) thì dừng, tránh vòng lặp vô hạn.
+      const now = performance.now();
+      if (now - lastStart < 280) quickEnds += 1; else quickEnds = 0;
+      if (quickEnds >= 4) { fatal = fatal || "network"; finish(); resolveDone(); return; }
+      try { rec = new Ctor(); wire(rec); lastStart = performance.now(); rec.start(); } catch { finish(); resolveDone(); }
     };
   };
   wire(rec);
-  try { rec.start(); } catch (e) { return { stop: () => {}, result: Promise.reject(e) }; }
+  try { lastStart = performance.now(); rec.start(); } catch (e) { return { stop: () => {}, result: Promise.reject(e) }; }
   const wantPitch = !isAndroid() && !!navigator.mediaDevices?.getUserMedia;
   const recP = wantPitch ? recordUntilSilent({ maxMs: 15500, minMs: 700, until: () => finished }).catch(() => null) : Promise.resolve(null);
   const tick = setInterval(() => {

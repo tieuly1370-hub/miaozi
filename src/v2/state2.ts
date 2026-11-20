@@ -7,7 +7,7 @@ import {
   SEC_ORDER, activeSections, lessonComplete, lowLeft, mondayOf, percent, streakFrom, sundayOf, unlocksNext, useLow, ymd, offPenaltyWords,
   LOW_EMPTY_MSG, type LowEnergy, type Mode, type SecId, type SecMap,
 } from "./queue";
-import { LESSON_COUNT, lesson, speakNeed } from "./lessons";
+import { LESSON_COUNT, lesson } from "./lessons";
 import { miaoEvent } from "./miaoBus";
 import { canPinTrigger } from "./miao";
 import { newCard, review, type Card } from "../srs";
@@ -174,15 +174,17 @@ export function active(n: number): SecId[] {
   return activeSections(currentMode(), secOf(n), hasPenalty());
 }
 
-/** Điều kiện đã đạt chưa (để bật nút "Đánh dấu hoàn thành"). */
+/** Điều kiện đã đạt chưa (để bật nút "Đánh dấu hoàn thành").
+ *  v2.3: Mục 2–5 không còn điều kiện — chỉ cần bấm đánh dấu. Tiến độ con (đã xem, đã viết…) vẫn được ghi. */
 export function earned(n: number, id: SecId): boolean {
-  const L = lesson(n), u = subOf(n);
+  const u = subOf(n);
   switch (id) {
     case "s1": return !hasPenalty();
-    case "s2": return L.words.every((w) => u.vocabSeen.includes(w.id)) && !!u.dialog && !!u.videoDone;
-    case "s3": return !!u.s3 && u.s3.score >= 4;
-    case "s4": return L.words.every((w) => u.written.includes(w.id)) && u.sentOk.length >= 3;
-    case "s5": return u.spoken.length >= speakNeed(n);
+    case "s2":
+    case "s3":
+    case "s4":
+    case "s5":
+      return true;
     case "s6a": return !!u.s6a?.pass;
     case "s6b": return !!u.s6b?.pass;
   }

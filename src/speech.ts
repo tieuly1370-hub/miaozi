@@ -370,14 +370,61 @@ function median(a: number[]): number {
   return b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2;
 }
 
-export async function recordMic(maxMs = 4000): Promise<{ samples: Float32Array; sampleRate: number; blob: Blob }> {
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+
+/** Chọn mime MediaRecorder mà máy hỗ trợ (Chrome Android đôi khi không ghi được webm mặc định). */
+export function recorderMime(): string | undefined {
+  if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") return undefined;
+  return ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/aac", "audio/ogg;codecs=opus", "audio/ogg"]
+    .find((t) => MediaRecorder.isTypeSupported(t));
+}
+
+/** Mở micro: thử ràng buộc khử tiếng ồn, nếu máy (một số máy Xiaomi) từ chối thì thu âm thuần. */
+export async function getMicStream(): Promise<MediaStream> {
+  const md = navigator.mediaDevices;
+  if (!md?.getUserMedia) {
+    const e = new Error("NoMediaDevices"); (e as Error & { name: string }).name = "NoMediaDevices"; throw e;
+  }
+  try {
+    return await md.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+  } catch (err) {
+    const n = (err as DOMException)?.name || "";
+    if (n === "OverconstrainedError" || n === "ConstraintNotSatisfiedError" || n === "TypeError") {
+      return await md.getUserMedia({ audio: true });
+    }
+    throw err;
+  }
+}
+
+export function micErrorText(e: unknown): string {
+  const err = e as { name?: string; message?: string };
+  const n = err?.name || err?.message || String(e || "");
+  if (n === "NotAllowedError" || n === "SecurityError" || n === "not-allowed" || n === "service-not-allowed")
+    return "Micro đang bị chặn hoặc chưa được cấp quyền. Chạm biểu tượng ổ khóa cạnh địa chỉ web → Quyền → Micro → Cho phép, rồi thử lại.";
+  if (n === "NotFoundError") return "Máy này không có micro (hoặc micro đang tắt).";
+  if (n === "NotReadableError") return "Micro đang bị app khác dùng (gọi điện, ghi âm…). Tắt app đó rồi thử lại.";
+  if (n === "no-asr") return "Trình duyệt này không có nhận giọng nói. Hãy mở Miaozi bằng Chrome hoặc Edge.";
+  if (n === "network") return "Không kết nối được dịch vụ nhận giọng nói (cần mạng). Kiểm tra Wi‑Fi rồi thử lại.";
+  if (n === "audio-capture") return "Không thu được tiếng từ micro.";
+  if (n === "NoMediaDevices") return "Trình duyệt không cho phép thu âm.";
+  if (n === "timeout" || n === "empty") return "Máy chưa nghe được gì. Nói to, rõ, gần micro hơn rồi thử lại.";
+  return "Không mở được micro / nhận giọng nói: " + (err?.message || n || "lỗi không rõ") + ".";
+}
+
+async function openMicCtx(stream: MediaStream): Promise<AudioContext> {
   const ctx = new AudioContext();
+  if (ctx.state === "suspended") { try { await ctx.resume(); } catch { /* */ } }
+  return ctx;
+}
+
+export async function recordMic(maxMs = 4000): Promise<{ samples: Float32Array; sampleRate: number; blob: Blob }> {
+  const stream = await getMicStream();
+  const ctx = await openMicCtx(stream);
   const src = ctx.createMediaStreamSource(stream);
   const proc = ctx.createScriptProcessor(4096, 1, 1);
   const chunks: Float32Array[] = [];
   const recChunks: BlobPart[] = [];
-  const media = new MediaRecorder(stream);
+  const mime = recorderMime();
+  const media = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
   media.ondataavailable = (e) => { if (e.data.size) recChunks.push(e.data); };
   const mute = ctx.createGain();
   mute.gain.value = 0;
@@ -394,7 +441,7 @@ export async function recordMic(maxMs = 4000): Promise<{ samples: Float32Array; 
   src.disconnect();
   stream.getTracks().forEach((t) => t.stop());
   const blob: Blob = await new Promise((resolve) => {
-    media.onstop = () => resolve(new Blob(recChunks, { type: media.mimeType || "audio/webm" }));
+    media.onstop = () => resolve(new Blob(recChunks, { type: media.mimeType || mime || "audio/webm" }));
   });
   const total = chunks.reduce((n, c) => n + c.length, 0);
   const samples = new Float32Array(total);
@@ -408,8 +455,8 @@ export async function recordMic(maxMs = 4000): Promise<{ samples: Float32Array; 
 export async function recordUntilSilent(opts?: { maxMs?: number; minMs?: number; until?: () => boolean; onLoud?: () => void }): Promise<{ samples: Float32Array; sampleRate: number }> {
   const maxMs = opts?.maxMs ?? 5000;
   const minMs = opts?.minMs ?? 600;
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
-  const ctx = new AudioContext();
+  const stream = await getMicStream();
+  const ctx = await openMicCtx(stream);
   const src = ctx.createMediaStreamSource(stream);
   const proc = ctx.createScriptProcessor(2048, 1, 1);
   const chunks: Float32Array[] = [];

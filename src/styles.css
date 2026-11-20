@@ -840,6 +840,8 @@ a { color: var(--accent); }
   .write-stage .info .compose { grid-column: 2; }
   .write-stage .info .mnemonic { grid-column: 1 / -1; padding-top: 10px; border-top: 1px solid var(--line-2); }
   .practice-grid .practice-links .link-card { min-height: 100px; }
+  .vocab-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; align-items: start; }
+  .vocab-list .vrow.open { grid-column: 1 / -1; }
 }
 
 /* ---------- tablet ngang ≥ 1024: thanh trái + chia cột ---------- */
@@ -877,8 +879,8 @@ a { color: var(--accent); }
 .practice-grid > .pcol, .today2 > .tcol { margin-top: 0 !important; }
 .pcol > .stack > * + * { margin-top: 12px; }
 @media (min-width: 1024px) and (orientation: landscape) {
-  .tiles { grid-template-columns: repeat(auto-fill, minmax(54px, 1fr)); gap: 6px; }
-  .tile { font-size: 24px; border-radius: 11px; }
+  /* Đã có danh sách từ bên trái — ẩn lưới ô chữ cho đỡ chật. */
+  .write-l .tiles { display: none; }
   .col-write { gap: 10px; }
 }
 .decomp { display: flex; flex-direction: column; gap: 8px; }
@@ -941,3 +943,5 @@ a { color: var(--accent); }
 [data-testid=settings] .data-confirm { margin-top: 14px; }
 [data-testid=settings] .card > .btn + .btn,
 [data-testid=settings] .card > .toggle + .btn { margin-top: 14px; }
+
+.speak-try #speak-skip, .speak-try [data-testid=speak-skip] { margin-top: 8px; }

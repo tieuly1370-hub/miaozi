@@ -16,6 +16,7 @@ import { NHAI, nhaiUnitLink } from "../nhai";
 import { Bar, Button, Card, TutorBubble, cls, go } from "../ui";
 import { tutorLine } from "../tutor";
 import { hanChars, loadCharData } from "./write";
+import { WRITE_QUIZ_BASE, mediansToPts, typeAccepts } from "../v2/strokeMatch";
 
 const fmtDate = (d: string) => d.split("-").reverse().slice(0, 2).join("/");
 
@@ -228,9 +229,26 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
           highlightOnComplete: false, strokeColor: "#D9C7D1", drawingColor: "rgba(0,0,0,0)", drawingWidth: 22,
           charDataLoader: (_c: string, cb: (d: unknown) => void) => cb(data),
         });
+        const medians = (data as { medians?: number[][][] }).medians || [];
         writer.quiz({
+          ...WRITE_QUIZ_BASE,
           quizStartStrokeNum: startAt.current,
-          onMistake: () => {
+          onMistake: (sd: { strokeNum: number; drawnPath?: { points: { x: number; y: number }[] } }) => {
+            const exp = mediansToPts(medians, sd.strokeNum);
+            const drawn = sd.drawnPath?.points || [];
+            if (typeAccepts(exp, drawn)) {
+              try { writer?.cancelQuiz(); } catch { /* */ }
+              pen.accept();
+              strokeN.current += 1; setCanUndo(true);
+              if (strokeN.current >= medians.length) {
+                setCanUndo(false); startAt.current = 0;
+                if (k + 1 < chars.length) setK(k + 1);
+                else done(true);
+                return;
+              }
+              startAt.current = strokeN.current; setRound((r) => r + 1);
+              return;
+            }
             missR.current += 1; const m = missR.current; setMiss(m); pen.reject();
             if (m > MAX_MISS) { try { writer?.cancelQuiz(); } catch { /* */ } done(false, `Sai ${m} nét ở chữ thứ ${k + 1} — tính trượt.`); }
           },
@@ -281,7 +299,9 @@ function SpeakView(props: { item: Extract<Item, { t: "speak" }>; onAnswer: (ok: 
       <div class="exam-prompt">{it.prompt}</div>
       <SpeakTry key={tech} expected={it.answerHanzi} onScore={(sc) => {
         if (locked) return;
-        if (!sc.heardNorm && tech < 2) { setTech(tech + 1); return; } // không nghe được gì → cho nói lại, không tính
+        if (sc.skipped) { setLocked(true); props.onAnswer(true, ""); return; }
+        // Không nghe được gì: cho thử lại 1 lần (không tính), sau đó hiện kết quả — luôn có nút Bỏ qua để không kẹt.
+        if (!sc.heardNorm && !sc.pass && tech < 1) { setTech(tech + 1); return; }
         setLocked(true);
         setTimeout(() => props.onAnswer(sc.pass, sc.pass ? "" : `Chưa đạt ${sc.percent}% — máy nghe thành “${sc.heard || "(trống)"}”.`), 1400);
       }} />
@@ -371,7 +391,7 @@ export function GatePage(props: { n: number; skill?: string }) {
         {GSKILLS.map((k) => {
           const r = gateRec(n, k);
           const until = gateBlockedUntil(n, k);
-          const pend = k === "speak" && !speechAvailable();
+          const noAsr = k === "speak" && !speechAvailable();
           return (
             <Card key={k} class={cls("gate-card", r?.pass && "ok")} data-testid={"gate-" + k}>
               <div class="row spread"><h3 class="h3">{SKILL_VI[k]}</h3>
@@ -379,8 +399,8 @@ export function GatePage(props: { n: number; skill?: string }) {
               </div>
               {r?.why && !r.pass && r.why.map((w, i) => <p class="bad-text small" key={i}>{w}</p>)}
               {until && <p class="muted">Thi lại từ ngày {fmtDate(until)}.</p>}
-              {pend && !r?.pass && <p class="muted">Đang chờ: trình duyệt này không nhận giọng nói. Mở bằng Chrome/Edge.</p>}
-              {!r?.pass && <Button small kind="primary" disabled={!ready || !!until || pend || openPen.length > 0} onClick={() => go(`/gate/${n}/${k}`)}>Thi {SKILL_VI[k]}</Button>}
+              {noAsr && !r?.pass && <p class="muted">Trình duyệt này không nhận giọng nói — vào thi vẫn có nút “Bỏ qua” từng câu để không bị kẹt.</p>}
+              {!r?.pass && <Button small kind="primary" disabled={!ready || !!until || openPen.length > 0} onClick={() => go(`/gate/${n}/${k}`)}>Thi {SKILL_VI[k]}</Button>}
             </Card>
           );
         })}
@@ -410,7 +430,6 @@ function GateSkill(props: { n: number; skill: GSkill }) {
   if (rec?.pass) return <Card><p>Kỹ năng {SKILL_VI[skill]} của bài {n} đã đạt.</p><Button onClick={() => go(`/gate/${n}`)}>Quay lại</Button></Card>;
   if (until) return <Card data-testid="gate-blocked"><p>Hôm nay đã trượt {SKILL_VI[skill]}. Thi lại từ ngày {fmtDate(until)}.</p><Button onClick={() => go(`/gate/${n}`)}>Quay lại</Button></Card>;
   if (!ready || openPen) return <Card><p>Chưa đủ điều kiện thi (xem trang cổng).</p><Button onClick={() => go(`/gate/${n}`)}>Quay lại</Button></Card>;
-  if (skill === "speak" && !speechAvailable()) return <Card data-testid="speak-pending"><h2 class="h3">Kỹ năng Nói đang chờ</h2><p>Trình duyệt này không có nhận giọng nói nên không chấm được phụ âm/vần. Không bỏ qua được — mở Miaozi bằng Chrome hoặc Edge rồi thi.</p></Card>;
   if (!started) {
     return (
       <Card data-testid="gate-intro">
@@ -458,17 +477,16 @@ export function CheckPage(props: { kind: "morning" | "evening" | "weekly" }) {
         <h2 class="h2">{title}</h2>
         <p>Ca học chỉ được tính khi bài này đạt: mỗi kỹ năng ≥ 80% đúng ngay lần đầu{items.some((i) => i.t === "write") ? ", phần viết không được sai chữ nào 2 lần" : ""}. {items.length} câu, có giới hạn thời gian.</p>
         {rec && !rec.pass && <p class="bad-text">Lần trước trượt: {(rec.why || []).join(" ")}</p>}
-        {noAsr && <p class="notice" data-testid="check-speak-pending">Phần Nói cần Chrome/Edge có nhận giọng nói. Trên trình duyệt này phần Nói tính là “đang chờ” nên ca chưa thể được tính.</p>}
+        {noAsr && <p class="notice" data-testid="check-speak-pending">Phần Nói trên trình duyệt này không nhận giọng được. Vào thi vẫn có nút “Bỏ qua” từng câu để hoàn thành bài, không bị kẹt.</p>}
         {wait > 0 && <p class="notice">Vừa trượt. Ôn lại rồi {wait} phút nữa mới được kiểm tra lại.</p>}
         <Button wide kind="primary" id="check-start" disabled={wait > 0} onClick={() => setStarted(true)}>Bắt đầu</Button>
       </Card>
     );
   }
-  const runItems = noAsr ? items.filter((i) => i.skill !== "speak") : items;
   return (
-    <ExamRunner items={runItems} title={title} onFinish={(o) => {
+    <ExamRunner items={items} title={title} onFinish={(o) => {
       const skills = [...new Set(items.map((i) => i.skill))];
-      const results = skills.map((k) => judge(k, o.items, o.firstOk, o.finalOk, k === "speak" && noAsr ? "Nói: chưa chấm được trên trình duyệt này (cần Chrome/Edge)." : undefined));
+      const results = skills.map((k) => judge(k, o.items, o.firstOk, o.finalOk));
       for (const r of results) if (r.skill === "write") for (const it of r.failedTwice) gateWritePenalty(it.answerHanzi, `${title}: viết sai ${it.answerHanzi} hai lần`);
       const pass = results.every((r) => r.pass);
       const correct = results.reduce((a, r) => a + r.first, 0);

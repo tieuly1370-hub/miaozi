@@ -95,6 +95,17 @@ export interface V2Score {
   heardNorm: string;
   marks: { char: string; py: string; ok: number; tone?: { want: number; got?: number; ok: boolean } }[];
   message: string;
+  /** v2.3: bỏ qua vì không thu âm / nhận giọng được — vẫn tính xong câu. */
+  skipped?: boolean;
+}
+
+/** Câu nói được bỏ qua (micro/nhận giọng lỗi hoặc không có) — tính đã làm xong. */
+export function skippedSpeak(_expected = ""): V2Score {
+  return {
+    pass: true, percent: 100, sylPct: 100, tonePct: null,
+    heard: "", heardNorm: "", marks: [], skipped: true,
+    message: "Đã bỏ qua — không thu âm / nhận giọng được.",
+  };
 }
 
 export const PASS_PCT = 80;

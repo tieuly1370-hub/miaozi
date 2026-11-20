@@ -1,4 +1,4 @@
-/** v2.1 — trang bài: 6 mục cố định, mục gợi ý lấp lánh (không làm mờ mục khác), nút hoàn thành phải “kiếm” được. */
+/** v2.1 — trang bài: 6 mục cố định, mục gợi ý lấp lánh (không làm mờ mục khác). v2.3: Mục 2–5 chỉ cần đánh dấu hoàn thành. */
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { pinyin as toPinyin } from "pinyin-pro";
 import { getState } from "../store";
@@ -11,7 +11,7 @@ import { shuffle, v2Items, v2Judge, type Item } from "../gate";
 import { gradeSentence, type GradeResult } from "../v2/grader";
 import { percent, SEC_ORDER, WEIGHT, type SecId } from "../v2/queue";
 import {
-  SEC_TITLE, SEC_SHORT, secRule, introText, lesson, nhaiLesson, passageFor, sentTasks, knownChars, speakNeed, NHAI_GENERAL, isExtended, LESSON_COUNT,
+  SEC_TITLE, SEC_SHORT, secRule, introText, lesson, nhaiLesson, passageFor, sentTasks, knownChars, NHAI_GENERAL, isExtended, LESSON_COUNT,
 } from "../v2/lessons";
 import {
   active, addTo, completeSection, currentMode, earned, finishCheck, finishS3, hasPenalty, lessonUnlockedV2, openPenalties, oweSection,
@@ -233,8 +233,19 @@ function S2(props: { n: number; showPy: boolean }) {
       <h4 class="h4">Từ vựng <span class="chip tiny">{seen}/{L.words.length} đã xem</span></h4>
       <div class="vocab-list">
         {L.words.map((w) => (
-          <div key={w.id} class={cls("vrow", u.vocabSeen.includes(w.id) && "seen", openW === w.id && "open")}>
-            <button class="vrow-head" data-testid="vocab-word" onClick={() => { setOpenW(openW === w.id ? null : w.id); addTo(n, "vocabSeen", w.id); }}>
+          <div key={w.id} class={cls("vrow", u.vocabSeen.includes(w.id) && "seen", openW === w.id && "open")} data-testid="vocab-row">
+            <button class="vrow-head" data-testid="vocab-word" onClick={(ev) => {
+              const row = (ev.currentTarget as HTMLElement).closest(".vrow") as HTMLElement | null;
+              const next = openW === w.id ? null : w.id;
+              setOpenW(next);
+              addTo(n, "vocabSeen", w.id);
+              if (next && row) {
+                // Đợi layout xổ ra (2 cột tablet dễ đẩy hàng sang chỗ khác) rồi kéo đúng từ đang mở vào khung nhìn.
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                  row.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "auto" });
+                }));
+              }
+            }}>
               <span class="hanzi xs">{w.hanzi}</span>
               {props.showPy && <span class="py">{w.pinyin}</span>}
               <span class="vi">{w.vi}</span>
@@ -387,7 +398,7 @@ function S5(props: { n: number }) {
   const n = props.n; const L = lesson(n); const u = subOf(n);
   return (
     <div class="stack" data-testid="s5">
-      <p class="muted">Nghe giọng chuẩn, rồi bấm mic và đọc. Cần đạt ≥ 80% ở {speakNeed(n)} câu. <span class="chip tiny">{L.sentences.filter((s) => u.spoken.includes(s.id)).length}/{speakNeed(n)}</span></p>
+      <p class="muted">Nghe giọng chuẩn, rồi bấm mic và đọc. Nếu không thu âm được, bấm “Bỏ qua” ở câu đó. <span class="chip tiny">{L.sentences.filter((s) => u.spoken.includes(s.id)).length}/{L.sentences.length}</span></p>
       {L.sentences.map((s) => (
         <div key={s.id} class={cls("speak-row", u.spoken.includes(s.id) && "ok")} data-testid="speak-row">
           <p><span class="hanzi-inline">{s.hanzi}</span> <span class="py">{s.pinyin}</span> <span class="muted">{s.vi}</span></p>

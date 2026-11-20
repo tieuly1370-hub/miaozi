@@ -11,6 +11,7 @@ import { HANZI_INFO } from "../data/hanziInfo";
 import { mnemonicFor } from "../v2/mnemo";
 import { PartChips, StarBtn } from "../v2/charui";
 import { PEN_DEFAULT, drawPenStroke, penPt, usePenInk, type PenPt } from "../v2/pen";
+import { KIND_VI, WRITE_QUIZ_BASE, mediansToPts, strokeKind, typeAccepts } from "../v2/strokeMatch";
 
 const charCache = new Map<string, unknown>();
 
@@ -79,7 +80,7 @@ export function WriteBox(props: {
     if (!startAt) { pen.clear(); missRef.current = 0; setMistakes(0); }
     pen.reject(); strokeNum.current = startAt; setCanUndo(startAt > 0);
     setDone(null);
-    setMsg(active ? "Viết theo đúng thứ tự nét" : "Chờ chữ trước");
+    setMsg(active ? "Viết đúng thứ tự loại nét (ngang, sổ, phẩy, mác…)" : "Chờ chữ trước");
     (async () => {
       try {
         const data = await loadCharData(props.character);
@@ -101,9 +102,32 @@ export function WriteBox(props: {
         });
         writerRef.current = writer;
         if (!active) return;
+        const medians = (data as { medians?: number[][][] }).medians || [];
         writer.quiz({
+          ...WRITE_QUIZ_BASE,
           quizStartStrokeNum: startAt,
-          onMistake: () => { missRef.current += 1; setMistakes(missRef.current); pen.reject(); setMsg("Sai nét hoặc sai thứ tự — viết lại nét đó."); },
+          onMistake: (sd: { strokeNum: number; drawnPath?: { points: { x: number; y: number }[] } }) => {
+            const exp = mediansToPts(medians, sd.strokeNum);
+            const drawn = sd.drawnPath?.points || [];
+            if (typeAccepts(exp, drawn)) {
+              try { writer?.cancelQuiz(); } catch { /* */ }
+              pen.accept();
+              strokeNum.current += 1; setCanUndo(true);
+              setMsg(`Đúng nét (${KIND_VI[strokeKind(exp)]}).`);
+              if (strokeNum.current >= medians.length) {
+                const m = missRef.current;
+                const ok = m <= 5;
+                setDone(ok); setCanUndo(false);
+                setMsg(ok ? "Đạt." : `Xong nhưng sai ${m} nét. Bấm “Viết lại” để luyện thêm.`);
+                miaoAnswer(ok);
+                props.onResult?.(ok, m);
+                return;
+              }
+              setStartAt(strokeNum.current); setRound((r) => r + 1);
+              return;
+            }
+            missRef.current += 1; setMistakes(missRef.current); pen.reject(); setMsg("Sai loại nét hoặc sai thứ tự — viết lại nét đó.");
+          },
           onCorrectStroke: () => {
             pen.accept();
             strokeNum.current += 1; setCanUndo(true); setMsg("Đúng nét.");
