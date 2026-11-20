@@ -1,7 +1,7 @@
 import type { ComponentChildren } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { load, getState, subscribe, debugSeed, setOnboarded, DEFAULT_PROGRESS, plannedToday, patchSettings } from "./store";
-import { DEFAULT_SETTINGS, DEFAULT_STREAK, padDate, atHm } from "./schedule";
+import { load, getState, subscribe, debugSeed, setOnboarded, DEFAULT_PROGRESS, plannedToday, patchSettings, resetLearning } from "./store";
+import { padDate, atHm } from "./schedule";
 import { useHash, go, Back, cls } from "./ui";
 import { UpdateBanner } from "./update";
 import { tutorLine } from "./tutor";
@@ -208,6 +208,7 @@ function installDebug() {
     V2,
     getState,
     debugSeed,
+    resetLearning,
     miao: { answer: miaoAnswer, event: miaoEvent },
     makeRadQuiz,
     padDate,
@@ -223,21 +224,7 @@ function installDebug() {
       st.progress.unlockedLesson = n;
       m.debugSeed({ progress: { ...st.progress } });
     },
-    reset: async () => {
-      debugSeed({
-        settings: { ...DEFAULT_SETTINGS },
-        progress: { ...DEFAULT_PROGRESS },
-        streak: { ...DEFAULT_STREAK },
-        srs: {},
-        mistakes: [],
-        sessions: [],
-        notes: {},
-        penalties: [],
-        today: { date: padDate(new Date()), activeBySession: {}, correct: 0, total: 0, lastInputAt: Date.now(), started: {}, lateFlagged: {}, wordWrongs: {} },
-        onboarded: true,
-        v2: V2.DEFAULT_V2(),
-      } as never);
-    },
+    reset: async () => { resetLearning({ keepSettings: false }); },
   };
 }
 

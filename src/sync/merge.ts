@@ -64,10 +64,30 @@ export function mergeV2(a: O = {}, b: O = {}, newerIsB: boolean): O {
   if (a.legacy || b.legacy) out.legacy = (a.legacy?.count || 0) >= (b.legacy?.count || 0) ? a.legacy : b.legacy;
   out.write = n(a.write || {}, b.write || {}) && { ...n(a.write || {}, b.write || {}), done: { ...(a.write?.done || {}), ...(b.write?.done || {}) } };
   out.retry = {};
+  out.penaltiesClearedAt = Math.max(a.penaltiesClearedAt || 0, b.penaltiesClearedAt || 0) || undefined;
+  out.resetAt = Math.max(a.resetAt || 0, b.resetAt || 0) || undefined;
   return out;
 }
 
+/** Bản có mốc reset cũ hơn: bỏ dữ liệu học (trước lần bắt đầu lại), giữ cài đặt / cờ đã xóa phạt. */
+function blankLearning(src: O, resetAt: number, cleared?: number): O {
+  return {
+    ...src,
+    progress: {},
+    streak: { count: 0, best: 0, pendingMakeups: [] },
+    srs: {},
+    mistakes: [],
+    sessions: [],
+    notes: {},
+    penalties: [],
+    v2: { lesson: 1, sec: {}, sub: {}, days: {}, busy: [], tests: {}, modeByDay: {}, skillLog: [], report: {}, owedPenalized: {}, offApplied: {}, write: { lesson: 1, idx: 0, hide: false, done: {} }, retry: {}, stars: {}, rad: {}, radQuiz: { right: 0, total: 0, days: [] }, resetAt: resetAt || undefined, penaltiesClearedAt: cleared || undefined },
+  };
+}
+
 export function mergeData(a: O, b: O, aAt: number, bAt: number): O {
+  const ra = a.v2?.resetAt || 0, rb = b.v2?.resetAt || 0;
+  if (ra > rb) b = blankLearning(b, rb, b.v2?.penaltiesClearedAt);
+  else if (rb > ra) a = blankLearning(a, ra, a.v2?.penaltiesClearedAt);
   const newerIsB = bAt > aAt;
   const n = (x: any, y: any) => (newerIsB ? (y ?? x) : (x ?? y));
   const out: O = {};
@@ -86,6 +106,13 @@ export function mergeData(a: O, b: O, aAt: number, bAt: number): O {
     return { ...x, ...y, done: !!(x.done || y.done), written, proof: x.proof || y.proof };
   });
   out.v2 = mergeV2(a.v2, b.v2, newerIsB);
+  const cleared = Math.max(a.v2?.penaltiesClearedAt || 0, b.v2?.penaltiesClearedAt || 0, out.v2?.penaltiesClearedAt || 0);
+  if (cleared) {
+    out.penalties = (out.penalties || []).filter((p: O) => p.done || (p.createdAt || 0) > cleared);
+    out.v2 = { ...out.v2, penaltiesClearedAt: cleared };
+  }
+  const resetAt = Math.max(ra, rb);
+  if (resetAt) out.v2 = { ...out.v2, resetAt };
   return out;
 }
 

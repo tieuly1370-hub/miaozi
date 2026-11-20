@@ -184,6 +184,29 @@ def fix2_shots(br):
     shot(p, "fix2-phone-nav")
     ctx.close()
 
+
+def fix3_shots(br):
+    """Ảnh tự kiểm v2.2.2: lộ trình HSK 1/HSK 2 + Cài đặt (khoảng cách và Dữ liệu học)."""
+    ctx = br.new_context(viewport={"width": 1024, "height": 683}, locale="vi-VN", device_scale_factor=1.5)
+    p = ctx.new_page(); T = "v2.2.2 land1024: "
+    p.on("pageerror", lambda e: errs.append(f"fix3 land pageerror {e}"))
+    at(p, 2026, 11, 19); fresh(p)
+    go(p, "/roadmap"); p.wait_for_selector("[data-testid=roadmap2]")
+    check(T + "HSK 1 xổ, HSK 2 khóa", p.locator("[data-testid=level-hsk1][data-open='1']").count() == 1 and "sắp có" in p.inner_text("[data-testid=level-hsk2]"))
+    shot(p, "fix3-land-roadmap")
+    p.click("[data-testid=level-toggle-hsk1]"); p.wait_for_timeout(200)
+    shot(p, "fix3-land-roadmap-collapsed")
+    ctx.close()
+    ctx = br.new_context(viewport={"width": 390, "height": 844}, locale="vi-VN", device_scale_factor=2)
+    p = ctx.new_page(); T = "v2.2.2 phone: "
+    p.on("pageerror", lambda e: errs.append(f"fix3 phone pageerror {e}"))
+    at(p, 2026, 11, 19); fresh(p)
+    go(p, "/settings"); p.wait_for_selector("[data-testid=settings]")
+    shot(p, "fix3-phone-settings")
+    p.locator("[data-testid=data-tools]").scroll_into_view_if_needed(); p.wait_for_timeout(150)
+    shot(p, "fix3-phone-settings-data")
+    ctx.close()
+
 def v22_suite(br):
     for dev, vp in (("land", {"width": 1280, "height": 853}), ("port", {"width": 853, "height": 1280}), ("phone", {"width": 390, "height": 844})):
         ctx = br.new_context(viewport=vp, locale="vi-VN", device_scale_factor=2 if dev == "phone" else 1.5, permissions=["clipboard-read", "clipboard-write"])
@@ -228,6 +251,32 @@ def v22_suite(br):
         check(T + "Cài đặt: không còn nút Bài đọc", p.locator("button:has-text('Bài đọc')").count() == 0)
         check(T + "Cài đặt: ghi nguồn Make Me a Hanzi", "Make Me a Hanzi" in p.inner_text("[data-testid=about]"))
         check(T + "Cài đặt: độ dày bút mặc định 1.2", p.locator("[data-testid=pen-width] input").first.input_value() in ("1.2", "1.20"))
+        check(T + "Cài đặt hiện Miaozi 2.2.2", "Miaozi 2.2.2" in p.inner_text("[data-testid=about]"))
+        check(T + "Cài đặt: có Xoá chép phạt và Bắt đầu lại", p.locator("#clear-penalties").count() == 1 and p.locator("#full-reset").count() == 1)
+        p.evaluate("""() => { const M = window.__miaozi; M.debugSeed({ penalties: [{ id: 't-pen', hanzi: '你', dueChars: ['你'], copies: 3, done: false, createdAt: Date.now() }] }); }""")
+        p.wait_for_timeout(200)
+        p.locator("#clear-penalties").scroll_into_view_if_needed(); p.click("#clear-penalties")
+        p.wait_for_selector("[data-testid=confirm-penalties]")
+        p.click("#confirm-penalties"); p.wait_for_selector("[data-testid=data-msg]")
+        check(T + "Xoá chép phạt: hết bài đang nợ", st(p, "s.penalties.filter(x => !x.done && (x.copies||0) > 0).length") == 0)
+        p.locator("#full-reset").scroll_into_view_if_needed(); p.click("#full-reset")
+        p.wait_for_selector("[data-testid=confirm-reset-1]")
+        p.click("#confirm-reset-1")
+        p.wait_for_selector("[data-testid=confirm-reset-2]")
+        p.locator("[data-testid=confirm-reset-2] button:has-text('Thôi')").click(); p.wait_for_timeout(150)
+        check(T + "Bắt đầu lại: phải xác nhận 2 lần (Thôi thì chưa xóa)", p.locator("[data-testid=confirm-reset-2]").count() == 0)
+        go(p, "/roadmap"); p.wait_for_selector("[data-testid=roadmap2]")
+        check(T + "Lộ trình: HSK 1 đang xổ (0/19) và HSK 2 khóa",
+              p.locator("[data-testid=level-hsk1]").get_attribute("data-open") == "1"
+              and p.locator("[data-testid=road-item]").count() == 19
+              and "0/19 bài" in p.inner_text("[data-testid=level-hsk1]")
+              and "HSK 2 — sắp có" in p.inner_text("[data-testid=level-hsk2]")
+              and p.locator("[data-testid=level-toggle-hsk2]").count() == 0)
+        p.click("[data-testid=level-toggle-hsk1]"); p.wait_for_timeout(200)
+        check(T + "Lộ trình: bấm HSK 1 thì thu danh sách bài",
+              p.locator("[data-testid=level-hsk1]").get_attribute("data-open") == "0"
+              and p.locator("[data-testid=road-item]").count() == 0)
+        p.click("[data-testid=level-toggle-hsk1]"); p.wait_for_timeout(150)
         # ---------- Viết ----------
         go(p, "/write"); p.wait_for_selector("[data-testid=write-box] svg")
         p.wait_for_timeout(500)
@@ -522,11 +571,12 @@ window.__audioEls = []; const _A = window.Audio; window.Audio = function(u) { co
         # ---------- Đồng bộ Drive (giao diện) + phiên bản ----------
         go(p, "/settings"); p.wait_for_selector("[data-testid=sync-card]")
         check(T + "Đồng bộ Drive đã cấu hình (có nút Đăng nhập Google)", p.locator("#sync-login").count() == 1 and "Chưa cấu hình" not in p.inner_text("[data-testid=sync-card]"))
-        check(T + "Cài đặt hiện Miaozi 2.2.1", "Miaozi 2.2.1" in p.inner_text("body"))
+        check(T + "Cài đặt hiện Miaozi 2.2.2", "Miaozi 2.2.2" in p.inner_text("body"))
         shot(p, f"{dev}-settings-sync")
         ctx.close()
     v22_suite(br)
     fix2_shots(br)
+    fix3_shots(br)
     br.close()
 
 bad = [r for r in results if not r[1]]

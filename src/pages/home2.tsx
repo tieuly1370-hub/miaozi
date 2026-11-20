@@ -3,8 +3,9 @@ import { useMemo, useState } from "preact/hooks";
 import { MIAO_GREET } from "../data/miaoGreet";
 import { SEC_SAY, fillGreet, greetCtx, joinVi, pickGreet } from "../v2/greet";
 import { getState } from "../store";
-import { LOW_LABEL, LOW_EMPTY_MSG, mondayOf, percent, streakFrom, ymd } from "../v2/queue";
+import { LOW_LABEL, LOW_EMPTY_MSG, mondayOf, percent, streakFrom, ymd, lessonComplete } from "../v2/queue";
 import { LESSON_COUNT, SEC_SHORT, SEC_TITLE, lesson, isExtended } from "../v2/lessons";
+import { LEVELS, levelOpen, setLevelOpen, type Level } from "../v2/levels";
 import {
   SKILL_NAME, active, chooseMode, currentMode, dismissReport, hasPenalty, isOffToday, lowLeftNow, markOff, openPenalties, owedList, secOf,
   setCompany, streakNow, studiedDays, todayKey, weakReport,
@@ -149,19 +150,64 @@ export function TodayV2() {
 }
 
 export function RoadmapV2() {
-  const v = getState().v2;
   return (
     <div class="stack" data-testid="roadmap2">
-      <Card><h2 class="h2">Lộ trình HSK1</h2><p class="muted">15 bài chính + 4 bài từ vựng mở rộng, đúng thứ tự Nhai HSK. Bài mới mở khi bài trước đạt 100% (hoặc phần thiếu đang nợ trong hạn).</p></Card>
-      {Array.from({ length: LESSON_COUNT }, (_, i) => i + 1).map((k) => {
-        const sec = secOf(k); const p = percent(sec); const open = k <= v.lesson;
-        return (
-          <button key={k} class={cls("card road-item", !open && "locked")} onClick={() => open && go("/lesson/" + k)} data-testid="road-item">
-            <div class="row spread"><b>Bài {k}{isExtended(k) ? " (mở rộng)" : ""}: {lesson(k).titleVi}</b><span class="chip tiny">{open ? `${p}%` : "🔒"}</span></div>
-            {open && <SixBar sec={sec} />}
-          </button>
-        );
-      })}
+      <Card><h2 class="h2">Lộ trình</h2><p class="muted">15 bài chính + 4 bài từ vựng mở rộng, đúng thứ tự Nhai HSK. Bài mới mở khi bài trước đạt 100% (hoặc phần thiếu đang nợ trong hạn).</p></Card>
+      <LevelList />
+    </div>
+  );
+}
+
+function lessonRows(from: number, to: number) {
+  const v = getState().v2;
+  return Array.from({ length: to - from + 1 }, (_, i) => from + i).map((k) => {
+    const sec = secOf(k); const p = percent(sec); const open = k <= v.lesson;
+    return (
+      <button key={k} class={cls("card road-item", !open && "locked")} onClick={() => open && go("/lesson/" + k)} data-testid="road-item">
+        <div class="row spread"><b>Bài {k}{isExtended(k) ? " (mở rộng)" : ""}: {lesson(k).titleVi}</b><span class="chip tiny">{open ? `${p}%` : "🔒"}</span></div>
+        {open && <SixBar sec={sec} />}
+      </button>
+    );
+  });
+}
+
+function LevelList() {
+  return (
+    <div class="level-list" data-testid="level-list">
+      {LEVELS.map((lv) => lv.coming ? <ComingLevel key={lv.id} lv={lv} /> : <OpenLevel key={lv.id} lv={lv} />)}
+    </div>
+  );
+}
+
+function OpenLevel(props: { lv: Level }) {
+  const { lv } = props;
+  const from = lv.from || 1, to = lv.to || from;
+  const doneN = Array.from({ length: to - from + 1 }, (_, i) => from + i).filter((k) => lessonComplete(secOf(k))).length;
+  const total = to - from + 1;
+  const finished = doneN >= total;
+  const [open, setOpen] = useState(() => levelOpen(lv.id, finished));
+  const toggle = () => { const next = !open; setOpen(next); setLevelOpen(lv.id, next); };
+  const pct = Math.round((doneN / total) * 100);
+  return (
+    <div class="level-block" data-testid={"level-" + lv.id} data-open={open ? "1" : "0"}>
+      <button class={cls("level-head", open && "open")} onClick={toggle} data-testid={"level-toggle-" + lv.id} aria-expanded={open}>
+        <div class="level-title"><b>{lv.title}</b><span class="muted small">{doneN}/{total} bài</span></div>
+        <span class="level-bar progress" aria-hidden="true"><span style={{ width: pct + "%" }} /></span>
+        <span class="chev" aria-hidden="true">›</span>
+      </button>
+      {open && <div class="level-lessons">{lessonRows(from, to)}</div>}
+    </div>
+  );
+}
+
+function ComingLevel(props: { lv: Level }) {
+  const { lv } = props;
+  return (
+    <div class="level-block coming" data-testid={"level-" + lv.id}>
+      <div class="level-head">
+        <div class="level-title"><b>{lv.title} — sắp có</b><span class="muted small">Đang khóa</span></div>
+        <span class="chip tiny">🔒</span>
+      </div>
     </div>
   );
 }

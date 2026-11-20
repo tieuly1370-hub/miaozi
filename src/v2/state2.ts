@@ -56,6 +56,9 @@ export interface V2State {
   /** v2.2: thẻ ôn bộ thủ (SRS, khóa = bộ thủ) + thống kê quiz. */
   rad: Record<string, import("../srs").Card>;
   radQuiz: { right: number; total: number; days: string[] };
+  /** v2.2.2: mốc xóa chép phạt / bắt đầu lại — để gộp Drive không kéo phạt/tiến độ cũ trở lại. */
+  penaltiesClearedAt?: number;
+  resetAt?: number;
 }
 
 export const DEFAULT_V2 = (): V2State => ({
@@ -141,6 +144,25 @@ export function subOf(n: number): LessonSub {
 }
 export function openPenalties(): Penalty[] { return getState().penalties.filter((p) => !p.done && p.copies > 0); }
 export function hasPenalty(): boolean { return openPenalties().length > 0; }
+
+/** Xoá hết chép phạt đang nợ (kể cả phạt Xin nghỉ / báo cáo tuần đã sinh), không đụng SRS, tiến độ, chuỗi. */
+export function clearPenalties() {
+  const st = getState();
+  const now = Date.now();
+  const today = ymd(new Date());
+  st.penalties = st.penalties.filter((p) => p.done);
+  st.v2.penaltiesClearedAt = now;
+  for (const d of st.v2.busy) if (d < today) st.v2.offApplied[d] = true;
+  for (const [n, sec] of Object.entries(st.v2.sec || {})) {
+    for (const id of SEC_ORDER) {
+      const r = sec[id];
+      if (r?.owed && !r.done && r.owed.due < today) st.v2.owedPenalized[`${n}:${id}:${r.owed.due}`] = true;
+    }
+  }
+  const week = mondayOf(new Date());
+  st.v2.report[week] = { ...(st.v2.report[week] || {}), penalized: true };
+  touch();
+}
 
 export function currentMode(): Mode | null {
   if (getState().settings.companyMode) return "company";

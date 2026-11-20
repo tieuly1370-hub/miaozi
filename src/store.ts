@@ -716,6 +716,26 @@ export function debugSeed(partial: Partial<AppState>) {
   emit();
 }
 
+/** Bắt đầu lại từ đầu: xóa tiến độ / chuỗi / SRS / phạt. Giữ onboarded. keepSettings=true thì giữ Cài đặt (và phiên Drive vốn nằm ngoài store). */
+export function resetLearning(opts: { keepSettings?: boolean } = {}) {
+  const s = getState();
+  const settings = opts.keepSettings ? { ...s.settings } : { ...DEFAULT_SETTINGS };
+  const now = Date.now();
+  debugSeed({
+    settings,
+    progress: { ...DEFAULT_PROGRESS, startedOn: padDate(new Date()) },
+    streak: { ...DEFAULT_STREAK },
+    srs: {},
+    mistakes: [],
+    sessions: [],
+    notes: {},
+    penalties: [],
+    today: { date: padDate(new Date()), activeBySession: {}, correct: 0, total: 0, lastInputAt: now, started: {}, lateFlagged: {}, wordWrongs: {} },
+    onboarded: true,
+    v2: { ...DEFAULT_V2(), resetAt: now, penaltiesClearedAt: now },
+  } as never);
+}
+
 export { atHm };
 
 export function setPlanFor(key: string) {

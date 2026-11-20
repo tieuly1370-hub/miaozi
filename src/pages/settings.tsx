@@ -2,7 +2,8 @@ import { useEffect, useState } from "preact/hooks";
 import { signOut, subscribeSync, syncInfo, syncNow } from "../sync/drive";
 import { syncConfigured } from "../sync/config";
 import { DEFAULT_SETTINGS, type Settings, type Shift } from "../schedule";
-import { claimReward, exportPayload, getState, importPayload, patchSettings, weekKey } from "../store";
+import { claimReward, exportPayload, getState, importPayload, patchSettings, resetLearning, weekKey } from "../store";
+import { clearPenalties } from "../v2/state2";
 import { Button, Card, Switch, go } from "../ui";
 import { PEN_DEFAULT, PEN_MAX, PEN_MIN } from "../v2/pen";
 
@@ -94,6 +95,7 @@ export function SettingsPage() {
           <Button kind="ghost" small onClick={() => go("/week0")}>Tuần 0: pinyin, nét, bộ thủ</Button>
         </div>
       </Card>
+      <DataTools />
       <Card data-testid="about">
         <h3 class="h3">Giới thiệu</h3>
         <p class="small">Miaozi {__APP_VERSION__}</p>
@@ -107,7 +109,7 @@ function ShiftEd({ title, shift, onChange }: { title: string; shift: Shift; onCh
   const days = [1, 2, 3, 4, 5, 6, 0];
   const names = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
   return (
-    <div style={{ margin: "10px 0" }}>
+    <div style={{ margin: "14px 0" }}>
       <strong>{title}</strong>
       <div class="tools">
         {days.map((d, i) => (
@@ -191,6 +193,43 @@ function SyncCard() {
               : <><Button kind="primary" id="sync-now" disabled={i.status === "syncing"} onClick={() => void syncNow(true)}>Đồng bộ ngay</Button><Button kind="ghost" small onClick={signOut}>Đăng xuất</Button></>}
           </div>
         </>
+      )}
+    </Card>
+  );
+}
+
+function DataTools() {
+  const [ask, setAsk] = useState<"pen" | "reset1" | "reset2" | null>(null);
+  const [msg, setMsg] = useState("");
+  const close = () => setAsk(null);
+  const doClear = () => { clearPenalties(); setMsg("Đã xoá chép phạt."); close(); };
+  const doReset = () => { resetLearning({ keepSettings: true }); setMsg("Đã bắt đầu lại từ đầu. Cài đặt và đăng nhập Drive được giữ lại."); close(); };
+  return (
+    <Card data-testid="data-tools">
+      <h3 class="h3">Dữ liệu học</h3>
+      <p class="muted small">Dùng khi thử app và bị đầy chép phạt, hoặc muốn học lại từ đầu. Xoá chép phạt không đụng tới tiến độ, thẻ ôn và chuỗi ngày.</p>
+      <div class="tools data-tools-btns">
+        <Button kind="ghost" id="clear-penalties" onClick={() => setAsk("pen")}>Xoá chép phạt</Button>
+        <Button kind="ghost" id="full-reset" class="danger-soft" onClick={() => setAsk("reset1")}>Bắt đầu lại từ đầu</Button>
+      </div>
+      {msg && <p class="ok-text small" data-testid="data-msg">{msg}</p>}
+      {ask === "pen" && (
+        <div class="data-confirm" data-testid="confirm-penalties">
+          <p>Xoá hết bài chép phạt đang nợ (kể cả phạt Xin nghỉ và Mục 1)? Tiến độ học và chuỗi ngày vẫn giữ.</p>
+          <div class="row"><Button kind="pink" id="confirm-penalties" onClick={doClear}>Xoá chép phạt</Button><Button kind="ghost" onClick={close}>Thôi</Button></div>
+        </div>
+      )}
+      {ask === "reset1" && (
+        <div class="data-confirm" data-testid="confirm-reset-1">
+          <p>Xóa hết tiến độ, chuỗi ngày, thẻ ôn và chép phạt. Cài đặt và đăng nhập Drive giữ nguyên.</p>
+          <div class="row"><Button kind="ghost" class="danger-soft" id="confirm-reset-1" onClick={() => setAsk("reset2")}>Tiếp tục</Button><Button kind="ghost" onClick={close}>Thôi</Button></div>
+        </div>
+      )}
+      {ask === "reset2" && (
+        <div class="data-confirm" data-testid="confirm-reset-2">
+          <p>Xác nhận lần nữa: không lấy lại được tiến độ đã xóa.</p>
+          <div class="row"><Button kind="ghost" class="danger-soft" id="confirm-reset-2" onClick={doReset}>Xác nhận xóa hết</Button><Button kind="ghost" onClick={close}>Thôi</Button></div>
+        </div>
       )}
     </Card>
   );
