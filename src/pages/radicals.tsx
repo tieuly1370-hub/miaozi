@@ -1,5 +1,5 @@
 /** v2.2 — Ôn bộ thủ (≈50 bộ hay gặp ở HSK1, đếm từ Make Me a Hanzi) + danh sách chữ khó ⭐. Tải lười. */
-import { useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import { RADICALS, type Radical } from "../data/radicals";
 import { HANZI_INFO } from "../data/hanziInfo";
 import { face, makeQuiz, type RadQ as Q } from "../v2/radQuiz";
@@ -9,6 +9,7 @@ import { radQuizLog, radReview, starList, toggleStar } from "../v2/state2";
 import { miaoAnswer } from "../v2/miaoBus";
 import { mnemonicFor } from "../v2/mnemo";
 import { Button, Card, cls, go } from "../ui";
+import { setWork } from "../v2/leaveGuard";
 
 const BY_K = Object.fromEntries(RADICALS.map((r) => [r.k, r]));
 const learned = () => RADICALS.filter((r) => (getState().v2.rad?.[r.k]?.reps || 0) >= 1).length;
@@ -95,6 +96,11 @@ function RadQuiz() {
   const [pick, setPick] = useState<string | null>(null);
   const [right, setRight] = useState(0);
   const q = qs[i];
+  const started = i > 0 || pick !== null || right > 0;
+  useEffect(() => {
+    setWork("rad-quiz", !!q && started);
+    return () => setWork("rad-quiz", false);
+  }, [!!q, started]);
   if (!q) return (
     <Card data-testid="rad-quiz-done"><h3 class="h3">Xong: đúng {right}/{qs.length}</h3>
       <Button kind="pink" onClick={() => { setQs(makeQuiz()); setI(0); setRight(0); setPick(null); }}>Làm lượt mới</Button></Card>

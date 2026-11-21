@@ -2,7 +2,7 @@ import type { ComponentChildren } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { load, getState, subscribe, debugSeed, setOnboarded, DEFAULT_PROGRESS, plannedToday, patchSettings, resetLearning } from "./store";
 import { padDate, atHm } from "./schedule";
-import { useHash, go, Back, cls } from "./ui";
+import { useHash, go, Back, cls, LeaveModal } from "./ui";
 import { UpdateBanner } from "./update";
 import { tutorLine } from "./tutor";
 import { TodayV2, RoadmapV2, StreakPage } from "./pages/home2";
@@ -89,7 +89,14 @@ export function App() {
       </main>
       <AudioDock />
     </div>
-      <nav class="nav" data-testid="nav">
+      <nav class="nav" data-testid="nav" onClick={(e) => {
+        const a = (e.target as HTMLElement).closest("a");
+        if (!a) return;
+        const href = a.getAttribute("href");
+        if (!href || !href.startsWith("#")) return;
+        e.preventDefault();
+        go(href);
+      }}>
         <div class="rail-brand" onClick={() => go("/")}><MiaoTopFace size={48} /><span>Miaozi</span></div>
         <a class={route.tab === "today" ? "on" : ""} href="#/" data-nav="today"><span class="ico">☀</span>Hôm nay</a>
         <a class={route.tab === "write" ? "on" : ""} href="#/write" data-nav="write"><span class="ico">写</span>Viết</a>
@@ -97,6 +104,7 @@ export function App() {
         <a class={route.tab === "practice" ? "on" : ""} href="#/practice" data-nav="practice"><span class="ico">练</span>Luyện thêm</a>
         <a class={route.tab === "more" ? "on" : ""} href="#/settings" data-nav="settings"><span class="ico">⚙</span>Cài đặt</a>
       </nav>
+      <LeaveModal />
     </>
   );
 }

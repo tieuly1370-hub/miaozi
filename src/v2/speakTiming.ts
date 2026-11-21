@@ -22,3 +22,33 @@ export function joinAlts(finals: string[][], interim: string): string[] {
   if (!out.size && interim.trim()) out.add(interim.trim());
   return [...out];
 }
+
+/** Máy chỉ cho một bên dùng mic (Android, tablet Xiaomi chế độ desktop/PC). */
+export function exclusiveMic(ua = "", hints?: { maxTouchPoints?: number; mobile?: boolean }): boolean {
+  const u = ua || (typeof navigator !== "undefined" ? navigator.userAgent : "");
+  if (/Android/i.test(u)) return true;
+  const touch = (hints?.maxTouchPoints ?? (typeof navigator !== "undefined" ? navigator.maxTouchPoints || 0 : 0)) > 1;
+  const mobile = hints?.mobile === true;
+  return /Linux/i.test(u) && !/Android/i.test(u) && (touch || mobile);
+}
+/** Bật dòng gỡ lỗi nhận giọng khi URL có ?debug (search hoặc trong hash). */
+export function asrDebugOn(search = "", hash = ""): boolean {
+  return /(?:\?|&)debug(?:&|=|$)/.test(search) || /(?:\?|&)debug(?:&|=|$)/.test(hash);
+}
+/** Giữ chữ đã nghe; không để phiên sau (interim rỗng) xoá mất. */
+export function rememberHeard(kept: string, candidate: string): string {
+  const c = (candidate || "").trim();
+  if (!c) return kept;
+  if (!kept) return c;
+  if (c.length >= kept.length) return c;
+  if (kept.includes(c) || c.includes(kept)) return kept.length >= c.length ? kept : c;
+  return kept;
+}
+/** Ghép final + interim + chữ đã giữ để chấm. */
+export function collectAlts(finals: string[][], sessionFinals: string[][], interim: string, kept: string): string[] {
+  const alts = joinAlts([...finals, ...sessionFinals], interim);
+  const k = (kept || "").trim();
+  if (!alts.length && k) return [k];
+  if (k && !alts.some((a) => a.includes(k) || k.includes(a))) return [k, ...alts];
+  return alts;
+}

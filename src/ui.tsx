@@ -5,6 +5,7 @@ import { audioState, autoPlay, carrierFor, playId, stopAudio, subscribeAudio, to
 import { getState } from "./store";
 import type { TutorMood } from "./tutor";
 import type { Word } from "./data/curriculum";
+import { leaveNow, markHash, onHashChanging, requestLeave, stayHere, useLeaveGuard } from "./v2/leaveGuard";
 
 export function cls(...xs: (string | false | undefined | null)[]) {
   return xs.filter(Boolean).join(" ");
@@ -208,9 +209,18 @@ export function Decomp(props: { word: Word }) {
 }
 
 export function useHash(): string {
-  const [h, setH] = useState(location.hash || "#/");
+  const [h, setH] = useState(() => {
+    const cur = location.hash || "#/";
+    markHash(cur);
+    return cur;
+  });
   useEffect(() => {
-    const f = () => setH(location.hash || "#/");
+    const f = () => {
+      if (onHashChanging()) return;
+      const next = location.hash || "#/";
+      markHash(next);
+      setH(next);
+    };
     window.addEventListener("hashchange", f);
     return () => window.removeEventListener("hashchange", f);
   }, []);
@@ -219,7 +229,26 @@ export function useHash(): string {
 
 export function go(path: string) {
   if (!path.startsWith("#") && !path.startsWith("/")) path = "/" + path;
-  location.hash = path.startsWith("#") ? path : "#" + path;
+  const hash = path.startsWith("#") ? path : "#" + path;
+  if (!requestLeave(hash)) return;
+  location.hash = hash;
+}
+
+/** Cảnh báo trước khi rời bài/thi đang làm dở. Ở lại là mặc định. */
+export function LeaveModal() {
+  const { pending } = useLeaveGuard();
+  if (!pending) return null;
+  return (
+    <div class="modal" data-testid="leave-guard" role="dialog" aria-labelledby="leave-guard-msg" onClick={(e) => { if (e.target === e.currentTarget) stayHere(); }}>
+      <div class="sheet leave-sheet">
+        <p id="leave-guard-msg">Chuyển tab bây giờ sẽ mất hết tiến độ bài đang làm. Bạn có muốn chuyển không?</p>
+        <div class="row leave-actions" style={{ marginTop: 14, gap: 8 }}>
+          <Button kind="primary" wide id="leave-stay" onClick={stayHere}>Ở lại</Button>
+          <Button kind="ghost" wide id="leave-go" onClick={leaveNow}>Chuyển tab</Button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function Back(props: { to?: string; label?: string }) {

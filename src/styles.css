@@ -298,6 +298,10 @@ a.seg, .seg { color: var(--ink); }
 .modal { position: fixed; inset: 0; background: rgba(47, 36, 48, .3); z-index: 60; display: flex; align-items: flex-end; justify-content: center; }
 .sheet { background: var(--card); width: 100%; max-width: 640px; max-height: 92dvh; overflow: auto; border-radius: 22px 22px 0 0; padding: 18px; padding-bottom: calc(18px + var(--safe-b)); }
 @media (min-width: 700px) { .modal { align-items: center; } .sheet { border-radius: 22px; } }
+.leave-sheet { max-width: 420px; }
+.leave-actions { flex-wrap: wrap; }
+.leave-actions .btn { flex: 1; min-width: 120px; }
+
 .opt-group { padding: 10px 0; border-bottom: 1px dashed var(--line); display: flex; flex-direction: column; gap: 8px; }
 .opt-group.two { flex-direction: row; flex-wrap: wrap; gap: 16px; }
 .opt-group.two > div { display: flex; flex-direction: column; gap: 6px; }

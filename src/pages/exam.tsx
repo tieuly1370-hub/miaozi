@@ -14,6 +14,7 @@ import {
 } from "../store";
 import { NHAI, nhaiUnitLink } from "../nhai";
 import { Bar, Button, Card, TutorBubble, cls, go } from "../ui";
+import { setWork } from "../v2/leaveGuard";
 import { tutorLine } from "../tutor";
 import { hanChars, loadCharData } from "./write";
 import { WRITE_QUIZ_BASE, mediansToPts, typeAccepts } from "../v2/strokeMatch";
@@ -38,6 +39,10 @@ export function ExamRunner(props: { items: Item[]; title: string; onFinish: (o: 
   const item = key ? byKey[key] : undefined;
   const doneCount = Object.keys(finalOk.current).length;
 
+  useEffect(() => {
+    setWork("exam", true);
+    return () => setWork("exam", false);
+  }, []);
   useEffect(() => {
     if (!item && pos >= queue.length) props.onFinish({ items, firstOk: firstOk.current, finalOk: finalOk.current });
   }, [pos, queue.length]);

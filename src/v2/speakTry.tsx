@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { Button, cls } from "../ui";
 import { stopAudio } from "../audio";
 import { micErrorText } from "../speech";
-import { speechAvailable, startListening, type ListenSession } from "./listen";
+import { asrDebugOn, speechAvailable, startListening, type ListenSession } from "./listen";
 import { skippedSpeak, type V2Score } from "./speakScore";
 
 /** Chấm nói: bấm → nói → hiện chữ máy nghe được + % + từng chữ đúng/sai. Có Bỏ qua khi micro/nhận giọng lỗi. */
@@ -12,6 +12,8 @@ export function SpeakTry(props: { expected: string; pinyin?: string; onScore?: (
   const [res, setRes] = useState<V2Score | null>(null);
   const [err, setErr] = useState("");
   const [live, setLive] = useState("");
+  const [dbg, setDbg] = useState("");
+  const debug = asrDebugOn(location.search, location.hash);
   const sess = useRef<ListenSession | null>(null);
   const skipped = useRef(false);
   useEffect(() => () => sess.current?.stop(), []);
@@ -27,9 +29,9 @@ export function SpeakTry(props: { expected: string; pinyin?: string; onScore?: (
   const run = async () => {
     stopAudio();
     skipped.current = false;
-    setBusy(true); setErr(""); setRes(null); setLive("");
+    setBusy(true); setErr(""); setRes(null); setLive(""); setDbg("");
     try {
-      const s = startListening(props.expected, setLive);
+      const s = startListening(props.expected, setLive, debug ? setDbg : undefined);
       sess.current = s;
       const sc = await s.result;
       if (skipped.current) return;
@@ -49,6 +51,7 @@ export function SpeakTry(props: { expected: string; pinyin?: string; onScore?: (
         <div class="listening" data-testid="listening">
           <div class="row spread"><span class="rec-dot" /> <span class="muted">Đang nghe… nói hết câu, im 2–3 giây là chấm (tối đa 15 giây)</span></div>
           {live && <p class="hanzi-inline" data-testid="speak-live">{live}</p>}
+          {debug && dbg && <p class="muted small" data-testid="asr-debug">{dbg}</p>}
           <Button kind="primary" wide id="speak-done" onClick={() => sess.current?.stop()}>Xong — chấm luôn</Button>
         </div>
       ) : <Button kind="primary" wide disabled={!ok} onClick={run} class="speak-btn">{props.label || "🎤 Bấm rồi nói"}</Button>}
@@ -60,6 +63,7 @@ export function SpeakTry(props: { expected: string; pinyin?: string; onScore?: (
           {!res.skipped && <p class="muted" data-testid="speak-heard">Máy nghe được: <span class="hanzi-inline">{res.heard || "(không nghe được gì)"}</span></p>}
           {res.marks.length > 0 && <div class="marks">{res.marks.map((m, i) => <span key={i} class={cls("mk", m.ok >= 1 ? "ok" : m.ok > 0 ? "near" : "bad")} title={m.py}>{m.char}<small>{m.py}</small></span>)}</div>}
           <p class="small">{res.message}</p>
+          {!res.skipped && !res.heard && <p class="notice" data-testid="speak-empty-hint">Máy không nghe được gì. Nói gần micro hơn, hoặc bấm Bỏ qua để không bị chấm 0%.</p>}
         </div>
       )}
     </div>

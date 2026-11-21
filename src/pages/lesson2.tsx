@@ -20,6 +20,7 @@ import {
 import { Miao, PctBar, SixBar } from "../v2/ui2";
 import { SpeakTry } from "../v2/speakTry";
 import { AudioBtn, Button, Card, CarrierNote, Switch, cls, go, useAudioSnap } from "../ui";
+import { setWork } from "../v2/leaveGuard";
 import { ExamRunner } from "./exam";
 import { WriteWord, hanChars } from "./write";
 
@@ -305,6 +306,11 @@ function S3(props: { n: number; showPy: boolean }) {
   }, [n, u.s3?.at]);
   const [ans, setAns] = useState<Record<number, number>>({});
   const [result, setResult] = useState<number | null>(null);
+  const dirty = result === null && Object.keys(ans).length > 0;
+  useEffect(() => {
+    setWork("s3", dirty);
+    return () => setWork("s3", false);
+  }, [dirty]);
   return (
     <div class="stack" data-testid="s3">
       <h4 class="h4">Ngữ pháp trọng tâm (học trên Nhai)</h4>

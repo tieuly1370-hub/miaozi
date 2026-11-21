@@ -28,7 +28,11 @@ results = []; errs = []
 def check(name, cond, extra=""):
     results.append((name, bool(cond))); print(("PASS " if cond else "FAIL ") + name + (f" — {extra}" if extra else ""))
 def shot(p, name, full=False): p.screenshot(path=str(OUT / f"{name}.png"), full_page=full); print("  shot", name)
-def go(p, h): p.evaluate(f"location.hash = {json.dumps(h)}"); p.wait_for_timeout(450)
+def go(p, h):
+    p.evaluate(f"location.hash = {json.dumps(h)}")
+    p.wait_for_timeout(450)
+    if p.locator("[data-testid=leave-guard]").count():
+        p.click("#leave-go"); p.wait_for_timeout(250)
 def st(p, js): return p.evaluate(f"() => {{ const s = window.__miaozi.getState(); return {js}; }}")
 def ready(p): p.wait_for_function("() => window.__miaozi && window.__miaozi.getState && window.__miaozi.V2")
 def at(p, y, m, d, h=10):
@@ -251,7 +255,7 @@ def v22_suite(br):
         check(T + "Cài đặt: không còn nút Bài đọc", p.locator("button:has-text('Bài đọc')").count() == 0)
         check(T + "Cài đặt: ghi nguồn Make Me a Hanzi", "Make Me a Hanzi" in p.inner_text("[data-testid=about]"))
         check(T + "Cài đặt: độ dày bút mặc định 1.2", p.locator("[data-testid=pen-width] input").first.input_value() in ("1.2", "1.20"))
-        check(T + "Cài đặt hiện Miaozi 2.3.0", "Miaozi 2.3.0" in p.inner_text("[data-testid=about]"))
+        check(T + "Cài đặt hiện Miaozi 2.3.1", "Miaozi 2.3.1" in p.inner_text("[data-testid=about]"))
         check(T + "Cài đặt: có Xoá chép phạt và Bắt đầu lại", p.locator("#clear-penalties").count() == 1 and p.locator("#full-reset").count() == 1)
         p.evaluate("""() => { const M = window.__miaozi; M.debugSeed({ penalties: [{ id: 't-pen', hanzi: '你', dueChars: ['你'], copies: 3, done: false, createdAt: Date.now() }] }); }""")
         p.wait_for_timeout(200)
@@ -454,6 +458,30 @@ def v23_checks(br):
     p.screenshot(path=str(out / "phone-mark-complete.png"))
     ctx.close()
 
+    ctx = br.new_context(viewport={"width": 390, "height": 844}, locale="vi-VN", device_scale_factor=2)
+    p = ctx.new_page(); T = "v2.3.1 leave: "
+    p.on("pageerror", lambda e: errs.append(f"v231 leave pageerror {e}"))
+    at(p, 2026, 11, 19); fresh(p)
+    go(p, "/lesson/1/s6a"); p.wait_for_selector("[data-testid=s6a]")
+    if p.locator("#start-s6a").count():
+        p.click("#start-s6a")
+    p.wait_for_selector("[data-testid=exam]")
+    p.click("[data-nav=today]"); p.wait_for_timeout(300)
+    modal = p.locator("[data-testid=leave-guard]")
+    check(T + "Đang thi: chuyển tab hiện popup cảnh báo", modal.count() == 1 and "mất hết tiến độ" in modal.inner_text(), modal.inner_text() if modal.count() else "no modal")
+    if modal.count():
+        check(T + "Popup: nút Ở lại và Chuyển tab", p.locator("#leave-stay").count() == 1 and p.locator("#leave-go").count() == 1 and "Ở lại" in p.locator("#leave-stay").inner_text() and "Chuyển tab" in p.locator("#leave-go").inner_text())
+        p.click("#leave-stay"); p.wait_for_timeout(200)
+        check(T + "Ở lại: vẫn trong bài thi", p.locator("[data-testid=exam]").count() == 1 and p.locator("[data-testid=leave-guard]").count() == 0 and "/s6a" in p.evaluate("location.hash"))
+        p.click("[data-nav=today]"); p.wait_for_timeout(250)
+        p.click("#leave-go"); p.wait_for_timeout(350)
+        check(T + "Chuyển tab: rời bài thi", p.locator("[data-testid=exam]").count() == 0 and p.locator("[data-testid=leave-guard]").count() == 0)
+    # không có tiến độ: không hiện popup
+    go(p, "/"); p.wait_for_timeout(200)
+    p.click("[data-nav=write]"); p.wait_for_timeout(300)
+    check(T + "Không làm bài: chuyển tab không hỏi", p.locator("[data-testid=leave-guard]").count() == 0)
+    ctx.close()
+
 
 with sync_playwright() as pw:
     br = pw.chromium.launch(channel="chrome", args=["--no-sandbox", "--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream", "--autoplay-policy=no-user-gesture-required"])
@@ -594,6 +622,8 @@ window.__audioEls = []; const _A = window.Audio; window.Audio = function(u) { co
         p.evaluate("""() => { const r = window.__rec; r.onresult({ resultIndex: 0, results: { length: 1, 0: { isFinal: true, length: 1, 0: { transcript: '你好' } } } }); r.onend(); }""")
         p.wait_for_timeout(500)
         check(T + "Nói: Android tự kết thúc → mở lại nghe tiếp", p.evaluate("window.__recStarts") >= 2 and p.locator("[data-testid=speak-res]").count() == 0)
+        p.evaluate("""() => { const r = window.__rec; r.onresult({ resultIndex: 0, results: { length: 1, 0: { isFinal: false, length: 1, 0: { transcript: '' } } } }); }""")
+        p.wait_for_timeout(200)
         check(T + "Nói: hiện chữ nghe được tạm thời", "你好" in p.locator("[data-testid=speak-live]").inner_text())
         if dev == "phone": shot(p, f"{dev}-speak-listening")
         p.click("#speak-done"); p.wait_for_timeout(1600)
@@ -628,7 +658,7 @@ window.__audioEls = []; const _A = window.Audio; window.Audio = function(u) { co
         # ---------- Đồng bộ Drive (giao diện) + phiên bản ----------
         go(p, "/settings"); p.wait_for_selector("[data-testid=sync-card]")
         check(T + "Đồng bộ Drive đã cấu hình (có nút Đăng nhập Google)", p.locator("#sync-login").count() == 1 and "Chưa cấu hình" not in p.inner_text("[data-testid=sync-card]"))
-        check(T + "Cài đặt hiện Miaozi 2.3.0", "Miaozi 2.3.0" in p.inner_text("body"))
+        check(T + "Cài đặt hiện Miaozi 2.3.1", "Miaozi 2.3.1" in p.inner_text("body"))
         shot(p, f"{dev}-settings-sync")
         ctx.close()
     if not os.environ.get("V23_ONLY"):
