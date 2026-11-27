@@ -23,42 +23,13 @@ export function SettingsPage() {
           <span>Tên gọi</span>
           <input value={st.displayName} onInput={(e) => patchSettings({ displayName: (e.target as HTMLInputElement).value })} />
         </div>
-        <div class="field">
-          <span>Phần thưởng tuần (khi hoàn thành tuần)</span>
-          <input value={st.weeklyReward} onInput={(e) => patchSettings({ weeklyReward: (e.target as HTMLInputElement).value })} placeholder="ví dụ: trà sữa" />
-        </div>
-        <Switch on={st.companyMode} onChange={(v) => patchSettings({ companyMode: v })} label="Chế độ Công ty" />
-        <Switch on={st.notify} onChange={(v) => patchSettings({ notify: v })} label="Thông báo khi app đang mở" />
         <Switch on={st.autoplay !== false} onChange={(v) => patchSettings({ autoplay: v })} label="Tự phát âm khi sang từ / câu mới" />
         <label class="field pen-field" data-testid="pen-width">
           <span>Độ dày bút máy <b>{(st.penWidth ?? PEN_DEFAULT).toFixed(1)}</b></span>
           <input type="range" min={PEN_MIN} max={PEN_MAX} step={0.1} value={st.penWidth ?? PEN_DEFAULT} onInput={(e) => patchSettings({ penWidth: Number((e.target as HTMLInputElement).value) })} />
         </label>
-        <Button kind="ghost" wide id="settings-streak" onClick={() => go("/streak")}>🔥 Streak — lịch chuỗi ngày học</Button>
       </Card>
       <SyncCard />
-      <Card>
-        <h3 class="h3">Giờ nhắc học</h3>
-        <p class="muted small">Chỉ để nhắc học, không phạt bỏ ca.</p>
-        <ShiftEd title="Ca sáng (công ty)" shift={st.morning} onChange={(p) => setShift("morning", p)} />
-        <ShiftEd title="Ca tối (ở nhà)" shift={st.evening} onChange={(p) => setShift("evening", p)} />
-        <ShiftEd title="Kiểm tra tuần (Chủ nhật)" shift={st.sundayWeeklyTest} onChange={(p) => setShift("sundayWeeklyTest", p)} />
-        <Switch on={st.saturdayMakeup} onChange={(v) => patchSettings({ saturdayMakeup: v })} label="Thứ Bảy là ngày học bù / ôn nhẹ" />
-        <Button small kind="ghost" onClick={() => patchSettings(DEFAULT_SETTINGS)}>Khôi phục lịch mặc định</Button>
-      </Card>
-      {week?.done && (
-        <Card>
-          <h3 class="h3">Thưởng tuần</h3>
-          <p>{week.rewardClaimed ? "Đã nhận: " : "Đến hạn nhận: "}<strong>{st.weeklyReward}</strong></p>
-          {!week.rewardClaimed && <Button kind="green" onClick={() => claimReward()}>Đánh dấu đã nhận thưởng</Button>}
-        </Card>
-      )}
-      <Card>
-        <h3 class="h3">Thẻ trên thông báo / màn hình khóa</h3>
-        <p class="muted small">Cho phép thông báo để thẻ hiện trên màn hình khóa Android.</p>
-        <Button kind="blue" wide onClick={() => void notifyCard(setMsg)}>Gửi thẻ ôn lên thông báo</Button>
-        {msg && <p class="muted">{msg}</p>}
-      </Card>
       <Card>
         <h3 class="h3">Dữ liệu giữa các máy</h3>
         <p class="muted small">Xuất file JSON rồi nhập ở máy kia.</p>
@@ -86,20 +57,13 @@ export function SettingsPage() {
         <h3 class="h3">Dùng ngoại tuyến</h3>
         <p class="muted small">Tải sẵn âm thanh và nét chữ để học khi mất mạng.</p>
         <Button kind="purple" wide onClick={() => void precacheAll(setMsg)}>Tải dữ liệu ngoại tuyến</Button>
-        <div class="tools" style={{ marginTop: 8 }}>
-          <Button kind="ghost" small onClick={() => go("/dict")}>Tra từ HSK1</Button>
-          <Button kind="ghost" small onClick={() => go("/mistakes")}>Sổ lỗi sai</Button>
-          <Button kind="ghost" small onClick={() => go("/penalty")}>Chép phạt</Button>
-          <Button kind="ghost" small onClick={() => go("/review")}>Ôn thẻ</Button>
-          <Button kind="ghost" small onClick={() => go("/speak")}>Luyện nói</Button>
-          <Button kind="ghost" small onClick={() => go("/week0")}>Tuần 0: pinyin, nét, bộ thủ</Button>
-        </div>
+        {msg && <p class="muted">{msg}</p>}
       </Card>
       <DataTools />
       <Card data-testid="about">
         <h3 class="h3">Giới thiệu</h3>
         <p class="small">Miaozi {__APP_VERSION__}</p>
-        <p class="muted small">Bộ thủ và tách chữ: <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noreferrer">Make Me a Hanzi</a> (Shaunak Kishore; dữ liệu theo LGPL và Arphic Public License). Nét chữ: hanzi-writer-data (Arphic). Mẹo nhớ HSK1 do Miaozi soạn.</p>
+        <p class="muted small">Bộ thủ và tách chữ: <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noreferrer">Make Me a Hanzi</a> (Shaunak Kishore; dữ liệu theo LGPL và Arphic Public License). Nét chữ: hanzi-writer-data (Arphic). Mẹo nhớ HSK1 do Miaozi soạn; HSK 2: danh sách từ theo Giáo trình chuẩn HSK 2 (bản số hoá joelypoley/hsk_standard_course_vocab), nghĩa và câu ví dụ do Miaozi soạn. Âm thanh: giọng máy (Xiaoxiao), đã soát bằng Whisper.</p>
       </Card>
     </div>
   );

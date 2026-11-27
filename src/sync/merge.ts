@@ -64,6 +64,7 @@ export function mergeV2(a: O = {}, b: O = {}, newerIsB: boolean): O {
   if (a.legacy || b.legacy) out.legacy = (a.legacy?.count || 0) >= (b.legacy?.count || 0) ? a.legacy : b.legacy;
   out.write = n(a.write || {}, b.write || {}) && { ...n(a.write || {}, b.write || {}), done: { ...(a.write?.done || {}), ...(b.write?.done || {}) } };
   out.retry = {};
+  out.doneLessons = { ...(a.doneLessons || {}), ...(b.doneLessons || {}) }; // v2.4: bài đã xong giữ xong
   out.penaltiesClearedAt = Math.max(a.penaltiesClearedAt || 0, b.penaltiesClearedAt || 0) || undefined;
   out.resetAt = Math.max(a.resetAt || 0, b.resetAt || 0) || undefined;
   return out;

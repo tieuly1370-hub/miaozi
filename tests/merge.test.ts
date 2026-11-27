@@ -72,4 +72,10 @@ ok("resetAt mới hơn: giữ tiến độ học sau lần reset", reset.srs.n?.
 ok("resetAt: ghi mốc lớn hơn lên bản gộp", reset.v2.resetAt === 2000);
 ok("resetAt: cài đặt vẫn gộp theo at (không bị xóa)", reset.settings.displayName === "Bản Drive cũ");
 
+// v2.4: bài đã học xong — hợp lại, không mất
+const dA = { app: "miaozi" as const, v: 1 as const, at: 10, data: { v2: { lesson: 4, doneLessons: { 1: 5, 2: 6 } } } };
+const dB = { app: "miaozi" as const, v: 1 as const, at: 20, data: { v2: { lesson: 1, doneLessons: { 20: 7 } } } };
+const dm = mergeDocs(dA, dB).data as any;
+ok("doneLessons: hợp bài xong của 2 máy", !!dm.v2.doneLessons[1] && !!dm.v2.doneLessons[2] && !!dm.v2.doneLessons[20]);
+
 if (fail) { console.log(fail + " FAIL"); process.exit(1); } else console.log("ALL PASS");

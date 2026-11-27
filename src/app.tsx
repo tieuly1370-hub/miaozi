@@ -5,10 +5,10 @@ import { padDate, atHm } from "./schedule";
 import { useHash, go, Back, cls, LeaveModal } from "./ui";
 import { UpdateBanner } from "./update";
 import { tutorLine } from "./tutor";
-import { TodayV2, RoadmapV2, StreakPage } from "./pages/home2";
+import { LevelsHome } from "./pages/slim";
 import { MiaoBubble, MiaoTopFace } from "./v2/ui2";
 import { miaoAnswer, miaoEvent } from "./v2/miaoBus";
-import { startTicker, streakNow } from "./v2/state2";
+import { startTicker } from "./v2/state2";
 import { startAutoSync } from "./sync/drive";
 import { AudioDock } from "./ui";
 import * as Q from "./v2/queue";
@@ -26,17 +26,12 @@ export function App() {
       startTicker();
       startAutoSync();
       // tải sẵn các trang khi rảnh (để dùng ngoại tuyến), sau khi Hôm nay đã hiện
-      setTimeout(() => { for (const [k, f] of Object.entries(LOADERS)) f().then((x) => { MODS[k as ModKey] = x as Record<string, unknown>; }).catch(() => {}); }, 6000);
+      setTimeout(() => { for (const [k, f] of Object.entries(LOADERS).filter(([k]) => PREFETCH.includes(k as ModKey))) f().then((x) => { MODS[k as ModKey] = x as Record<string, unknown>; }).catch(() => {}); }, 6000);
     });
     return subscribe(() => bump((n) => n + 1));
   }, []);
-  useEffect(() => { document.body.classList.remove("company"); document.title = "Miaozi — HSK1"; }, []);
-  useEffect(() => {
-    if (!ok) return;
-    const t = setInterval(() => maybeRemind(), 60_000);
-    maybeRemind();
-    return () => clearInterval(t);
-  }, [ok]);
+  useEffect(() => { document.body.classList.remove("company"); document.title = "Miaozi — HSK"; }, []);
+  // v2.4: bỏ nhắc học theo giờ (đã ẩn khỏi Cài đặt) — maybeRemind() không còn chạy.
 
   useEffect(() => {
     const root = document.documentElement;
@@ -77,7 +72,7 @@ export function App() {
           <div class="logo cat-logo"><MiaoTopFace size={40} /></div>
           <div>
             <h1>Miaozi</h1>
-            <p>{s.settings.companyMode ? "🏢 Công ty · " : ""}chuỗi {streakNow()} ngày · {s.settings.displayName}</p>
+            <p>{s.settings.displayName}</p>
           </div>
         </div>
         {route.back && <Back to={route.back} />}
@@ -98,10 +93,8 @@ export function App() {
         go(href);
       }}>
         <div class="rail-brand" onClick={() => go("/")}><MiaoTopFace size={48} /><span>Miaozi</span></div>
-        <a class={route.tab === "today" ? "on" : ""} href="#/" data-nav="today"><span class="ico">☀</span>Hôm nay</a>
-        <a class={route.tab === "write" ? "on" : ""} href="#/write" data-nav="write"><span class="ico">写</span>Viết</a>
-        <a class={cls("nav-main", route.tab === "road" && "on")} href={"#/lesson/" + s.v2.lesson} data-nav="lesson"><span class="ico">课</span>Bài học</a>
-        <a class={route.tab === "practice" ? "on" : ""} href="#/practice" data-nav="practice"><span class="ico">练</span>Luyện thêm</a>
+        <a class={cls("nav-main", route.tab === "road" && "on")} href="#/" data-nav="lesson"><span class="ico">课</span>Bài học</a>
+        <a class={route.tab === "test" ? "on" : ""} href="#/tests" data-nav="tests"><span class="ico">考</span>Kiểm tra</a>
         <a class={route.tab === "more" ? "on" : ""} href="#/settings" data-nav="settings"><span class="ico">⚙</span>Cài đặt</a>
       </nav>
       <LeaveModal />
@@ -138,7 +131,10 @@ const LOADERS = {
   lesson2: () => import("./pages/lesson2"),
   practice: () => import("./pages/practice"),
   radicals: () => import("./pages/radicals"),
+  tests: () => import("./pages/tests"),
 };
+/** v2.4: chỉ tải sẵn các trang còn dùng trong bản gọn. */
+const PREFETCH: ModKey[] = ["write", "tests", "exam", "settings"];
 type ModKey = keyof typeof LOADERS;
 const MODS: Partial<Record<ModKey, Record<string, unknown>>> = {};
 function L(props: { m: ModKey; c: string; p?: Record<string, unknown> }) {
@@ -159,37 +155,13 @@ function parse(path: string): { view: ComponentChildren; tab: string; back?: str
   const p = path.replace(/^#/, "") || "/";
   const parts = p.split("/").filter(Boolean);
   const wrap = (view: ComponentChildren, tab: string, back?: string) => ({ view, tab, back });
-  const n1 = Number(parts[1] || 1);
-  if (parts[0] === "week0") return wrap(<L key={"w0" + parts[1]} m="week0" c="Week0" p={{ part: parts[1] }} />, "road", parts[1] ? "/week0" : "/");
-  if (parts[0] === "lesson" && parts[2] === "test") return wrap(<L m="exam" c="GatePage" p={{ n: n1 }} />, "road", "/lesson/" + parts[1]);
-  if (parts[0] === "gate") return wrap(<L key={p} m="exam" c="GatePage" p={{ n: n1, skill: parts[2] }} />, "road", parts[2] ? "/gate/" + parts[1] : "/lesson/" + parts[1]);
-  if (parts[0] === "check") return wrap(<L key={parts[1]} m="exam" c="CheckPage" p={{ kind: parts[1] === "evening" ? "evening" : parts[1] === "weekly" ? "weekly" : "morning" }} />, "today", "/");
-  if (parts[0] === "lesson") return wrap(<L key={parts[1]} m="lesson2" c="LessonV2" p={{ n: n1, sec: parts[2] }} />, "road", "/roadmap");
-  if (parts[0] === "lesson-old") return wrap(<L key={p} m="lesson" c="LessonPage" p={{ n: n1, tab: parts[2] }} />, "road", "/roadmap");
-  if (parts[0] === "roadmap") return wrap(<RoadmapV2 />, "road");
-  if (parts[0] === "roadmap-old") return wrap(<L m="home" c="Roadmap" />, "road");
-  if (parts[0] === "streak" || parts[0] === "calendar") return wrap(<StreakPage />, "today", "/");
-  if (parts[0] === "reading") return wrap(<L m="practice" c="ReadingPage" />, "practice", "/practice");
-  if (parts[0] === "radicals") return wrap(<L key={p} m="radicals" c="RadicalsPage" p={{ tab: parts[1] }} />, "practice", parts[1] ? "/radicals" : "/practice");
-  if (parts[0] === "hard") return wrap(<L m="radicals" c="HardCharsPage" />, "practice", "/practice");
-  if (parts[0] === "practice" || parts[0] === "extras") return wrap(<L m="practice" c="PracticePage" />, "practice");
-  if (parts[0] === "test") return wrap(<L key={parts[1]} m="practice" c="TestPage" p={{ kind: parts[1] === "monthly" ? "monthly" : "weekly" }} />, "today", "/");
-  if (parts[0] === "today" && parts[1] === "morning") return wrap(<L key="m" m="home" c="ShiftPage" p={{ shift: "morning" }} />, "today", "/");
-  if (parts[0] === "today" && parts[1] === "evening") return wrap(<L key="e" m="home" c="ShiftPage" p={{ shift: "evening" }} />, "today", "/");
-  if (parts[0] === "review") return wrap(<L m="skills" c="ReviewPage" />, "more", "/settings");
-  if (parts[0] === "listen") return wrap(<L m="skills" c="ListenPage" />, "today", "/today/morning");
-  if (parts[0] === "speak") return wrap(<L m="skills" c="SpeakPage" />, "more", "/settings");
-  if (parts[0] === "write") return wrap(<L m="write" c="WritePage" />, "write");
-  if (parts[0] === "notes") return wrap(<L key={p} m="write" c="NotesPage" p={{ lesson: parts[1] ? Number(parts[1]) : undefined }} />, "write", "/write");
-  if (parts[0] === "sheets") return wrap(<L m="write" c="SheetsPage" />, "write", "/write");
-  if (parts[0] === "penalty") return wrap(<L m="write" c="PenaltyPage" />, "more", "/settings");
-  if (parts[0] === "mistakes") return wrap(<L m="skills" c="MistakesPage" />, "more", "/settings");
-  if (parts[0] === "dict") return wrap(<L m="textbook" c="DictPage" />, "more", "/settings");
+  // v2.4 bản gọn: Bài học (HSK 1/2/3 → bài → Viết) · Kiểm tra · Cài đặt. Các trang cũ vẫn còn trong code nhưng không còn đường vào.
+  if (parts[0] === "write") return wrap(<L key={"w" + (parts[1] || "")} m="write" c="WritePage" p={{ n: parts[1] ? Number(parts[1]) : undefined }} />, "road", "/");
+  if (parts[0] === "notes") return wrap(<L key={p} m="write" c="NotesPage" p={{ lesson: parts[1] ? Number(parts[1]) : undefined }} />, "road", "/write");
+  if (parts[0] === "sheets") return wrap(<L m="write" c="SheetsPage" />, "road", "/write");
+  if (parts[0] === "tests" || parts[0] === "test") return wrap(<L m="tests" c="TestsHub" />, "test");
   if (parts[0] === "settings") return wrap(<L m="settings" c="SettingsPage" />, "more");
-  if (parts[0] === "review-week") return wrap(<L m="skills" c="ReviewWeekPage" />, "road", "/roadmap");
-  if (parts[0] === "mock") return wrap(<L key={p} m="skills" c="MockPage" p={{ n: Number(parts[1]) === 2 ? 2 : 1 }} />, "road", "/review-week");
-  if (parts[0] === "weekly") return wrap(<L key="wk" m="exam" c="CheckPage" p={{ kind: "weekly" }} />, "today", "/");
-  return wrap(<TodayV2 />, "today");
+  return wrap(<LevelsHome />, "road");
 }
 
 let lastRemind = "";
@@ -219,6 +191,8 @@ function installDebug() {
     resetLearning,
     miao: { answer: miaoAnswer, event: miaoEvent },
     makeRadQuiz,
+    levelTestItems: async (kind: "weekly" | "monthly" | "lesson", ids: number[]) => (await import("./gate")).levelTestItems(kind, ids),
+    isLessonCompleted: V2.isLessonCompleted,
     padDate,
     atHm,
     completeWeek0: async (score = 1) => {

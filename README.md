@@ -1,4 +1,24 @@
-# Miaozi — HSK1
+# Miaozi — HSK (luyện viết + kiểm tra)
+
+PWA luyện viết chữ Hán theo bài HSK 1 / HSK 2 và kiểm tra, giao diện tiếng Việt. Live: https://tieuly1370-hub.github.io/
+**Tài liệu kiến trúc cho người / AI làm tiếp: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).**
+
+## 2.4.0 — bản gọn: Bài học · Kiểm tra · Cài đặt, thêm HSK 2, chấm viết chặt
+- **Điều hướng gọn:** trang chính là HSK 1 / HSK 2 / HSK 3 (Sắp có) dạng xổ → bấm bài → màn Viết của bài. Thanh dưới chỉ 3 tab:
+  Bài học, Kiểm tra, Cài đặt. Không khoá bài. Các phần cũ (lộ trình, 6 mục, luyện thêm, bộ thủ, giáo trình…) ẩn khỏi điều hướng, code vẫn giữ.
+- **Ẩn** streak, chế độ (Công ty / Nhà), giờ nhắc học, thưởng tuần. Xưng hô chủ/cậu vẫn đổi trong Cài đặt.
+- **Màn Viết sắp lại:** thẻ chữ = chữ + **Nghe** (chạm lại trong 4 giây → nghe chậm) + "Nghe <từ>" + Khó; dưới ô viết là hàng công cụ
+  (Hoàn tác · Viết lại · Xem mẫu · Ẩn mẫu); hàng chuyển từ riêng (‹ Trước / Từ tiếp ›); PDF và Ghi chú tay là link nhỏ ở cuối;
+  nút "Đánh dấu đã học xong bài".
+- **Kiểm tra:** chọn cấp + tuần (3 bài xong gần nhất) / tháng / từng bài; **chỉ lấy bài đã học xong**; các dạng: nghe chọn chữ (chữ dễ nhầm),
+  nghe/đọc xếp câu, chọn nghĩa, viết. Không có câu Nói.
+- **Chấm viết chặt** khi Ẩn mẫu và trong Kiểm tra: từng nét phải đúng vùng, các thành phần của chữ đúng vị trí và tỉ lệ
+  (`src/v2/strictGrade.ts`). Viết có mẫu vẫn khoan dung như cũ.
+- **HSK 2** (theo HSK Standard Course 2, 15 bài = bài toàn cục 20–34): 172 từ, 45 câu, 101 chữ mới (Hán Việt, cấu tạo, mẹo nhớ, nét),
+  âm thanh edge-tts + audit Whisper. Từ vựng: [joelypoley/hsk_standard_course_vocab](https://github.com/joelypoley/hsk_standard_course_vocab);
+  nghĩa tiếng Việt và câu ví dụ do Miaozi tự soạn; mẹo nhớ HSK 2 sinh theo mẫu từ cấu tạo Make Me a Hanzi.
+- Sửa âm 很 (trước bị đọc như 哼). Dữ liệu cũ trong IndexedDB `lohan` giữ nguyên; thêm `v2.doneLessons` (gộp kiểu hợp khi đồng bộ).
+- Kiểm thử: `python3 scripts/test_v24.py` (Playwright) + `node --experimental-strip-types tests/*.test.ts` (xem docs).
 
 Web app (PWA) học tiếng Trung HSK1 cùng gia sư mèo **Miao**. Học trên Nhai HSK, tổng hợp – ôn – kiểm tra – kỷ luật ở Miaozi. Tiếng Việt, chạy trên máy, miễn phí.
 

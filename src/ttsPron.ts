@@ -13,6 +13,14 @@ export const SSML_PHONEME: Record<string, string> = {
   "哪": "na 3",
 };
 
+/**
+ * v2.4 — Sửa clip mp3 tạo sẵn (scripts/hsk2/gen_audio_hsk2.py đọc 2 bảng này; phải giữ dạng JSON).
+ * TTS_TEXT: id từ → chữ ĐỒNG ÂM CÙNG THANH, không đa âm, để Xiaoxiao đọc đúng (chỉ đổi chữ gửi cho máy đọc, chữ hiển thị giữ nguyên).
+ * TTS_CUT: id từ → [cụm ngữ cảnh, chữ cần cắt]: đọc cả cụm rồi cắt đúng âm tiết theo WordBoundary (cho trợ từ thanh nhẹ).
+ */
+export const TTS_TEXT: Record<string, string> = {"n02-12": "狠", "n23-01": "常", "n32-09": "掌", "n24-03": "孩"};
+export const TTS_CUT: Record<string, [string, string]> = {"n32-05": ["看着", "着"], "n31-02": ["跑得", "得"]};
+
 const HAS_OVERRIDE = /哪/;
 
 export function needsPronOverride(text: string): boolean {

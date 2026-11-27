@@ -46,6 +46,9 @@ const LOOK_GROUPS = [
   "气乞", "样洋", "雨两", "姐组", "来未米", "身射", "体休本", "爱受", "些此", "果课", "水永", "喂畏", "也他地", "习刁",
   "睡锤", "觉见学", "喜嘉", "欢次", "给结", "打订", "话活", "吧把爸", "苹平", "先生", "车东", "衣农", "服报", "漂飘",
   "亮高", "啊阿", "都者", "认让", "识只", "高亮", "兴光", "听斤", "飞习", "火大", "站占", "谢射", "客各", "钟中", "分份",
+  // v2.4: HSK 2
+  "睛晴情请清", "近进远还", "红经给结", "眼跟银很根", "千干午牛", "左右在", "篮蓝", "试式", "着看", "穿空", "跑抱", "送选",
+  "旅族", "游放", "离高", "慢漫", "错借", "等待特", "鱼角", "白百自", "门们问间", "外处", "黑里", "长张", "妻要", "笑哭",
 ];
 const LOOK = new Map<string, string[]>();
 for (const g of LOOK_GROUPS) {
@@ -371,8 +374,10 @@ export function v2Items(kind: V2Test, n: number, mistakeIds: string[] = []): Ite
       ...sw(W.filter(notNum), 3).map((w) => wordSpeak(w, "s:" + w.id)),
     ];
   }
-  const k = kind === "weekly" ? 1 : 2; // tháng dài gấp đôi, lấy từ tất cả bài từ đầu HSK1
-  const pool = kind === "weekly" ? learned.filter((w) => w.lesson >= Math.max(1, N - 2)) : learned;
+  const k = kind === "weekly" ? 1 : 2; // tháng dài gấp đôi
+  // v2.4: chỉ lấy bài ĐÃ HỌC XONG (trước bài đang học N), không lấy bài đang học dở
+  const before = learned.filter((w) => w.lesson < N);
+  const pool = kind === "weekly" ? before.filter((w) => w.lesson >= Math.max(1, N - 3)) : before;
   return [
     ...withMistakes(pool, 5 * k).map((w) => hanziPick(w, "listen", "lp:" + w.id)),
     ...shuffle(learnedS).slice(0, k).map((s) => buildItem(s, "listen", "lb:" + s.id)),
@@ -389,4 +394,31 @@ export function v2Judge(items: Item[], firstOk: Record<string, boolean>, bar = P
   const first = items.filter((i) => firstOk[i.key]).length;
   const score = total ? first / total : 0;
   return { total, first, score, pass: total > 0 && score >= bar, wrong: items.filter((i) => !firstOk[i.key]) };
+}
+
+/**
+ * v2.4 — Đề Kiểm tra theo cấp, CHỈ từ các bài đã học xong (`lessonIds`). Không có câu Nói.
+ * weekly = tối đa 3 bài xong gần nhất; monthly = mọi bài đã xong của cấp (dài gấp đôi); lesson = 1 bài.
+ */
+export function levelTestItems(kind: "weekly" | "monthly" | "lesson", lessonIds: number[], mistakeIds: string[] = []): Item[] {
+  const ids = [...lessonIds].sort((a, b) => a - b);
+  const use = kind === "weekly" ? ids.slice(-3) : ids;
+  const Ls = LESSONS.filter((l) => use.includes(l.id));
+  const pool = Ls.flatMap((l) => l.words).filter((w) => han(w.hanzi).length > 0);
+  const sents = Ls.flatMap((l) => l.sentences);
+  if (!pool.length) return [];
+  const k = kind === "monthly" ? 2 : 1;
+  const sw = (a: Word[], n: number) => shuffle(a).slice(0, n);
+  const withMistakes = (p: Word[], n: number) => {
+    const bad = shuffle(p.filter((w) => mistakeIds.includes(w.id))).slice(0, Math.ceil(n / 3));
+    return shuffle([...bad, ...sw(p.filter((w) => !bad.includes(w)), n - bad.length)]);
+  };
+  const S = shuffle(sents);
+  return [
+    ...withMistakes(pool, 5 * k).map((w) => hanziPick(w, "listen", "lp:" + w.id)),
+    ...S.slice(0, k).map((s) => buildItem(s, "listen", "lb:" + s.id)),
+    ...withMistakes(pool, 5 * k).map((w) => meaningPick(w, "rm:" + w.id)),
+    ...S.slice(k, 2 * k).map((s) => buildItem(s, "read", "rb:" + s.id)),
+    ...sw(pool.filter(writable), 4 * k).map((w) => writeItem(w, "w:" + w.id)),
+  ];
 }

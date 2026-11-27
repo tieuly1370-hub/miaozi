@@ -155,7 +155,7 @@ a.seg, .seg { color: var(--ink); }
   background: rgba(255, 251, 253, 0.94);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--line);
-  display: grid; grid-template-columns: repeat(5, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   z-index: 20;
 }
 .nav a, .nav button {
@@ -949,3 +949,33 @@ a { color: var(--accent); }
 [data-testid=settings] .card > .toggle + .btn { margin-top: 14px; }
 
 .speak-try #speak-skip, .speak-try [data-testid=speak-skip] { margin-top: 8px; }
+
+/* ---------- v2.4 bản gọn: Bài học theo cấp, Viết sắp lại nút, Kiểm tra ---------- */
+.slim-levels .level-card { padding: 0; overflow: hidden; }
+.level-head { display: flex; align-items: center; gap: 10px; width: 100%; padding: 16px 18px; background: none; border: 0; text-align: left; font: inherit; color: var(--ink); cursor: pointer; }
+.level-head .tiny { margin-left: auto; }
+.level-head .chev { font-size: 18px; color: var(--ink-3); }
+.level-card.is-coming { opacity: .55; }
+.level-card.is-coming .level-head { cursor: default; justify-content: space-between; }
+.lesson-rows { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.lesson-row { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px; padding: 12px 18px; background: none; border: 0; border-bottom: 1px solid var(--line-2); text-align: left; font: inherit; color: var(--ink); cursor: pointer; min-height: 52px; }
+.lesson-row:last-child { border-bottom: 0; }
+.lesson-row:hover, .lesson-row:focus-visible { background: var(--pink); }
+.lesson-row .lr-no { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--blue); font-weight: 700; font-size: 14px; }
+.lesson-row.is-done .lr-no { background: var(--green); }
+.lesson-row .lr-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.lesson-row .lr-title b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.lesson-row .lr-meta { white-space: nowrap; color: var(--ink-3); }
+.lesson-row.is-done .lr-meta { color: #2C6A45; }
+.canvas-tools { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+.canvas-tools .toggle { gap: 6px; font-size: 13px; margin-left: 4px; }
+.wbox-msg { min-height: 1.2em; }
+.mizi-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; max-width: 440px; padding-top: 8px; border-top: 1px dashed var(--line); }
+.strict-note { margin: 0; text-align: center; }
+.info-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: flex-end; }
+.listen-btn { display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; min-height: 36px; border-radius: 999px; border: 1px solid var(--blue-2); background: var(--blue); color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; }
+.listen-btn.is-slow { background: #FFF3D6; border-color: #EBD49C; }
+.write-foot { justify-content: center; align-items: center; gap: 6px; padding-top: 10px; border-top: 1px solid var(--line-2); }
+.link-btn { background: none; border: 0; padding: 6px 8px; font: inherit; font-size: 13px; color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.lesson-done-box { padding-top: 10px; margin-top: 6px; border-top: 1px solid var(--line-2); }
+.lesson-done-box .chip { display: block; text-align: center; }

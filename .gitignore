@@ -7,3 +7,4 @@ hsk-app-dist.zip
 tmp
 tsconfig.tsbuildinfo
 scripts/v22/mmah_dictionary.txt
+__pycache__/

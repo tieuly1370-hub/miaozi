@@ -1,0 +1,1918 @@
+[
+ {
+  "id": "n02-12",
+  "hanzi": "很",
+  "pinyin": "hen3",
+  "heard": "哼",
+  "heardPy": "heng1",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "heng1",
+   "heng1"
+  ]
+ },
+ {
+  "id": "n03-09",
+  "hanzi": "哪",
+  "pinyin": "na3",
+  "heard": "night",
+  "heardPy": "",
+  "flag": "confirmed-len",
+  "pass2": [
+   "",
+   ""
+  ]
+ },
+ {
+  "id": "n20-01",
+  "hanzi": "觉得",
+  "pinyin": "jue2 de5",
+  "heard": "觉得",
+  "heardPy": "jue2 de5",
+  "flag": ""
+ },
+ {
+  "id": "n20-02",
+  "hanzi": "旅游",
+  "pinyin": "lü3 you2",
+  "heard": "旅游",
+  "heardPy": "lv3 you2",
+  "flag": ""
+ },
+ {
+  "id": "n20-03",
+  "hanzi": "它",
+  "pinyin": "ta1",
+  "heard": "他",
+  "heardPy": "ta1",
+  "flag": ""
+ },
+ {
+  "id": "n20-04",
+  "hanzi": "踢足球",
+  "pinyin": "ti1 zu2 qiu2",
+  "heard": "踢足球。",
+  "heardPy": "ti1 zu2 qiu2",
+  "flag": ""
+ },
+ {
+  "id": "n20-05",
+  "hanzi": "为什么",
+  "pinyin": "wei4 shen2 me5",
+  "heard": "为什么?",
+  "heardPy": "wei4 shen2 me5",
+  "flag": ""
+ },
+ {
+  "id": "n20-06",
+  "hanzi": "新",
+  "pinyin": "xin1",
+  "heard": "心",
+  "heardPy": "xin1",
+  "flag": ""
+ },
+ {
+  "id": "n20-07",
+  "hanzi": "眼睛",
+  "pinyin": "yan3 jing5",
+  "heard": "眼睛",
+  "heardPy": "yan3 jing1",
+  "flag": ""
+ },
+ {
+  "id": "n20-08",
+  "hanzi": "要",
+  "pinyin": "yao4",
+  "heard": "要",
+  "heardPy": "yao4",
+  "flag": ""
+ },
+ {
+  "id": "n20-09",
+  "hanzi": "也",
+  "pinyin": "ye3",
+  "heard": "也",
+  "heardPy": "ye3",
+  "flag": ""
+ },
+ {
+  "id": "n20-10",
+  "hanzi": "一起",
+  "pinyin": "yi4 qi3",
+  "heard": "一起",
+  "heardPy": "yi4 qi3",
+  "flag": ""
+ },
+ {
+  "id": "n20-11",
+  "hanzi": "运动",
+  "pinyin": "yun4 dong4",
+  "heard": "运动",
+  "heardPy": "yun4 dong4",
+  "flag": ""
+ },
+ {
+  "id": "n20-12",
+  "hanzi": "最",
+  "pinyin": "zui4",
+  "heard": "次",
+  "heardPy": "ci4",
+  "flag": "",
+  "pass2": [
+   "zui4",
+   "zui4"
+  ]
+ },
+ {
+  "id": "n21-01",
+  "hanzi": "出",
+  "pinyin": "chu1",
+  "heard": "出。",
+  "heardPy": "chu1",
+  "flag": ""
+ },
+ {
+  "id": "n21-02",
+  "hanzi": "高",
+  "pinyin": "gao1",
+  "heard": "go",
+  "heardPy": "",
+  "flag": "",
+  "pass2": [
+   "",
+   "gao1"
+  ]
+ },
+ {
+  "id": "n21-03",
+  "hanzi": "忙",
+  "pinyin": "mang2",
+  "heard": "吗?",
+  "heardPy": "ma5",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "ma5",
+   "ma5"
+  ]
+ },
+ {
+  "id": "n21-04",
+  "hanzi": "每",
+  "pinyin": "mei3",
+  "heard": "没",
+  "heardPy": "mei2",
+  "flag": "",
+  "pass2": [
+   "mei3",
+   "mei3"
+  ]
+ },
+ {
+  "id": "n21-05",
+  "hanzi": "跑步",
+  "pinyin": "pao3 bu4",
+  "heard": "跑步",
+  "heardPy": "pao3 bu4",
+  "flag": ""
+ },
+ {
+  "id": "n21-06",
+  "hanzi": "起床",
+  "pinyin": "qi3 chuang2",
+  "heard": "起乘。",
+  "heardPy": "qi3 cheng2",
+  "flag": "sound"
+ },
+ {
+  "id": "n21-07",
+  "hanzi": "身体",
+  "pinyin": "shen1 ti3",
+  "heard": "身体",
+  "heardPy": "shen1 ti3",
+  "flag": ""
+ },
+ {
+  "id": "n21-08",
+  "hanzi": "生病",
+  "pinyin": "sheng1 bing4",
+  "heard": "生病",
+  "heardPy": "sheng1 bing4",
+  "flag": ""
+ },
+ {
+  "id": "n21-09",
+  "hanzi": "时间",
+  "pinyin": "shi2 jian1",
+  "heard": "时间",
+  "heardPy": "shi2 jian1",
+  "flag": ""
+ },
+ {
+  "id": "n21-10",
+  "hanzi": "休息",
+  "pinyin": "xiu1 xi5",
+  "heard": "休息",
+  "heardPy": "xiu1 xi1",
+  "flag": ""
+ },
+ {
+  "id": "n21-11",
+  "hanzi": "药",
+  "pinyin": "yao4",
+  "heard": "要",
+  "heardPy": "yao4",
+  "flag": ""
+ },
+ {
+  "id": "n21-12",
+  "hanzi": "早上",
+  "pinyin": "zao3 shang5",
+  "heard": "早上",
+  "heardPy": "zao3 shang4",
+  "flag": ""
+ },
+ {
+  "id": "n21-13",
+  "hanzi": "知道",
+  "pinyin": "zhi1 dao4",
+  "heard": "知道。",
+  "heardPy": "zhi1 dao4",
+  "flag": ""
+ },
+ {
+  "id": "n21-14",
+  "hanzi": "米",
+  "pinyin": "mi3",
+  "heard": "你",
+  "heardPy": "ni3",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "mi1",
+   "ni3"
+  ]
+ },
+ {
+  "id": "n21-15",
+  "hanzi": "出院",
+  "pinyin": "chu1 yuan4",
+  "heard": "出院",
+  "heardPy": "chu1 yuan4",
+  "flag": ""
+ },
+ {
+  "id": "n22-01",
+  "hanzi": "报纸",
+  "pinyin": "bao4 zhi3",
+  "heard": "报纸",
+  "heardPy": "bao4 zhi3",
+  "flag": ""
+ },
+ {
+  "id": "n22-02",
+  "hanzi": "房间",
+  "pinyin": "fang2 jian1",
+  "heard": "房间",
+  "heardPy": "fang2 jian1",
+  "flag": ""
+ },
+ {
+  "id": "n22-03",
+  "hanzi": "红",
+  "pinyin": "hong2",
+  "heard": "哼?",
+  "heardPy": "heng1",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "heng1",
+   "heng1"
+  ]
+ },
+ {
+  "id": "n22-04",
+  "hanzi": "牛奶",
+  "pinyin": "niu2 nai3",
+  "heard": "牛奶",
+  "heardPy": "niu2 nai3",
+  "flag": ""
+ },
+ {
+  "id": "n22-05",
+  "hanzi": "旁边",
+  "pinyin": "pang2 bian1",
+  "heard": "旁边",
+  "heardPy": "pang2 bian1",
+  "flag": ""
+ },
+ {
+  "id": "n22-06",
+  "hanzi": "千",
+  "pinyin": "qian1",
+  "heard": "签",
+  "heardPy": "qian1",
+  "flag": ""
+ },
+ {
+  "id": "n22-07",
+  "hanzi": "手表",
+  "pinyin": "shou3 biao3",
+  "heard": "手表",
+  "heardPy": "shou3 biao3",
+  "flag": ""
+ },
+ {
+  "id": "n22-08",
+  "hanzi": "送",
+  "pinyin": "song4",
+  "heard": "双",
+  "heardPy": "shuang1",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "sang3",
+   "sang3"
+  ]
+ },
+ {
+  "id": "n22-09",
+  "hanzi": "颜色",
+  "pinyin": "yan2 se4",
+  "heard": "颜色",
+  "heardPy": "yan2 se4",
+  "flag": ""
+ },
+ {
+  "id": "n22-10",
+  "hanzi": "一下",
+  "pinyin": "yi2 xia4",
+  "heard": "以下",
+  "heardPy": "yi3 xia4",
+  "flag": ""
+ },
+ {
+  "id": "n22-11",
+  "hanzi": "丈夫",
+  "pinyin": "zhang4 fu5",
+  "heard": "丈夫",
+  "heardPy": "zhang4 fu1",
+  "flag": ""
+ },
+ {
+  "id": "n22-12",
+  "hanzi": "真",
+  "pinyin": "zhen1",
+  "heard": "真",
+  "heardPy": "zhen1",
+  "flag": ""
+ },
+ {
+  "id": "n22-13",
+  "hanzi": "左边",
+  "pinyin": "zuo3 bian5",
+  "heard": "左边",
+  "heardPy": "zuo3 bian1",
+  "flag": ""
+ },
+ {
+  "id": "n22-14",
+  "hanzi": "粉色",
+  "pinyin": "fen3 se4",
+  "heard": "粉色",
+  "heardPy": "fen3 se4",
+  "flag": ""
+ },
+ {
+  "id": "n22-15",
+  "hanzi": "粉",
+  "pinyin": "fen3",
+  "heard": "分",
+  "heardPy": "fen1",
+  "flag": "",
+  "pass2": [
+   "fen3",
+   "fen3"
+  ]
+ },
+ {
+  "id": "n22-16",
+  "hanzi": "红色",
+  "pinyin": "hong2 se4",
+  "heard": "红色",
+  "heardPy": "hong2 se4",
+  "flag": ""
+ },
+ {
+  "id": "n23-01",
+  "hanzi": "长",
+  "pinyin": "chang2",
+  "heard": "长",
+  "heardPy": "zhang3",
+  "flag": "",
+  "pass2": [
+   "chang2",
+   "chang2"
+  ]
+ },
+ {
+  "id": "n23-02",
+  "hanzi": "非常",
+  "pinyin": "fei1 chang2",
+  "heard": "非常",
+  "heardPy": "fei1 chang2",
+  "flag": ""
+ },
+ {
+  "id": "n23-03",
+  "hanzi": "给",
+  "pinyin": "gei3",
+  "heard": "对",
+  "heardPy": "dui4",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "ga1",
+   "die1"
+  ]
+ },
+ {
+  "id": "n23-04",
+  "hanzi": "介绍",
+  "pinyin": "jie4 shao4",
+  "heard": "介绍。",
+  "heardPy": "jie4 shao4",
+  "flag": ""
+ },
+ {
+  "id": "n23-05",
+  "hanzi": "开始",
+  "pinyin": "kai1 shi3",
+  "heard": "开始",
+  "heardPy": "kai1 shi3",
+  "flag": ""
+ },
+ {
+  "id": "n23-06",
+  "hanzi": "快乐",
+  "pinyin": "kuai4 le4",
+  "heard": "快乐。",
+  "heardPy": "kuai4 le4",
+  "flag": ""
+ },
+ {
+  "id": "n23-07",
+  "hanzi": "两",
+  "pinyin": "liang3",
+  "heard": "凉",
+  "heardPy": "liang2",
+  "flag": "confirmed-tone",
+  "pass2": [
+   "liang2",
+   "liang2"
+  ]
+ },
+ {
+  "id": "n23-08",
+  "hanzi": "生日",
+  "pinyin": "sheng1 ri4",
+  "heard": "生日",
+  "heardPy": "sheng1 ri4",
+  "flag": ""
+ },
+ {
+  "id": "n23-09",
+  "hanzi": "晚上",
+  "pinyin": "wan3 shang5",
+  "heard": "晚上",
+  "heardPy": "wan3 shang4",
+  "flag": ""
+ },
+ {
+  "id": "n23-10",
+  "hanzi": "问",
+  "pinyin": "wen4",
+  "heard": "问",
+  "heardPy": "wen4",
+  "flag": ""
+ },
+ {
+  "id": "n23-11",
+  "hanzi": "已经",
+  "pinyin": "yi3 jing1",
+  "heard": "已经",
+  "heardPy": "yi3 jing1",
+  "flag": ""
+ },
+ {
+  "id": "n23-12",
+  "hanzi": "接",
+  "pinyin": "jie1",
+  "heard": "接",
+  "heardPy": "jie1",
+  "flag": ""
+ },
+ {
+  "id": "n23-13",
+  "hanzi": "帮",
+  "pinyin": "bang1",
+  "heard": "8.",
+  "heardPy": "ba1",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "ba5",
+   "ba5"
+  ]
+ },
+ {
+  "id": "n24-01",
+  "hanzi": "吧",
+  "pinyin": "ba5",
+  "heard": "爸",
+  "heardPy": "ba4",
+  "flag": ""
+ },
+ {
+  "id": "n24-02",
+  "hanzi": "对",
+  "pinyin": "dui4",
+  "heard": "对。",
+  "heardPy": "dui4",
+  "flag": ""
+ },
+ {
+  "id": "n24-03",
+  "hanzi": "还",
+  "pinyin": "hai2",
+  "heard": "嗨",
+  "heardPy": "hai1",
+  "flag": "confirmed-tone",
+  "pass2": [
+   "hai1",
+   "hai1"
+  ]
+ },
+ {
+  "id": "n24-04",
+  "hanzi": "件",
+  "pinyin": "jian4",
+  "heard": "切!",
+  "heardPy": "qie4",
+  "flag": "",
+  "pass2": [
+   "jian4",
+   "jie4"
+  ]
+ },
+ {
+  "id": "n24-05",
+  "hanzi": "就",
+  "pinyin": "jiu4",
+  "heard": "就",
+  "heardPy": "jiu4",
+  "flag": ""
+ },
+ {
+  "id": "n24-06",
+  "hanzi": "咖啡",
+  "pinyin": "ka1 fei1",
+  "heard": "咖啡",
+  "heardPy": "ka1 fei1",
+  "flag": ""
+ },
+ {
+  "id": "n24-07",
+  "hanzi": "考试",
+  "pinyin": "kao3 shi4",
+  "heard": "考试",
+  "heardPy": "kao3 shi4",
+  "flag": ""
+ },
+ {
+  "id": "n24-08",
+  "hanzi": "可以",
+  "pinyin": "ke3 yi3",
+  "heard": "可以",
+  "heardPy": "ke3 yi3",
+  "flag": ""
+ },
+ {
+  "id": "n24-09",
+  "hanzi": "意思",
+  "pinyin": "yi4 si5",
+  "heard": "以下是普通话的句子。",
+  "heardPy": "yi3 xia4 shi4 pu3 tong1 hua4 de5 ju4 zi5",
+  "flag": "len"
+ },
+ {
+  "id": "n24-10",
+  "hanzi": "鱼",
+  "pinyin": "yu2",
+  "heard": "意?",
+  "heardPy": "yi4",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "ye2",
+   "ye2"
+  ]
+ },
+ {
+  "id": "n24-11",
+  "hanzi": "准备",
+  "pinyin": "zhun3 bei4",
+  "heard": "准备。",
+  "heardPy": "zhun3 bei4",
+  "flag": ""
+ },
+ {
+  "id": "n24-12",
+  "hanzi": "以后",
+  "pinyin": "yi3 hou4",
+  "heard": "以后。",
+  "heardPy": "yi3 hou4",
+  "flag": ""
+ },
+ {
+  "id": "n24-13",
+  "hanzi": "不错",
+  "pinyin": "bu2 cuo4",
+  "heard": "不错。",
+  "heardPy": "bu4 cuo4",
+  "flag": ""
+ },
+ {
+  "id": "n24-14",
+  "hanzi": "外面",
+  "pinyin": "wai4 mian4",
+  "heard": "外面",
+  "heardPy": "wai4 mian4",
+  "flag": ""
+ },
+ {
+  "id": "n25-01",
+  "hanzi": "打篮球",
+  "pinyin": "da3 lan2 qiu2",
+  "heard": "打篮球。",
+  "heardPy": "da3 lan2 qiu2",
+  "flag": ""
+ },
+ {
+  "id": "n25-02",
+  "hanzi": "好吃",
+  "pinyin": "hao3 chi1",
+  "heard": "好吃!",
+  "heardPy": "hao3 chi1",
+  "flag": ""
+ },
+ {
+  "id": "n25-03",
+  "hanzi": "姐姐",
+  "pinyin": "jie3 jie5",
+  "heard": "姐姐",
+  "heardPy": "jie3 jie3",
+  "flag": ""
+ },
+ {
+  "id": "n25-04",
+  "hanzi": "门",
+  "pinyin": "men2",
+  "heard": "咩?",
+  "heardPy": "mie1",
+  "flag": "",
+  "pass2": [
+   "men2",
+   "mei2"
+  ]
+ },
+ {
+  "id": "n25-05",
+  "hanzi": "面条",
+  "pinyin": "mian4 tiao2",
+  "heard": "面条",
+  "heardPy": "mian4 tiao2",
+  "flag": ""
+ },
+ {
+  "id": "n25-06",
+  "hanzi": "所以",
+  "pinyin": "suo3 yi3",
+  "heard": "所以。",
+  "heardPy": "suo3 yi3",
+  "flag": ""
+ },
+ {
+  "id": "n25-07",
+  "hanzi": "外",
+  "pinyin": "wai4",
+  "heard": "喂!",
+  "heardPy": "wei4",
+  "flag": "",
+  "pass2": [
+   "wai4",
+   "wai4"
+  ]
+ },
+ {
+  "id": "n25-08",
+  "hanzi": "羊肉",
+  "pinyin": "yang2 rou4",
+  "heard": "羊肉",
+  "heardPy": "yang2 rou4",
+  "flag": ""
+ },
+ {
+  "id": "n25-09",
+  "hanzi": "因为",
+  "pinyin": "yin1 wei4",
+  "heard": "因为",
+  "heardPy": "yin1 wei4",
+  "flag": ""
+ },
+ {
+  "id": "n25-10",
+  "hanzi": "游泳",
+  "pinyin": "you2 yong3",
+  "heard": "悠悠",
+  "heardPy": "you1 you1",
+  "flag": "tone"
+ },
+ {
+  "id": "n25-11",
+  "hanzi": "公斤",
+  "pinyin": "gong1 jin1",
+  "heard": "空气",
+  "heardPy": "kong1 qi4",
+  "flag": "sound"
+ },
+ {
+  "id": "n25-12",
+  "hanzi": "经常",
+  "pinyin": "jing1 chang2",
+  "heard": "经常",
+  "heardPy": "jing1 chang2",
+  "flag": ""
+ },
+ {
+  "id": "n25-13",
+  "hanzi": "自行车",
+  "pinyin": "zi4 xing2 che1",
+  "heard": "自行车",
+  "heardPy": "zi4 xing2 che1",
+  "flag": ""
+ },
+ {
+  "id": "n26-01",
+  "hanzi": "到",
+  "pinyin": "dao4",
+  "heard": "到。",
+  "heardPy": "dao4",
+  "flag": ""
+ },
+ {
+  "id": "n26-02",
+  "hanzi": "公共汽车",
+  "pinyin": "gong1 gong4 qi4 che1",
+  "heard": "公共汽车。",
+  "heardPy": "gong1 gong4 qi4 che1",
+  "flag": ""
+ },
+ {
+  "id": "n26-03",
+  "hanzi": "公司",
+  "pinyin": "gong1 si1",
+  "heard": "公司",
+  "heardPy": "gong1 si1",
+  "flag": ""
+ },
+ {
+  "id": "n26-04",
+  "hanzi": "机场",
+  "pinyin": "ji1 chang3",
+  "heard": "机场",
+  "heardPy": "ji1 chang3",
+  "flag": ""
+ },
+ {
+  "id": "n26-05",
+  "hanzi": "教室",
+  "pinyin": "jiao4 shi4",
+  "heard": "教室",
+  "heardPy": "jiao4 shi4",
+  "flag": ""
+ },
+ {
+  "id": "n26-06",
+  "hanzi": "快",
+  "pinyin": "kuai4",
+  "heard": "快!",
+  "heardPy": "kuai4",
+  "flag": ""
+ },
+ {
+  "id": "n26-07",
+  "hanzi": "离",
+  "pinyin": "li2",
+  "heard": "离",
+  "heardPy": "li2",
+  "flag": ""
+ },
+ {
+  "id": "n26-08",
+  "hanzi": "路",
+  "pinyin": "lu4",
+  "heard": "弄",
+  "heardPy": "nong4",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "lou3",
+   "lou2"
+  ]
+ },
+ {
+  "id": "n26-09",
+  "hanzi": "慢",
+  "pinyin": "man4",
+  "heard": "慢",
+  "heardPy": "man4",
+  "flag": ""
+ },
+ {
+  "id": "n26-10",
+  "hanzi": "小时",
+  "pinyin": "xiao3 shi2",
+  "heard": "小时",
+  "heardPy": "xiao3 shi2",
+  "flag": ""
+ },
+ {
+  "id": "n26-11",
+  "hanzi": "远",
+  "pinyin": "yuan3",
+  "heard": "人",
+  "heardPy": "ren2",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "yuan2",
+   "yuan2"
+  ]
+ },
+ {
+  "id": "n26-12",
+  "hanzi": "走",
+  "pinyin": "zou3",
+  "heard": "走。",
+  "heardPy": "zou3",
+  "flag": ""
+ },
+ {
+  "id": "n26-13",
+  "hanzi": "过",
+  "pinyin": "guo4",
+  "heard": "过",
+  "heardPy": "guo4",
+  "flag": ""
+ },
+ {
+  "id": "n27-01",
+  "hanzi": "白",
+  "pinyin": "bai2",
+  "heard": "Bye!",
+  "heardPy": "",
+  "flag": "confirmed-len",
+  "pass2": [
+   "",
+   ""
+  ]
+ },
+ {
+  "id": "n27-02",
+  "hanzi": "等",
+  "pinyin": "deng3",
+  "heard": "等",
+  "heardPy": "deng3",
+  "flag": ""
+ },
+ {
+  "id": "n27-03",
+  "hanzi": "服务员",
+  "pinyin": "fu2 wu4 yuan2",
+  "heard": "服务员",
+  "heardPy": "fu2 wu4 yuan2",
+  "flag": ""
+ },
+ {
+  "id": "n27-04",
+  "hanzi": "告诉",
+  "pinyin": "gao4 su5",
+  "heard": "告诉。",
+  "heardPy": "gao4 su4",
+  "flag": ""
+ },
+ {
+  "id": "n27-05",
+  "hanzi": "贵",
+  "pinyin": "gui4",
+  "heard": "goo",
+  "heardPy": "",
+  "flag": "",
+  "pass2": [
+   "gui4",
+   "gui4"
+  ]
+ },
+ {
+  "id": "n27-06",
+  "hanzi": "黑",
+  "pinyin": "hei1",
+  "heard": "嘿",
+  "heardPy": "hei1",
+  "flag": ""
+ },
+ {
+  "id": "n27-07",
+  "hanzi": "让",
+  "pinyin": "rang4",
+  "heard": "让。",
+  "heardPy": "rang4",
+  "flag": ""
+ },
+ {
+  "id": "n27-08",
+  "hanzi": "事情",
+  "pinyin": "shi4 qing5",
+  "heard": "事情",
+  "heardPy": "shi4 qing2",
+  "flag": ""
+ },
+ {
+  "id": "n27-09",
+  "hanzi": "再",
+  "pinyin": "zai4",
+  "heard": "在。",
+  "heardPy": "zai4",
+  "flag": ""
+ },
+ {
+  "id": "n27-10",
+  "hanzi": "找",
+  "pinyin": "zhao3",
+  "heard": "找。",
+  "heardPy": "zhao3",
+  "flag": ""
+ },
+ {
+  "id": "n28-01",
+  "hanzi": "从",
+  "pinyin": "cong2",
+  "heard": "从",
+  "heardPy": "cong2",
+  "flag": ""
+ },
+ {
+  "id": "n28-02",
+  "hanzi": "错",
+  "pinyin": "cuo4",
+  "heard": "错。",
+  "heardPy": "cuo4",
+  "flag": ""
+ },
+ {
+  "id": "n28-03",
+  "hanzi": "第一",
+  "pinyin": "di4 yi1",
+  "heard": "第一",
+  "heardPy": "di4 yi1",
+  "flag": ""
+ },
+ {
+  "id": "n28-04",
+  "hanzi": "懂",
+  "pinyin": "dong3",
+  "heard": "都",
+  "heardPy": "dou1",
+  "flag": "",
+  "pass2": [
+   "duo1",
+   "dong3"
+  ]
+ },
+ {
+  "id": "n28-05",
+  "hanzi": "上班",
+  "pinyin": "shang4 ban1",
+  "heard": "上班。",
+  "heardPy": "shang4 ban1",
+  "flag": ""
+ },
+ {
+  "id": "n28-06",
+  "hanzi": "题",
+  "pinyin": "ti2",
+  "heard": "皮",
+  "heardPy": "pi2",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "pi2",
+   "pi2"
+  ]
+ },
+ {
+  "id": "n28-07",
+  "hanzi": "跳舞",
+  "pinyin": "tiao4 wu3",
+  "heard": "票5",
+  "heardPy": "piao4 wu3",
+  "flag": "sound"
+ },
+ {
+  "id": "n28-08",
+  "hanzi": "完",
+  "pinyin": "wan2",
+  "heard": "完?",
+  "heardPy": "wan2",
+  "flag": ""
+ },
+ {
+  "id": "n28-09",
+  "hanzi": "问题",
+  "pinyin": "wen4 ti2",
+  "heard": "问题",
+  "heardPy": "wen4 ti2",
+  "flag": ""
+ },
+ {
+  "id": "n28-10",
+  "hanzi": "希望",
+  "pinyin": "xi1 wang4",
+  "heard": "希望。",
+  "heardPy": "xi1 wang4",
+  "flag": ""
+ },
+ {
+  "id": "n28-11",
+  "hanzi": "欢迎",
+  "pinyin": "huan1 ying2",
+  "heard": "欢迎。",
+  "heardPy": "huan1 ying2",
+  "flag": ""
+ },
+ {
+  "id": "n29-01",
+  "hanzi": "帮助",
+  "pinyin": "bang1 zhu4",
+  "heard": "帮助。",
+  "heardPy": "bang1 zhu4",
+  "flag": ""
+ },
+ {
+  "id": "n29-02",
+  "hanzi": "别",
+  "pinyin": "bie2",
+  "heard": "别",
+  "heardPy": "bie2",
+  "flag": ""
+ },
+ {
+  "id": "n29-03",
+  "hanzi": "哥哥",
+  "pinyin": "ge1 ge5",
+  "heard": "哥哥",
+  "heardPy": "ge1 ge1",
+  "flag": ""
+ },
+ {
+  "id": "n29-04",
+  "hanzi": "鸡蛋",
+  "pinyin": "ji1 dan4",
+  "heard": "鸡蛋",
+  "heardPy": "ji1 dan4",
+  "flag": ""
+ },
+ {
+  "id": "n29-05",
+  "hanzi": "课",
+  "pinyin": "ke4",
+  "heard": "可",
+  "heardPy": "ke3",
+  "flag": "",
+  "pass2": [
+   "ke4",
+   "ke4"
+  ]
+ },
+ {
+  "id": "n29-06",
+  "hanzi": "手机",
+  "pinyin": "shou3 ji1",
+  "heard": "手机",
+  "heardPy": "shou3 ji1",
+  "flag": ""
+ },
+ {
+  "id": "n29-07",
+  "hanzi": "西瓜",
+  "pinyin": "xi1 gua1",
+  "heard": "西瓜",
+  "heardPy": "xi1 gua1",
+  "flag": ""
+ },
+ {
+  "id": "n29-08",
+  "hanzi": "洗",
+  "pinyin": "xi3",
+  "heard": "使",
+  "heardPy": "shi3",
+  "flag": "",
+  "pass2": [
+   "xi2",
+   "xi3"
+  ]
+ },
+ {
+  "id": "n29-09",
+  "hanzi": "正在",
+  "pinyin": "zheng4 zai4",
+  "heard": "正在。",
+  "heardPy": "zheng4 zai4",
+  "flag": ""
+ },
+ {
+  "id": "n30-01",
+  "hanzi": "比",
+  "pinyin": "bi3",
+  "heard": "B",
+  "heardPy": "",
+  "flag": "confirmed-len",
+  "pass2": [
+   "",
+   "pa1"
+  ]
+ },
+ {
+  "id": "n30-02",
+  "hanzi": "唱歌",
+  "pinyin": "chang4 ge1",
+  "heard": "唱歌",
+  "heardPy": "chang4 ge1",
+  "flag": ""
+ },
+ {
+  "id": "n30-03",
+  "hanzi": "孩子",
+  "pinyin": "hai2 zi5",
+  "heard": "孩子",
+  "heardPy": "hai2 zi5",
+  "flag": ""
+ },
+ {
+  "id": "n30-04",
+  "hanzi": "可能",
+  "pinyin": "ke3 neng2",
+  "heard": "可能?",
+  "heardPy": "ke3 neng2",
+  "flag": ""
+ },
+ {
+  "id": "n30-05",
+  "hanzi": "男",
+  "pinyin": "nan2",
+  "heard": "哪?",
+  "heardPy": "na3",
+  "flag": "",
+  "pass2": [
+   "nan2",
+   "nan2"
+  ]
+ },
+ {
+  "id": "n30-06",
+  "hanzi": "女",
+  "pinyin": "nü3",
+  "heard": "你",
+  "heardPy": "ni3",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "ni3",
+   "ni3"
+  ]
+ },
+ {
+  "id": "n30-07",
+  "hanzi": "便宜",
+  "pinyin": "pian2 yi5",
+  "heard": "便宜",
+  "heardPy": "pian2 yi5",
+  "flag": ""
+ },
+ {
+  "id": "n30-08",
+  "hanzi": "去年",
+  "pinyin": "qu4 nian2",
+  "heard": "去年",
+  "heardPy": "qu4 nian2",
+  "flag": ""
+ },
+ {
+  "id": "n30-09",
+  "hanzi": "说话",
+  "pinyin": "shuo1 hua4",
+  "heard": "说话。",
+  "heardPy": "shuo1 hua4",
+  "flag": ""
+ },
+ {
+  "id": "n30-10",
+  "hanzi": "姓",
+  "pinyin": "xing4",
+  "heard": "性",
+  "heardPy": "xing4",
+  "flag": ""
+ },
+ {
+  "id": "n30-11",
+  "hanzi": "右边",
+  "pinyin": "you4 bian5",
+  "heard": "右边。",
+  "heardPy": "you4 bian1",
+  "flag": ""
+ },
+ {
+  "id": "n31-01",
+  "hanzi": "穿",
+  "pinyin": "chuan1",
+  "heard": "春",
+  "heardPy": "chun1",
+  "flag": "",
+  "pass2": [
+   "chuan1",
+   "chuan1"
+  ]
+ },
+ {
+  "id": "n31-02",
+  "hanzi": "得",
+  "pinyin": "de5",
+  "heard": "好的",
+  "heardPy": "hao3 de5",
+  "flag": "confirmed-len",
+  "pass2": [
+   "",
+   "wo3 de2"
+  ]
+ },
+ {
+  "id": "n31-03",
+  "hanzi": "弟弟",
+  "pinyin": "di4 di5",
+  "heard": "地,地",
+  "heardPy": "di4 di4",
+  "flag": ""
+ },
+ {
+  "id": "n31-04",
+  "hanzi": "进",
+  "pinyin": "jin4",
+  "heard": "请",
+  "heardPy": "qing3",
+  "flag": "",
+  "pass2": [
+   "jin4",
+   "qin1"
+  ]
+ },
+ {
+  "id": "n31-05",
+  "hanzi": "近",
+  "pinyin": "jin4",
+  "heard": "请",
+  "heardPy": "qing3",
+  "flag": "",
+  "pass2": [
+   "jin4",
+   "qin1"
+  ]
+ },
+ {
+  "id": "n31-06",
+  "hanzi": "零",
+  "pinyin": "ling2",
+  "heard": "0",
+  "heardPy": "ling2",
+  "flag": ""
+ },
+ {
+  "id": "n31-07",
+  "hanzi": "妻子",
+  "pinyin": "qi1 zi5",
+  "heard": "妻子",
+  "heardPy": "qi1 zi3",
+  "flag": ""
+ },
+ {
+  "id": "n31-08",
+  "hanzi": "雪",
+  "pinyin": "xue3",
+  "heard": "斜",
+  "heardPy": "xie2",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "xie2",
+   "xie2"
+  ]
+ },
+ {
+  "id": "n31-09",
+  "hanzi": "度",
+  "pinyin": "du4",
+  "heard": "都",
+  "heardPy": "dou1",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "tou2",
+   "tou2"
+  ]
+ },
+ {
+  "id": "n32-01",
+  "hanzi": "宾馆",
+  "pinyin": "bin1 guan3",
+  "heard": "冰管",
+  "heardPy": "bing1 guan3",
+  "flag": "sound"
+ },
+ {
+  "id": "n32-02",
+  "hanzi": "铅笔",
+  "pinyin": "qian1 bi3",
+  "heard": "签笔",
+  "heardPy": "qian1 bi3",
+  "flag": ""
+ },
+ {
+  "id": "n32-03",
+  "hanzi": "往",
+  "pinyin": "wang3",
+  "heard": "往",
+  "heardPy": "wang3",
+  "flag": ""
+ },
+ {
+  "id": "n32-04",
+  "hanzi": "笑",
+  "pinyin": "xiao4",
+  "heard": "笑",
+  "heardPy": "xiao4",
+  "flag": ""
+ },
+ {
+  "id": "n32-05",
+  "hanzi": "着",
+  "pinyin": "zhe5",
+  "heard": "这",
+  "heardPy": "zhe4",
+  "flag": ""
+ },
+ {
+  "id": "n32-06",
+  "hanzi": "班",
+  "pinyin": "ban1",
+  "heard": "班",
+  "heardPy": "ban1",
+  "flag": ""
+ },
+ {
+  "id": "n32-07",
+  "hanzi": "拿",
+  "pinyin": "na2",
+  "heard": "呐?",
+  "heardPy": "na4",
+  "flag": "confirmed-tone",
+  "pass2": [
+   "na4",
+   "na4"
+  ]
+ },
+ {
+  "id": "n32-08",
+  "hanzi": "一直",
+  "pinyin": "yi4 zhi2",
+  "heard": "一直",
+  "heardPy": "yi4 zhi2",
+  "flag": ""
+ },
+ {
+  "id": "n32-09",
+  "hanzi": "长",
+  "pinyin": "zhang3",
+  "heard": "掌。",
+  "heardPy": "zhang3",
+  "flag": ""
+ },
+ {
+  "id": "n32-10",
+  "hanzi": "路口",
+  "pinyin": "lu4 kou3",
+  "heard": "路口",
+  "heardPy": "lu4 kou3",
+  "flag": ""
+ },
+ {
+  "id": "n32-11",
+  "hanzi": "手",
+  "pinyin": "shou3",
+  "heard": "手",
+  "heardPy": "shou3",
+  "flag": ""
+ },
+ {
+  "id": "n33-01",
+  "hanzi": "百",
+  "pinyin": "bai3",
+  "heard": "Bye.",
+  "heardPy": "",
+  "flag": "confirmed-len",
+  "pass2": [
+   "",
+   ""
+  ]
+ },
+ {
+  "id": "n33-02",
+  "hanzi": "次",
+  "pinyin": "ci4",
+  "heard": "四",
+  "heardPy": "si4",
+  "flag": "confirmed-sound",
+  "pass2": [
+   "si4",
+   "si4"
+  ]
+ },
+ {
+  "id": "n33-03",
+  "hanzi": "但是",
+  "pinyin": "dan4 shi4",
+  "heard": "但是…",
+  "heardPy": "dan4 shi4",
+  "flag": ""
+ },
+ {
+  "id": "n33-04",
+  "hanzi": "晴",
+  "pinyin": "qing2",
+  "heard": "请",
+  "heardPy": "qing3",
+  "flag": "confirmed-tone",
+  "pass2": [
+   "qing3",
+   "qing3"
+  ]
+ },
+ {
+  "id": "n33-05",
+  "hanzi": "虽然",
+  "pinyin": "sui1 ran2",
+  "heard": "虽然。",
+  "heardPy": "sui1 ran2",
+  "flag": ""
+ },
+ {
+  "id": "n33-06",
+  "hanzi": "玩儿",
+  "pinyin": "wan2 r5",
+  "heard": "玩儿",
+  "heardPy": "wan2",
+  "flag": ""
+ },
+ {
+  "id": "n33-07",
+  "hanzi": "有意思",
+  "pinyin": "you3 yi4 si5",
+  "heard": "有意思。",
+  "heardPy": "you3 yi4 si5",
+  "flag": ""
+ },
+ {
+  "id": "n34-01",
+  "hanzi": "大家",
+  "pinyin": "da4 jia1",
+  "heard": "大家!",
+  "heardPy": "da4 jia1",
+  "flag": ""
+ },
+ {
+  "id": "n34-02",
+  "hanzi": "火车站",
+  "pinyin": "huo3 che1 zhan4",
+  "heard": "火车站",
+  "heardPy": "huo3 che1 zhan4",
+  "flag": ""
+ },
+ {
+  "id": "n34-03",
+  "hanzi": "妹妹",
+  "pinyin": "mei4 mei5",
+  "heard": "妹妹",
+  "heardPy": "mei4 mei4",
+  "flag": ""
+ },
+ {
+  "id": "n34-04",
+  "hanzi": "票",
+  "pinyin": "piao4",
+  "heard": "票",
+  "heardPy": "piao4",
+  "flag": ""
+ },
+ {
+  "id": "n34-05",
+  "hanzi": "日",
+  "pinyin": "ri4",
+  "heard": "G",
+  "heardPy": "",
+  "flag": "confirmed-len",
+  "pass2": [
+   "shi4",
+   "xu1"
+  ]
+ },
+ {
+  "id": "n34-06",
+  "hanzi": "阴",
+  "pinyin": "yin1",
+  "heard": "因",
+  "heardPy": "yin1",
+  "flag": ""
+ },
+ {
+  "id": "n34-07",
+  "hanzi": "更",
+  "pinyin": "geng4",
+  "heard": "更",
+  "heardPy": "geng4",
+  "flag": ""
+ },
+ {
+  "id": "n34-08",
+  "hanzi": "新年",
+  "pinyin": "xin1 nian2",
+  "heard": "新年",
+  "heardPy": "xin1 nian2",
+  "flag": ""
+ },
+ {
+  "id": "s20-01",
+  "hanzi": "我觉得九月去北京旅游最好。",
+  "pinyin": "wo3 jue2 de5 jiu3 yue4 qu4 bei3 jing1 lü3 you2 zui4 hao3",
+  "heard": "我觉得,9月去北京旅游最好。",
+  "heardPy": "wo3 jue2 de5 jiu3 yue4 qu4 bei3 jing1 lv3 you2 zui4 hao3",
+  "flag": ""
+ },
+ {
+  "id": "s20-02",
+  "hanzi": "你为什么不喜欢运动？",
+  "pinyin": "ni3 wei4 shen2 me5 bu4 xi3 huan5 yun4 dong4",
+  "heard": "你为什么不喜欢运动?",
+  "heardPy": "ni3 wei4 shen2 me5 bu4 xi3 huan1 yun4 dong4",
+  "flag": ""
+ },
+ {
+  "id": "s20-03",
+  "hanzi": "下午我们一起去踢足球。",
+  "pinyin": "xia4 wu3 wo3 men5 yi4 qi3 qu4 ti1 zu2 qiu2",
+  "heard": "下午我们一起去踢足球。",
+  "heardPy": "xia4 wu3 wo3 men5 yi4 qi3 qu4 ti1 zu2 qiu2",
+  "flag": ""
+ },
+ {
+  "id": "s21-01",
+  "hanzi": "我每天早上六点起床。",
+  "pinyin": "wo3 mei3 tian1 zao3 shang5 liu4 dian3 qi3 chuang2",
+  "heard": "我每天早上6点起床。",
+  "heardPy": "wo3 mei3 tian1 zao3 shang4 liu4 dian3 qi3 chuang2",
+  "flag": ""
+ },
+ {
+  "id": "s21-02",
+  "hanzi": "他生病了，要吃药，多休息。",
+  "pinyin": "ta1 sheng1 bing4 le5 yao4 chi1 yao4 duo1 xiu1 xi5",
+  "heard": "他生病了,要吃药,多休息。",
+  "heardPy": "ta1 sheng1 bing4 le5 yao4 chi1 yao4 duo1 xiu1 xi1",
+  "flag": ""
+ },
+ {
+  "id": "s21-03",
+  "hanzi": "你知道他什么时候出院吗？",
+  "pinyin": "ni3 zhi1 dao4 ta1 shen2 me5 shi2 hou5 chu1 yuan4 ma5",
+  "heard": "你知道他什么时候出院吗?",
+  "heardPy": "ni3 zhi1 dao4 ta1 shen2 me5 shi2 hou4 chu1 yuan4 ma5",
+  "flag": ""
+ },
+ {
+  "id": "s22-01",
+  "hanzi": "左边那个红色的手表是我的。",
+  "pinyin": "zuo3 bian5 na4 ge5 hong2 se4 de5 shou3 biao3 shi4 wo3 de5",
+  "heard": "左边那个红色的手表是我的。",
+  "heardPy": "zuo3 bian1 na4 ge5 hong2 se4 de5 shou3 biao3 shi4 wo3 de5",
+  "flag": ""
+ },
+ {
+  "id": "s22-02",
+  "hanzi": "你的房间是什么颜色的？",
+  "pinyin": "ni3 de5 fang2 jian1 shi4 shen2 me5 yan2 se4 de5",
+  "heard": "你的房间是什么颜色的?",
+  "heardPy": "ni3 de5 fang2 jian1 shi4 shen2 me5 yan2 se4 de5",
+  "flag": ""
+ },
+ {
+  "id": "s22-03",
+  "hanzi": "我丈夫每天早上看报纸。",
+  "pinyin": "wo3 zhang4 fu5 mei3 tian1 zao3 shang5 kan4 bao4 zhi3",
+  "heard": "我丈夫每天早上看报纸。",
+  "heardPy": "wo3 zhang4 fu1 mei3 tian1 zao3 shang4 kan4 bao4 zhi3",
+  "flag": ""
+ },
+ {
+  "id": "s23-01",
+  "hanzi": "今天是我的生日，我非常快乐。",
+  "pinyin": "jin1 tian1 shi4 wo3 de5 sheng1 ri4 wo3 fei1 chang2 kuai4 le4",
+  "heard": "今天是我的生日,我非常快乐。",
+  "heardPy": "jin1 tian1 shi4 wo3 de5 sheng1 ri4 wo3 fei1 chang2 kuai4 le4",
+  "flag": ""
+ },
+ {
+  "id": "s23-02",
+  "hanzi": "这个工作是他帮我介绍的。",
+  "pinyin": "zhe4 ge5 gong1 zuo4 shi4 ta1 bang1 wo3 jie4 shao4 de5",
+  "heard": "这个工作是他帮我介绍的。",
+  "heardPy": "zhe4 ge5 gong1 zuo4 shi4 ta1 bang1 wo3 jie4 shao4 de5",
+  "flag": ""
+ },
+ {
+  "id": "s23-03",
+  "hanzi": "电影已经开始了。",
+  "pinyin": "dian4 ying3 yi3 jing1 kai1 shi3 le5",
+  "heard": "电影已经开始了。",
+  "heardPy": "dian4 ying3 yi3 jing1 kai1 shi3 le5",
+  "flag": ""
+ },
+ {
+  "id": "s24-01",
+  "hanzi": "这件衣服还可以，就买这件吧。",
+  "pinyin": "zhe4 jian4 yi1 fu5 hai2 ke3 yi3 jiu4 mai3 zhe4 jian4 ba5",
+  "heard": "这件衣服还可以,就买这件吧。",
+  "heardPy": "zhe4 jian4 yi1 fu2 hai2 ke3 yi3 jiu4 mai3 zhe4 jian4 ba5",
+  "flag": ""
+ },
+ {
+  "id": "s24-02",
+  "hanzi": "明天有考试，你准备好了吗？",
+  "pinyin": "ming2 tian1 you3 kao3 shi4 ni3 zhun3 bei4 hao3 le5 ma5",
+  "heard": "明天有考试,你准备好了吗?",
+  "heardPy": "ming2 tian1 you3 kao3 shi4 ni3 zhun3 bei4 hao3 le5 ma5",
+  "flag": ""
+ },
+ {
+  "id": "s24-03",
+  "hanzi": "外面很冷，我们喝杯咖啡吧。",
+  "pinyin": "wai4 mian4 hen3 leng3 wo3 men5 he1 bei1 ka1 fei1 ba5",
+  "heard": "外面很冷,我们喝杯咖啡吧。",
+  "heardPy": "wai4 mian4 hen3 leng3 wo3 men5 he1 bei1 ka1 fei1 ba5",
+  "flag": ""
+ },
+ {
+  "id": "s25-01",
+  "hanzi": "因为下雨，所以我们没去游泳。",
+  "pinyin": "yin1 wei4 xia4 yu3 suo3 yi3 wo3 men5 mei2 qu4 you2 yong3",
+  "heard": "因为下雨,所以我们没去游泳。",
+  "heardPy": "yin1 wei4 xia4 yu3 suo3 yi3 wo3 men5 mei2 qu4 you2 yong3",
+  "flag": ""
+ },
+ {
+  "id": "s25-02",
+  "hanzi": "我姐姐经常打篮球。",
+  "pinyin": "wo3 jie3 jie5 jing1 chang2 da3 lan2 qiu2",
+  "heard": "我姐姐经常打篮球。",
+  "heardPy": "wo3 jie3 jie3 jing1 chang2 da3 lan2 qiu2",
+  "flag": ""
+ },
+ {
+  "id": "s25-03",
+  "hanzi": "这儿的面条很好吃。",
+  "pinyin": "zhe4 de5 mian4 tiao2 hen3 hao3 chi1",
+  "heard": "这儿的面条很好吃。",
+  "heardPy": "zhe4 de5 mian4 tiao2 hen3 hao3 chi1",
+  "flag": ""
+ },
+ {
+  "id": "s26-01",
+  "hanzi": "你家离公司远吗？",
+  "pinyin": "ni3 jia1 li2 gong1 si1 yuan3 ma5",
+  "heard": "你家离公司远吗?",
+  "heardPy": "ni3 jia1 li2 gong1 si1 yuan3 ma5",
+  "flag": ""
+ },
+ {
+  "id": "s26-02",
+  "hanzi": "坐公共汽车到机场要一个小时。",
+  "pinyin": "zuo4 gong1 gong4 qi4 che1 dao4 ji1 chang3 yao4 yi2 ge5 xiao3 shi2",
+  "heard": "坐公共汽车到机场要一个小时。",
+  "heardPy": "zuo4 gong1 gong4 qi4 che1 dao4 ji1 chang3 yao4 yi2 ge4 xiao3 shi2",
+  "flag": ""
+ },
+ {
+  "id": "s26-03",
+  "hanzi": "我们走路去教室。",
+  "pinyin": "wo3 men5 zou3 lu4 qu4 jiao4 shi4",
+  "heard": "我们走路去教室。",
+  "heardPy": "wo3 men5 zou3 lu4 qu4 jiao4 shi4",
+  "flag": ""
+ },
+ {
+  "id": "s27-01",
+  "hanzi": "让我想想再告诉你。",
+  "pinyin": "rang4 wo3 xiang3 xiang5 zai4 gao4 su5 ni3",
+  "heard": "让我想想再告诉你。",
+  "heardPy": "rang4 wo3 xiang3 xiang3 zai4 gao4 su4 ni3",
+  "flag": ""
+ },
+ {
+  "id": "s27-02",
+  "hanzi": "服务员，这个白的多少钱？",
+  "pinyin": "fu2 wu4 yuan2 zhe4 ge5 bai2 de5 duo1 shao5 qian2",
+  "heard": "服务员,这个白的多少钱?",
+  "heardPy": "fu2 wu4 yuan2 zhe4 ge5 bai2 de5 duo1 shao3 qian2",
+  "flag": ""
+ },
+ {
+  "id": "s27-03",
+  "hanzi": "你等一下，我去找他。",
+  "pinyin": "ni3 deng3 yi2 xia4 wo3 qu4 zhao3 ta1",
+  "heard": "你等一下,我去找他。",
+  "heardPy": "ni3 deng3 yi2 xia4 wo3 qu4 zhao3 ta1",
+  "flag": ""
+ },
+ {
+  "id": "s28-01",
+  "hanzi": "题太多，我没做完。",
+  "pinyin": "ti2 tai4 duo1 wo3 mei2 zuo4 wan2",
+  "heard": "提太多,我没做完。",
+  "heardPy": "ti2 tai4 duo1 wo3 mei2 zuo4 wan2",
+  "flag": ""
+ },
+ {
+  "id": "s28-02",
+  "hanzi": "欢迎你来我们公司上班。",
+  "pinyin": "huan1 ying2 ni3 lai2 wo3 men5 gong1 si1 shang4 ban1",
+  "heard": "欢迎你来我们公司上班。",
+  "heardPy": "huan1 ying2 ni3 lai2 wo3 men5 gong1 si1 shang4 ban1",
+  "flag": ""
+ },
+ {
+  "id": "s28-03",
+  "hanzi": "我希望明天不下雨。",
+  "pinyin": "wo3 xi1 wang4 ming2 tian1 bu2 xia4 yu3",
+  "heard": "我希望明天不下雨。",
+  "heardPy": "wo3 xi1 wang4 ming2 tian1 bu4 xia4 yu3",
+  "flag": ""
+ },
+ {
+  "id": "s29-01",
+  "hanzi": "别找了，手机在桌子上呢。",
+  "pinyin": "bie2 zhao3 le5 shou3 ji1 zai4 zhuo1 zi5 shang5 ne5",
+  "heard": "别找了,手机在桌子上呢。",
+  "heardPy": "bie2 zhao3 le5 shou3 ji1 zai4 zhuo1 zi5 shang4 ne5",
+  "flag": ""
+ },
+ {
+  "id": "s29-02",
+  "hanzi": "哥哥正在洗衣服。",
+  "pinyin": "ge1 ge5 zheng4 zai4 xi3 yi1 fu5",
+  "heard": "哥哥正在洗衣服。",
+  "heardPy": "ge1 ge1 zheng4 zai4 xi3 yi1 fu2",
+  "flag": ""
+ },
+ {
+  "id": "s29-03",
+  "hanzi": "谢谢你的帮助。",
+  "pinyin": "xie4 xie5 ni3 de5 bang1 zhu4",
+  "heard": "",
+  "heardPy": "",
+  "flag": "len"
+ },
+ {
+  "id": "s30-01",
+  "hanzi": "他比我大三岁。",
+  "pinyin": "ta1 bi3 wo3 da4 san1 sui4",
+  "heard": "",
+  "heardPy": "",
+  "flag": "len"
+ },
+ {
+  "id": "s30-02",
+  "hanzi": "这个西瓜比那个便宜。",
+  "pinyin": "zhe4 ge5 xi1 gua1 bi3 na4 ge5 pian2 yi5",
+  "heard": "这个西瓜比那个便宜。",
+  "heardPy": "zhe4 ge5 xi1 gua1 bi3 na4 ge5 pian2 yi5",
+  "flag": ""
+ },
+ {
+  "id": "s30-03",
+  "hanzi": "那个孩子姓什么？",
+  "pinyin": "na4 ge5 hai2 zi5 xing4 shen2 me5",
+  "heard": "那个孩子姓什么?",
+  "heardPy": "na4 ge5 hai2 zi5 xing4 shen2 me5",
+  "flag": ""
+ },
+ {
+  "id": "s31-01",
+  "hanzi": "今天零下五度，你穿得太少了。",
+  "pinyin": "jin1 tian1 ling2 xia4 wu3 du4 ni3 chuan1 de5 tai4 shao3 le5",
+  "heard": "今天零下五度,你穿的太少了。",
+  "heardPy": "jin1 tian1 ling2 xia4 wu3 du4 ni3 chuan1 de5 tai4 shao3 le5",
+  "flag": ""
+ },
+ {
+  "id": "s31-02",
+  "hanzi": "我弟弟跑得很快。",
+  "pinyin": "wo3 di4 di5 pao3 de5 hen3 kuai4",
+  "heard": "It was running very fast.",
+  "heardPy": "",
+  "flag": "len"
+ },
+ {
+  "id": "s31-03",
+  "hanzi": "外面下雪了，快进来吧。",
+  "pinyin": "wai4 mian4 xia4 xue3 le5 kuai4 jin4 lai5 ba5",
+  "heard": "快进来吧!",
+  "heardPy": "kuai4 jin4 lai2 ba5",
+  "flag": "len"
+ },
+ {
+  "id": "s32-01",
+  "hanzi": "门开着呢，请进。",
+  "pinyin": "men2 kai1 zhe5 ne5 qing3 jin4",
+  "heard": "门开着呢,请进。",
+  "heardPy": "men2 kai1 zhe5 ne5 qing3 jin4",
+  "flag": ""
+ },
+ {
+  "id": "s32-02",
+  "hanzi": "一直往前走，到路口往右走。",
+  "pinyin": "yi4 zhi2 wang3 qian2 zou3 dao4 lu4 kou3 wang3 you4 zou3",
+  "heard": "一直往前走,到路口往右走。",
+  "heardPy": "yi4 zhi2 wang3 qian2 zou3 dao4 lu4 kou3 wang3 you4 zou3",
+  "flag": ""
+ },
+ {
+  "id": "s32-03",
+  "hanzi": "她笑着说：“谢谢！”",
+  "pinyin": "ta1 xiao4 zhe5 shuo1 xie4 xie5",
+  "heard": "他笑着说:「谢谢。」",
+  "heardPy": "ta1 xiao4 zhe5 shuo1 xie4 xie4",
+  "flag": ""
+ },
+ {
+  "id": "s33-01",
+  "hanzi": "你看过那个电影吗？",
+  "pinyin": "ni3 kan4 guo5 na4 ge5 dian4 ying3 ma5",
+  "heard": "那个电影吗?",
+  "heardPy": "na4 ge5 dian4 ying3 ma5",
+  "flag": "len"
+ },
+ {
+  "id": "s33-02",
+  "hanzi": "虽然很贵，但是很有意思。",
+  "pinyin": "sui1 ran2 hen3 gui4 dan4 shi4 hen3 you3 yi4 si5",
+  "heard": "虽然很贵,但是很有意思。",
+  "heardPy": "sui1 ran2 hen3 gui4 dan4 shi4 hen3 you3 yi4 si5",
+  "flag": ""
+ },
+ {
+  "id": "s33-03",
+  "hanzi": "我去过北京两次。",
+  "pinyin": "wo3 qu4 guo5 bei3 jing1 liang3 ci4",
+  "heard": "我去过北京两次。",
+  "heardPy": "wo3 qu4 guo4 bei3 jing1 liang3 ci4",
+  "flag": ""
+ },
+ {
+  "id": "s34-01",
+  "hanzi": "新年就要到了。",
+  "pinyin": "xin1 nian2 jiu4 yao4 dao4 le5",
+  "heard": "新年就要到了。",
+  "heardPy": "xin1 nian2 jiu4 yao4 dao4 le5",
+  "flag": ""
+ },
+ {
+  "id": "s34-02",
+  "hanzi": "我妹妹去火车站买票了。",
+  "pinyin": "wo3 mei4 mei5 qu4 huo3 che1 zhan4 mai3 piao4 le5",
+  "heard": "我妹妹去火车站买票了。",
+  "heardPy": "wo3 mei4 mei4 qu4 huo3 che1 zhan4 mai3 piao4 le5",
+  "flag": ""
+ },
+ {
+  "id": "s34-03",
+  "hanzi": "明天是阴天，比今天更冷。",
+  "pinyin": "ming2 tian1 shi4 yin1 tian1 bi3 jin1 tian1 geng4 leng3",
+  "heard": "明天是英天,比今天更冷。",
+  "heardPy": "ming2 tian1 shi4 ying1 tian1 bi3 jin1 tian1 geng4 leng3",
+  "flag": "sound"
+ }
+]

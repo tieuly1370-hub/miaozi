@@ -59,6 +59,8 @@ export interface V2State {
   /** v2.2.2: mốc xóa chép phạt / bắt đầu lại — để gộp Drive không kéo phạt/tiến độ cũ trở lại. */
   penaltiesClearedAt?: number;
   resetAt?: number;
+  /** v2.4: bài đã học xong (số bài toàn cục → lúc đánh dấu). Gộp Drive: hợp lại, đã xong giữ xong. */
+  doneLessons?: Record<string, number>;
 }
 
 export const DEFAULT_V2 = (): V2State => ({
@@ -351,6 +353,15 @@ export function owedList(): { n: number; id: SecId; due: string; reason: string;
 }
 
 export function setWrite(p: Partial<V2State["write"]>) { S().write = { ...S().write, ...p }; touch(); }
+/** v2.4: bài tính là ĐÃ HỌC XONG khi: tự đánh dấu, hoặc mọi từ của bài đã viết đạt, hoặc đã hoàn thành theo lộ trình cũ (6 mục). */
+export function isLessonCompleted(n: number): boolean {
+  const v = S();
+  if (v.doneLessons?.[n]) return true;
+  const ws = lesson(n).words;
+  if (ws.length && ws.every((w) => v.write.done[w.id])) return true;
+  return v.sec[n] ? lessonComplete(v.sec[n]) : false;
+}
+export function markLessonDone(n: number) { const v = S(); v.doneLessons = { ...(v.doneLessons || {}), [n]: v.doneLessons?.[n] || Date.now() }; touch(); }
 export function setPomodoro(mins: number | null) { S().pomodoro = mins ? { end: Date.now() + mins * 60000, mins } : null; touch(); }
 
 /* ---------------- Báo cáo điểm yếu hằng tuần (thứ Hai) ---------------- */

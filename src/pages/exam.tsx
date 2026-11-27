@@ -18,6 +18,8 @@ import { setWork } from "../v2/leaveGuard";
 import { tutorLine } from "../tutor";
 import { hanChars, loadCharData } from "./write";
 import { WRITE_QUIZ_BASE, mediansToPts, typeAccepts } from "../v2/strokeMatch";
+import { gradeStrict, strokeZoneOk, type Pt } from "../v2/strictGrade";
+import { COMP_GROUPS } from "../data/compGroups";
 
 const fmtDate = (d: string) => d.split("-").reverse().slice(0, 2).join("/");
 
@@ -212,6 +214,8 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
   const host = useRef<HTMLDivElement>(null);
   const ink = useRef<HTMLCanvasElement>(null);
   const startAt = useRef(0), strokeN = useRef(0), missR = useRef(0);
+  // v2.4: chấm chặt — từng nét phải trong vùng nét mẫu, cả chữ phải đúng vị trí / tỉ lệ thành phần
+  const drawnR = useRef<Pt[][]>([]), rejected = useRef(false);
   const [size] = useState(() => (window.innerWidth >= 768 ? 360 : Math.min(280, window.innerWidth - 72)));
   // v2.2: mực bút máy (độ dày theo Cài đặt) + Hoàn tác như trang Viết; chấm nét vẫn do hanzi-writer (sai > 5 nét/chữ = trượt).
   const pen = usePenInk(host, ink, !locked, getState().settings.penWidth, [k, round]);
@@ -222,8 +226,8 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
     el.innerHTML = "";
     let writer: ReturnType<typeof HanziWriter.create> | null = null;
     let cancelled = false;
-    if (!startAt.current) { missR.current = 0; setMiss(0); pen.clear(); }
-    pen.reject(); strokeN.current = startAt.current; setCanUndo(startAt.current > 0);
+    if (!startAt.current) { missR.current = 0; setMiss(0); pen.clear(); drawnR.current = []; }
+    pen.reject(); strokeN.current = startAt.current; setCanUndo(startAt.current > 0); rejected.current = false;
     (async () => {
       try {
         const data = await loadCharData(chars[k]);
@@ -235,6 +239,24 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
           charDataLoader: (_c: string, cb: (d: unknown) => void) => cb(data),
         });
         const medians = (data as { medians?: number[][][] }).medians || [];
+        const ref = medians.map((_, i) => mediansToPts(medians, i));
+        const finishChar = () => {
+          const g = gradeStrict(ref, drawnR.current, COMP_GROUPS[chars[k]]);
+          setCanUndo(false); startAt.current = 0;
+          if (!g.ok) { done(false, `Chữ ${chars[k]}: ${g.reason}`); return; }
+          if (k + 1 < chars.length) setK(k + 1);
+          else done(true);
+        };
+        /** nét ngoài vùng → tính sai, viết lại nét đó */
+        const zoneMiss = (i: number, drawn: Pt[]) => {
+          if (strokeZoneOk(ref[i] || [], drawn)) { drawnR.current[i] = drawn; return false; }
+          rejected.current = true;
+          try { writer?.cancelQuiz(); } catch { /* */ }
+          missR.current += 1; const m = missR.current; setMiss(m); pen.reject();
+          if (m > MAX_MISS) done(false, `Sai ${m} nét ở chữ thứ ${k + 1} — tính trượt.`);
+          else { startAt.current = strokeN.current; setRound((r) => r + 1); }
+          return true;
+        };
         writer.quiz({
           ...WRITE_QUIZ_BASE,
           quizStartStrokeNum: startAt.current,
@@ -242,27 +264,24 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
             const exp = mediansToPts(medians, sd.strokeNum);
             const drawn = sd.drawnPath?.points || [];
             if (typeAccepts(exp, drawn)) {
+              if (zoneMiss(sd.strokeNum, drawn)) return;
               try { writer?.cancelQuiz(); } catch { /* */ }
               pen.accept();
               strokeN.current += 1; setCanUndo(true);
-              if (strokeN.current >= medians.length) {
-                setCanUndo(false); startAt.current = 0;
-                if (k + 1 < chars.length) setK(k + 1);
-                else done(true);
-                return;
-              }
+              if (strokeN.current >= medians.length) { finishChar(); return; }
               startAt.current = strokeN.current; setRound((r) => r + 1);
               return;
             }
             missR.current += 1; const m = missR.current; setMiss(m); pen.reject();
             if (m > MAX_MISS) { try { writer?.cancelQuiz(); } catch { /* */ } done(false, `Sai ${m} nét ở chữ thứ ${k + 1} — tính trượt.`); }
           },
-          onCorrectStroke: () => { pen.accept(); strokeN.current += 1; setCanUndo(true); },
+          onCorrectStroke: (sd: { strokeNum: number; drawnPath?: { points: Pt[] } }) => {
+            if (zoneMiss(sd.strokeNum, sd.drawnPath?.points || [])) return;
+            pen.accept(); strokeN.current += 1; setCanUndo(true);
+          },
           onComplete: () => {
-            if (cancelled || missR.current > MAX_MISS) return;
-            setCanUndo(false); startAt.current = 0;
-            if (k + 1 < chars.length) setK(k + 1);
-            else done(true);
+            if (cancelled || rejected.current || missR.current > MAX_MISS) return;
+            finishChar();
           },
         });
       } catch {
@@ -275,7 +294,7 @@ function WriteView(props: { item: Extract<Item, { t: "write" }>; onAnswer: (ok: 
   return (
     <Card data-testid="exam-write">
       <Timer secs={30 + 30 * chars.length} onTimeout={() => done(false, "Hết giờ.")} />
-      <p class="muted">Viết từ trí nhớ — không pinyin, không nét mờ, không gợi ý. Mỗi chữ được sai tối đa 5 nét.</p>
+      <p class="muted">Viết từ trí nhớ — không pinyin, không nét mờ, không gợi ý. Mỗi chữ được sai tối đa 5 nét; nét phải đúng chỗ, các phần của chữ đúng tỉ lệ.</p>
       <div class="exam-prompt" data-testid="write-prompt">“{it.vi}” <span class="muted">({it.word.pos} · {chars.length} chữ)</span></div>
       {it.audio && <div class="tools"><LimitedAudio id={it.audio} max={3} auto /></div>}
       <div class="row spread">
